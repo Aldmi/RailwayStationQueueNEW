@@ -1,0 +1,245 @@
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.csprojResolveAssemblyReference.cache
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\App.g.cs
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.cache
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.lref
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\ServerUi.exe.config
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\ServerUi.exe
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\ServerUi.pdb
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Caliburn.Micro.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Castle.Core.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Castle.Windsor.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Communication.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Library.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Server.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\System.Windows.Interactivity.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Terminal.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Communication.pdb
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Library.pdb
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Server.pdb
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Caliburn.Micro.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Castle.Core.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Castle.Windsor.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Terminal.pdb
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\Views\AppView.baml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\Views\AppView.g.cs
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\App.baml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.g.resources
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.Properties.Resources.resources
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.csproj.GenerateResource.Cache
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.exe
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.pdb
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\ServerUi.exe.config
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\ServerUi.exe
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\ServerUi.pdb
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\ServerUi.exe
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\ServerUi.pdb
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Caliburn.Micro.dll
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.dll
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.dll
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Castle.Core.dll
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Castle.Windsor.dll
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Communication.dll
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Library.dll
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Server.dll
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\System.Windows.Interactivity.dll
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Terminal.dll
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Communication.pdb
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Library.pdb
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Server.pdb
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Caliburn.Micro.xml
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.xml
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.xml
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Castle.Core.xml
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Castle.Windsor.xml
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\bin\Release\Terminal.pdb
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\ServerUi.csprojResolveAssemblyReference.cache
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\Views\AppView.baml
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\Views\AppView.g.cs
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\App.g.cs
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\GeneratedInternalTypeHelper.g.cs
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.cache
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.lref
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\App.baml
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\ServerUi.g.resources
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\ServerUi.Properties.Resources.resources
+E:\Dropbox\C#\Project C#\src\ServerUIWpf\obj\Release\ServerUi.csproj.GenerateResource.Cache
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\ServerUi.exe.config
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\ServerUi.exe
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\ServerUi.pdb
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\ServerUi.csprojResolveAssemblyReference.cache
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\Views\AppView.baml
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\Views\AppView.g.cs
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\App.g.cs
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\GeneratedInternalTypeHelper.g.cs
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.cache
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.lref
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\ServerUi.exe
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\ServerUi.pdb
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Caliburn.Micro.dll
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.dll
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.dll
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Castle.Core.dll
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Castle.Windsor.dll
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Communication.dll
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Library.dll
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Server.dll
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\System.Windows.Interactivity.dll
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Terminal.dll
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Communication.pdb
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Library.pdb
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Server.pdb
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Caliburn.Micro.xml
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.xml
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.xml
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Castle.Core.xml
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Castle.Windsor.xml
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\bin\Release\Terminal.pdb
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\App.baml
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\ServerUi.g.resources
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\ServerUi.Properties.Resources.resources
+E:\Dropbox\C#\Project C#\Belovo\src\ServerUIWpf\obj\Release\ServerUi.csproj.GenerateResource.Cache
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\ServerUi.exe.config
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.exe
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\ServerUi.exe
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\ServerUi.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Castle.Core.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Castle.Windsor.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Communication.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Library.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Server.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\System.Windows.Interactivity.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Terminal.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Communication.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Library.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Server.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.xml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.xml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.xml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Castle.Core.xml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Castle.Windsor.xml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\bin\Release\Terminal.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.csprojResolveAssemblyReference.cache
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\Views\AppView.baml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\Views\AppView.g.cs
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\App.g.cs
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\GeneratedInternalTypeHelper.g.cs
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.cache
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.lref
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\App.baml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.g.resources
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.Properties.Resources.resources
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.csproj.GenerateResource.Cache
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\ServerUi.exe.config
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\ServerUi.exe
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\ServerUi.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\ServerUi.exe
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\ServerUi.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Caliburn.Micro.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Castle.Core.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Castle.Windsor.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Communication.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Library.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Server.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\System.Windows.Interactivity.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Terminal.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Communication.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Library.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Server.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Caliburn.Micro.xml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.xml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.xml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Castle.Core.xml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Castle.Windsor.xml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\bin\Release\Terminal.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\ServerUi.csprojResolveAssemblyReference.cache
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\Views\AppView.baml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\Views\AppView.g.cs
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\App.g.cs
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\GeneratedInternalTypeHelper.g.cs
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.cache
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.lref
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\App.baml
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\ServerUi.g.resources
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\ServerUi.Properties.Resources.resources
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\ServerUIWpf\obj\Release\ServerUi.csproj.GenerateResource.Cache
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\ServerUi.exe.config
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.exe
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.pdb
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\ServerUi.exe
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\ServerUi.pdb
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.dll
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.dll
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.dll
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Castle.Core.dll
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Castle.Windsor.dll
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Communication.dll
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Library.dll
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Server.dll
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\System.Windows.Interactivity.dll
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Terminal.dll
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Communication.pdb
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Library.pdb
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Server.pdb
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.xml
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.xml
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.xml
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Castle.Core.xml
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Castle.Windsor.xml
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\bin\Release\Terminal.pdb
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\Views\AppView.baml
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\Views\AppView.g.cs
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\App.g.cs
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.cache
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.lref
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\App.baml
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.g.resources
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.Properties.Resources.resources
+C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.csproj.GenerateResource.Cache
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\ServerUi.exe.config
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\ServerUi.exe
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\ServerUi.pdb
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Caliburn.Micro.dll
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.dll
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.dll
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Castle.Core.dll
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Castle.Windsor.dll
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Communication.dll
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Library.dll
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Server.dll
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\System.Windows.Interactivity.dll
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Terminal.dll
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Communication.pdb
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Library.pdb
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Server.pdb
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Caliburn.Micro.xml
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.xml
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Caliburn.Micro.Platform.Core.xml
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Castle.Core.xml
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Castle.Windsor.xml
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\Terminal.pdb
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\ServerUi.csprojResolveAssemblyReference.cache
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\Views\AppView.baml
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\Views\AppView.g.cs
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\App.g.cs
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\GeneratedInternalTypeHelper.g.cs
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.cache
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\ServerUi_MarkupCompile.lref
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\App.baml
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\ServerUi.g.resources
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\ServerUi.Properties.Resources.resources
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\ServerUi.csproj.GenerateResource.Cache
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\ServerUi.exe
+D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Release\ServerUi.pdb

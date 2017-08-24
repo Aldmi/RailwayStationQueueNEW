@@ -1,0 +1,98 @@
+﻿<Window x:Class="ServerUi.Views.AppView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ctrl="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        AllowDrop="False"
+        Focusable="False"
+        WindowState="Maximized"
+        WindowStyle="None"
+        mc:Ignorable="d">
+
+
+    <Window.Resources>
+        <Style x:Key="LabelCashierNumberStyle" TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="1" />
+        </Style>
+    </Window.Resources>
+
+
+    
+    
+    <Grid Margin="10" ShowGridLines="True" Background="BurlyWood">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="0.14286*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="0.57143*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="0.28571*" />
+        </Grid.RowDefinitions>
+
+
+        <Label Grid.Row="0" Content="КАССЫ" HorizontalAlignment="Center" FontSize="6"/>
+        <Grid Name="CashierGrid" Grid.Row="1" ShowGridLines="True" Background="Aqua">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label  Grid.Row="0" Grid.Column="0" Content="1" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="0" Grid.Column="1" Content="2" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="0" Grid.Column="2" Content="3" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="0" Grid.Column="3" Content="4" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="0" Grid.Column="4" Content="5" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="0" Grid.Column="5" Content="6" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="0" Grid.Column="6" Content="7" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="0" Grid.Column="7" Content="8" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="2" Grid.Column="0" Content="9" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="2" Grid.Column="1" Content="10" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="2" Grid.Column="2" Content="11" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="2" Grid.Column="3" Content="12" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="2" Grid.Column="4" Content="13" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="2" Grid.Column="5" Content="14" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="2" Grid.Column="6" Content="15" Style="{StaticResource LabelCashierNumberStyle}"/>
+            <Label  Grid.Row="2" Grid.Column="7" Content="16" Style="{StaticResource LabelCashierNumberStyle}"/>
+
+            <TextBox Grid.Row="1" Grid.Column="0" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="A001" IsReadOnly="True" Padding="0" Margin="0"/>
+            <TextBox Grid.Row="3" Grid.Column="0" FontSize="36" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="A009" IsReadOnly="True"/>
+
+        </Grid>
+
+
+         
+        <!--<Label Grid.Row="2" Content="ТАБЛО 1" HorizontalAlignment="Center" FontSize="6"/>
+        <Grid Name="AllGridType1" Grid.Row="3" ShowGridLines="True" Background="CadetBlue">
+        </Grid>
+
+
+        <Label Grid.Row="4" Content="ТАБЛО 2" HorizontalAlignment="Center" FontSize="6"/>
+        <Grid Name="AllGridType2" Grid.Row="5" ShowGridLines="True" Background="CadetBlue">
+        </Grid>-->
+
+    </Grid>
+</Window>

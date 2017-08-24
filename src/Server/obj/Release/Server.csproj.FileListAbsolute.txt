@@ -1,0 +1,92 @@
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\bin\Release\Server.exe.config
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\bin\Release\Server.exe
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\bin\Release\Server.pdb
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\bin\Release\Communication.dll
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\bin\Release\Library.dll
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\bin\Release\Communication.pdb
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\bin\Release\Library.pdb
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\obj\Release\Server.Form1.resources
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\obj\Release\Server.Properties.Resources.resources
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\obj\Release\Server.csproj.GenerateResource.Cache
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\obj\Release\Server.exe
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\obj\Release\Server.pdb
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\bin\Release\NModbus4.dll
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\bin\Release\NModbus4.xml
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Server.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Server.pdb
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Communication.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Library.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Terminal.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Communication.pdb
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Library.pdb
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Terminal.pdb
+D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.dll
+D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.pdb
+E:\Dropbox\C#\Project C#\src\Server\bin\Release\Server.dll
+E:\Dropbox\C#\Project C#\src\Server\bin\Release\Server.pdb
+E:\Dropbox\C#\Project C#\src\Server\bin\Release\Communication.dll
+E:\Dropbox\C#\Project C#\src\Server\bin\Release\Library.dll
+E:\Dropbox\C#\Project C#\src\Server\bin\Release\Terminal.dll
+E:\Dropbox\C#\Project C#\src\Server\bin\Release\Communication.pdb
+E:\Dropbox\C#\Project C#\src\Server\bin\Release\Library.pdb
+E:\Dropbox\C#\Project C#\src\Server\bin\Release\Terminal.pdb
+E:\Dropbox\C#\Project C#\src\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+E:\Dropbox\C#\Project C#\src\Server\obj\Release\Server.dll
+E:\Dropbox\C#\Project C#\src\Server\obj\Release\Server.pdb
+E:\Dropbox\C#\Project C#\Belovo\src\Server\bin\Release\Server.dll
+E:\Dropbox\C#\Project C#\Belovo\src\Server\bin\Release\Server.pdb
+E:\Dropbox\C#\Project C#\Belovo\src\Server\bin\Release\Communication.dll
+E:\Dropbox\C#\Project C#\Belovo\src\Server\bin\Release\Library.dll
+E:\Dropbox\C#\Project C#\Belovo\src\Server\bin\Release\Terminal.dll
+E:\Dropbox\C#\Project C#\Belovo\src\Server\bin\Release\Communication.pdb
+E:\Dropbox\C#\Project C#\Belovo\src\Server\bin\Release\Library.pdb
+E:\Dropbox\C#\Project C#\Belovo\src\Server\bin\Release\Terminal.pdb
+E:\Dropbox\C#\Project C#\Belovo\src\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+E:\Dropbox\C#\Project C#\Belovo\src\Server\obj\Release\Server.dll
+E:\Dropbox\C#\Project C#\Belovo\src\Server\obj\Release\Server.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\Server\bin\Release\Server.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\Server\bin\Release\Server.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\Server\bin\Release\Communication.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\Server\bin\Release\Library.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\Server\bin\Release\Terminal.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\Server\bin\Release\Communication.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\Server\bin\Release\Library.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\Server\bin\Release\Terminal.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\Server\obj\Release\Server.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn\Server\obj\Release\Server.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\Server\bin\Release\Server.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\Server\bin\Release\Server.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\Server\bin\Release\Communication.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\Server\bin\Release\Library.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\Server\bin\Release\Terminal.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\Server\bin\Release\Communication.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\Server\bin\Release\Library.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\Server\bin\Release\Terminal.pdb
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\Server\obj\Release\Server.dll
+e:\Dropbox\C#\Project C#\Belovo\src_terminal_1btn_4,5Framework\Server\obj\Release\Server.pdb
+C:\Users\admin\Desktop\src_terminal_1btn\Server\bin\Release\Server.dll
+C:\Users\admin\Desktop\src_terminal_1btn\Server\bin\Release\Server.pdb
+C:\Users\admin\Desktop\src_terminal_1btn\Server\bin\Release\Communication.dll
+C:\Users\admin\Desktop\src_terminal_1btn\Server\bin\Release\Library.dll
+C:\Users\admin\Desktop\src_terminal_1btn\Server\bin\Release\Terminal.dll
+C:\Users\admin\Desktop\src_terminal_1btn\Server\bin\Release\Communication.pdb
+C:\Users\admin\Desktop\src_terminal_1btn\Server\bin\Release\Library.pdb
+C:\Users\admin\Desktop\src_terminal_1btn\Server\bin\Release\Terminal.pdb
+C:\Users\admin\Desktop\src_terminal_1btn\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\src_terminal_1btn\Server\obj\Release\Server.dll
+C:\Users\admin\Desktop\src_terminal_1btn\Server\obj\Release\Server.pdb
+D:\Git\RailwayStationQueueNEW\src\Server\bin\Release\Server.dll
+D:\Git\RailwayStationQueueNEW\src\Server\bin\Release\Server.pdb
+D:\Git\RailwayStationQueueNEW\src\Server\bin\Release\Communication.dll
+D:\Git\RailwayStationQueueNEW\src\Server\bin\Release\Library.dll
+D:\Git\RailwayStationQueueNEW\src\Server\bin\Release\Terminal.dll
+D:\Git\RailwayStationQueueNEW\src\Server\bin\Release\Communication.pdb
+D:\Git\RailwayStationQueueNEW\src\Server\bin\Release\Library.pdb
+D:\Git\RailwayStationQueueNEW\src\Server\bin\Release\Terminal.pdb
+D:\Git\RailwayStationQueueNEW\src\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
+D:\Git\RailwayStationQueueNEW\src\Server\obj\Release\Server.dll
+D:\Git\RailwayStationQueueNEW\src\Server\obj\Release\Server.pdb
