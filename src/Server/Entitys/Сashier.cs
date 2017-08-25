@@ -110,6 +110,8 @@ namespace Server.Entitys
             return CurrentTicket;
         }
 
+
+
         public void DisconectHandling()
         {
             if (CurrentTicket != null)

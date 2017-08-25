@@ -24,8 +24,8 @@
 	   <Cashier Id="1" Port="3" Prefix="A" MaxCountTryHanding="3"/>
 	   <Cashier Id="2" Port="3" Prefix="A" MaxCountTryHanding="3"/>
 	   <Cashier Id="3" Port="3" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="4" Port="3" Prefix="B" MaxCountTryHanding="3"/>
-	   <Cashier Id="5" Port="3" Prefix="B" MaxCountTryHanding="3"/>
-	   <Cashier Id="6" Port="3" Prefix="B" MaxCountTryHanding="3"/>
+	   <Cashier Id="4" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="5" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="6" Port="3" Prefix="A" MaxCountTryHanding="3"/>
     </Cashiers>
 </Root>

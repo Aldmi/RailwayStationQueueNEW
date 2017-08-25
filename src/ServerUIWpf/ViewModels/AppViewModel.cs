@@ -26,7 +26,6 @@ namespace ServerUi.ViewModels
 
         public AppViewModel()
         {
-
             _model = new ServerModel();
             _model.PropertyChanged += _model_PropertyChanged;
 
@@ -79,15 +78,15 @@ namespace ServerUi.ViewModels
             {
                 if (e.PropertyName == "CurrentTicket")
                 {
-                    if (сashier.CurrentTicket != null)      //добавить элемент к списку
+                    if (сashier.CurrentTicket != null)     //добавить элемент к списку
                     {
 
                         TicketItems.Add(new TicketItem { CashierName = "Касса " + сashier.CurrentTicket.Сashbox,
                                                          TicketName =  $"Талон {сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement.ToString("000")}" });
-                        var task = _model.LogTicket?.Add(сashier.CurrentTicket.ToString());
-                        if (task != null) await task;
+                        //var task = _model.LogTicket?.Add(сashier.CurrentTicket.ToString());
+                        //if (task != null) await task;
                     }
-                    else                             //удалить элемент из списка
+                    else                                 //удалить элемент из списка
                     {
                         var removeItem = TicketItems.FirstOrDefault(elem => elem.CashierName.Contains(сashier.Id.ToString()));
                         TicketItems.Remove(removeItem);
@@ -117,7 +116,7 @@ namespace ServerUi.ViewModels
             {
                 if (e.PropertyName == "ErrorString")
                 {
-                    MessageBox.Show(server.ErrorString); //TODO: как вызвать MessageBox
+                  //  MessageBox.Show(server.ErrorString); //TODO: как вызвать MessageBox
                 }
             }
         }
@@ -136,6 +135,33 @@ namespace ServerUi.ViewModels
         }
 
         #endregion
+
+
+
+
+        #region DEBUG
+
+        public void Add(int id)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                _model.DeviceCashiers[i].Cashier.StartHandling();
+                _model.DeviceCashiers[i].Cashier.SuccessfulStartHandling();
+            }
+
+        }
+
+        public void Dell(int id)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                _model.DeviceCashiers[i].Cashier.SuccessfulHandling();
+            }
+        }
+
+
+        #endregion
+
 
     }
 }

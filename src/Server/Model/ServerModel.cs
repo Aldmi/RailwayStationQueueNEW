@@ -176,6 +176,15 @@ namespace Server.Model
                 }
             };
 
+            //DEBUG------ИНИЦИАЛИЗАЦИЯ ОЧЕРЕДИ---------------------
+            for (int i = 0; i < 20; i++)
+            {
+                var ticket2 = TicketFactoryVilage.Create((ushort) QueueVilage.Count);
+                QueueVilage.Enqueue(ticket2);
+            }
+            //DEBUG------------------------------
+
+
 
             //СОЗДАНИЕ КАССИРОВ------------------------------------------------------------------------------------------------
             foreach (var xmlCash in xmlCashier)
