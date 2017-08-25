@@ -1,0 +1,95 @@
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\TerminalUIWpf.exe.config
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\TerminalUIWpf.exe
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\TerminalUIWpf.pdb
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.dll
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.Core.dll
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.dll
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Castle.Core.dll
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Castle.Windsor.dll
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\System.Windows.Interactivity.dll
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.xml
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.xml
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.Core.xml
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Castle.Core.xml
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Castle.Windsor.xml
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.csprojResolveAssemblyReference.cache
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\Views\AppView.g.cs
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\App.g.cs
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf_MarkupCompile.cache
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf_MarkupCompile.lref
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\App.baml
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\Views\AppView.baml
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.g.resources
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.Properties.Resources.resources
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.csproj.GenerateResource.Cache
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.exe
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.pdb
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\TerminalUIWpf.exe.config
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.exe
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.pdb
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\TerminalUIWpf.exe
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\TerminalUIWpf.pdb
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.dll
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.Core.dll
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.dll
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Castle.Core.dll
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Castle.Windsor.dll
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\System.Windows.Interactivity.dll
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.xml
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.xml
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.Core.xml
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Castle.Core.xml
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Castle.Windsor.xml
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.csprojResolveAssemblyReference.cache
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\Views\AppView.g.cs
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\App.g.cs
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf_MarkupCompile.cache
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf_MarkupCompile.lref
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\App.baml
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\Views\AppView.baml
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.g.resources
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.Properties.Resources.resources
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\TerminalUIWpf.csproj.GenerateResource.Cache
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\Views\DialogView.g.cs
+E:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\Views\DialogView.baml
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\Views\DialogView.g.cs
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Communication.dll
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Library.dll
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Communication.pdb
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\bin\Debug\Library.pdb
+D:\Dropbox\C#\Project C#\TerminalUIWpf\TerminalUIWpf\obj\Debug\Views\DialogView.baml
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\TerminalUIWpf.exe.config
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.exe
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.pdb
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\TerminalUIWpf.exe
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\TerminalUIWpf.pdb
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Caliburn.Micro.dll
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.Core.dll
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.dll
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Castle.Core.dll
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Castle.Windsor.dll
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Communication.dll
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Library.dll
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\System.Windows.Interactivity.dll
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Communication.pdb
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Library.pdb
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Caliburn.Micro.xml
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.xml
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Caliburn.Micro.Platform.Core.xml
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Castle.Core.xml
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\Castle.Windsor.xml
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.csprojResolveAssemblyReference.cache
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\Views\AppView.g.cs
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\Views\DialogView.g.cs
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\App.g.cs
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUIWpf_MarkupCompile.cache
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUIWpf_MarkupCompile.lref
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\App.baml
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\Views\AppView.baml
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\Views\DialogView.baml
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.g.resources
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.Properties.Resources.resources
+D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.csproj.GenerateResource.Cache

@@ -1,0 +1,68 @@
+﻿<Window x:Class="TerminalUIWpf.Views.DialogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        AllowDrop="False"
+        Focusable="False"
+        WindowState="Maximized"
+        WindowStyle="None"
+        mc:Ignorable="d">
+
+
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="70" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Background" Value="SlateGray" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="1,20,1,30" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="MaxWidth" Value="1000" />
+        </Style>
+
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="95" />
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+
+
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <TextBlock Name="TicketName"
+                   Grid.Row="0"
+                   Style="{StaticResource TextBlockStyle}" />
+
+        <TextBlock Name="CountPeople"
+                   Grid.Row="1"
+                   Style="{StaticResource TextBlockStyle}" />
+
+
+        <Button Name="BtnOk"
+                Grid.Row="2"
+                Content="Принять"
+                Style="{StaticResource ButtonStyle}" />
+
+        <Button Name="BtnCancel"
+                Grid.Row="3"
+                Content="Отменить"
+                Style="{StaticResource ButtonStyle}" />
+    </Grid>
+</Window>

@@ -1,0 +1,55 @@
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\ServerUiWpf.exe.config
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\ServerUiWpf.exe
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\ServerUiWpf.pdb
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.dll
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.Platform.Core.dll
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.Platform.dll
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\Castle.Core.dll
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\Castle.Windsor.dll
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\System.Windows.Interactivity.dll
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.xml
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.Platform.xml
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.Platform.Core.xml
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\Castle.Core.xml
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\bin\Debug\Castle.Windsor.xml
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.csprojResolveAssemblyReference.cache
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\App.g.cs
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf_MarkupCompile.cache
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf_MarkupCompile.lref
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\App.baml
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.g.resources
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.Properties.Resources.resources
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.csproj.GenerateResource.Cache
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.exe
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.pdb
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\Views\AppView.baml
+D:\Dropbox\C#\Project C#\ServerUIWpf\ServerUiWpf\obj\Debug\Views\AppView.g.cs
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\ServerUiWpf.exe.config
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.exe
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.pdb
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\ServerUiWpf.exe
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\ServerUiWpf.pdb
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.Platform.Core.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.Platform.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\Castle.Core.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\Castle.Windsor.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\System.Windows.Interactivity.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.Platform.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\Caliburn.Micro.Platform.Core.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\Castle.Core.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\Castle.Windsor.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.csprojResolveAssemblyReference.cache
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\Views\AppView.baml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\Views\AppView.g.cs
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\App.g.cs
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf_MarkupCompile.cache
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf_MarkupCompile.lref
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\App.baml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.g.resources
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.Properties.Resources.resources
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\obj\Debug\ServerUiWpf.csproj.GenerateResource.Cache
+D:\Git\RailwayStationQueue\src\ServerUIWpf\ServerUiWpf\bin\Debug\ServerUi.exe.config
