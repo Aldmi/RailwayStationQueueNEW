@@ -22,6 +22,39 @@
             <Setter Property="Padding" Value="1" />
         </Style>
 
+        <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="Focusable" Value="False" />
+
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <ScaleTransform />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.7"
+                                                 From="0"
+                                                 Storyboard.TargetProperty="Opacity"
+                                                 To="1" />
+                                <DoubleAnimation Duration="0:0:0.7"
+                                                 From="0"
+                                                 Storyboard.TargetProperty="LayoutTransform.ScaleY"
+                                                 To="1" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
+
+
+
 
         <Style x:Key="TextBoxCashierStyle" TargetType="TextBox">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -234,43 +267,12 @@
                FontSize="6" />
 
 
-        <ListView Name="TicketItems"
+        <ListView Name="Table4X41"
                   Grid.Row="5"
                   Grid.Column="0"
                   ctrl:ListViewLayoutManager.Enabled="true"
-                  Background="CadetBlue">
-
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Center" />
-                    <Setter Property="Background" Value="Gray" />
-                    <Setter Property="Focusable" Value="False" />
-
-                    <Setter Property="LayoutTransform">
-                        <Setter.Value>
-                            <ScaleTransform />
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <EventTrigger RoutedEvent="Loaded">
-                            <EventTrigger.Actions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Duration="0:0:0.7"
-                                                         From="0"
-                                                         Storyboard.TargetProperty="Opacity"
-                                                         To="1" />
-                                        <DoubleAnimation Duration="0:0:0.7"
-                                                         From="0"
-                                                         Storyboard.TargetProperty="LayoutTransform.ScaleY"
-                                                         To="1" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger.Actions>
-                        </EventTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ListView.ItemContainerStyle>
+                  Background="CadetBlue"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
 
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
@@ -294,16 +296,35 @@
         </ListView>
 
 
-
-        <ListView Name="AllGrid4X43"
+        <ListView Name="Table4X42"
                   Grid.Row="5"
-                  Grid.Column="2"
-                  Background="CadetBlue" />
+                  Grid.Column="1"
+                  ctrl:ListViewLayoutManager.Enabled="true"
+                  Background="CadetBlue"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
 
-        <ListView Name="AllGrid4X44"
-                  Grid.Row="5"
-                  Grid.Column="3"
-                  Background="CadetBlue" />
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
 
 
 
