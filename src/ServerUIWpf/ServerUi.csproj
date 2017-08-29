@@ -97,6 +97,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\DurationConverter.cs" />
     <Compile Include="ViewModels\AppViewModel_Default.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="App.xaml.cs">

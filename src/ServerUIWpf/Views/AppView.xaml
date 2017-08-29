@@ -13,6 +13,9 @@
 
 
     <Window.Resources>
+        <DurationConverter x:Key="DurationConverter"></DurationConverter>
+
+
         <Style x:Key="LabelCashierNumberStyle" TargetType="Label">
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="FontSize" Value="10" />
@@ -21,6 +24,13 @@
             <Setter Property="Margin" Value="0" />
             <Setter Property="Padding" Value="1" />
         </Style>
+
+
+        <Style x:Key="ListViewStyle" TargetType="ListView">
+            <Setter Property="Background" Value="CadetBlue" />
+            <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+        </Style>
+
 
         <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -37,23 +47,22 @@
                     <EventTrigger.Actions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation Duration="0:0:0.7"
-                                                 From="0"
-                                                 Storyboard.TargetProperty="Opacity"
-                                                 To="1" />
-                                <DoubleAnimation Duration="0:0:0.7"
-                                                 From="0"
-                                                 Storyboard.TargetProperty="LayoutTransform.ScaleY"
-                                                 To="1" />
+                                <ParallelTimeline>
+                                 <DoubleAnimation Duration="0:0:0.5"
+                                                  From="0.7"
+                                                  Storyboard.TargetProperty="Opacity"
+                                                  To="1" />
+                                <DoubleAnimation  Duration="0:0:0.5"
+                                                  From="0.5"
+                                                  Storyboard.TargetProperty="LayoutTransform.ScaleY"
+                                                  To="1" />
+                               </ParallelTimeline>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
                 </EventTrigger>
             </Style.Triggers>
         </Style>
-
-
-
 
 
         <Style x:Key="TextBoxCashierStyle" TargetType="TextBox">
@@ -82,17 +91,18 @@
 
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontFamily" Value="Segoe UI" />
-            <Setter Property="FontSize" Value="34" />
+            <Setter Property="FontSize" Value="33" />
             <Setter Property="Background" Value="Crimson" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
 
+        
         <Style x:Key="TextBoxStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="34" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="4" />
+            <Setter Property="Margin" Value="2" />
             <Setter Property="Padding" Value="2" />
             <Setter Property="HorizontalAlignment" Value="Center" />
         </Style>
@@ -116,10 +126,9 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="0.14286*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="0.57143*" />
+            <RowDefinition Height="0.51*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="0.28571*" />
-            <!--  "0.28571*"  -->
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -191,7 +200,89 @@
             <TextBox Grid.Row="1"
                      Grid.Column="0"
                      Style="{StaticResource TextBoxCashierStyle}"
-                     Text="A001" />
+                     Text="{Binding Path= CashierTicket1.TicketName, Mode=OneWay}" />
+            
+            <TextBox Grid.Row="1"
+                     Grid.Column="1"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket2.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="1"
+                     Grid.Column="2"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket3.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="1"
+                     Grid.Column="3"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket4.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="1"
+                     Grid.Column="4"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket5.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="1"
+                     Grid.Column="5"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket6.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="1"
+                     Grid.Column="6"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket7.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="1"
+                     Grid.Column="7"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket8.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="0"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket9.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="1"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket10.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="2"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket11.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="3"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket12.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="4"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket13.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="5"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket14.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="6"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket15.TicketName, Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="7"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path= CashierTicket16.TicketName, Mode=OneWay}" />
+
+
+
+
+
+
+
             <Label Grid.Row="2"
                    Grid.Column="0"
                    Content="9"
@@ -224,10 +315,6 @@
                    Grid.Column="7"
                    Content="16"
                    Style="{StaticResource LabelCashierNumberStyle}" />
-            <TextBox Grid.Row="3"
-                     Grid.Column="0"
-                     Style="{StaticResource TextBoxCashierStyle}"
-                     Text="A009" />
 
         </Grid>
 
@@ -240,21 +327,121 @@
                Content="ТАБЛО 1"
                FontSize="6" />
 
-        <ListView Name="AllGrid2X81"
+        
+        <ListView Name="Table8X21"
                   Grid.Row="3"
                   Grid.Column="0"
-                  Background="CadetBlue" />
+                  ctrl:ListViewLayoutManager.Enabled="true"
+                  Style="{StaticResource ListViewStyle}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
 
-        <ListView Name="AllGrid2X82"
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        <ListView Name="Table8X22"
                   Grid.Row="3"
                   Grid.Column="1"
-                  Background="CadetBlue" />
+                  ctrl:ListViewLayoutManager.Enabled="true"
+                  Style="{StaticResource ListViewStyle}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
 
+        <ListView Name="Table8X23"
+                  Grid.Row="3"
+                  Grid.Column="2"
+                  ctrl:ListViewLayoutManager.Enabled="true"
+                  Style="{StaticResource ListViewStyle}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
 
+        <ListView Name="Table8X24"
+                  Grid.Row="3"
+                  Grid.Column="3"
+                  ctrl:ListViewLayoutManager.Enabled="true"
+                  Style="{StaticResource ListViewStyle}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
 
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
 
 
@@ -269,14 +456,14 @@
 
         <ListView Name="Table4X41"
                   Grid.Row="5"
-                  Grid.Column="0"
+                  Grid.Column="0"                 
                   ctrl:ListViewLayoutManager.Enabled="true"
-                  Background="CadetBlue"
+                  Style="{StaticResource ListViewStyle}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}">
 
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета">
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
@@ -300,7 +487,67 @@
                   Grid.Row="5"
                   Grid.Column="1"
                   ctrl:ListViewLayoutManager.Enabled="true"
-                  Background="CadetBlue"
+                  Style="{StaticResource ListViewStyle}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+
+        <ListView Name="Table4X43"
+                  Grid.Row="5"
+                  Grid.Column="2"
+                  ctrl:ListViewLayoutManager.Enabled="true"
+                  Style="{StaticResource ListViewStyle}"
+                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+        
+        <ListView Name="Table4X44"
+                  Grid.Row="5"
+                  Grid.Column="3"
+                  ctrl:ListViewLayoutManager.Enabled="true"
+                  Style="{StaticResource ListViewStyle}"
                   ItemContainerStyle="{StaticResource ListViewItemStyle}">
 
             <ListView.View>
@@ -327,26 +574,223 @@
 
 
 
-
-
         <!--  СЕРВИСНАЯ ПАНЕЛЬ  -->
         <StackPanel Grid.Row="6"
                     Grid.Column="0"
                     Grid.ColumnSpan="4"
                     HorizontalAlignment="Left"
                     Orientation="Horizontal">
-            <Button Width="30"
-                    Height="30"
+            <Button x:Name="btn1"
+                    Width="35"
+                    Height="25"
                     Margin="2"
                     cal:Message.Attach="Add(1)">
                 1Д
             </Button>
-            <Button Width="30"
-                    Height="30"
-                    Margin="2"
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
                     cal:Message.Attach="Dell(1)">
                 1У
             </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(2)">
+                2Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(2)">
+                2У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(3)">
+                3Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(3)">
+                3У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(4)">
+                4Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(4)">
+                4У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(5)">
+                5Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(5)">
+                5У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(6)">
+                6Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(6)">
+                6У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(7)">
+                7Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(7)">
+                7У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(8)">
+                8Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(8)">
+                8У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(9)">
+                9Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(9)">
+                9У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(10)">
+                10Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(10)">
+                10У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(11)">
+                11Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(11)">
+                11У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(12)">
+                12Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(12)">
+                12У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(13)">
+                13Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(13)">
+                13У
+            </Button>
+
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(14)">
+                14Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(14)">
+                14У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(15)">
+                15Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(15)">
+                15У
+            </Button>
+
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Add(16)">
+                16Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2,2,15,2"
+                    cal:Message.Attach="Dell(16)">
+                16У
+            </Button>
+
+
         </StackPanel>
 
 

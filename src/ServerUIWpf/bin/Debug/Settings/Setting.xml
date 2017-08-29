@@ -27,5 +27,15 @@
 	   <Cashier Id="4" Port="3" Prefix="A" MaxCountTryHanding="3"/>
 	   <Cashier Id="5" Port="3" Prefix="A" MaxCountTryHanding="3"/>
 	   <Cashier Id="6" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="7" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="8" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="9" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="10" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="11" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="12" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="13" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="14" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="15" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="16" Port="3" Prefix="A" MaxCountTryHanding="3"/>
     </Cashiers>
 </Root>
