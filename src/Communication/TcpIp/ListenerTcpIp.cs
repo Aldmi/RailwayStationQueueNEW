@@ -123,6 +123,7 @@ namespace Communication.TcpIp
             }, token);
         }
 
+
         private async Task ProcessClient(TcpClient c, IExchangeDataProviderBase dataProvider, CancellationToken token)
         {
             using (var client = new Client(c))

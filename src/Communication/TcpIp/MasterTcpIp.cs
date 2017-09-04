@@ -149,7 +149,7 @@ namespace Communication.TcpIp
             {
                 try
                 {
-                    var data = await TakeData(dataProvider.CountSetDataByte, _timeRespoune, CancellationToken.None);
+                    var data = await TakeDataAccurate(dataProvider.CountSetDataByte, _timeRespoune, CancellationToken.None);
                     dataProvider.SetDataByte(data);
                     _countTryingTakeData = 0;
                 }
@@ -200,6 +200,9 @@ namespace Communication.TcpIp
         }
 
 
+        /// <summary>
+        /// Получение данных с указанием таймаута.
+        /// </summary>
         public async Task<byte[]> TakeData(int nbytes, int timeOut, CancellationToken ct)
         {
             byte[] bDataTemp = new byte[256];
@@ -209,6 +212,36 @@ namespace Communication.TcpIp
             {
                 var bData = new byte[nByteTake];
                 Array.Copy(bDataTemp, bData, nByteTake);
+                return bData;
+            }
+            return null;
+        }
+
+
+
+        /// <summary>
+        /// Получение данных с указанием таймаута.
+        /// Пока nbytes не полученно за время таймаута данные принимаются 
+        /// </summary>
+        public async Task<byte[]> TakeDataAccurate(int nbytes, int timeOut, CancellationToken ct)
+        {
+            byte[] bDataTemp = new byte[1024];
+            var taskNByteTake = Task.Run(async () =>
+              {
+                  int nByteTake = 0;
+                  while (nByteTake != nbytes)
+                  {
+                      nByteTake += await _terminalNetStream.ReadAsync(bDataTemp, nByteTake, nbytes, ct);
+                  }
+                  return nByteTake;
+              }, ct);
+
+
+            int resultNByteTake = await AsyncHelp.WithTimeout(taskNByteTake, timeOut, ct);
+            if (resultNByteTake == nbytes)
+            {
+                var bData = new byte[resultNByteTake];
+                Array.Copy(bDataTemp, bData, resultNByteTake);
                 return bData;
             }
             return null;
