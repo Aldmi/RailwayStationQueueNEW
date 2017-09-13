@@ -19,7 +19,7 @@ namespace Server.Infrastructure
     {
         public bool IsWork { get; set; }                     // Работа/Перерыв
         public CashierHandling Handling { get; set; }        // Активная кнопка обработки клиента
-        public string NameTicket { get; set; }                // Название билета (4 символа) 
+        public string NameTicket { get; set; }               // Название билета (4 символа) 
     }
 
 
@@ -129,7 +129,7 @@ namespace Server.Infrastructure
             {
                 OutputData = new CashierOutData { IsWork = (dataBuffer[1] & 0x01) != 0x00, Handling = CashierHandling.IsNotHandling };
 
-                if ((dataBuffer[1] & 0x04) == 0x00)        // НЕ идет обработка пассажира
+                if ((dataBuffer[1] & 0x04) == 0x00)        // (== 0x00) НЕ идет обработка пассажира
                 {
                     if ((dataBuffer[1] & 0x02) != 0x00)    
                     {

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO.Ports;
+using System.Linq;
 using System.Xml.Linq;
 using Communication.Annotations;
 
@@ -23,7 +25,7 @@ namespace Communication.Settings
 
         #region ctor
 
-        private XmlSerialSettings(string port, string baudRate, string dataBits, string stopBits, string timeRespoune, string timeCycleReConnect)
+        public XmlSerialSettings(string port, string baudRate, string dataBits, string stopBits, string timeRespoune, string timeCycleReConnect)
         {
             Port = port;
             BaudRate = int.Parse(baudRate);
@@ -43,21 +45,25 @@ namespace Communication.Settings
         /// <summary>
         /// Обязательно вызывать в блоке try{}
         /// </summary>
-        public static XmlSerialSettings LoadXmlSetting(XElement xml)
+        public static IEnumerable<XmlSerialSettings> LoadXmlSetting(XElement xml)
         {
-            XmlSerialSettings settServer =
-                new XmlSerialSettings(
-                    (string) xml.Element("Server")?.Element("Serial")?.Element("Port"),
-                    (string) xml.Element("Server")?.Element("Serial")?.Element("BaudRate"),
-                    (string) xml.Element("Server")?.Element("Serial")?.Element("DataBits"),
-                    (string) xml.Element("Server")?.Element("Serial")?.Element("StopBits"),
-                    (string) xml.Element("Server")?.Element("Serial")?.Element("TimeRespon"),
-                    (string) xml.Element("Server")?.Element("Serial")?.Element("TimeCycleReConnect"));
+            var sett = from el in xml?.Element("Server")?.Element("SerialPorts")?.Elements("Serial")
+                select new XmlSerialSettings(
+                    (string)el.Element("Port"),
+                    (string)el.Element("BaudRate"),
+                    (string)el.Element("DataBits"),
+                    (string)el.Element("StopBits"),
+                    (string)el.Element("TimeRespon"),
+                    (string)el.Element("TimeCycleReConnect"));
 
-            if(string.IsNullOrEmpty(settServer.Port))
-                throw  new Exception("Порт не указанн");
 
-            return settServer;
+            foreach (var port in sett)
+            {
+                if (string.IsNullOrEmpty(port.Port))
+                    throw new Exception($"Порт не указанн: {port.Port}");
+            }
+
+            return sett;
         }
 
         #endregion

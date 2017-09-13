@@ -62,6 +62,10 @@
       <Project>{87b6f9ef-6a0d-4daf-9df0-718036b1c8e4}</Project>
       <Name>Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SoundPlayer\SoundPlayer.csproj">
+      <Project>{374d2273-a02c-4053-a659-ad198466a0fb}</Project>
+      <Name>SoundPlayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Terminal\Terminal.csproj">
       <Project>{ed866d83-5a6b-4bfa-92f8-2a02142a6b5d}</Project>
       <Name>Terminal</Name>

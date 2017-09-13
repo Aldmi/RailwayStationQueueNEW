@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -26,6 +27,18 @@ namespace Communication.TcpIp
         readonly List<Task> _hotTasks = new List<Task>();                                       //все задачи всех клиентов не завершенные в данный момент
         readonly ObservableCollection<Client> _clients = new ObservableCollection<Client>();    //все подключенные клиенты
 
+
+        private List<Client> _getClients;
+        public List<Client> GetClients
+        {
+            get { return _getClients; }
+            private set
+            {
+                _getClients = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
 
@@ -37,10 +50,10 @@ namespace Communication.TcpIp
         public ListenerTcpIp(int ipPort)
         {
             _ipPort = ipPort;
-
             _clients.CollectionChanged += (sender, args) =>
             {
                 var collect = sender as ObservableCollection<Client>;
+                GetClients = _clients.ToList();
                 IsConnect = (collect != null && collect.Any());                                 //при наличии хотя бы одного клиента IsConnect = true;
             };
         }
@@ -71,6 +84,7 @@ namespace Communication.TcpIp
                 OnPropertyChanged();
             }
         }
+
         public bool IsConnect
         {
             get { return _isConnect; }
@@ -178,13 +192,17 @@ namespace Communication.TcpIp
 
         #region NestedClass
 
-        private class Client : IDisposable
+        public class Client : IDisposable
         {
             readonly NetworkStream _stream;
+            public string Ip { get; }
+
+
 
             public Client(TcpClient client)
             {
                 _stream = client.GetStream();
+                Ip = ((IPEndPoint) client.Client.RemoteEndPoint).Address.ToString();
             }
 
 

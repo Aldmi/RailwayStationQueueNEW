@@ -9,7 +9,7 @@ namespace Server.Settings
         #region prop
 
         public byte Id { get; set; }
-        public byte Port { get; set; }
+        public string Port { get; set; }
         public string Prefix { get; set; }
         public byte MaxCountTryHanding { get; set; }
 
@@ -23,7 +23,7 @@ namespace Server.Settings
         private XmlCashierSettings(string id, string port, string prefix, string maxCountTryHanding)
         {
             Id = byte.Parse(id);
-            Port = byte.Parse(port);
+            Port = port;
             Prefix = prefix;
             MaxCountTryHanding = byte.Parse(maxCountTryHanding);
         }

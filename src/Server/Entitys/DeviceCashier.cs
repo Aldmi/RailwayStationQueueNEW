@@ -1,12 +1,28 @@
-﻿namespace Server.Entitys
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Communication.Annotations;
+
+namespace Server.Entitys
 {
-    public class DeviceCashier
+    public class DeviceCashier : INotifyPropertyChanged
     {
-        private const byte MaxCountFaildRespowne = 5;
+        private const byte MaxCountFaildRespowne = 2;
         private byte _countFaildRespowne;
 
         public Сashier Cashier { get; }
-        public bool IsConnect { get; private set; } = false;
+        public string Port { get; }
+
+        private bool _isConnect;
+        public bool IsConnect
+        {
+            get { return _isConnect; }
+            set
+            {
+                if (_isConnect == value) return;
+                _isConnect = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         private bool _dataExchangeSuccess;
@@ -33,9 +49,24 @@
         }
 
 
-        public DeviceCashier(Сashier cashier)
+        public DeviceCashier(Сashier cashier, string port)
         {
             Cashier = cashier;
+            Port = port;
         }
+
+
+
+        #region Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            var handler = PropertyChanged;
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
     }
 }

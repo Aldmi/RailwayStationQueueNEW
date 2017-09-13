@@ -17,7 +17,8 @@
 
 
         <Style x:Key="LabelCashierNumberStyle" TargetType="Label">
-            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="FontSize" Value="10" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="Black" />
@@ -167,34 +168,42 @@
             <Label Grid.Row="0"
                    Grid.Column="0"
                    Content="1"
+                   Background="{Binding Path= ColorBackgroundCashierTicket1, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="1"
                    Content="2"
+                   Background="{Binding Path= ColorBackgroundCashierTicket2, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="2"
                    Content="3"
+                   Background="{Binding Path= ColorBackgroundCashierTicket3, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="3"
                    Content="4"
+                   Background="{Binding Path= ColorBackgroundCashierTicket4, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="4"
                    Content="5"
+                   Background="{Binding Path= ColorBackgroundCashierTicket5, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="5"
                    Content="6"
+                   Background="{Binding Path= ColorBackgroundCashierTicket6, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="6"
                    Content="7"
+                   Background="{Binding Path= ColorBackgroundCashierTicket7, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="7"
                    Content="8"
+                   Background="{Binding Path= ColorBackgroundCashierTicket8, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
 
             <TextBox Grid.Row="1"
@@ -286,34 +295,42 @@
             <Label Grid.Row="2"
                    Grid.Column="0"
                    Content="9"
+                   Background="{Binding Path= ColorBackgroundCashierTicket9, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="1"
                    Content="10"
+                   Background="{Binding Path= ColorBackgroundCashierTicket10, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="2"
                    Content="11"
+                   Background="{Binding Path= ColorBackgroundCashierTicket11, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="3"
                    Content="12"
+                   Background="{Binding Path= ColorBackgroundCashierTicket12, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="4"
                    Content="13"
+                   Background="{Binding Path= ColorBackgroundCashierTicket13, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="5"
                    Content="14"
+                   Background="{Binding Path= ColorBackgroundCashierTicket14, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="6"
                    Content="15"
+                   Background="{Binding Path= ColorBackgroundCashierTicket15, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="7"
                    Content="16"
+                   Background="{Binding Path= ColorBackgroundCashierTicket16, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
 
         </Grid>

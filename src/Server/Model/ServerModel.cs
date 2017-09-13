@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.IO.Ports;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Communication.Annotations;
@@ -34,9 +36,9 @@ namespace Server.Model
         public ListenerTcpIp Listener { get; set; }
         public IExchangeDataProvider<TerminalInData, TerminalOutData> ProviderTerminal { get; set; }
 
-        public MasterSerialPort MasterSerialPort { get; set; }
+        public List<MasterSerialPort> MasterSerialPorts { get; set; } = new List<MasterSerialPort>();
         public List<DeviceCashier> DeviceCashiers { get; set; } = new List<DeviceCashier>();
-        public CashierExchangeService CashierExchangeService { get; set; }
+        public List<CashierExchangeService> CashierExchangeServices { get; set; } = new List<CashierExchangeService>();
 
         public List<Task> BackGroundTasks { get; set; } = new List<Task>();
 
@@ -76,7 +78,7 @@ namespace Server.Model
         {
             //ЗАГРУЗКА НАСТРОЕК----------------------------------------------------------------
             XmlListenerSettings xmlListener;
-            XmlSerialSettings xmlSerial;
+            IList<XmlSerialSettings> xmlSerials;
             XmlLogSettings xmlLog;
             List<XmlCashierSettings> xmlCashier;
             try
@@ -86,7 +88,7 @@ namespace Server.Model
                     return;
 
                 xmlListener = XmlListenerSettings.LoadXmlSetting(xmlFile);
-                xmlSerial = XmlSerialSettings.LoadXmlSetting(xmlFile);
+                xmlSerials = XmlSerialSettings.LoadXmlSetting(xmlFile).ToList();
                 xmlLog = XmlLogSettings.LoadXmlSetting(xmlFile);
                 xmlCashier = XmlCashierSettings.LoadXmlSetting(xmlFile);
             }
@@ -177,7 +179,7 @@ namespace Server.Model
             };
 
             //DEBUG------ИНИЦИАЛИЗАЦИЯ ОЧЕРЕДИ---------------------
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var ticket2 = TicketFactoryVilage.Create((ushort) QueueVilage.Count);
                 QueueVilage.Enqueue(ticket2);
@@ -190,32 +192,38 @@ namespace Server.Model
             foreach (var xmlCash in xmlCashier)
             {
                 var casher = new Сashier(xmlCash.Id, (xmlCash.Prefix == "A") ? QueueVilage : QueueLong, xmlCash.MaxCountTryHanding);
-                DeviceCashiers.Add(new DeviceCashier(casher));
+                DeviceCashiers.Add(new DeviceCashier(casher, xmlCash.Port));
             }
 
 
             //СОЗДАНИЕ ПОСЛЕД. ПОРТА ДЛЯ ОПРОСА КАССИРОВ-----------------------------------------------------------------------
-            MasterSerialPort = new MasterSerialPort(xmlSerial);
-            CashierExchangeService = new CashierExchangeService(DeviceCashiers, xmlSerial.TimeRespoune);
-            MasterSerialPort.AddFunc(CashierExchangeService.ExchangeService);
-            MasterSerialPort.PropertyChanged += (o, e) =>
+            var cashersGroup = DeviceCashiers.GroupBy(d => d.Port).ToDictionary(group => group.Key, group => group.ToList());  //принадлежность кассира к порту
+            foreach (var xmlSerial in xmlSerials)
             {
-                var port = o as MasterSerialPort;
-                if (port != null)
+                var sp= new MasterSerialPort(xmlSerial);
+                var cashiers= cashersGroup[xmlSerial.Port];
+                var cashierExch= new CashierExchangeService(cashiers, xmlSerial.TimeRespoune);
+                sp.AddFunc(cashierExch.ExchangeService);
+                sp.PropertyChanged+= (o, e) =>
                 {
-                    if (e.PropertyName == "StatusString")
+                    var port = o as MasterSerialPort;
+                    if (port != null)
                     {
-                        ErrorString = port.StatusString;
+                        if (e.PropertyName == "StatusString")
+                        {
+                            ErrorString = port.StatusString;                     //TODO: РАЗДЕЛЯЕМЫЙ РЕСУРС возможно нужна блокировка
+                        }
                     }
-                }
-            };
-
+                };
+                MasterSerialPorts.Add(sp);
+                CashierExchangeServices.Add(cashierExch);
+            }
         }
 
 
         public async Task Start()
         {
-            //ЗАПУСК СЛУШАТЕЛЯ ДЛЯ ТЕРМИНАЛОВ---------------------------------------------------------
+            //ЗАПУСК СЛУШАТЕЛЯ ДЛЯ ТЕРМИНАЛОВ----------------------------------------------------------
             if (Listener != null)
             {
                 var taskListener = Listener.RunServer(ProviderTerminal);
@@ -223,20 +231,24 @@ namespace Server.Model
             }
 
             //ЗАПУСК ОПРОСА КАССИРОВ-------------------------------------------------------------------
-            if (MasterSerialPort != null)
+            if (MasterSerialPorts.Any())
             {
-                var taskSerialPort = Task.Factory.StartNew(async () =>
+                foreach (var sp in MasterSerialPorts)
                 {
-                    if (await MasterSerialPort.CycleReConnect())
+                    var taskSerialPort = Task.Factory.StartNew(async () =>
                     {
-                        var taskCashierEx = MasterSerialPort.RunExchange();
-                        BackGroundTasks.Add(taskCashierEx);
-                    }
-                });
-                BackGroundTasks.Add(taskSerialPort);
+                        if (await sp.CycleReConnect())
+                        {
+                            var taskCashierEx = sp.RunExchange();
+                            BackGroundTasks.Add(taskCashierEx);
+                        }
+                    });
+                    BackGroundTasks.Add(taskSerialPort);
+                }
             }
 
-            //КОНТРОЛЬ ФОНОВЫХ ЗАДАЧ
+
+            //КОНТРОЛЬ ФОНОВЫХ ЗАДАЧ----------------------------------------------------------------------
             var taskFirst = await Task.WhenAny(BackGroundTasks);
             if (taskFirst.Exception != null)                           //критическая ошибка фоновой задачи
                 ErrorString = taskFirst.Exception.ToString();
@@ -252,7 +264,10 @@ namespace Server.Model
         public void Dispose()
         {
             Listener?.Dispose();
-            MasterSerialPort?.Dispose();
+            foreach (var sp in MasterSerialPorts)
+            {
+                sp?.Dispose();
+            }
         }
 
         #endregion
