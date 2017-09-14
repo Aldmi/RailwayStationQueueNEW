@@ -13,7 +13,7 @@
 
 
     <Window.Resources>
-        <DurationConverter x:Key="DurationConverter"></DurationConverter>
+        <DurationConverter x:Key="DurationConverter" />
 
 
         <Style x:Key="LabelCashierNumberStyle" TargetType="Label">
@@ -49,15 +49,15 @@
                         <BeginStoryboard>
                             <Storyboard>
                                 <ParallelTimeline>
-                                 <DoubleAnimation Duration="0:0:0.5"
-                                                  From="0.7"
-                                                  Storyboard.TargetProperty="Opacity"
-                                                  To="1" />
-                                <DoubleAnimation  Duration="0:0:0.5"
-                                                  From="0.5"
-                                                  Storyboard.TargetProperty="LayoutTransform.ScaleY"
-                                                  To="1" />
-                               </ParallelTimeline>
+                                    <DoubleAnimation Duration="0:0:0.5"
+                                                     From="0.7"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1" />
+                                    <DoubleAnimation Duration="0:0:0.5"
+                                                     From="0.5"
+                                                     Storyboard.TargetProperty="LayoutTransform.ScaleY"
+                                                     To="1" />
+                                </ParallelTimeline>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
@@ -69,13 +69,17 @@
         <Style x:Key="TextBoxCashierStyle" TargetType="TextBox">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Width" Value="64" />
+            <Setter Property="Height" Value="64" />
             <Setter Property="IsReadOnly" Value="True" />
-            <Setter Property="FontSize" Value="36" />
-            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontFamily" Value="Calibri" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Medium" />
             <Setter Property="Foreground" Value="CadetBlue" />
             <Setter Property="Margin" Value="0" />
             <Setter Property="Padding" Value="0" />
             <Setter Property="Background" Value="Black" />
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         </Style>
 
 
@@ -93,20 +97,22 @@
 
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontFamily" Value="Segoe UI" />
-            <Setter Property="FontSize" Value="33" />
+            <Setter Property="FontSize" Value="16" />
             <Setter Property="Background" Value="Crimson" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
 
-        
+
         <Style x:Key="TextBoxStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="34" />
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="FontFamily" Value="Tahoma" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="Margin" Value="2" />
             <Setter Property="Padding" Value="2" />
             <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         </Style>
 
     </Window.Resources>
@@ -116,176 +122,143 @@
 
     <Grid Margin="10"
           Background="BurlyWood"
-          ShowGridLines="False">
+          ShowGridLines="True"
+          SnapsToDevicePixels="True"
+          UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="0.14286*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="0.51*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="0.28571*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
 
         <!--  ТАБЛО КАССЫ (1)  -->
-        <Label Grid.Row="0"
-               Grid.ColumnSpan="4"
-               HorizontalAlignment="Center"
-               Content="КАССЫ"
-               FontSize="6" />
         <Grid Name="CashierGrid"
-              Grid.Row="1"
+              Grid.Row="0"
               Grid.Column="0"
-              Grid.ColumnSpan="4"
+              Margin="5"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center"
               Background="Aqua"
-              ShowGridLines="True">
+              ShowGridLines="False">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0"
                    Grid.Column="0"
+                   Background="{Binding Path=ColorBackgroundCashierTicket1,
+                                        Mode=OneWay}"
                    Content="1"
-                   Background="{Binding Path= ColorBackgroundCashierTicket1, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="1"
+                   Background="{Binding Path=ColorBackgroundCashierTicket2,
+                                        Mode=OneWay}"
                    Content="2"
-                   Background="{Binding Path= ColorBackgroundCashierTicket2, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="2"
+                   Background="{Binding Path=ColorBackgroundCashierTicket3,
+                                        Mode=OneWay}"
                    Content="3"
-                   Background="{Binding Path= ColorBackgroundCashierTicket3, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="3"
+                   Background="{Binding Path=ColorBackgroundCashierTicket4,
+                                        Mode=OneWay}"
                    Content="4"
-                   Background="{Binding Path= ColorBackgroundCashierTicket4, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="4"
+                   Background="{Binding Path=ColorBackgroundCashierTicket5,
+                                        Mode=OneWay}"
                    Content="5"
-                   Background="{Binding Path= ColorBackgroundCashierTicket5, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="5"
+                   Background="{Binding Path=ColorBackgroundCashierTicket6,
+                                        Mode=OneWay}"
                    Content="6"
-                   Background="{Binding Path= ColorBackgroundCashierTicket6, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="6"
+                   Background="{Binding Path=ColorBackgroundCashierTicket7,
+                                        Mode=OneWay}"
                    Content="7"
-                   Background="{Binding Path= ColorBackgroundCashierTicket7, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="0"
                    Grid.Column="7"
+                   Background="{Binding Path=ColorBackgroundCashierTicket8,
+                                        Mode=OneWay}"
                    Content="8"
-                   Background="{Binding Path= ColorBackgroundCashierTicket8, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
 
             <TextBox Grid.Row="1"
                      Grid.Column="0"
                      Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket1.TicketName, Mode=OneWay}" />
-            
+                     Text="{Binding Path=CashierTicket1.TicketName,
+                                    Mode=OneWay}" />
+
             <TextBox Grid.Row="1"
                      Grid.Column="1"
                      Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket2.TicketName, Mode=OneWay}" />
+                     Text="{Binding Path=CashierTicket2.TicketName,
+                                    Mode=OneWay}" />
 
             <TextBox Grid.Row="1"
                      Grid.Column="2"
                      Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket3.TicketName, Mode=OneWay}" />
+                     Text="{Binding Path=CashierTicket3.TicketName,
+                                    Mode=OneWay}" />
 
             <TextBox Grid.Row="1"
                      Grid.Column="3"
                      Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket4.TicketName, Mode=OneWay}" />
+                     Text="{Binding Path=CashierTicket4.TicketName,
+                                    Mode=OneWay}" />
 
             <TextBox Grid.Row="1"
                      Grid.Column="4"
                      Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket5.TicketName, Mode=OneWay}" />
+                     Text="{Binding Path=CashierTicket5.TicketName,
+                                    Mode=OneWay}" />
 
             <TextBox Grid.Row="1"
                      Grid.Column="5"
                      Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket6.TicketName, Mode=OneWay}" />
+                     Text="{Binding Path=CashierTicket6.TicketName,
+                                    Mode=OneWay}" />
 
             <TextBox Grid.Row="1"
                      Grid.Column="6"
                      Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket7.TicketName, Mode=OneWay}" />
+                     Text="{Binding Path=CashierTicket7.TicketName,
+                                    Mode=OneWay}" />
 
             <TextBox Grid.Row="1"
                      Grid.Column="7"
                      Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket8.TicketName, Mode=OneWay}" />
-
-            <TextBox Grid.Row="3"
-                     Grid.Column="0"
-                     Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket9.TicketName, Mode=OneWay}" />
-
-            <TextBox Grid.Row="3"
-                     Grid.Column="1"
-                     Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket10.TicketName, Mode=OneWay}" />
-
-            <TextBox Grid.Row="3"
-                     Grid.Column="2"
-                     Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket11.TicketName, Mode=OneWay}" />
-
-            <TextBox Grid.Row="3"
-                     Grid.Column="3"
-                     Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket12.TicketName, Mode=OneWay}" />
-
-            <TextBox Grid.Row="3"
-                     Grid.Column="4"
-                     Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket13.TicketName, Mode=OneWay}" />
-
-            <TextBox Grid.Row="3"
-                     Grid.Column="5"
-                     Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket14.TicketName, Mode=OneWay}" />
-
-            <TextBox Grid.Row="3"
-                     Grid.Column="6"
-                     Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket15.TicketName, Mode=OneWay}" />
-
-            <TextBox Grid.Row="3"
-                     Grid.Column="7"
-                     Style="{StaticResource TextBoxCashierStyle}"
-                     Text="{Binding Path= CashierTicket16.TicketName, Mode=OneWay}" />
+                     Text="{Binding Path=CashierTicket8.TicketName,
+                                    Mode=OneWay}" />
 
 
 
@@ -295,307 +268,406 @@
 
             <Label Grid.Row="2"
                    Grid.Column="0"
+                   Background="{Binding Path=ColorBackgroundCashierTicket9,
+                                        Mode=OneWay}"
                    Content="9"
-                   Background="{Binding Path= ColorBackgroundCashierTicket9, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="1"
+                   Background="{Binding Path=ColorBackgroundCashierTicket10,
+                                        Mode=OneWay}"
                    Content="10"
-                   Background="{Binding Path= ColorBackgroundCashierTicket10, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="2"
+                   Background="{Binding Path=ColorBackgroundCashierTicket11,
+                                        Mode=OneWay}"
                    Content="11"
-                   Background="{Binding Path= ColorBackgroundCashierTicket11, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="3"
+                   Background="{Binding Path=ColorBackgroundCashierTicket12,
+                                        Mode=OneWay}"
                    Content="12"
-                   Background="{Binding Path= ColorBackgroundCashierTicket12, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="4"
+                   Background="{Binding Path=ColorBackgroundCashierTicket13,
+                                        Mode=OneWay}"
                    Content="13"
-                   Background="{Binding Path= ColorBackgroundCashierTicket13, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="5"
+                   Background="{Binding Path=ColorBackgroundCashierTicket14,
+                                        Mode=OneWay}"
                    Content="14"
-                   Background="{Binding Path= ColorBackgroundCashierTicket14, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="6"
+                   Background="{Binding Path=ColorBackgroundCashierTicket15,
+                                        Mode=OneWay}"
                    Content="15"
-                   Background="{Binding Path= ColorBackgroundCashierTicket15, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
             <Label Grid.Row="2"
                    Grid.Column="7"
+                   Background="{Binding Path=ColorBackgroundCashierTicket16,
+                                        Mode=OneWay}"
                    Content="16"
-                   Background="{Binding Path= ColorBackgroundCashierTicket16, Mode=OneWay}"
                    Style="{StaticResource LabelCashierNumberStyle}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="0"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path=CashierTicket9.TicketName,
+                                    Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="1"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path=CashierTicket10.TicketName,
+                                    Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="2"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path=CashierTicket11.TicketName,
+                                    Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="3"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path=CashierTicket12.TicketName,
+                                    Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="4"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path=CashierTicket13.TicketName,
+                                    Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="5"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path=CashierTicket14.TicketName,
+                                    Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="6"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path=CashierTicket15.TicketName,
+                                    Mode=OneWay}" />
+
+            <TextBox Grid.Row="3"
+                     Grid.Column="7"
+                     Style="{StaticResource TextBoxCashierStyle}"
+                     Text="{Binding Path=CashierTicket16.TicketName,
+                                    Mode=OneWay}" />
 
         </Grid>
 
 
+
         <!--  ТАБЛО ОБЩЕЕ 1 (2х8)  -->
-        <Label Grid.Row="2"
-               Grid.Column="0"
-               Grid.ColumnSpan="2"
-               HorizontalAlignment="Center"
-               Content="ТАБЛО 1"
-               FontSize="6" />
-
-        
-        <ListView Name="Table8X21"
-                  Grid.Row="3"
-                  Grid.Column="0"
-                  ctrl:ListViewLayoutManager.Enabled="true"
-                  Style="{StaticResource ListViewStyle}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
-
-            <ListView.View>
-                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета" >
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Margin="5"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center"
+              Background="Aqua"
+              ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
 
-        <ListView Name="Table8X22"
-                  Grid.Row="3"
-                  Grid.Column="1"
-                  ctrl:ListViewLayoutManager.Enabled="true"
-                  Style="{StaticResource ListViewStyle}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
 
-            <ListView.View>
-                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета" >
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                <ListView Name="Table8X21"
+                          Width="128"
+                          Height="256"
+                          ctrl:ListViewLayoutManager.Enabled="true"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          Style="{StaticResource ListViewStyle}">
 
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <ListView Name="Table8X22"
+                          Width="128"
+                          Height="256"
+                          ctrl:ListViewLayoutManager.Enabled="true"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          Style="{StaticResource ListViewStyle}">
+
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
 
 
-        <ListView Name="Table8X23"
-                  Grid.Row="3"
-                  Grid.Column="2"
-                  ctrl:ListViewLayoutManager.Enabled="true"
-                  Style="{StaticResource ListViewStyle}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
 
-            <ListView.View>
-                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета" >
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <!--  ТАБЛО ОБЩЕЕ 2 (2х8)  -->
+        <Grid Grid.Row="2"
+              Grid.Column="0"
+              Margin="5"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center"
+              Background="Aqua"
+              ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
 
-        <ListView Name="Table8X24"
-                  Grid.Row="3"
-                  Grid.Column="3"
-                  ctrl:ListViewLayoutManager.Enabled="true"
-                  Style="{StaticResource ListViewStyle}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0"
+                        Orientation="Horizontal">
+                <ListView Name="Table8X23"
+                          Width="128"
+                          Height="256"
+                          ctrl:ListViewLayoutManager.Enabled="true"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          Style="{StaticResource ListViewStyle}">
 
-            <ListView.View>
-                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета" >
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
+                <ListView Name="Table8X24"
+                          Width="128"
+                          Height="256"
+                          ctrl:ListViewLayoutManager.Enabled="true"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          Style="{StaticResource ListViewStyle}">
+
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
 
 
         <!--  ТАБЛО ОБЩЕЕ 3 (4х4)  -->
-        <Label Grid.Row="4"
-               Grid.Column="0"
-               Grid.ColumnSpan="4"
-               HorizontalAlignment="Center"
-               Content="ТАБЛО ОБЩЕЕ 4Х4"
-               FontSize="6" />
+        <Grid Grid.Row="3"
+              Grid.Column="0"
+              Margin="5"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center"
+              Background="Black"
+              ShowGridLines="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
 
-        <ListView Name="Table4X41"
-                  Grid.Row="5"
-                  Grid.Column="0"                 
-                  ctrl:ListViewLayoutManager.Enabled="true"
-                  Style="{StaticResource ListViewStyle}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+            <StackPanel Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0"
+                        Orientation="Horizontal">
+                <ListView Name="Table4X41"
+                          Width="112"
+                          Height="256"
+                          ctrl:ListViewLayoutManager.Enabled="true"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          Style="{StaticResource ListViewStyle}">
 
-            <ListView.View>
-                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета" >
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
+                <ListView Name="Table4X42"
+                          Width="112"
+                          Height="256"
+                          ctrl:ListViewLayoutManager.Enabled="true"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          Style="{StaticResource ListViewStyle}">
 
-        <ListView Name="Table4X42"
-                  Grid.Row="5"
-                  Grid.Column="1"
-                  ctrl:ListViewLayoutManager.Enabled="true"
-                  Style="{StaticResource ListViewStyle}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-            <ListView.View>
-                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-
-
-        <ListView Name="Table4X43"
-                  Grid.Row="5"
-                  Grid.Column="2"
-                  ctrl:ListViewLayoutManager.Enabled="true"
-                  Style="{StaticResource ListViewStyle}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
-
-            <ListView.View>
-                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
 
 
-        
-        <ListView Name="Table4X44"
-                  Grid.Row="5"
-                  Grid.Column="3"
-                  ctrl:ListViewLayoutManager.Enabled="true"
-                  Style="{StaticResource ListViewStyle}"
-                  ItemContainerStyle="{StaticResource ListViewItemStyle}">
 
-            <ListView.View>
-                <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Номер билета">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
 
-                    <GridViewColumn ctrl:ProportionalColumn.Width="1" Header="Касса">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                <ListView Name="Table4X43"
+                          Width="112"
+                          Height="256"
+                          ctrl:ListViewLayoutManager.Enabled="true"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          Style="{StaticResource ListViewStyle}">
+
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <ListView Name="Table4X44"
+                          Width="112"
+                          Height="256"
+                          ctrl:ListViewLayoutManager.Enabled="true"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          Style="{StaticResource ListViewStyle}">
+
+                    <ListView.View>
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Grid>
 
 
 
 
         <!--  СЕРВИСНАЯ ПАНЕЛЬ  -->
-        <StackPanel Grid.Row="6"
+        <StackPanel Grid.Row="4"
                     Grid.Column="0"
-                    Grid.ColumnSpan="4"
                     HorizontalAlignment="Left"
                     Orientation="Horizontal">
             <Button x:Name="btn1"
@@ -808,24 +880,27 @@
                 16У
             </Button>
 
-            <ListBox Name="TerminalsIp" Background="Cornsilk" >
+            <ListBox Name="TerminalsIp" Background="Cornsilk">
                 <ListBox.ItemsPanel>
-                   <ItemsPanelTemplate>
-                       <StackPanel Orientation="Horizontal"></StackPanel>
-                   </ItemsPanelTemplate>
-               </ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" Padding="2" Margin="1,1,15,1"/>
+                        <TextBlock Margin="1,1,15,1"
+                                   HorizontalAlignment="Center"
+                                   FontSize="16"
+                                   Padding="2"
+                                   Text="{Binding}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
 
             </ListBox>
-            
-            
-        </StackPanel>
 
+
+        </StackPanel>
 
 
     </Grid>
