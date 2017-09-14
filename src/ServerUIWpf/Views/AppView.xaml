@@ -72,9 +72,10 @@
             <Setter Property="IsReadOnly" Value="True" />
             <Setter Property="FontSize" Value="36" />
             <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Foreground" Value="CadetBlue" />
             <Setter Property="Margin" Value="0" />
             <Setter Property="Padding" Value="0" />
+            <Setter Property="Background" Value="Black" />
         </Style>
 
 
@@ -115,7 +116,7 @@
 
     <Grid Margin="10"
           Background="BurlyWood"
-          ShowGridLines="True">
+          ShowGridLines="False">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -807,7 +808,22 @@
                 16У
             </Button>
 
+            <ListBox Name="TerminalsIp" Background="Cornsilk" >
+                <ListBox.ItemsPanel>
+                   <ItemsPanelTemplate>
+                       <StackPanel Orientation="Horizontal"></StackPanel>
+                   </ItemsPanelTemplate>
+               </ListBox.ItemsPanel>
 
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock FontSize="16" Text="{Binding}" HorizontalAlignment="Center" Padding="2" Margin="1,1,15,1"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+            </ListBox>
+            
+            
         </StackPanel>
 
 

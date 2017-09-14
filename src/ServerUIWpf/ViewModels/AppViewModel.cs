@@ -48,6 +48,10 @@ namespace ServerUi.ViewModels
                 _model.Listener.PropertyChanged += Listener_PropertyChanged;
                 _mainTask = _model.Start();
             }
+
+            //_model.SoundPlayer.Volume = 100;
+            //_model.SoundPlayer.Play(@"D:/music.mp3");
+
         }
 
         #endregion
@@ -446,6 +450,15 @@ namespace ServerUi.ViewModels
 
 
 
+
+        #region СВЯЗЬ С ТЕРМИНАЛАМИ
+
+        public BindableCollection<string> TerminalsIp { get; set; } = new BindableCollection<string>();
+
+        #endregion
+
+
+
         private SolidColorBrush _colorBackground = Brushes.SlateGray;
         public SolidColorBrush ColorBackground
         {
@@ -623,14 +636,9 @@ namespace ServerUi.ViewModels
                 else
                 if (e.PropertyName == "GetClients")
                 {
-                  var gg=  listener.GetClients;
-
-                  if(gg != null && gg.Any()) //DEBUG
-                      MessageBox.Show(gg[0].Ip);
-                  else
-                  {
-                     MessageBox.Show("клиент откл");
-                  }
+                  var ipTcpClients=  listener.GetClients.Select(c=>c.Ip).ToList();
+                  TerminalsIp.Clear();
+                  TerminalsIp.AddRange(ipTcpClients);
                 }
             }
         }

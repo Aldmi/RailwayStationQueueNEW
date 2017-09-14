@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerUi", "ServerUIWpf\ServerUi.csproj", "{299060BA-8CA5-4CED-B501-F3793A71FA8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundPlayer", "SoundPlayer\SoundPlayer.csproj", "{374D2273-A02C-4053-A659-AD198466A0FB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sound", "SoundPlayer\Sound.csproj", "{374D2273-A02C-4053-A659-AD198466A0FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

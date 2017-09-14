@@ -152,6 +152,10 @@
       <Project>{edd20fd4-5321-4660-af95-379919c7c913}</Project>
       <Name>Server</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SoundPlayer\Sound.csproj">
+      <Project>{374d2273-a02c-4053-a659-ad198466a0fb}</Project>
+      <Name>Sound</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AppView.xaml">

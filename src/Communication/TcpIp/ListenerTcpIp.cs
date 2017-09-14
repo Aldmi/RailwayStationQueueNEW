@@ -202,7 +202,7 @@ namespace Communication.TcpIp
             public Client(TcpClient client)
             {
                 _stream = client.GetStream();
-                Ip = ((IPEndPoint) client.Client.RemoteEndPoint).Address.ToString();
+                Ip = ((IPEndPoint) client.Client.RemoteEndPoint).Address.MapToIPv4().ToString();
             }
 
 
