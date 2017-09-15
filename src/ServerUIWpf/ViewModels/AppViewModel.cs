@@ -52,6 +52,14 @@ namespace ServerUi.ViewModels
             //_model.SoundPlayer.Volume = 100;
             //_model.SoundPlayer.Play(@"D:/music.mp3");
 
+
+            //DEBUG-----------------
+            List<string> IstFonts= new List<string>();
+            foreach (FontFamily fontFamily in Fonts.SystemFontFamilies)
+            {
+                IstFonts.Add(fontFamily.Source);
+            }
+
         }
 
         #endregion
@@ -511,11 +519,18 @@ namespace ServerUi.ViewModels
                 {
                     if (сashier.CurrentTicket != null)     //добавить элемент к списку
                     {
-                        var ticket= new TicketItem
+                        //var ticket= new TicketItem
+                        //{
+                        //    CashierId = сashier.Id,
+                        //    CashierName = "Касса " + сashier.CurrentTicket.Сashbox,
+                        //    TicketName = $"Талон {сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}"
+                        //};
+
+                        var ticket = new TicketItem
                         {
                             CashierId = сashier.Id,
-                            CashierName = "Касса " + сashier.CurrentTicket.Сashbox,
-                            TicketName = $"Талон {сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}"
+                            CashierName = сashier.CurrentTicket.Сashbox.ToString(),
+                            TicketName = $"{сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}"
                         };
 
                         FillTableCashier(сashier.Id, ticket);

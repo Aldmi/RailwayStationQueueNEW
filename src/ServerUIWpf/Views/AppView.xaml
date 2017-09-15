@@ -12,6 +12,7 @@
         mc:Ignorable="d">
 
 
+    
     <Window.Resources>
         <DurationConverter x:Key="DurationConverter" />
 
@@ -82,19 +83,7 @@
             <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         </Style>
 
-
-        <Style x:Key="ListHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
-            <!--<Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
-                        <Border BorderThickness="0,0,0,1" BorderBrush="Black" Background="Transparent">
-                            <TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Padding="5,5,5,0" Width="{TemplateBinding Width}" TextAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>-->
-            <!--<Setter Property="OverridesDefaultStyle" Value="True" />-->
-
+        <Style x:Key="ListHeaderStyle8X2" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Foreground" Value="Black" />
             <Setter Property="FontFamily" Value="Segoe UI" />
             <Setter Property="FontSize" Value="16" />
@@ -103,16 +92,35 @@
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
 
+        <Style x:Key="ListHeaderStyle4X4" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="Background" Value="Crimson" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
 
-        <Style x:Key="TextBoxStyle" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="9" />
-            <Setter Property="FontFamily" Value="Tahoma" />
-            <Setter Property="FontWeight" Value="Bold" />
+        <Style x:Key="TextBoxStyle8X2" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="17.6" />
+            <Setter Property="FontFamily" Value="Droid Sans Mono Slashed" />
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="2" />
-            <Setter Property="Padding" Value="2" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="1" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+            <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
+        </Style>
+
+        <Style x:Key="TextBoxStyle4X4" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20.4" />
+            <Setter Property="FontFamily" Value="Droid Sans Mono Slashed" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="12" /> 
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
+            <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
         </Style>
 
     </Window.Resources>
@@ -395,11 +403,11 @@
                           Style="{StaticResource ListViewStyle}">
 
                     <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle8X2}">
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle8X2}" Text="{Binding Path=TicketName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -407,7 +415,7 @@
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle8X2}" Text="{Binding Path=CashierName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -423,11 +431,11 @@
                           Style="{StaticResource ListViewStyle}">
 
                     <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle8X2}">
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle8X2}" Text="{Binding Path=TicketName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -435,7 +443,7 @@
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle8X2}" Text="{Binding Path=CashierName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -474,11 +482,11 @@
                           Style="{StaticResource ListViewStyle}">
 
                     <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle8X2}">
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle8X2}" Text="{Binding Path=TicketName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -486,7 +494,7 @@
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle8X2}" Text="{Binding Path=CashierName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -502,11 +510,11 @@
                           Style="{StaticResource ListViewStyle}">
 
                     <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle8X2}">
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle8X2}" Text="{Binding Path=TicketName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -514,7 +522,7 @@
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle8X2}" Text="{Binding Path=CashierName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -553,11 +561,11 @@
                           Style="{StaticResource ListViewStyle}">
 
                     <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle4X4}">
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle4X4}" Text="{Binding Path=TicketName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -565,7 +573,7 @@
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle4X4}" Text="{Binding Path=CashierName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -581,11 +589,11 @@
                           Style="{StaticResource ListViewStyle}">
 
                     <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle4X4}">
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle4X4}" Text="{Binding Path=TicketName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -593,7 +601,7 @@
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle4X4}" Text="{Binding Path=CashierName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -612,11 +620,11 @@
                           Style="{StaticResource ListViewStyle}">
 
                     <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle4X4}">
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle4X4}" Text="{Binding Path=TicketName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -624,7 +632,7 @@
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle4X4}" Text="{Binding Path=CashierName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -640,11 +648,11 @@
                           Style="{StaticResource ListViewStyle}">
 
                     <ListView.View>
-                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle}">
+                        <GridView ColumnHeaderContainerStyle="{StaticResource ListHeaderStyle4X4}">
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=TicketName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle4X4}" Text="{Binding Path=TicketName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -652,7 +660,7 @@
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.44" Header="Касса">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle}" Text="{Binding Path=CashierName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle4X4}" Text="{Binding Path=CashierName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
