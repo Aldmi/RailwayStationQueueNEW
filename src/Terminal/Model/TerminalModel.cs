@@ -120,7 +120,7 @@ namespace Terminal.Model
    
             if (provider.IsOutDataValid)
             {
-                var prefix = provider.OutputData.NumberQueue == 1 ? "A" : "B";
+                var prefix = ((char)provider.OutputData.NumberQueue).ToString();
                 var ticketName = prefix + provider.OutputData.NumberElement.ToString("000");
                 var countPeople = provider.OutputData.CountElement.ToString();
 
@@ -133,7 +133,7 @@ namespace Terminal.Model
 
                     if (provider.IsOutDataValid)
                     {
-                        prefix = provider.OutputData.NumberQueue == 1 ? "A" : "B";
+                        prefix = ((char)provider.OutputData.NumberQueue).ToString();
                         ticketName = prefix + provider.OutputData.NumberElement.ToString("000");
                         countPeople = provider.OutputData.CountElement.ToString();
 

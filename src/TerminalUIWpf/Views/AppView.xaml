@@ -16,10 +16,11 @@
             <Setter Property="Background" Value="{Binding Path=ColorBtn, Mode=OneWay}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="1,20,1,30" />
+            <Setter Property="Margin" Value="1,15,1,15" />
+            <Setter Property="Padding" Value="5" />
             <Setter Property="IsEnabled" Value="{Binding Path=BtnEnable, Mode=OneWay}" />
             <Setter Property="VerticalAlignment" Value="Stretch" />
-            <Setter Property="MaxWidth" Value="1000" />
+            <Setter Property="MaxWidth" Value="1500" />
         </Style>
 
         <Style x:Key="TextBlockMainStyle" TargetType="{x:Type TextBlock}">
@@ -49,34 +50,36 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="0.7*" />
-            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"
-              Grid.Column="0"
               Margin="0,0,0,45"
               HorizontalAlignment="Stretch"
               VerticalAlignment="Stretch"
               Background="Crimson">
             
-            <TextBlock MaxWidth="1200"
+            <TextBlock MaxWidth="1000"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch"
-                       FontSize="110"
+                       FontSize="100"
                        Style="{StaticResource TextBlockMainStyle}"
                        Foreground="White"
                        Padding="5,50,5,5"              
-                       Text="Какой билет вы хотите приобрести ?"
+                       Text="Выберите специалиста"
                        TextAlignment="Center"
                        TextWrapping="Wrap" IsEnabled="{Binding Path=IsConnect, Mode=OneWay}" />
 
-            <TextBlock MaxWidth="1200"
+            <TextBlock MaxWidth="1000"
                        HorizontalAlignment="Stretch"
                        VerticalAlignment="Stretch"
                        FontSize="70"
-                        Style="{StaticResource TextBlockErrorStyle}"
+                       Style="{StaticResource TextBlockErrorStyle}"
                        Foreground="White"
                        Padding="5,90,5,5"
                        Text="ОТСУТСТВУЕТ СВЯЗЬ. Обратитесь пожалуйста к администратору."
@@ -85,15 +88,31 @@
         </Grid>
 
 
-        <!--<Button Name="BtnVilage"
+        
+        <Button Name="BtnGetHelp"
                 Grid.Row="1"
-                Content="Электропоезд"
-                Style="{StaticResource ButtonStyle}" />-->
-
-        <Button Name="BtnLongRoad"
-                Grid.Row="1" Grid.RowSpan="2"
-                Content="Поезд дальнего следования"
-                MaxHeight="315"
+                Content="Получить справку"      
                 Style="{StaticResource ButtonStyle}" />
+
+        <Button Name="BtnBuyTicket"
+                Grid.Row="2"
+                Content="Купить билет на поезд"      
+                Style="{StaticResource ButtonStyle}" />
+
+        <Button Name="BtnBuyInterstateTicket"
+                Grid.Row="3"
+                Content="Купить билет на поезд меж государственного сообщения"      
+                Style="{StaticResource ButtonStyle}" />
+
+        <Button Name="BtnBaggageCheckout"
+                Grid.Row="4"
+                Content="Хранение багажа"      
+                Style="{StaticResource ButtonStyle}" />
+
+        <Button Name="BtnAdmin"
+                Grid.Row="5"
+                Content="Администратор"      
+                Style="{StaticResource ButtonStyle}" />
+
     </Grid>
 </Window>

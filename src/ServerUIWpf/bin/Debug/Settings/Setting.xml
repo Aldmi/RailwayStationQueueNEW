@@ -12,11 +12,11 @@
 	
     <SerialPorts>
 		<Serial>
-		  <Port>1</Port>
+		  <Port>6</Port>
 		  <BaudRate>57600</BaudRate>
 		  <DataBits>8</DataBits>
 		  <StopBits>1</StopBits>
-		  <TimeRespon>1000</TimeRespon>
+		  <TimeRespon>500</TimeRespon>
 		  <TimeCycleReConnect>3000</TimeCycleReConnect>
 		</Serial>
 	
@@ -32,21 +32,21 @@
   </Server>
 
     <Cashiers>
-	   <Cashier Id="1" Port="3" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="2" Port="3" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="3" Port="3" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="4" Port="3" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="5" Port="1" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="6" Port="1" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="7" Port="1" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="8" Port="1" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="9" Port="1" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="10" Port="1" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="11" Port="1" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="12" Port="1" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="13" Port="1" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="14" Port="1" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="15" Port="1" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="16" Port="1" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="2" Port="3" Prefix="C" MaxCountTryHanding="3"/>
+	   <Cashier Id="1" Port="6" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="3" Port="3" Prefix="C" MaxCountTryHanding="3"/>
+	   <Cashier Id="4" Port="3" Prefix="B" MaxCountTryHanding="3"/>
+	   <Cashier Id="5" Port="3" Prefix="B" MaxCountTryHanding="3"/>
+	   <Cashier Id="6" Port="3" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="7" Port="3" Prefix="T" MaxCountTryHanding="3"/>
+	   <Cashier Id="8" Port="6" Prefix="T" MaxCountTryHanding="3"/>
+	   <Cashier Id="9" Port="6" Prefix="T" MaxCountTryHanding="3"/>
+	   <Cashier Id="10" Port="6" Prefix="T" MaxCountTryHanding="3"/>
+	   <Cashier Id="11" Port="6" Prefix="T" MaxCountTryHanding="3"/>
+	   <Cashier Id="12" Port="6" Prefix="T" MaxCountTryHanding="3"/>
+	   <Cashier Id="13" Port="6" Prefix="T" MaxCountTryHanding="3"/>
+	   <Cashier Id="14" Port="6" Prefix="T" MaxCountTryHanding="3"/>
+	   <Cashier Id="15" Port="6" Prefix="T" MaxCountTryHanding="3"/>
+	   <Cashier Id="16" Port="6" Prefix="M" MaxCountTryHanding="3"/>
     </Cashiers>
 </Root>

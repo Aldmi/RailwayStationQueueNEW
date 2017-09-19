@@ -135,18 +135,52 @@ namespace TerminalUIWpf.ViewModels
 
         #region Methode
 
-        public async Task BtnVilage()
+        /// <summary>
+        /// Получить справку
+        /// </summary>
+        public async Task BtnGetHelp()
         {
-            const byte numberQueue = 1;
+            const byte numberQueue = (byte)'C';
+            await _model.TrainSelection(numberQueue);
+        }
+
+        /// <summary>
+        /// Купить билет
+        /// </summary>
+        public async Task BtnBuyTicket()
+        {
+            const byte numberQueue = (byte)'T';
+            await _model.TrainSelection(numberQueue);
+        }
+
+        /// <summary>
+        /// Купить билет меж государственного сообщения
+        /// </summary>
+        public async Task BtnBuyInterstateTicket()
+        {
+            const byte numberQueue = (byte)'M';
+            await _model.TrainSelection(numberQueue);
+        }
+
+        /// <summary>
+        /// Оформить багаж
+        /// </summary>
+        public async Task BtnBaggageCheckout()
+        {
+            const byte numberQueue = (byte)'B';
+            await _model.TrainSelection(numberQueue);
+        }
+
+        /// <summary>
+        /// Администратор
+        /// </summary>
+        public async Task BtnAdmin()
+        {
+            const byte numberQueue = (byte)'A';
             await _model.TrainSelection(numberQueue);
         }
 
 
-        public async Task BtnLongRoad()
-        {
-            const byte numberQueue = 2;
-            await _model.TrainSelection(numberQueue);
-        }
 
 
         protected override void OnDeactivate(bool close)

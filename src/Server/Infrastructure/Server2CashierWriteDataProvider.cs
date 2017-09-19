@@ -76,7 +76,10 @@ namespace Server.Infrastructure
             buff[6] = (NWriteRegister * 2);
 
             ushort formatNameTicket = (ushort)(InputData.NumberElement & 0x3FF);
-            var prefix = (ushort)(InputData.Prefix == "A" ? 0X0000 : 0x0001) & 0x3F;
+
+
+            var prefixByte = (byte)InputData.Prefix.ToCharArray().FirstOrDefault();
+            var prefix = (ushort)(prefixByte - 65) & 0x3F;
             formatNameTicket |= (ushort)(prefix << 10);
 
 

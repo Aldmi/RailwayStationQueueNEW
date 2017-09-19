@@ -48,12 +48,3 @@ D:\Git\RailwayStationQueue\src\Communication\bin\Debug\NModbus4.xml
 D:\Git\RailwayStationQueue\src\Communication\obj\Debug\Communication.csprojResolveAssemblyReference.cache
 D:\Git\RailwayStationQueue\src\Communication\obj\Debug\Communication.dll
 D:\Git\RailwayStationQueue\src\Communication\obj\Debug\Communication.pdb
-C:\Git\RailwayStationQueueNEW\src\Communication\bin\Debug\Communication.dll
-C:\Git\RailwayStationQueueNEW\src\Communication\bin\Debug\Communication.pdb
-C:\Git\RailwayStationQueueNEW\src\Communication\bin\Debug\Library.dll
-C:\Git\RailwayStationQueueNEW\src\Communication\bin\Debug\NModbus4.dll
-C:\Git\RailwayStationQueueNEW\src\Communication\bin\Debug\Library.pdb
-C:\Git\RailwayStationQueueNEW\src\Communication\bin\Debug\NModbus4.xml
-C:\Git\RailwayStationQueueNEW\src\Communication\obj\Debug\Communication.csprojResolveAssemblyReference.cache
-C:\Git\RailwayStationQueueNEW\src\Communication\obj\Debug\Communication.dll
-C:\Git\RailwayStationQueueNEW\src\Communication\obj\Debug\Communication.pdb

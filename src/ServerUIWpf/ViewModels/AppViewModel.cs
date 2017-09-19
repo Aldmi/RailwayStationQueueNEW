@@ -51,15 +51,6 @@ namespace ServerUi.ViewModels
 
             //_model.SoundPlayer.Volume = 100;
             //_model.SoundPlayer.Play(@"D:/music.mp3");
-
-
-            //DEBUG-----------------
-            List<string> IstFonts= new List<string>();
-            foreach (FontFamily fontFamily in Fonts.SystemFontFamilies)
-            {
-                IstFonts.Add(fontFamily.Source);
-            }
-
         }
 
         #endregion
