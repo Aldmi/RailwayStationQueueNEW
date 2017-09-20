@@ -43,7 +43,8 @@ namespace Server.Model
         public ListenerTcpIp Listener { get; set; }
         public IExchangeDataProvider<TerminalInData, TerminalOutData> ProviderTerminal { get; set; }
 
-        //public SoundPlayer SoundPlayer { get; set; } = new SoundPlayer();
+        public SoundQueue SoundQueue { get; set; } = new SoundQueue(new SoundPlayer(), new SoundNameService());
+
 
         public List<MasterSerialPort> MasterSerialPorts { get; set; } = new List<MasterSerialPort>();
         public List<DeviceCashier> DeviceCashiers { get; set; } = new List<DeviceCashier>();

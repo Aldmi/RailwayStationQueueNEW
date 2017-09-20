@@ -7,19 +7,11 @@ using ManagedBass;
 
 namespace Sound
 {
-    public class SoundPlayer : IDisposable
+    public class SoundPlayer : ISoundPlayer
     {
         #region prop
 
-        private MediaPlayer Player { get;} = new MediaPlayer();
 
-        public double Volume
-        {
-            get { return Player.Volume; }
-            set { Player.Volume = value; }
-        }
-
-        public PlaybackState GetState => Player.State;
 
         #endregion
 
@@ -29,28 +21,44 @@ namespace Sound
 
         #region Methode
 
-        public async Task Play(string filePath)
+        public bool PlayFile(string file)
         {
-            await Player.LoadAsync(filePath);
-            Player.Play();
+            throw new NotImplementedException();
         }
-
-
-        public void Stop()
-        {
-            if (GetState == PlaybackState.Playing)
-            {
-                Player.Stop();
-            }
-        }
-    
 
         public void Pause()
         {
-            if (GetState == PlaybackState.Playing)
-            {
-                Player.Pause();
-            }
+            throw new NotImplementedException();
+        }
+
+        public void Play()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetVolume()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetVolume(int volume)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetCurrentPosition()
+        {
+            throw new NotImplementedException();
+        }
+
+        public float GetDuration()
+        {
+            throw new NotImplementedException();
+        }
+
+        public SoundFileStatus GetStatus()
+        {
+            return SoundFileStatus.Playing;
         }
 
         #endregion
@@ -58,10 +66,11 @@ namespace Sound
 
 
 
-
         public void Dispose()
         {
-            Player?.Dispose();
+            throw new NotImplementedException();
         }
+
+
     }
 }

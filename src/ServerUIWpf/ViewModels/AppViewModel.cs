@@ -10,6 +10,7 @@ using Caliburn.Micro;
 using Communication.TcpIp;
 using Server.Entitys;
 using Server.Model;
+using Sound;
 using TicketItem = ServerUi.Model.TicketItem;
 
 namespace ServerUi.ViewModels
@@ -523,6 +524,9 @@ namespace ServerUi.ViewModels
                             CashierName = сashier.CurrentTicket.Сashbox.ToString(),
                             TicketName = $"{сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}"
                         };
+
+                        var soundTemplate= new SoundTemplate(ticket.ToString());
+                        _model.SoundQueue.AddItem(soundTemplate);
 
                         FillTableCashier(сashier.Id, ticket);
                         FillTable4X4(ticket, Table4X41, Table4X42, Table4X43, Table4X44);
