@@ -1,20 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Timers;
+using Communication.Annotations;
+using NAudio.Wave;
+
 
 namespace Sound
 {
-    public class SoundQueue : IDisposable
+    public class SoundQueue : INotifyPropertyChanged, IDisposable
     {
+        #region field
+
+        private readonly Timer _timerInvokeSoundQueue;
+
+        #endregion
+
+
+
+
         #region prop
 
         public ISoundPlayer Player { get; set; }
         public ISoundNameService SoundNameService { get; set; }
 
         private Queue<SoundTemplate> Queue { get; } = new Queue<SoundTemplate>();
+        public IEnumerable<SoundTemplate> GetQueue => Queue;
         public SoundTemplate CurrentSoundMessagePlaying { get; set; }
         public string CurrentFilePlaying { get; set; }
-
         public bool IsWorking { get; private set; }
 
         #endregion
@@ -24,13 +40,31 @@ namespace Sound
 
         #region ctor
 
-        public SoundQueue(ISoundPlayer soundPlayer, ISoundNameService soundNameService)
+        public SoundQueue(ISoundPlayer soundPlayer, ISoundNameService soundNameService, double timerQueueInterval)
         {
             Player = soundPlayer;
             SoundNameService = soundNameService;
+            _timerInvokeSoundQueue= new Timer(timerQueueInterval);
+            _timerInvokeSoundQueue.Elapsed += TimerInvokeSoundQueue_Elapsed;
+            _timerInvokeSoundQueue.Start();
+        }
+
+
+
+        #endregion
+
+
+
+
+        #region Events
+
+        private void TimerInvokeSoundQueue_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Invoke();
         }
 
         #endregion
+
 
 
 
@@ -44,6 +78,9 @@ namespace Sound
         {
             if (item == null)
                 return;
+
+            Queue.Enqueue(item);
+            OnPropertyChanged("Queue");
         }
 
 
@@ -70,6 +107,7 @@ namespace Sound
             Queue?.Clear();
             CurrentSoundMessagePlaying = null;
             CurrentFilePlaying = null;
+            OnPropertyChanged("Queue");
         }
 
 
@@ -100,7 +138,7 @@ namespace Sound
         /// <summary>
         /// Разматывание очереди, внешним кодом
         /// </summary>
-        public void Invoke()
+        private void Invoke()
         {
             if (!IsWorking)
                 return;
@@ -110,15 +148,22 @@ namespace Sound
                 var status = Player.GetStatus();
 
                 //Разматывание очереди. Определение проигрываемого файла-----------------------------------------------------------------------------
-                if (status != SoundFileStatus.Playing)
+                if (status != PlaybackState.Playing)
                 {
+                    if (CurrentSoundMessagePlaying != null) // предыдущий проигрываемый файл
+                    {
+                        OnPropertyChanged("Queue");
+                    }
+
                     if (Queue.Any())
                     {
                         CurrentSoundMessagePlaying = Queue.Dequeue();
                     }
-
-                    if (CurrentSoundMessagePlaying == null)
+                    else
+                    {
+                        CurrentSoundMessagePlaying = null;
                         return;
+                    }
 
                     var soundFile= CurrentSoundMessagePlaying.FileNameQueue.Any() ? CurrentSoundMessagePlaying.FileNameQueue.Dequeue() : null;
                     if (soundFile?.Contains(".wav") == false)
@@ -128,7 +173,7 @@ namespace Sound
                         return;
 
                     Player.PlayFile(soundFile);
-                }
+                 }
             }
             catch (Exception ex)
             {
@@ -140,9 +185,20 @@ namespace Sound
 
 
 
+        #region Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
 
 
-            #region IDisposable
+
+        #region IDisposable
 
         public void Dispose()
         {

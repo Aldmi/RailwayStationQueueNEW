@@ -20,10 +20,8 @@ namespace Sound
         public SoundTemplate(string name)
         {
             Name = name;
-  
-            //TODO: распарсить Name на перменные шаблоны.  ТалонА001 Касса2
-             
-            FileNameQueue = new Queue<string>();
+            var files = Name.Split(' '); // формат: "Талон А 001 Касса 1"
+            FileNameQueue = new Queue<string>(files);
         }
 
         #endregion

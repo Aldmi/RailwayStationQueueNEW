@@ -6,6 +6,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Timers;
 using Communication.Annotations;
 using Communication.Interfaces;
 using Communication.SerialPort;
@@ -43,7 +44,7 @@ namespace Server.Model
         public ListenerTcpIp Listener { get; set; }
         public IExchangeDataProvider<TerminalInData, TerminalOutData> ProviderTerminal { get; set; }
 
-        public SoundQueue SoundQueue { get; set; } = new SoundQueue(new SoundPlayer(), new SoundNameService());
+        public SoundQueue SoundQueue { get; set; } = new SoundQueue(new SoundPlayer(), new SoundNameService(), 100);
 
 
         public List<MasterSerialPort> MasterSerialPorts { get; set; } = new List<MasterSerialPort>();
@@ -65,6 +66,7 @@ namespace Server.Model
         }
 
         #endregion
+
 
 
 
@@ -271,6 +273,18 @@ namespace Server.Model
             {
                 var ticket2 = TicketFactoryGetHelp.Create((ushort) QueueGetHelp.Count);
                 QueueGetHelp.Enqueue(ticket2);
+
+                ticket2 = TicketFactoryBuyTicket.Create((ushort)QueueBuyTicket.Count);
+                QueueBuyTicket.Enqueue(ticket2);
+
+                ticket2 = TicketFactoryBaggageCheckout.Create((ushort)QueueBaggageCheckout.Count);
+                QueueBaggageCheckout.Enqueue(ticket2);
+
+                ticket2 = TicketFactoryAdmin.Create((ushort)QueueAdmin.Count);
+                QueueAdmin.Enqueue(ticket2);
+
+                ticket2 = TicketFactoryBuyInterstateTicket.Create((ushort)QueueBuyInterstateTicket.Count);
+                QueueBuyInterstateTicket.Enqueue(ticket2);
             }
             //DEBUG------------------------------
 

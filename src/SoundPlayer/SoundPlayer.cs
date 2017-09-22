@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ManagedBass;
+using NAudio.Wave;
 
 namespace Sound
 {
@@ -11,7 +11,8 @@ namespace Sound
     {
         #region prop
 
-
+        public IWavePlayer WaveOutDevice { get; set; } = new WaveOut();
+        public AudioFileReader AudioFileReader { get; set; }
 
         #endregion
 
@@ -23,42 +24,130 @@ namespace Sound
 
         public bool PlayFile(string file)
         {
-            throw new NotImplementedException();
+            if (AudioFileReader != null)
+            {
+                AudioFileReader.Dispose();
+                AudioFileReader = null;
+            }
+
+            try
+            {
+                if (System.IO.File.Exists(file))
+                {
+                    AudioFileReader = new AudioFileReader(file);
+                    WaveOutDevice.Init(AudioFileReader);
+
+                    SetVolume(0.9f);
+                    Play();
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return false;
         }
 
-        public void Pause()
-        {
-            throw new NotImplementedException();
-        }
+
 
         public void Play()
         {
-            throw new NotImplementedException();
+            if (AudioFileReader == null)
+                return;
+
+            try
+            {
+                if (WaveOutDevice.PlaybackState == PlaybackState.Paused ||
+                    WaveOutDevice.PlaybackState == PlaybackState.Stopped)
+                {
+                    WaveOutDevice.Play();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public int GetVolume()
+
+
+        public void Pause()
         {
-            throw new NotImplementedException();
+            if (AudioFileReader == null)
+                return;
+
+            try
+            {
+                if (WaveOutDevice.PlaybackState == PlaybackState.Playing)
+                    WaveOutDevice.Pause();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public void SetVolume(int volume)
+
+
+        public void Stop()
         {
-            throw new NotImplementedException();
+            if (AudioFileReader == null)
+                return;
+
+            try
+            {
+                if (WaveOutDevice.PlaybackState == PlaybackState.Playing)
+                    WaveOutDevice.Stop();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public int GetCurrentPosition()
+
+
+        public float GetVolume()
         {
-            throw new NotImplementedException();
+            return AudioFileReader?.Volume ?? 0f;
         }
 
-        public float GetDuration()
+
+
+        //1.0f is full volume
+        public void SetVolume(float volume)
         {
-            throw new NotImplementedException();
+            if (AudioFileReader != null)
+            {
+                AudioFileReader.Volume = volume;
+            }
         }
 
-        public SoundFileStatus GetStatus()
+
+
+        public long GetCurrentPosition()
         {
-            return SoundFileStatus.Playing;
+            return  AudioFileReader?.Position ?? 0;
+        }
+
+
+
+        public TimeSpan? GetDuration()
+        {
+            return AudioFileReader?.TotalTime ?? null;
+        }
+
+
+
+        public PlaybackState GetStatus()
+        {
+            return WaveOutDevice.PlaybackState;
         }
 
         #endregion
@@ -66,11 +155,18 @@ namespace Sound
 
 
 
+
+        #region IDisposable
+
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if (WaveOutDevice != null)
+            {
+                WaveOutDevice.Stop();
+                WaveOutDevice.Dispose();
+            }
         }
 
-
+        #endregion
     }
 }

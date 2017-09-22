@@ -31,9 +31,6 @@ namespace ServerUi.ViewModels
 
         public AppViewModel()
         {
-            DurationAnimationListView= new Duration(TimeSpan.FromMilliseconds(1000));
-            AnimationListViewFrom = 0.8;
-
             _model = new ServerModel();
             _model.PropertyChanged += _model_PropertyChanged;
 
@@ -50,8 +47,22 @@ namespace ServerUi.ViewModels
                 _mainTask = _model.Start();
             }
 
-            //_model.SoundPlayer.Volume = 100;
-            //_model.SoundPlayer.Play(@"D:/music.mp3");
+            _model.SoundQueue.PropertyChanged += SoundQueue_PropertyChanged;
+            _model.SoundQueue.StartQueue();
+        }
+
+
+        private void SoundQueue_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var soundQueue = sender as SoundQueue;
+            if (soundQueue != null)
+            {
+                if (e.PropertyName == "Queue")
+                {
+                    SoundTemplates.Clear();
+                    SoundTemplates.AddRange(soundQueue.GetQueue);
+                }
+            }
         }
 
         #endregion
@@ -471,28 +482,7 @@ namespace ServerUi.ViewModels
         }
 
 
-        private Duration _durationAnimationListView;         //DEBUG
-        public Duration DurationAnimationListView
-        {
-            get { return _durationAnimationListView; }
-            set
-            {
-                _durationAnimationListView = value;
-                NotifyOfPropertyChange(() => DurationAnimationListView);
-            }
-        }
-
-
-        private double? _animationListViewFrom;              //DEBUG
-        public double? AnimationListViewFrom
-        {
-            get { return _animationListViewFrom; }
-            set
-            {
-                _animationListViewFrom = value;
-                NotifyOfPropertyChange(() => AnimationListViewFrom);
-            }
-        }
+        public BindableCollection<SoundTemplate> SoundTemplates { get; set; } = new BindableCollection<SoundTemplate>();  //Звуковые шалоны в очереди
 
         #endregion
 
@@ -525,8 +515,8 @@ namespace ServerUi.ViewModels
                             TicketName = $"{сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}"
                         };
 
-                        var soundTemplate= new SoundTemplate(ticket.ToString());
-                        _model.SoundQueue.AddItem(soundTemplate);
+                        var formatStr= $"Талон {ticket.TicketName} Касса {ticket.CashierName}";
+                        _model.SoundQueue.AddItem(new SoundTemplate(formatStr));
 
                         FillTableCashier(сashier.Id, ticket);
                         FillTable4X4(ticket, Table4X41, Table4X42, Table4X43, Table4X44);
@@ -878,6 +868,41 @@ namespace ServerUi.ViewModels
                 }
             }
         }
+
+
+
+        private string _btnStartStopSoundQueueName = "СТОП";
+        public string BtnStartStopSoundQueueName
+        {
+            get { return _btnStartStopSoundQueueName; }
+            set
+            {
+                _btnStartStopSoundQueueName = value;
+                NotifyOfPropertyChange(() => BtnStartStopSoundQueueName);
+            }
+        }
+        public void StartStopSoundQueue()
+        {
+            switch (BtnStartStopSoundQueueName)
+            {
+                case "СТОП":
+                    _model.SoundQueue.StopQueue();
+                    BtnStartStopSoundQueueName = "СТАРТ";
+                    break;
+
+                case "СТАРТ":
+                    _model.SoundQueue.StartQueue();
+                    BtnStartStopSoundQueueName = "СТОП";
+                    break;
+            }
+        }
+
+
+        public void CleanSoundQueue()
+        {
+            _model.SoundQueue.Clear();
+        }
+
 
 
 

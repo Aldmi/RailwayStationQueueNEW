@@ -123,6 +123,22 @@
             <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
         </Style>
 
+
+        <Style x:Key="ListSoundHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Background" Value="Chocolate" />
+            <Setter Property="Padding" Value="5" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+        </Style>
+
+        <Style x:Key="ListViewSoundItemStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="DarkGray" />
+            <Setter Property="Focusable" Value="False" />
+        </Style>
+
     </Window.Resources>
 
 
@@ -134,6 +150,7 @@
           SnapsToDevicePixels="True"
           UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -671,9 +688,58 @@
         </Grid>
 
 
+ 
 
+              <!--СЕРВИСНАЯ ПАНЕЛЬ-->  
+        <Grid Name="ServicePanel"
+              Grid.Row="0"
+              Grid.Column="1"
+              Grid.RowSpan="5"
+              Margin="5"            
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--  СЕРВИСНАЯ ПАНЕЛЬ  -->
+            <ListView Grid.Column="0" Grid.Row="0"
+                      Name="SoundTemplates" 
+                      MinHeight="500"
+                      ItemContainerStyle="{StaticResource ListViewSoundItemStyle}"
+                      Style="{StaticResource ListViewStyle}">
+
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource ListSoundHeaderStyle}">
+                        <GridViewColumn Header="Шаблон" Width="290">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Style="{StaticResource TextBoxStyle8X2}" Text="{Binding Path=Name}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            
+            <StackPanel Grid.Column="1" Grid.Row="0" Margin="5">
+
+                <Button Name="StartStopSoundQueue" Content="{Binding Path= BtnStartStopSoundQueueName}" Margin="10"/>
+                <Button Name="CleanSoundQueue" Content="ОЧИСТКА" Margin="10"/>
+            </StackPanel>
+
+        </Grid>
+        
+        
+        
+        
+        
+        <!--  СЕРВИСНАЯ ПАНЕЛЬ TEST  -->
         <StackPanel Grid.Row="4"
                     Grid.Column="0"
                     HorizontalAlignment="Left"
@@ -909,6 +975,9 @@
 
 
         </StackPanel>
+        
+        
+        
 
 
     </Grid>

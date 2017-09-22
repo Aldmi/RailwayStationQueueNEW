@@ -1,26 +1,21 @@
 ﻿using System;
+using NAudio.Wave;
 
 namespace Sound
 {
-    public enum SoundFileStatus
-    {
-        Error,
-        Stop,
-        Playing,
-        Paused,
-    };
-
     public interface ISoundPlayer : IDisposable
     {
         bool PlayFile(string file);
-        void Pause();
         void Play();
-        int GetVolume();
-        void SetVolume(int volume);
+        void Pause();
+        void Stop();
 
-        int GetCurrentPosition();
-        float GetDuration();
+        float GetVolume();
+        void SetVolume(float volume);
 
-        SoundFileStatus GetStatus();
+        long GetCurrentPosition();
+        TimeSpan? GetDuration();
+
+        PlaybackState GetStatus();
     }
 }
