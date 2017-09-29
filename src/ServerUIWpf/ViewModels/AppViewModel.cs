@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Media;
 using Caliburn.Micro;
 using Communication.TcpIp;
 using Server.Entitys;
 using Server.Model;
 using Sound;
+using Brushes = System.Windows.Media.Brushes;
+using FontFamily = System.Windows.Media.FontFamily;
+using Screen = Caliburn.Micro.Screen;
 using TicketItem = ServerUi.Model.TicketItem;
 
 namespace ServerUi.ViewModels
@@ -902,6 +908,98 @@ namespace ServerUi.ViewModels
         {
             _model.SoundQueue.Clear();
         }
+
+
+
+
+        #region Выбор шрифтов
+
+        //TODO: создать тип FontSetting. Маппить из fontDialog.Font в FontSetting, при изменении настроек шрифта. Байндить напрямую на FontSetting. Переопределить ToString() для сохранения и вывода в ТextBox.
+
+        public Font CurrentFont8X2 { get; private set; }
+        public Font CurrentFont4X4 { get; private set; }
+
+
+        private string _currentFontString8X2;
+        public string CurrentFontString8X2
+        {
+            get { return _currentFontString8X2; }
+            set
+            {
+                _currentFontString8X2 = value;
+                NotifyOfPropertyChange(() => CurrentFontString8X2);
+            }
+        }
+
+
+        private float _fontSizeTb8X2;
+        public float FontSizeTb8X2
+        {
+            get { return _fontSizeTb8X2; }
+            set
+            {
+                _fontSizeTb8X2 = value;
+                NotifyOfPropertyChange(() => FontSizeTb8X2);
+            }
+        }
+
+
+
+
+        public void FontChoser(string table)
+        {
+            Font currentFont = null;
+            switch (table)
+            {
+                case "8X2":
+                    currentFont = CurrentFont8X2;
+                    break;
+
+                case "4X4":
+                    currentFont = CurrentFont4X4;
+                    break;
+            }
+
+
+            var fontDialog = new FontDialog { Font = currentFont };
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                currentFont = fontDialog.Font;
+                var ffc = new FontFamilyConverter();
+                switch (table)
+                {
+                    case "8X2":
+                        CurrentFont8X2 = currentFont;
+                        FontSizeTb8X2 = fontDialog.Font.Size;
+                        var fontFamily = (FontFamily)ffc.ConvertFromString(fontDialog.Font.Name);
+                        CurrentFontString8X2 = $@"{fontFamily} {FontSizeTb8X2}";
+                        break;
+
+                    case "4X4":
+                        CurrentFont4X4 = currentFont;
+                        fontFamily = (FontFamily)ffc.ConvertFromString(fontDialog.Font.Name);
+                        CurrentFontString8X2 = $@"{fontFamily} {FontSizeTb8X2}";
+                        break;
+                }
+                //Сохранить шрифты CurrentFont8X2, CurrentFont4X4
+
+        
+          
+
+
+                //if (fontDialog.Font.Bold)
+                //    textAnnotation.FontWeight = FontWeights.Bold;
+                //else
+                //    textAnnotation.FontWeight = FontWeights.Normal;
+
+                //if (fontDialog.Font.Italic)
+                //    textAnnotation.FontStyle = FontStyles.Italic;
+                //else
+                //    textAnnotation.FontStyle = FontStyles.Normal;
+            }
+        }
+
+        #endregion
 
 
 

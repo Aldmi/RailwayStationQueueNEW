@@ -101,8 +101,10 @@
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
 
+        <!--{Binding Path= FontSizeTb8X2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}-->
+        
         <Style x:Key="TextBoxStyle8X2" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="17.6" />
+            <Setter Property="FontSize" Value="{Binding Path=DataContext.FontSizeTb8X2, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window},UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="FontFamily" Value="Droid Sans Mono Slashed" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="Margin" Value="0" />
@@ -424,7 +426,7 @@
                             <GridViewColumn ctrl:ProportionalColumn.Width="0.56" Header="Номер">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Style="{StaticResource TextBoxStyle8X2}" Text="{Binding Path=TicketName}" />
+                                        <TextBlock Style="{StaticResource TextBoxStyle8X2}" Text="{Binding Path=TicketName}"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -726,11 +728,24 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            
-            <StackPanel Grid.Column="1" Grid.Row="0" Margin="5">
 
+            
+            <StackPanel Grid.Column="1" Grid.Row="0" >
                 <Button Name="StartStopSoundQueue" Content="{Binding Path= BtnStartStopSoundQueueName}" Margin="10"/>
                 <Button Name="CleanSoundQueue" Content="ОЧИСТКА" Margin="10"/>
+            </StackPanel>
+    
+            
+            <StackPanel Grid.Column="0" Grid.Row="1" Margin="5,25,5,5">
+                <StackPanel Orientation="Horizontal">
+                    <Button cal:Message.Attach="FontChoser(8X2)" Content="ШРИФТ табл 8X2" Padding="5"/>
+                    <TextBlock Name="CurrentFontString8X2" MinHeight="15" FontSize="12"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button cal:Message.Attach="FontChoser(4X4)" Content="ШРИФТ табл 4X4" Padding="5"/>
+                    <TextBlock Name="CurrentFontString4X4" MinHeight="15" FontSize="12"/>
+                </StackPanel>
             </StackPanel>
 
         </Grid>
