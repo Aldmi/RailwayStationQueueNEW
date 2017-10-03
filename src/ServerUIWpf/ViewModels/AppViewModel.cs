@@ -13,6 +13,7 @@ using Caliburn.Micro;
 using Communication.TcpIp;
 using Server.Entitys;
 using Server.Model;
+using ServerUi.Model;
 using Sound;
 using Brushes = System.Windows.Media.Brushes;
 using FontFamily = System.Windows.Media.FontFamily;
@@ -914,35 +915,39 @@ namespace ServerUi.ViewModels
 
         #region Выбор шрифтов
 
-        //TODO: создать тип FontSetting. Маппить из fontDialog.Font в FontSetting, при изменении настроек шрифта. Байндить напрямую на FontSetting. Переопределить ToString() для сохранения и вывода в ТextBox.
 
-        public Font CurrentFont8X2 { get; private set; }
-        public Font CurrentFont4X4 { get; private set; }
-
-
-        private string _currentFontString8X2;
-        public string CurrentFontString8X2
+        private FontSetting _currentFont8X2;
+        public FontSetting CurrentFont8X2
         {
-            get { return _currentFontString8X2; }
+            get { return _currentFont8X2; }
             set
             {
-                _currentFontString8X2 = value;
-                NotifyOfPropertyChange(() => CurrentFontString8X2);
+                _currentFont8X2 = value;
+                NotifyOfPropertyChange(() => CurrentFont8X2);
             }
         }
 
-
-        private float _fontSizeTb8X2;
-        public float FontSizeTb8X2
+        private FontSetting _currentFont4X4;
+        public FontSetting CurrentFont4X4
         {
-            get { return _fontSizeTb8X2; }
+            get { return _currentFont4X4; }
             set
             {
-                _fontSizeTb8X2 = value;
-                NotifyOfPropertyChange(() => FontSizeTb8X2);
+                _currentFont4X4 = value;
+                NotifyOfPropertyChange(() => CurrentFont4X4);
             }
         }
 
+        private FontSetting _currentFontCash;
+        public FontSetting CurrentFontCash
+        {
+            get { return _currentFontCash; }
+            set
+            {
+                _currentFontCash = value;
+                NotifyOfPropertyChange(() => CurrentFontCash);
+            }
+        }
 
 
 
@@ -951,12 +956,16 @@ namespace ServerUi.ViewModels
             Font currentFont = null;
             switch (table)
             {
+                case "cash":
+                    currentFont = CurrentFontCash?.Font;
+                    break;
+
                 case "8X2":
-                    currentFont = CurrentFont8X2;
+                    currentFont = CurrentFont8X2?.Font;
                     break;
 
                 case "4X4":
-                    currentFont = CurrentFont4X4;
+                    currentFont = CurrentFont4X4?.Font;
                     break;
             }
 
@@ -965,37 +974,21 @@ namespace ServerUi.ViewModels
             if (fontDialog.ShowDialog() == DialogResult.OK)
             {
                 currentFont = fontDialog.Font;
-                var ffc = new FontFamilyConverter();
                 switch (table)
                 {
+                    case "cash":
+                        CurrentFontCash = new FontSetting { Font = currentFont };
+                        break;
+
                     case "8X2":
-                        CurrentFont8X2 = currentFont;
-                        FontSizeTb8X2 = fontDialog.Font.Size;
-                        var fontFamily = (FontFamily)ffc.ConvertFromString(fontDialog.Font.Name);
-                        CurrentFontString8X2 = $@"{fontFamily} {FontSizeTb8X2}";
+                        CurrentFont8X2= new FontSetting { Font = currentFont };
                         break;
 
                     case "4X4":
-                        CurrentFont4X4 = currentFont;
-                        fontFamily = (FontFamily)ffc.ConvertFromString(fontDialog.Font.Name);
-                        CurrentFontString8X2 = $@"{fontFamily} {FontSizeTb8X2}";
+                        CurrentFont4X4 = new FontSetting { Font = currentFont };
                         break;
                 }
-                //Сохранить шрифты CurrentFont8X2, CurrentFont4X4
-
-        
-          
-
-
-                //if (fontDialog.Font.Bold)
-                //    textAnnotation.FontWeight = FontWeights.Bold;
-                //else
-                //    textAnnotation.FontWeight = FontWeights.Normal;
-
-                //if (fontDialog.Font.Italic)
-                //    textAnnotation.FontStyle = FontStyles.Italic;
-                //else
-                //    textAnnotation.FontStyle = FontStyles.Normal;
+                //Сохранить шрифты на диск CurrentFont8X2, CurrentFont4X4
             }
         }
 
