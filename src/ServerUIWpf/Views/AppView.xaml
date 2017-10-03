@@ -6,6 +6,7 @@
     xmlns:ctrl="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     AllowDrop="False"
     Focusable="False"
     WindowState="Maximized"
@@ -166,7 +167,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
 
         <!--  ТАБЛО КАССЫ (1)  -->
         <Grid
@@ -834,6 +834,9 @@
             Grid.Column="0"
             HorizontalAlignment="Left"
             Orientation="Horizontal">
+
+            <xctk:ColorPicker Name="ClrPcker_Background" SelectedColor="{Binding Path=Testcolor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
             <Button
                 x:Name="btn1"
                 Width="35"

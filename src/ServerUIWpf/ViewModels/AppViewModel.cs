@@ -19,6 +19,9 @@ using Brushes = System.Windows.Media.Brushes;
 using FontFamily = System.Windows.Media.FontFamily;
 using Screen = Caliburn.Micro.Screen;
 using TicketItem = ServerUi.Model.TicketItem;
+using Xceed.Wpf.Toolkit;
+using Color = System.Windows.Media.Color;
+
 
 namespace ServerUi.ViewModels
 {
@@ -950,9 +953,22 @@ namespace ServerUi.ViewModels
         }
 
 
+        private Color _testcolor;
+        public Color Testcolor
+        {
+            get { return _testcolor; }
+            set
+            {
+                _testcolor = value;
+                NotifyOfPropertyChange(() => Testcolor);
+            }
+        }
+
+
 
         public void FontChoser(string table)
         {
+      
             Font currentFont = null;
             switch (table)
             {
