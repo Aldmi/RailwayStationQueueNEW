@@ -123,6 +123,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\Color2BrushConverter.cs" />
     <Compile Include="Converters\DurationConverter.cs" />
     <Compile Include="Model\FontSetting.cs" />
     <Compile Include="ViewModels\AppViewModel_Default.cs" />

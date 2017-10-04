@@ -3,6 +3,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cal="http://www.caliburnproject.org"
+    xmlns:converters="clr-namespace:ServerUi.Converters"
     xmlns:ctrl="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -17,7 +18,7 @@
 
     <Window.Resources>
         <DurationConverter x:Key="DurationConverter" />
-
+        <converters:Color2BrushConverter x:Key="Color2BrushConverter" x:Shared="false" />
 
         <Style x:Key="LabelCashierNumberStyle" TargetType="Label">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -83,7 +84,7 @@
             <Setter Property="Foreground" Value="CadetBlue" />
             <Setter Property="Margin" Value="0" />
             <Setter Property="Padding" Value="0" />
-            <Setter Property="Background" Value="Black" />
+            <Setter Property="Background" Value="{Binding Path=DataContext.CurrentFontCash.BackGroundColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         </Style>
 
@@ -783,42 +784,115 @@
                             Margin="2"
                             Padding="2"
                             Header="Табло кассы">
-                            <StackPanel Orientation="Horizontal">
+
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
                                 <Button
+                                    Grid.Row="0"
+                                    Grid.Column="0"
                                     Padding="5"
                                     cal:Message.Attach="FontChoser('cash')"
                                     Content="Шрифт строк" />
-                                <TextBlock MinHeight="15" Text="{Binding Path=CurrentFontCash, Mode=OneWay}" />
-                            </StackPanel>
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    MinHeight="15"
+                                    Text="{Binding Path=CurrentFontCash, Mode=OneWay}" />
+
+                                <Label Grid.Row="1" Grid.Column="0">Цвет фона</Label>
+                                <xctk:ColorPicker
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    SelectedColor="{Binding Path=CurrentFontCash.BackGroundColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource Color2BrushConverter}}" />
+
+                                <Label Grid.Row="2" Grid.Column="0">Цвет шрифта</Label>
+                                <xctk:ColorPicker
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    SelectedColor="{Binding Path=Testcolor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
                         </GroupBox>
 
                         <GroupBox
                             Margin="2"
                             Padding="2"
                             Header="Табло 8Х2">
-                            <StackPanel Orientation="Horizontal">
+
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
                                 <Button
+                                    Grid.Row="0"
+                                    Grid.Column="0"
                                     Padding="5"
                                     cal:Message.Attach="FontChoser(8X2)"
                                     Content="Шрифт строк" />
+
                                 <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="1"
                                     MinHeight="15"
-                                    FontSize="12"
                                     Text="{Binding Path=CurrentFont8X2, Mode=OneWay}" />
-                            </StackPanel>
+
+                                <Label Grid.Row="1" Grid.Column="0">Цвет фона</Label>
+                                <xctk:ColorPicker
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    SelectedColor="{Binding Path=Testcolor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
                         </GroupBox>
 
                         <GroupBox
                             Margin="2"
                             Padding="2"
                             Header="Табло 4Х4">
-                            <StackPanel Orientation="Horizontal">
+
+                            <Grid Margin="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
                                 <Button
+                                    Grid.Row="0"
+                                    Grid.Column="0"
                                     Padding="5"
                                     cal:Message.Attach="FontChoser(4X4)"
                                     Content="Шрифт строк" />
-                                <TextBlock MinHeight="15" Text="{Binding Path=CurrentFont4X4, Mode=OneWay}" />
-                            </StackPanel>
+
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    MinHeight="15"
+                                    Text="{Binding Path=CurrentFont4X4, Mode=OneWay}" />
+
+                                <Label Grid.Row="1" Grid.Column="0">Цвет фона</Label>
+                                <xctk:ColorPicker
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    SelectedColor="{Binding Path=Testcolor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
                         </GroupBox>
                     </StackPanel>
                 </GroupBox>
@@ -834,8 +908,6 @@
             Grid.Column="0"
             HorizontalAlignment="Left"
             Orientation="Horizontal">
-
-            <xctk:ColorPicker Name="ClrPcker_Background" SelectedColor="{Binding Path=Testcolor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <Button
                 x:Name="btn1"

@@ -47,7 +47,7 @@ namespace ServerUi.ViewModels
             _model.LoadSetting();
             foreach (var devCashier in _model.DeviceCashiers)
             {
-                devCashier.Cashier.PropertyChanged += Cashier_PropertyChanged;
+                devCashier.Cashier.PropertyChanged+= Cashier_PropertyChanged;
                 devCashier.PropertyChanged+= DevCashierOnPropertyChanged;
             }
 
@@ -59,6 +59,10 @@ namespace ServerUi.ViewModels
 
             _model.SoundQueue.PropertyChanged += SoundQueue_PropertyChanged;
             _model.SoundQueue.StartQueue();
+
+
+            //ЗАГРУЗКА НАСТРОЕК ТАБЛО
+            CurrentFontCash= new FontSetting {BackGroundColorBrush = new SolidColorBrush(Colors.Brown )};
         }
 
 
@@ -918,6 +922,17 @@ namespace ServerUi.ViewModels
 
         #region Выбор шрифтов
 
+        private FontSetting _currentFontCash;
+        public FontSetting CurrentFontCash
+        {
+            get { return _currentFontCash; }
+            set
+            {
+                _currentFontCash = value;
+                NotifyOfPropertyChange(() => CurrentFontCash);
+            }
+        }
+
 
         private FontSetting _currentFont8X2;
         public FontSetting CurrentFont8X2
@@ -941,16 +956,7 @@ namespace ServerUi.ViewModels
             }
         }
 
-        private FontSetting _currentFontCash;
-        public FontSetting CurrentFontCash
-        {
-            get { return _currentFontCash; }
-            set
-            {
-                _currentFontCash = value;
-                NotifyOfPropertyChange(() => CurrentFontCash);
-            }
-        }
+
 
 
         private Color _testcolor;
