@@ -16,3 +16,12 @@ D:\Git\RailwayStationQueue\src\Terminal\bin\Debug\Library.pdb
 D:\Git\RailwayStationQueue\src\Terminal\obj\Debug\Terminal.csprojResolveAssemblyReference.cache
 D:\Git\RailwayStationQueue\src\Terminal\obj\Debug\Terminal.dll
 D:\Git\RailwayStationQueue\src\Terminal\obj\Debug\Terminal.pdb
+C:\Git\RailwayStationQueueNEW\src\Terminal\bin\Debug\Terminal.dll
+C:\Git\RailwayStationQueueNEW\src\Terminal\bin\Debug\Terminal.pdb
+C:\Git\RailwayStationQueueNEW\src\Terminal\bin\Debug\Communication.dll
+C:\Git\RailwayStationQueueNEW\src\Terminal\bin\Debug\Library.dll
+C:\Git\RailwayStationQueueNEW\src\Terminal\bin\Debug\Communication.pdb
+C:\Git\RailwayStationQueueNEW\src\Terminal\bin\Debug\Library.pdb
+C:\Git\RailwayStationQueueNEW\src\Terminal\obj\Debug\Terminal.csprojResolveAssemblyReference.cache
+C:\Git\RailwayStationQueueNEW\src\Terminal\obj\Debug\Terminal.dll
+C:\Git\RailwayStationQueueNEW\src\Terminal\obj\Debug\Terminal.pdb

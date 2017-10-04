@@ -20,6 +20,7 @@ using FontFamily = System.Windows.Media.FontFamily;
 using Screen = Caliburn.Micro.Screen;
 using TicketItem = ServerUi.Model.TicketItem;
 using Xceed.Wpf.Toolkit;
+using Brush = System.Windows.Media.Brush;
 using Color = System.Windows.Media.Color;
 
 
@@ -62,7 +63,7 @@ namespace ServerUi.ViewModels
 
 
             //ЗАГРУЗКА НАСТРОЕК ТАБЛО
-            CurrentFontCash= new FontSetting {BackGroundColorBrush = new SolidColorBrush(Colors.Brown )};
+            CurrentFontCash= new FontSetting {BackGroundColorBrush = new SolidColorBrush(Colors.Chartreuse)};
         }
 
 
@@ -920,7 +921,74 @@ namespace ServerUi.ViewModels
 
 
 
-        #region Выбор шрифтов
+        #region Настройки табло
+
+        //Цвет фона заголовка
+        private Brush _headerBackgroundColor;
+        public Brush HeaderBackgroundColor 
+        {
+            get { return _headerBackgroundColor; }
+            set
+            {
+                _headerBackgroundColor = value;
+                NotifyOfPropertyChange(() => HeaderBackgroundColor);
+            }
+        }
+
+
+        //Цвет шрифта заголовка
+        private Brush _headerFontColor;
+        public Brush HeaderFontColor
+        {
+            get { return _headerFontColor; }
+            set
+            {
+                _headerFontColor = value;
+                NotifyOfPropertyChange(() => HeaderFontColor);
+            }
+        }
+
+
+        //Цвет строк списка
+        private Brush _colorListRows;
+        public Brush ColorListRows
+        {
+            get { return _colorListRows; }
+            set
+            {
+                _colorListRows = value;
+                NotifyOfPropertyChange(() => ColorListRows);
+            }
+        }
+
+
+        //Цвет фона списка
+        private Brush _colorListBackground;
+        public Brush ColorListBackground
+        {
+            get { return _colorListBackground; }
+            set
+            {
+                _colorListBackground = value;
+                NotifyOfPropertyChange(() => ColorListBackground);
+            }
+        }
+
+
+        //Цвет шрифта списка
+        private Brush _listFontColor;
+        public Brush ListFontColor
+        {
+            get { return _listFontColor; }
+            set
+            {
+                _listFontColor = value;
+                NotifyOfPropertyChange(() => ListFontColor);
+            }
+        }
+
+
+
 
         private FontSetting _currentFontCash;
         public FontSetting CurrentFontCash
@@ -959,22 +1027,10 @@ namespace ServerUi.ViewModels
 
 
 
-        private Color _testcolor;
-        public Color Testcolor
-        {
-            get { return _testcolor; }
-            set
-            {
-                _testcolor = value;
-                NotifyOfPropertyChange(() => Testcolor);
-            }
-        }
-
 
 
         public void FontChoser(string table)
         {
-      
             Font currentFont = null;
             switch (table)
             {
@@ -999,11 +1055,11 @@ namespace ServerUi.ViewModels
                 switch (table)
                 {
                     case "cash":
-                        CurrentFontCash = new FontSetting { Font = currentFont };
+                        CurrentFontCash = new FontSetting { Font = currentFont, BackGroundColorBrush = CurrentFontCash?.BackGroundColorBrush};
                         break;
 
                     case "8X2":
-                        CurrentFont8X2= new FontSetting { Font = currentFont };
+                        CurrentFont8X2 = new FontSetting { Font = currentFont };
                         break;
 
                     case "4X4":

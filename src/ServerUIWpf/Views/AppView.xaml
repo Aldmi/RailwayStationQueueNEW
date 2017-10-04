@@ -32,14 +32,14 @@
 
 
         <Style x:Key="ListViewStyle" TargetType="ListView">
-            <Setter Property="Background" Value="CadetBlue" />
+            <Setter Property="Background" Value="{Binding Path=DataContext.ColorListBackground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
         </Style>
 
 
         <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
-            <Setter Property="Background" Value="Gray" />
+            <Setter Property="Background" Value="{Binding Path=DataContext.ColorListRows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Focusable" Value="False" />
 
             <Setter Property="LayoutTransform">
@@ -71,7 +71,6 @@
             </Style.Triggers>
         </Style>
 
-
         <Style x:Key="TextBoxCashierStyle" TargetType="TextBox">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -81,27 +80,27 @@
             <Setter Property="FontSize" Value="{Binding Path=DataContext.CurrentFontCash.Size, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="FontFamily" Value="{Binding Path=DataContext.CurrentFontCash.FontFamily, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="FontWeight" Value="Medium" />
-            <Setter Property="Foreground" Value="CadetBlue" />
+            <Setter Property="Foreground" Value="{Binding Path=DataContext.ListFontColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Margin" Value="0" />
             <Setter Property="Padding" Value="0" />
-            <Setter Property="Background" Value="{Binding Path=DataContext.CurrentFontCash.BackGroundColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="Background" Value="{Binding Path=DataContext.ColorListBackground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         </Style>
 
         <Style x:Key="ListHeaderStyle8X2" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Foreground" Value="{Binding Path=DataContext.HeaderFontColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="FontFamily" Value="Segoe UI" />
             <Setter Property="FontSize" Value="16" />
-            <Setter Property="Background" Value="Crimson" />
+            <Setter Property="Background" Value="{Binding Path=DataContext.HeaderBackgroundColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
 
         <Style x:Key="ListHeaderStyle4X4" TargetType="{x:Type GridViewColumnHeader}">
-            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Foreground" Value="{Binding Path=DataContext.HeaderFontColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="FontFamily" Value="Segoe UI" />
             <Setter Property="FontSize" Value="15" />
-            <Setter Property="Background" Value="Crimson" />
+            <Setter Property="Background" Value="{Binding Path=DataContext.HeaderBackgroundColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Padding" Value="5" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
@@ -111,7 +110,7 @@
         <Style x:Key="TextBoxStyle8X2" TargetType="TextBlock">
             <Setter Property="FontSize" Value="{Binding Path=DataContext.CurrentFont8X2.Size, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="FontFamily" Value="{Binding Path=DataContext.CurrentFont8X2.FontFamily, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{Binding Path=DataContext.ListFontColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Margin" Value="0" />
             <Setter Property="Padding" Value="1" />
             <Setter Property="HorizontalAlignment" Value="Center" />
@@ -122,9 +121,9 @@
         <Style x:Key="TextBoxStyle4X4" TargetType="TextBlock">
             <Setter Property="FontSize" Value="{Binding Path=DataContext.CurrentFont4X4.Size, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="FontFamily" Value="{Binding Path=DataContext.CurrentFont4X4.FontFamily, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="{Binding Path=DataContext.ListFontColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="12" />
+            <Setter Property="Padding" Value="1" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
             <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
@@ -154,7 +153,7 @@
     <Grid
         Margin="10"
         Background="BurlyWood"
-        ShowGridLines="True"
+        ShowGridLines="False"
         SnapsToDevicePixels="True"
         UseLayoutRounding="True">
         <Grid.ColumnDefinitions>
@@ -591,7 +590,7 @@
                 <ListView
                     Name="Table4X41"
                     Width="112"
-                    Height="256"
+                    Height="128"
                     ctrl:ListViewLayoutManager.Enabled="true"
                     ItemContainerStyle="{StaticResource ListViewItemStyle}"
                     Style="{StaticResource ListViewStyle}">
@@ -620,7 +619,7 @@
                 <ListView
                     Name="Table4X42"
                     Width="112"
-                    Height="256"
+                    Height="128"
                     ctrl:ListViewLayoutManager.Enabled="true"
                     ItemContainerStyle="{StaticResource ListViewItemStyle}"
                     Style="{StaticResource ListViewStyle}">
@@ -646,13 +645,10 @@
                     </ListView.View>
                 </ListView>
 
-
-
-
                 <ListView
                     Name="Table4X43"
                     Width="112"
-                    Height="256"
+                    Height="128"
                     ctrl:ListViewLayoutManager.Enabled="true"
                     ItemContainerStyle="{StaticResource ListViewItemStyle}"
                     Style="{StaticResource ListViewStyle}">
@@ -681,7 +677,7 @@
                 <ListView
                     Name="Table4X44"
                     Width="112"
-                    Height="256"
+                    Height="128"
                     ctrl:ListViewLayoutManager.Enabled="true"
                     ItemContainerStyle="{StaticResource ListViewItemStyle}"
                     Style="{StaticResource ListViewStyle}">
@@ -738,14 +734,14 @@
                 <GroupBox
                     Grid.Row="0"
                     Grid.Column="0"
+                    Margin="10"
                     BorderThickness="2"
                     Header="Очередь звука">
                     <StackPanel Orientation="Horizontal">
                         <ListView
                             Name="SoundTemplates"
                             MinHeight="300"
-                            ItemContainerStyle="{StaticResource ListViewSoundItemStyle}"
-                            Style="{StaticResource ListViewStyle}">
+                            ItemContainerStyle="{StaticResource ListViewSoundItemStyle}">
 
                             <ListView.View>
                                 <GridView ColumnHeaderContainerStyle="{StaticResource ListSoundHeaderStyle}">
@@ -780,6 +776,51 @@
                     BorderThickness="2"
                     Header="Настройка табло">
                     <StackPanel>
+                        <Grid Margin="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0">Цвет фона заголовка</Label>
+                            <xctk:ColorPicker
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                SelectedColor="{Binding Path=HeaderBackgroundColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource Color2BrushConverter}}" />
+
+                            <Label Grid.Row="1" Grid.Column="0">Цвет шрифта заголовка</Label>
+                            <xctk:ColorPicker
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                SelectedColor="{Binding Path=HeaderFontColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource Color2BrushConverter}}" />
+
+                            <Label Grid.Row="2" Grid.Column="0">Цвет строк списка</Label>
+                            <xctk:ColorPicker
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                SelectedColor="{Binding Path=ColorListRows, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource Color2BrushConverter}}" />
+
+                            <Label Grid.Row="3" Grid.Column="0">Цвет фона списка</Label>
+                            <xctk:ColorPicker
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                SelectedColor="{Binding Path=ColorListBackground, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource Color2BrushConverter}}" />
+
+                            <Label Grid.Row="4" Grid.Column="0">Цвет шрифта списка</Label>
+                            <xctk:ColorPicker
+                                Grid.Row="4"
+                                Grid.Column="1"
+                                SelectedColor="{Binding Path=ListFontColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource Color2BrushConverter}}" />
+                        </Grid>
+
+
                         <GroupBox
                             Margin="2"
                             Padding="2"
@@ -801,7 +842,7 @@
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Padding="5"
-                                    cal:Message.Attach="FontChoser('cash')"
+                                    cal:Message.Attach="FontChoser('кассы шрифт строк')"
                                     Content="Шрифт строк" />
                                 <TextBlock
                                     Grid.Row="0"
@@ -809,17 +850,16 @@
                                     MinHeight="15"
                                     Text="{Binding Path=CurrentFontCash, Mode=OneWay}" />
 
-                                <Label Grid.Row="1" Grid.Column="0">Цвет фона</Label>
-                                <xctk:ColorPicker
+                                <TextBlock
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    MinHeight="15"
+                                    Text="Padding строк" />
+                                <TextBox
                                     Grid.Row="1"
                                     Grid.Column="1"
-                                    SelectedColor="{Binding Path=CurrentFontCash.BackGroundColorBrush, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource Color2BrushConverter}}" />
-
-                                <Label Grid.Row="2" Grid.Column="0">Цвет шрифта</Label>
-                                <xctk:ColorPicker
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    SelectedColor="{Binding Path=Testcolor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    MinWidth="30"
+                                    MinHeight="15" />
                             </Grid>
                         </GroupBox>
 
@@ -836,26 +876,55 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
                                 <Button
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Padding="5"
-                                    cal:Message.Attach="FontChoser(8X2)"
-                                    Content="Шрифт строк" />
-
+                                    cal:Message.Attach="FontChoser('8X2 шрифт заголовка')"
+                                    Content="Шрифт заголовка" />
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     MinHeight="15"
                                     Text="{Binding Path=CurrentFont8X2, Mode=OneWay}" />
 
-                                <Label Grid.Row="1" Grid.Column="0">Цвет фона</Label>
-                                <xctk:ColorPicker
+                                <Button
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Padding="5"
+                                    cal:Message.Attach="FontChoser('8X2 шрифт строк')"
+                                    Content="Шрифт строк" />
+                                <TextBlock
                                     Grid.Row="1"
                                     Grid.Column="1"
-                                    SelectedColor="{Binding Path=Testcolor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    MinHeight="15"
+                                    Text="{Binding Path=CurrentFontCash, Mode=OneWay}" />
+
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    MinHeight="15"
+                                    Text="Padding заголовка" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    MinWidth="30"
+                                    MinHeight="15" />
+
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    MinHeight="15"
+                                    Text="Padding строк" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    MinWidth="30"
+                                    MinHeight="15" />
                             </Grid>
                         </GroupBox>
 
@@ -872,26 +941,55 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
                                 <Button
                                     Grid.Row="0"
                                     Grid.Column="0"
                                     Padding="5"
-                                    cal:Message.Attach="FontChoser(4X4)"
-                                    Content="Шрифт строк" />
-
+                                    cal:Message.Attach="FontChoser('4X4 шрифт заголовка')"
+                                    Content="Шрифт заголовка" />
                                 <TextBlock
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     MinHeight="15"
-                                    Text="{Binding Path=CurrentFont4X4, Mode=OneWay}" />
+                                    Text="{Binding Path=CurrentFont8X2, Mode=OneWay}" />
 
-                                <Label Grid.Row="1" Grid.Column="0">Цвет фона</Label>
-                                <xctk:ColorPicker
+                                <Button
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Padding="5"
+                                    cal:Message.Attach="FontChoser('4X4 шрифт строк')"
+                                    Content="Шрифт строк" />
+                                <TextBlock
                                     Grid.Row="1"
                                     Grid.Column="1"
-                                    SelectedColor="{Binding Path=Testcolor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    MinHeight="15"
+                                    Text="{Binding Path=CurrentFontCash, Mode=OneWay}" />
+
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    MinHeight="15"
+                                    Text="Padding заголовка" />
+                                <TextBox
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    MinWidth="30"
+                                    MinHeight="15" />
+
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    MinHeight="15"
+                                    Text="Padding строк" />
+                                <TextBox
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    MinWidth="30"
+                                    MinHeight="15" />
                             </Grid>
                         </GroupBox>
                     </StackPanel>
