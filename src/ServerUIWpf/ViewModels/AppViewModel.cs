@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
@@ -22,6 +24,7 @@ using TicketItem = ServerUi.Model.TicketItem;
 using Xceed.Wpf.Toolkit;
 using Brush = System.Windows.Media.Brush;
 using Color = System.Windows.Media.Color;
+using MessageBox = System.Windows.MessageBox;
 
 
 namespace ServerUi.ViewModels
@@ -71,7 +74,7 @@ namespace ServerUi.ViewModels
             ListFontColor = new SolidColorBrush(Colors.Black);
 
             CurrentFontCash = new FontSetting { FontHeader = null, FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10), PaddingHeader = 0, PaddingRow = 0};
-            CurrentFont8X2 = new FontSetting { FontHeader = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
+            CurrentFont8X2 = new FontSetting  { FontHeader = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
                                                FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
                                                PaddingHeader = 0,
                                                PaddingRow = 0 };
@@ -80,10 +83,30 @@ namespace ServerUi.ViewModels
                                                FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
                                                PaddingHeader = 0,
                                                PaddingRow = 0 };
-                                           
 
 
-            //new SolidColorBrush(Colors.Chartreuse)
+            //--------------- Serialize - Deserialize
+            //var cvt = new FontConverter();
+            //string s = cvt.ConvertToString(CurrentFontCash.FontRow);
+            //Font f = cvt.ConvertFromString(s) as Font;
+
+
+            //SaveSettingUi();
+
+            //var settingUi= LoadSettingUi();
+            //if (settingUi != null)
+            //{
+            //    HeaderBackgroundColor= settingUi.ConvertString2Brush(settingUi.HeaderBackgroundColorString);
+            //    HeaderFontColor = settingUi.ConvertString2Brush(settingUi.HeaderFontColorString);
+            //    ColorListRows = settingUi.ConvertString2Brush(settingUi.ColorListRowsString);
+            //    ColorListBackground = settingUi.ConvertString2Brush(settingUi.ColorListBackgroundString);
+            //    ListFontColor = settingUi.ConvertString2Brush(settingUi.ListFontColorString);
+
+            //   // CurrentFontCash= settingUi.ConvertString2Font(settingUi.)
+            //}
+
+            //------------------
+
         }
 
 
@@ -1106,6 +1129,43 @@ namespace ServerUi.ViewModels
         #endregion
 
 
+
+
+        public void SaveSettingUi()
+        {
+            try
+            {
+                var settingsUi = new SettingsUi(HeaderBackgroundColor, HeaderFontColor, ColorListRows, ColorListBackground, ListFontColor, CurrentFontCash, CurrentFont8X2, CurrentFont4X4);
+                var formatter = new BinaryFormatter();
+                using (FileStream fs = new FileStream("settingsUi.dat", FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, settingsUi);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
+        public SettingsUi LoadSettingUi()
+        {
+            try
+            {
+                var formatter = new BinaryFormatter();
+                using (FileStream fs = new FileStream("settingsUi.dat", FileMode.OpenOrCreate))
+                {
+                    return (SettingsUi)formatter.Deserialize(fs);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            return null;
+        }
 
 
 
