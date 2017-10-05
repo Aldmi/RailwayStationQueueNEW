@@ -63,7 +63,27 @@ namespace ServerUi.ViewModels
 
 
             //ЗАГРУЗКА НАСТРОЕК ТАБЛО
-            CurrentFontCash= new FontSetting {BackGroundColorBrush = new SolidColorBrush(Colors.Chartreuse)};
+
+            HeaderBackgroundColor = new SolidColorBrush(Colors.DarkRed);
+            HeaderFontColor = new SolidColorBrush(Colors.Black);
+            ColorListRows = new SolidColorBrush(Colors.Azure);
+            ColorListBackground = new SolidColorBrush(Colors.CadetBlue);
+            ListFontColor = new SolidColorBrush(Colors.Black);
+
+            CurrentFontCash = new FontSetting { FontHeader = null, FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10), PaddingHeader = 0, PaddingRow = 0};
+            CurrentFont8X2 = new FontSetting { FontHeader = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
+                                               FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
+                                               PaddingHeader = 0,
+                                               PaddingRow = 0 };
+
+            CurrentFont4X4 = new FontSetting { FontHeader = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
+                                               FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
+                                               PaddingHeader = 0,
+                                               PaddingRow = 0 };
+                                           
+
+
+            //new SolidColorBrush(Colors.Chartreuse)
         }
 
 
@@ -1026,24 +1046,29 @@ namespace ServerUi.ViewModels
 
 
 
-
-
-
         public void FontChoser(string table)
         {
             Font currentFont = null;
             switch (table)
             {
-                case "cash":
-                    currentFont = CurrentFontCash?.Font;
+                case "кассы шрифт строк":
+                    currentFont = CurrentFontCash?.FontRow;
                     break;
 
-                case "8X2":
-                    currentFont = CurrentFont8X2?.Font;
+                case "8X2 шрифт заголовка":
+                    currentFont = CurrentFont8X2?.FontHeader;
                     break;
 
-                case "4X4":
-                    currentFont = CurrentFont4X4?.Font;
+                case "8X2 шрифт строк":
+                    currentFont = CurrentFont8X2?.FontRow;
+                    break;
+
+                case "4X4 шрифт заголовка":
+                    currentFont = CurrentFont4X4?.FontHeader;
+                    break;
+
+                case "4X4 шрифт строк":
+                    currentFont = CurrentFont4X4?.FontRow;
                     break;
             }
 
@@ -1054,19 +1079,27 @@ namespace ServerUi.ViewModels
                 currentFont = fontDialog.Font;
                 switch (table)
                 {
-                    case "cash":
-                        CurrentFontCash = new FontSetting { Font = currentFont, BackGroundColorBrush = CurrentFontCash?.BackGroundColorBrush};
+                    case "кассы шрифт строк":
+                        CurrentFontCash.FontRow = currentFont;
                         break;
 
-                    case "8X2":
-                        CurrentFont8X2 = new FontSetting { Font = currentFont };
+                    case "8X2 шрифт заголовка":
+                        CurrentFont8X2.FontHeader= currentFont;
                         break;
 
-                    case "4X4":
-                        CurrentFont4X4 = new FontSetting { Font = currentFont };
+                    case "8X2 шрифт строк":
+                        CurrentFont8X2.FontRow = currentFont;
+                        break;
+
+                    case "4X4 шрифт заголовка":
+                        CurrentFont4X4.FontHeader = currentFont;
+                        break;
+
+                    case "4X4 шрифт строк":
+                        CurrentFont4X4.FontRow = currentFont;
                         break;
                 }
-                //Сохранить шрифты на диск CurrentFont8X2, CurrentFont4X4
+                //TODO:Сохранить шрифты на диск CurrentFont8X2, CurrentFont4X4
             }
         }
 

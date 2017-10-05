@@ -9,7 +9,7 @@ using FontFamily = System.Windows.Media.FontFamily;
 
 namespace ServerUi.Model
 {
-    public class FontSetting : Screen
+    public class FontSetting : Screen  //TODO: Screen заменить
     {
         #region Шрифт Заголовка
 
@@ -20,25 +20,27 @@ namespace ServerUi.Model
             set
             {
                 _fontHeader = value;
+                if(_fontHeader == null)
+                    return;
 
                 var ffc = new FontFamilyConverter();
                 FontFamilyHeader = (FontFamily)ffc.ConvertFromString(_fontHeader.Name);
+                NotifyOfPropertyChange(() => FontFamilyHeader);
 
                 FontSizeHeader = _fontHeader.Size;
+                NotifyOfPropertyChange(() => FontSizeHeader);
 
                 FontWeightHeader = _fontHeader.Bold ? FontWeights.Bold : FontWeights.Normal;
+                NotifyOfPropertyChange(() => FontWeightHeader);
+
+                NotifyOfPropertyChange(() => FontHeaderToString);
             }
         }
 
-        public float FontSizeHeader { get; set; }
-        public FontFamily FontFamilyHeader { get; set; }
-        public FontWeight FontWeightHeader { get; set; }
-
-
-        public string FontHeaderToString()
-        {
-            return $@"{FontFamilyHeader};{FontSizeHeader};{FontWeightHeader}";
-        }
+        public float FontSizeHeader { get; private set; }
+        public FontFamily FontFamilyHeader { get; private set; }
+        public FontWeight FontWeightHeader { get; private set; }
+        public string FontHeaderToString => $@"{FontFamilyHeader};{FontSizeHeader};{FontWeightHeader}";
 
         #endregion
 
@@ -55,25 +57,27 @@ namespace ServerUi.Model
             set
             {
                 _fontRow = value;
+                if (_fontRow == null)
+                    return;
 
                 var ffc = new FontFamilyConverter();
                 FontFamilyRow = (FontFamily)ffc.ConvertFromString(_fontRow.Name);
+                NotifyOfPropertyChange(() => FontFamilyRow);
 
                 FontSizeRow = _fontRow.Size;
+                NotifyOfPropertyChange(() => FontSizeRow);
 
                 FontWeightRow = _fontRow.Bold ? FontWeights.Bold : FontWeights.Normal;
+                NotifyOfPropertyChange(() => FontSizeRow);
+
+                NotifyOfPropertyChange(() => FontRowToString);
             }
         }
 
-        public float FontSizeRow { get; set; }
-        public FontFamily FontFamilyRow { get; set; }
-        public FontWeight FontWeightRow { get; set; }
-
-
-        public string FontRowToString()
-        {
-            return $@"{FontFamilyRow};{FontSizeRow};{FontWeightRow}";
-        }
+        public float FontSizeRow { get; private set; }
+        public FontFamily FontFamilyRow { get; private set; }
+        public FontWeight FontWeightRow { get; private set; }
+        public string FontRowToString => $@"{FontFamilyRow};{FontSizeRow};{FontWeightRow}";
 
         #endregion
 
@@ -102,6 +106,5 @@ namespace ServerUi.Model
                 NotifyOfPropertyChange(() => PaddingRow);
             }
         }
-
     }
 }

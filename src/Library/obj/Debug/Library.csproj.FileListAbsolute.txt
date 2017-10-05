@@ -16,8 +16,3 @@ D:\Git\RailwayStationQueue\src\Library\bin\Debug\Library.dll
 D:\Git\RailwayStationQueue\src\Library\bin\Debug\Library.pdb
 D:\Git\RailwayStationQueue\src\Library\obj\Debug\Library.dll
 D:\Git\RailwayStationQueue\src\Library\obj\Debug\Library.pdb
-C:\Git\RailwayStationQueueNEW\src\Library\bin\Debug\Library.dll
-C:\Git\RailwayStationQueueNEW\src\Library\bin\Debug\Library.pdb
-C:\Git\RailwayStationQueueNEW\src\Library\obj\Debug\Library.dll
-C:\Git\RailwayStationQueueNEW\src\Library\obj\Debug\Library.pdb
-C:\Git\RailwayStationQueueNEW\src\Library\obj\Debug\Library.csprojResolveAssemblyReference.cache

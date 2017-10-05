@@ -77,58 +77,59 @@
             <Setter Property="Width" Value="64" />
             <Setter Property="Height" Value="64" />
             <Setter Property="IsReadOnly" Value="True" />
-            <Setter Property="FontSize" Value="{Binding Path=DataContext.CurrentFontCash.Size, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
-            <Setter Property="FontFamily" Value="{Binding Path=DataContext.CurrentFontCash.FontFamily, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
-            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="FontSize" Value="{Binding Path=DataContext.CurrentFontCash.FontSizeRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontFamily" Value="{Binding Path=DataContext.CurrentFontCash.FontFamilyRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontWeight" Value="{Binding Path=DataContext.CurrentFontCash.FontWeightRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Foreground" Value="{Binding Path=DataContext.ListFontColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="0" />
+            <Setter Property="Padding" Value="{Binding Path=DataContext.CurrentFontCash.PaddingRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Background" Value="{Binding Path=DataContext.ColorListBackground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
         </Style>
 
         <Style x:Key="ListHeaderStyle8X2" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Foreground" Value="{Binding Path=DataContext.HeaderFontColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
-            <Setter Property="FontFamily" Value="Segoe UI" />
-            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontSize" Value="{Binding Path=DataContext.CurrentFont8X2.FontSizeHeader, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontFamily" Value="{Binding Path=DataContext.CurrentFont8X2.FontFamilyHeader, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontWeight" Value="{Binding Path=DataContext.CurrentFont8X2.FontWeightHeader, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Background" Value="{Binding Path=DataContext.HeaderBackgroundColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
-            <Setter Property="Padding" Value="5" />
+            <Setter Property="Padding" Value="{Binding Path=DataContext.CurrentFont8X2.PaddingHeader, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
 
         <Style x:Key="ListHeaderStyle4X4" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Foreground" Value="{Binding Path=DataContext.HeaderFontColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
-            <Setter Property="FontFamily" Value="Segoe UI" />
-            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontSize" Value="{Binding Path=DataContext.CurrentFont4X4.FontSizeHeader, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontFamily" Value="{Binding Path=DataContext.CurrentFont4X4.FontFamilyHeader, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontWeight" Value="{Binding Path=DataContext.CurrentFont4X4.FontWeightHeader, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Background" Value="{Binding Path=DataContext.HeaderBackgroundColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
-            <Setter Property="Padding" Value="5" />
+            <Setter Property="Padding" Value="{Binding Path=DataContext.CurrentFont4X4.PaddingHeader, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
         </Style>
 
-        <!--  {Binding Path= FontSizeTb8X2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}  -->
-
         <Style x:Key="TextBoxStyle8X2" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="{Binding Path=DataContext.CurrentFont8X2.Size, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
-            <Setter Property="FontFamily" Value="{Binding Path=DataContext.CurrentFont8X2.FontFamily, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Foreground" Value="{Binding Path=DataContext.ListFontColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontSize" Value="{Binding Path=DataContext.CurrentFont8X2.FontSizeRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontFamily" Value="{Binding Path=DataContext.CurrentFont8X2.FontFamilyRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontWeight" Value="{Binding Path=DataContext.CurrentFont8X2.FontWeightRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="1" />
+            <Setter Property="Padding" Value="{Binding Path=DataContext.CurrentFont8X2.PaddingRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
             <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
         </Style>
 
         <Style x:Key="TextBoxStyle4X4" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="{Binding Path=DataContext.CurrentFont4X4.Size, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
-            <Setter Property="FontFamily" Value="{Binding Path=DataContext.CurrentFont4X4.FontFamily, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Foreground" Value="{Binding Path=DataContext.ListFontColor, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontSize" Value="{Binding Path=DataContext.CurrentFont4X4.FontSizeRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontFamily" Value="{Binding Path=DataContext.CurrentFont4X4.FontFamilyRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
+            <Setter Property="FontWeight" Value="{Binding Path=DataContext.CurrentFont4X4.FontWeightRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="1" />
+            <Setter Property="Padding" Value="{Binding Path=DataContext.CurrentFont4X4.PaddingRow, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="TextOptions.TextFormattingMode" Value="Display" />
             <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled" />
         </Style>
-
 
         <Style x:Key="ListSoundHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Foreground" Value="Black" />
@@ -848,7 +849,7 @@
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     MinHeight="15"
-                                    Text="{Binding Path=CurrentFontCash, Mode=OneWay}" />
+                                    Text="{Binding Path=CurrentFontCash.FontRowToString, Mode=OneWay}" />
 
                                 <TextBlock
                                     Grid.Row="1"
@@ -859,7 +860,8 @@
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     MinWidth="30"
-                                    MinHeight="15" />
+                                    MinHeight="15"
+                                    Text="{Binding Path=CurrentFontCash.PaddingRow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </GroupBox>
 
@@ -890,7 +892,7 @@
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     MinHeight="15"
-                                    Text="{Binding Path=CurrentFont8X2, Mode=OneWay}" />
+                                    Text="{Binding Path=CurrentFont8X2.FontHeaderToString, Mode=OneWay}" />
 
                                 <Button
                                     Grid.Row="1"
@@ -902,7 +904,7 @@
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     MinHeight="15"
-                                    Text="{Binding Path=CurrentFontCash, Mode=OneWay}" />
+                                    Text="{Binding Path=CurrentFont8X2.FontRowToString, Mode=OneWay}" />
 
                                 <TextBlock
                                     Grid.Row="2"
@@ -913,7 +915,8 @@
                                     Grid.Row="2"
                                     Grid.Column="1"
                                     MinWidth="30"
-                                    MinHeight="15" />
+                                    MinHeight="15"
+                                    Text="{Binding Path=CurrentFont8X2.PaddingHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock
                                     Grid.Row="3"
@@ -924,7 +927,8 @@
                                     Grid.Row="3"
                                     Grid.Column="1"
                                     MinWidth="30"
-                                    MinHeight="15" />
+                                    MinHeight="15"
+                                    Text="{Binding Path=CurrentFont8X2.PaddingRow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </GroupBox>
 
@@ -955,7 +959,7 @@
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     MinHeight="15"
-                                    Text="{Binding Path=CurrentFont8X2, Mode=OneWay}" />
+                                    Text="{Binding Path=CurrentFont4X4.FontHeaderToString, Mode=OneWay}" />
 
                                 <Button
                                     Grid.Row="1"
@@ -967,7 +971,7 @@
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     MinHeight="15"
-                                    Text="{Binding Path=CurrentFontCash, Mode=OneWay}" />
+                                    Text="{Binding Path=CurrentFont4X4.FontRowToString, Mode=OneWay}" />
 
                                 <TextBlock
                                     Grid.Row="2"
@@ -978,7 +982,8 @@
                                     Grid.Row="2"
                                     Grid.Column="1"
                                     MinWidth="30"
-                                    MinHeight="15" />
+                                    MinHeight="15"
+                                    Text="{Binding Path=CurrentFont4X4.PaddingHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <TextBlock
                                     Grid.Row="3"
@@ -989,7 +994,8 @@
                                     Grid.Row="3"
                                     Grid.Column="1"
                                     MinWidth="30"
-                                    MinHeight="15" />
+                                    MinHeight="15"
+                                    Text="{Binding Path=CurrentFont4X4.PaddingRow, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </Grid>
                         </GroupBox>
                     </StackPanel>
