@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Media;
+using System.Xml.Serialization;
 using Caliburn.Micro;
 using Communication.TcpIp;
 using Server.Entitys;
@@ -84,30 +85,10 @@ namespace ServerUi.ViewModels
                                                PaddingHeader = 0,
                                                PaddingRow = 0 };
 
-
-            //--------------- Serialize - Deserialize
-            //var cvt = new FontConverter();
-            //string s = cvt.ConvertToString(CurrentFontCash.FontRow);
-            //Font f = cvt.ConvertFromString(s) as Font;
-
-
-            //SaveSettingUi();
-
-            //var settingUi= LoadSettingUi();
-            //if (settingUi != null)
-            //{
-            //    HeaderBackgroundColor= settingUi.ConvertString2Brush(settingUi.HeaderBackgroundColorString);
-            //    HeaderFontColor = settingUi.ConvertString2Brush(settingUi.HeaderFontColorString);
-            //    ColorListRows = settingUi.ConvertString2Brush(settingUi.ColorListRowsString);
-            //    ColorListBackground = settingUi.ConvertString2Brush(settingUi.ColorListBackgroundString);
-            //    ListFontColor = settingUi.ConvertString2Brush(settingUi.ListFontColorString);
-
-            //   // CurrentFontCash= settingUi.ConvertString2Font(settingUi.)
-            //}
-
-            //------------------
-
+            var settingUi= LoadSettingUi();
+            ApplySetting(settingUi);
         }
+
 
 
         private void SoundQueue_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -1126,12 +1107,25 @@ namespace ServerUi.ViewModels
             }
         }
 
+
+        public void SaveTableSetting()
+        {
+           SaveSettingUi();
+        }
+
+
+        public void LoadTableSetting()
+        {
+            var settingUi = LoadSettingUi();
+            ApplySetting(settingUi);
+        }
+
         #endregion
 
 
 
 
-        public void SaveSettingUi()
+        private void SaveSettingUi()
         {
             try
             {
@@ -1149,7 +1143,7 @@ namespace ServerUi.ViewModels
         }
 
 
-        public SettingsUi LoadSettingUi()
+        private SettingsUi LoadSettingUi()
         {
             try
             {
@@ -1167,6 +1161,31 @@ namespace ServerUi.ViewModels
             return null;
         }
 
+
+        private void ApplySetting(SettingsUi settingUi)
+        {
+            if (settingUi != null)
+            {
+                HeaderBackgroundColor = settingUi.ConvertString2Brush(settingUi.HeaderBackgroundColorString);
+                HeaderFontColor = settingUi.ConvertString2Brush(settingUi.HeaderFontColorString);
+                ColorListRows = settingUi.ConvertString2Brush(settingUi.ColorListRowsString);
+                ColorListBackground = settingUi.ConvertString2Brush(settingUi.ColorListBackgroundString);
+                ListFontColor = settingUi.ConvertString2Brush(settingUi.ListFontColorString);
+
+                CurrentFontCash.FontRow = settingUi.ConvertString2Font(settingUi.FontCashierRowString);
+                CurrentFontCash.PaddingRow = settingUi.FontCashierRowPadding;
+
+                CurrentFont8X2.FontHeader = settingUi.ConvertString2Font(settingUi.Font8X2HeaderString);
+                CurrentFont8X2.FontRow = settingUi.ConvertString2Font(settingUi.Font8X2RowString);
+                CurrentFont8X2.PaddingRow = settingUi.Font8X2RowPadding;
+                CurrentFont8X2.PaddingHeader = settingUi.Font8X2HeaderPadding;
+
+                CurrentFont4X4.FontHeader = settingUi.ConvertString2Font(settingUi.Font4X4HeaderString);
+                CurrentFont4X4.FontRow = settingUi.ConvertString2Font(settingUi.Font4X4RowString);
+                CurrentFont4X4.PaddingRow = settingUi.Font4X4RowPadding;
+                CurrentFont4X4.PaddingHeader = settingUi.Font4X4HeaderPadding;
+            }
+        }
 
 
         protected override void OnDeactivate(bool close)
