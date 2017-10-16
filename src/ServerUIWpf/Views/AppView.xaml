@@ -39,6 +39,7 @@
 
         <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Margin" Value="-3,0" />
             <Setter Property="Background" Value="{Binding Path=DataContext.ColorListRows, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, UpdateSourceTrigger=PropertyChanged}" />
             <Setter Property="Focusable" Value="False" />
 
