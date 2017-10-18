@@ -63,21 +63,21 @@ namespace Terminal.Service
             //ПЕЧАТЬ ЛОГОТИПА
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Picture", "RZD_logo.jpg");
             if (File.Exists(filePath))
-                e.Graphics.DrawImage(Image.FromFile(filePath), 5, 5);
+                e.Graphics.DrawImage(Image.FromFile(filePath), 10, 5);
 
             e.Graphics.DrawLine(new Pen(Color.Black), 5, 130, 245, 130);
 
             //ПЕЧАТЬ ТЕКСТА
             string printText = $"{_ticketName}\r\n";
             Font printFont = new Font("Times New Roman", 20, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 9, 150);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 33, 150);//9,150
 
             printText =$"перед вами {_countPeople} чел.\r\n";
             printFont = new Font("Times New Roman", 7, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 9, 260);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 12, 260); //9,260
 
             printText = "\r\n \r\n ";
-            printText += $"{_dateAdded.ToString("T")}         {_dateAdded.ToString("d")}";
+            printText += $"{_dateAdded.ToString("T")}            {_dateAdded.ToString("d")}";
             printFont = new Font("Times New Roman", 5, FontStyle.Regular, GraphicsUnit.Millimeter);
             e.Graphics.DrawString(printText, printFont, Brushes.Black, 5, 300);
         }
