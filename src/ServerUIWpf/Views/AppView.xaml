@@ -224,6 +224,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -280,157 +281,158 @@
                 Background="{Binding Path=ColorBackgroundCashierTicket8, Mode=OneWay}"
                 Content="8"
                 Style="{StaticResource LabelCashierNumberStyle}" />
+            <Label
+                Grid.Row="0"
+                Grid.Column="8"
+                Background="{Binding Path=ColorBackgroundCashierTicket9, Mode=OneWay}"
+                Content="9"
+                Style="{StaticResource LabelCashierNumberStyle}" />
 
             <TextBox
                 Grid.Row="1"
                 Grid.Column="0"
                 Style="{StaticResource TextBoxCashierStyle}"
                 Text="{Binding Path=CashierTicket1.TicketName, Mode=OneWay}" />
-
             <TextBox
                 Grid.Row="1"
                 Grid.Column="1"
                 Style="{StaticResource TextBoxCashierStyle}"
                 Text="{Binding Path=CashierTicket2.TicketName, Mode=OneWay}" />
-
             <TextBox
                 Grid.Row="1"
                 Grid.Column="2"
                 Style="{StaticResource TextBoxCashierStyle}"
                 Text="{Binding Path=CashierTicket3.TicketName, Mode=OneWay}" />
-
             <TextBox
                 Grid.Row="1"
                 Grid.Column="3"
                 Style="{StaticResource TextBoxCashierStyle}"
                 Text="{Binding Path=CashierTicket4.TicketName, Mode=OneWay}" />
-
             <TextBox
                 Grid.Row="1"
                 Grid.Column="4"
                 Style="{StaticResource TextBoxCashierStyle}"
                 Text="{Binding Path=CashierTicket5.TicketName, Mode=OneWay}" />
-
             <TextBox
                 Grid.Row="1"
                 Grid.Column="5"
                 Style="{StaticResource TextBoxCashierStyle}"
                 Text="{Binding Path=CashierTicket6.TicketName, Mode=OneWay}" />
-
             <TextBox
                 Grid.Row="1"
                 Grid.Column="6"
                 Style="{StaticResource TextBoxCashierStyle}"
                 Text="{Binding Path=CashierTicket7.TicketName, Mode=OneWay}" />
-
             <TextBox
                 Grid.Row="1"
                 Grid.Column="7"
                 Style="{StaticResource TextBoxCashierStyle}"
                 Text="{Binding Path=CashierTicket8.TicketName, Mode=OneWay}" />
-
-
-
-
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="8"
+                Style="{StaticResource TextBoxCashierStyle}"
+                Text="{Binding Path=CashierTicket9.TicketName, Mode=OneWay}" />
 
 
 
             <Label
                 Grid.Row="2"
                 Grid.Column="0"
-                Background="{Binding Path=ColorBackgroundCashierTicket9, Mode=OneWay}"
-                Content="9"
-                Style="{StaticResource LabelCashierNumberStyle}" />
-            <Label
-                Grid.Row="2"
-                Grid.Column="1"
                 Background="{Binding Path=ColorBackgroundCashierTicket10, Mode=OneWay}"
                 Content="10"
                 Style="{StaticResource LabelCashierNumberStyle}" />
             <Label
                 Grid.Row="2"
-                Grid.Column="2"
+                Grid.Column="1"
                 Background="{Binding Path=ColorBackgroundCashierTicket11, Mode=OneWay}"
                 Content="11"
                 Style="{StaticResource LabelCashierNumberStyle}" />
             <Label
                 Grid.Row="2"
-                Grid.Column="3"
+                Grid.Column="2"
                 Background="{Binding Path=ColorBackgroundCashierTicket12, Mode=OneWay}"
                 Content="12"
                 Style="{StaticResource LabelCashierNumberStyle}" />
             <Label
                 Grid.Row="2"
-                Grid.Column="4"
+                Grid.Column="3"
                 Background="{Binding Path=ColorBackgroundCashierTicket13, Mode=OneWay}"
                 Content="13"
                 Style="{StaticResource LabelCashierNumberStyle}" />
             <Label
                 Grid.Row="2"
-                Grid.Column="5"
+                Grid.Column="4"
                 Background="{Binding Path=ColorBackgroundCashierTicket14, Mode=OneWay}"
                 Content="14"
                 Style="{StaticResource LabelCashierNumberStyle}" />
             <Label
                 Grid.Row="2"
-                Grid.Column="6"
+                Grid.Column="5"
                 Background="{Binding Path=ColorBackgroundCashierTicket15, Mode=OneWay}"
                 Content="15"
                 Style="{StaticResource LabelCashierNumberStyle}" />
             <Label
                 Grid.Row="2"
-                Grid.Column="7"
+                Grid.Column="6"
                 Background="{Binding Path=ColorBackgroundCashierTicket16, Mode=OneWay}"
                 Content="16"
                 Style="{StaticResource LabelCashierNumberStyle}" />
+            <Label
+                Grid.Row="2"
+                Grid.Column="7"
+                Background="{Binding Path=ColorBackgroundCashierTicket17, Mode=OneWay}"
+                Content="17"
+                Style="{StaticResource LabelCashierNumberStyle}" />
+
 
             <TextBox
                 Grid.Row="3"
                 Grid.Column="0"
                 Style="{StaticResource TextBoxCashierStyle}"
-                Text="{Binding Path=CashierTicket9.TicketName, Mode=OneWay}" />
+                Text="{Binding Path=CashierTicket10.TicketName, Mode=OneWay}" />
 
             <TextBox
                 Grid.Row="3"
                 Grid.Column="1"
                 Style="{StaticResource TextBoxCashierStyle}"
-                Text="{Binding Path=CashierTicket10.TicketName, Mode=OneWay}" />
+                Text="{Binding Path=CashierTicket11.TicketName, Mode=OneWay}" />
 
             <TextBox
                 Grid.Row="3"
                 Grid.Column="2"
                 Style="{StaticResource TextBoxCashierStyle}"
-                Text="{Binding Path=CashierTicket11.TicketName, Mode=OneWay}" />
+                Text="{Binding Path=CashierTicket12.TicketName, Mode=OneWay}" />
 
             <TextBox
                 Grid.Row="3"
                 Grid.Column="3"
                 Style="{StaticResource TextBoxCashierStyle}"
-                Text="{Binding Path=CashierTicket12.TicketName, Mode=OneWay}" />
+                Text="{Binding Path=CashierTicket13.TicketName, Mode=OneWay}" />
 
             <TextBox
                 Grid.Row="3"
                 Grid.Column="4"
                 Style="{StaticResource TextBoxCashierStyle}"
-                Text="{Binding Path=CashierTicket13.TicketName, Mode=OneWay}" />
+                Text="{Binding Path=CashierTicket14.TicketName, Mode=OneWay}" />
 
             <TextBox
                 Grid.Row="3"
                 Grid.Column="5"
                 Style="{StaticResource TextBoxCashierStyle}"
-                Text="{Binding Path=CashierTicket14.TicketName, Mode=OneWay}" />
+                Text="{Binding Path=CashierTicket15.TicketName, Mode=OneWay}" />
 
             <TextBox
                 Grid.Row="3"
                 Grid.Column="6"
                 Style="{StaticResource TextBoxCashierStyle}"
-                Text="{Binding Path=CashierTicket15.TicketName, Mode=OneWay}" />
+                Text="{Binding Path=CashierTicket16.TicketName, Mode=OneWay}" />
 
             <TextBox
                 Grid.Row="3"
                 Grid.Column="7"
                 Style="{StaticResource TextBoxCashierStyle}"
-                Text="{Binding Path=CashierTicket16.TicketName, Mode=OneWay}" />
+                Text="{Binding Path=CashierTicket17.TicketName, Mode=OneWay}" />
 
         </Grid>
 
@@ -1049,6 +1051,31 @@
                                 Загрузить
                             </Button>
                         </StackPanel>
+
+                        <ListBox
+                            Name="TerminalsIp"
+                            MinHeight="30"
+                            Margin="2"
+                            Padding="1"
+                            Background="Cornsilk">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        Margin="1,1,15,1"
+                                        Padding="2"
+                                        HorizontalAlignment="Center"
+                                        FontSize="16"
+                                        Text="{Binding}" />
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
                     </StackPanel>
                 </GroupBox>
             </Grid>
@@ -1062,10 +1089,10 @@
             Grid.Row="4"
             Grid.Column="0"
             HorizontalAlignment="Left"
-            Orientation="Horizontal">
+            Orientation="Horizontal"
+            Visibility="Visible">
 
             <Button
-                x:Name="btn1"
                 Width="35"
                 Height="25"
                 Margin="2"
@@ -1075,7 +1102,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(1)">
                 1У
             </Button>
@@ -1090,7 +1117,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(2)">
                 2У
             </Button>
@@ -1105,7 +1132,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(3)">
                 3У
             </Button>
@@ -1120,7 +1147,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(4)">
                 4У
             </Button>
@@ -1135,7 +1162,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(5)">
                 5У
             </Button>
@@ -1150,7 +1177,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(6)">
                 6У
             </Button>
@@ -1165,7 +1192,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(7)">
                 7У
             </Button>
@@ -1180,7 +1207,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(8)">
                 8У
             </Button>
@@ -1195,7 +1222,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(9)">
                 9У
             </Button>
@@ -1210,7 +1237,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(10)">
                 10У
             </Button>
@@ -1225,7 +1252,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(11)">
                 11У
             </Button>
@@ -1240,7 +1267,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(12)">
                 12У
             </Button>
@@ -1255,7 +1282,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(13)">
                 13У
             </Button>
@@ -1271,7 +1298,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(14)">
                 14У
             </Button>
@@ -1286,7 +1313,7 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(15)">
                 15У
             </Button>
@@ -1301,36 +1328,26 @@
             <Button
                 Width="35"
                 Height="25"
-                Margin="2,2,15,2"
+                Margin="2,2,10,2"
                 cal:Message.Attach="Dell(16)">
                 16У
             </Button>
 
-            <ListBox Name="TerminalsIp" Background="Cornsilk">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock
-                            Margin="1,1,15,1"
-                            Padding="2"
-                            HorizontalAlignment="Center"
-                            FontSize="16"
-                            Text="{Binding}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-
-            </ListBox>
-
-
+            <Button
+                Width="35"
+                Height="25"
+                Margin="2"
+                cal:Message.Attach="Add(17)">
+                17Д
+            </Button>
+            <Button
+                Width="35"
+                Height="25"
+                Margin="2,2,10,2"
+                cal:Message.Attach="Dell(17)">
+                17У
+            </Button>
         </StackPanel>
-
-
-
 
 
     </Grid>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Root>
   <LogSetting>
-    <PortionString>2</PortionString>
-	<CountPortion>2</CountPortion>
+    <PortionString>1</PortionString>
+	<CountPortion>20</CountPortion>
   </LogSetting>
 
   <Server>
@@ -32,8 +32,8 @@
   </Server>
 
     <Cashiers>
-	   <Cashier Id="2" Port="3" Prefix="C" MaxCountTryHanding="3"/>
-	   <Cashier Id="1" Port="6" Prefix="A" MaxCountTryHanding="3"/>
+	   <Cashier Id="1" Port="3" Prefix="C" MaxCountTryHanding="3"/>
+	   <Cashier Id="2" Port="6" Prefix="A" MaxCountTryHanding="3"/>
 	   <Cashier Id="3" Port="3" Prefix="C" MaxCountTryHanding="3"/>
 	   <Cashier Id="4" Port="3" Prefix="B" MaxCountTryHanding="3"/>
 	   <Cashier Id="5" Port="3" Prefix="B" MaxCountTryHanding="3"/>
@@ -48,5 +48,6 @@
 	   <Cashier Id="14" Port="6" Prefix="T" MaxCountTryHanding="3"/>
 	   <Cashier Id="15" Port="6" Prefix="T" MaxCountTryHanding="3"/>
 	   <Cashier Id="16" Port="6" Prefix="M" MaxCountTryHanding="3"/>
+	   <Cashier Id="17" Port="3" Prefix="M" MaxCountTryHanding="3"/>
     </Cashiers>
 </Root>

@@ -127,7 +127,6 @@
     <Compile Include="Converters\DurationConverter.cs" />
     <Compile Include="Model\FontSetting.cs" />
     <Compile Include="Model\SettingsUI.cs" />
-    <Compile Include="ViewModels\AppViewModel_Default.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

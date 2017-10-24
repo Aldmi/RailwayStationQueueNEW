@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Library.Logs
@@ -15,8 +16,6 @@ namespace Library.Logs
         private readonly string _path;
         private readonly int _portionString;              // порция строк для записи
         private readonly int _countPortion;               // количесво порций строк в файле. При превышении файл перезаписывается с 0 порции.
-
-
 
 
         private List<string> List { get; set; } = new List<string>();
@@ -55,25 +54,37 @@ namespace Library.Logs
 
         private async Task WriteBufferString()
         {
-           await Task.Factory.StartNew(() =>
+            try
             {
-                if (!File.Exists(_path))
-                    File.Create(_path);
+                await Task.Factory.StartNew(() =>
+                {
+                   
+                    if (!File.Exists(_path))
+                        File.Create(_path);
 
-                int buffSize = _portionString * _countPortion;
-                string[] buffString = new string[buffSize];
+                    int buffSize = _portionString * _countPortion;
+                    string[] buffString = new string[buffSize];
 
-                var readedString = File.ReadAllLines(_path);
-                Array.Copy(readedString, buffString, readedString.Length);
+                    var readedString = File.ReadAllLines(_path);
+                    Array.Copy(readedString, buffString, readedString.Length);
 
-                Array.Copy(List.ToArray(), 0, buffString, Seek, _portionString);
-                if ((Seek += _portionString) > (buffSize - _portionString) || readedString.Length > buffSize)
-                    Seek = 0;
+                    var count= readedString.Count(str => str.Length>1);//DEBUG
+                    if (count < buffSize)
+                    {
+                        Seek = count;
+                    }
+                    Array.Copy(List.ToArray(), 0, buffString, Seek, _portionString);
+                    if ((Seek += _portionString) > (buffSize - _portionString) || readedString.Length > buffSize)
+                        Seek = 0;
 
-                File.WriteAllLines(_path, buffString);
-            });
-
-
+                    File.WriteAllLines(_path, buffString);
+                    
+                });
+            }
+            catch (Exception ex)
+            {  
+                //не обработанное исключение        
+            }
         }
     }
 }

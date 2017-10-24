@@ -37,6 +37,16 @@ namespace ServerUi.ViewModels
         private readonly ServerModel _model;
         private readonly Task _mainTask;
 
+        private const int LimitRowTable8X21 = 9;
+        private const int LimitRowTable8X22 = 8;
+
+        private const int LimitRowTable4X41 = 5;
+        private const int LimitRowTable4X42 = 5;
+        private const int LimitRowTable4X43 = 5;
+        private const int LimitRowTable4X44 = 2;
+
+        private const string SettingUiNameFile = @"Settings\settingsUi.dat";
+
         #endregion
 
 
@@ -290,6 +300,17 @@ namespace ServerUi.ViewModels
             }
         }
 
+        private TicketItem _cashierTicket17;
+        public TicketItem CashierTicket17
+        {
+            get { return _cashierTicket17; }
+            set
+            {
+                _cashierTicket17 = value;
+                NotifyOfPropertyChange(() => CashierTicket17);
+            }
+        }
+
         #endregion
 
 
@@ -495,6 +516,17 @@ namespace ServerUi.ViewModels
             }
         }
 
+        private SolidColorBrush _colorBackgroundCashierTicket17 = Brushes.SlateGray;
+        public SolidColorBrush ColorBackgroundCashierTicket17
+        {
+            get { return _colorBackgroundCashierTicket17; }
+            set
+            {
+                _colorBackgroundCashierTicket17 = value;
+                NotifyOfPropertyChange(() => ColorBackgroundCashierTicket17);
+            }
+        }
+
 
         #endregion
 
@@ -551,7 +583,7 @@ namespace ServerUi.ViewModels
                         {
                             CashierId = сashier.Id,
                             CashierName = сashier.CurrentTicket.Сashbox.ToString(),
-                            TicketName = $"{сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}"
+                            TicketName = $"{сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}",
                         };
 
                         var formatStr= $"Талон {ticket.TicketName} Касса {ticket.CashierName}";
@@ -562,8 +594,8 @@ namespace ServerUi.ViewModels
                         FillTable8X2(ticket, Table8X21, Table8X22);
                         FillTable8X2(ticket, Table8X23, Table8X24);
 
-                        //var task = _model.LogTicket?.Add(сashier.CurrentTicket.ToString());
-                        //if (task != null) await task;
+                        var task = _model.LogTicket?.Add(сashier.CurrentTicket.ToString());
+                        if (task != null) await task;
                     }
                     else                                 //удалить элемент из списка
                     {
@@ -772,6 +804,10 @@ namespace ServerUi.ViewModels
                 case 16:
                     CashierTicket16 = item;
                     break;
+
+                case 17:
+                    CashierTicket17 = item;
+                    break;
             }
         }
 
@@ -781,22 +817,22 @@ namespace ServerUi.ViewModels
         /// </summary>
         private void FillTable4X4(TicketItem item, IList<TicketItem> list1, IList<TicketItem> list2, IList<TicketItem> list3, IList<TicketItem> list4)
         {
-            if (list1.Count < 4)
+            if (list1.Count < LimitRowTable4X41)
             {
                 list1.Add(item);
             }
             else
-            if (list2.Count < 4)
+            if (list2.Count < LimitRowTable4X42)
             {
                 list2.Add(item);
             }
             else
-            if (list3.Count < 4)
+            if (list3.Count < LimitRowTable4X43)
             {
                 list3.Add(item);
             }
             else
-            if (list4.Count < 4)
+            if (list4.Count < LimitRowTable4X44)
             {
                 list4.Add(item);
             }
@@ -861,12 +897,12 @@ namespace ServerUi.ViewModels
         /// </summary>
         private void FillTable8X2(TicketItem item, IList<TicketItem> list1, IList<TicketItem> list2)
         {
-            if (list1.Count < 8)
+            if (list1.Count < LimitRowTable8X21) 
             {
                 list1.Add(item);
             }
             else
-            if (list2.Count < 8)
+            if (list2.Count < LimitRowTable8X22)
             {
                 list2.Add(item);
             }
@@ -1131,7 +1167,7 @@ namespace ServerUi.ViewModels
             {
                 var settingsUi = new SettingsUi(HeaderBackgroundColor, HeaderFontColor, ColorListRows, ColorListBackground, ListFontColor, CurrentFontCash, CurrentFont8X2, CurrentFont4X4);
                 var formatter = new BinaryFormatter();
-                using (FileStream fs = new FileStream("settingsUi.dat", FileMode.OpenOrCreate))
+                using (FileStream fs = new FileStream(SettingUiNameFile, FileMode.OpenOrCreate))
                 {
                     formatter.Serialize(fs, settingsUi);
                 }
@@ -1148,7 +1184,7 @@ namespace ServerUi.ViewModels
             try
             {
                 var formatter = new BinaryFormatter();
-                using (FileStream fs = new FileStream("settingsUi.dat", FileMode.OpenOrCreate))
+                using (FileStream fs = new FileStream(SettingUiNameFile, FileMode.OpenOrCreate))
                 {
                     return (SettingsUi)formatter.Deserialize(fs);
                 }

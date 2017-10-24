@@ -71,6 +71,3 @@ D:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.Properti
 D:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\obj\Debug\TerminalUI.csproj.GenerateResource.Cache
 D:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.exe
 D:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.pdb
-C:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\bin\Debug\TerminalUIWpf.exe.config
-C:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.exe
-C:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.pdb
