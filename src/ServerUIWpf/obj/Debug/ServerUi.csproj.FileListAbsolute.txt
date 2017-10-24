@@ -159,4 +159,3 @@ D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Debug\ServerUi.Properties.Reso
 D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Debug\ServerUi.csproj.GenerateResource.Cache
 D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Debug\ServerUi.exe
 D:\Git\RailwayStationQueueNEW\src\ServerUIWpf\obj\Debug\ServerUi.pdb
-C:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Debug\ServerUi.exe.config

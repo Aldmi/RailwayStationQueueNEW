@@ -8,8 +8,8 @@ namespace Sound
 {
     public class SoundNameService : ISoundNameService
     {
-        public static List<string> TicketsFolder = null;
-        public static List<string> CashiersFolder = null;
+        public static List<string> NumbersFolder = null;
+        public static List<string> PhrasesFolder = null;
 
 
 
@@ -20,18 +20,18 @@ namespace Sound
         {
             try
             {
-                var dir = new DirectoryInfo(Environment.CurrentDirectory + @"\Wav\Tickets\");
+                var dir = new DirectoryInfo(Environment.CurrentDirectory + @"\Wav\Numbers\");
                 if (Directory.Exists(dir.FullName))
                 {
-                    TicketsFolder = new List<string>();
+                    NumbersFolder = new List<string>();
                     foreach (FileInfo file in dir.GetFiles("*.wav"))
-                        TicketsFolder.Add(Path.GetFileNameWithoutExtension(file.FullName));
+                        NumbersFolder.Add(Path.GetFileNameWithoutExtension(file.FullName));
                 }
 
-                dir = new DirectoryInfo(Environment.CurrentDirectory + @"\Wav\Cashiers\");
-                CashiersFolder = new List<string>();
+                dir = new DirectoryInfo(Environment.CurrentDirectory + @"\Wav\Phrases\");
+                PhrasesFolder = new List<string>();
                 foreach (FileInfo file in dir.GetFiles("*.wav"))
-                    CashiersFolder.Add(Path.GetFileNameWithoutExtension(file.FullName));
+                    PhrasesFolder.Add(Path.GetFileNameWithoutExtension(file.FullName));
             }
             catch (Exception ex)
             {
@@ -51,11 +51,11 @@ namespace Sound
         {
             string path = Environment.CurrentDirectory + @"\";    
 
-            if (TicketsFolder != null && TicketsFolder.Contains(track))
-                return path + @"\Wav\Tickets\" + track + ".wav";
+            if (NumbersFolder != null && NumbersFolder.Contains(track))
+                return path + @"\Wav\Numbers\" + track + ".wav";
 
-            if (CashiersFolder != null && CashiersFolder.Contains(track))
-                return path + @"\Wav\Cashiers\" + track + ".wav";
+            if (PhrasesFolder != null && PhrasesFolder.Contains(track))
+                return path + @"\Wav\Phrases\" + track + ".wav";
 
             return "";
         }

@@ -58,6 +58,10 @@
       <Project>{dea394e0-f62e-459b-98cf-3ec8da2a90a3}</Project>
       <Name>Communication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Library\Library.csproj">
+      <Project>{87B6F9EF-6A0D-4DAF-9DF0-718036B1C8E4}</Project>
+      <Name>Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

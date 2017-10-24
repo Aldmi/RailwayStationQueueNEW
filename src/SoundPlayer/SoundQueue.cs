@@ -150,21 +150,24 @@ namespace Sound
                 //Разматывание очереди. Определение проигрываемого файла-----------------------------------------------------------------------------
                 if (status != PlaybackState.Playing)
                 {
-                    if (CurrentSoundMessagePlaying != null) // предыдущий проигрываемый файл
-                    {
-                        OnPropertyChanged("Queue");
-                    }
-
                     if (Queue.Any())
                     {
-                        CurrentSoundMessagePlaying = Queue.Dequeue();
-                    }
-                    else
-                    {
-                        CurrentSoundMessagePlaying = null;
-                        return;
+                        if (CurrentSoundMessagePlaying == null)
+                        {
+                            CurrentSoundMessagePlaying = Queue.Peek();
+                        }
+
+                        if (!CurrentSoundMessagePlaying.FileNameQueue.Any())
+                        {
+                            Queue.Dequeue();
+                            CurrentSoundMessagePlaying = null;
+                            OnPropertyChanged("Queue");
+                        }
                     }
 
+                    if (CurrentSoundMessagePlaying == null)
+                       return;
+                    
                     var soundFile= CurrentSoundMessagePlaying.FileNameQueue.Any() ? CurrentSoundMessagePlaying.FileNameQueue.Dequeue() : null;
                     if (soundFile?.Contains(".wav") == false)
                         soundFile = SoundNameService?.GetFileName(soundFile);

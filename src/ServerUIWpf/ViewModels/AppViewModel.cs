@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
@@ -97,6 +98,9 @@ namespace ServerUi.ViewModels
 
             var settingUi= LoadSettingUi();
             ApplySetting(settingUi);
+
+
+
         }
 
 
@@ -572,13 +576,6 @@ namespace ServerUi.ViewModels
                 {
                     if (сashier.CurrentTicket != null)     //добавить элемент к списку
                     {
-                        //var ticket= new TicketItem
-                        //{
-                        //    CashierId = сashier.Id,
-                        //    CashierName = "Касса " + сashier.CurrentTicket.Сashbox,
-                        //    TicketName = $"Талон {сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}"
-                        //};
-
                         var ticket = new TicketItem
                         {
                             CashierId = сashier.Id,
@@ -586,7 +583,9 @@ namespace ServerUi.ViewModels
                             TicketName = $"{сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}",
                         };
 
-                        var formatStr= $"Талон {ticket.TicketName} Касса {ticket.CashierName}";
+                        var ticketPrefix = ticket.TicketName.Substring(0, 1);
+                        var ticketNumber = ticket.TicketName.Substring(1, 3);
+                        var formatStr= $"Талон {ticketPrefix} {ticketNumber} Касса {ticket.CashierName}";
                         _model.SoundQueue.AddItem(new SoundTemplate(formatStr));
 
                         FillTableCashier(сashier.Id, ticket);
@@ -1146,7 +1145,16 @@ namespace ServerUi.ViewModels
 
         public void SaveTableSetting()
         {
-           SaveSettingUi();
+            //DEBUG---------------------------------
+            //for (int i = 0; i < 99; i++)
+            //{
+            //    Add(14);
+            //    Task.Delay(100).GetAwaiter();
+            //    Dell(14);
+            //}
+            //DEBUG---------------------------------
+
+            SaveSettingUi();
         }
 
 

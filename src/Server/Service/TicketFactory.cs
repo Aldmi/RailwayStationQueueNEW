@@ -34,10 +34,7 @@ namespace Server.Service
 
         #region prop      
 
-        public uint GetCurrentTicketNumber
-        {
-            get { return _ticketNumber; }
-        }
+        public uint GetCurrentTicketNumber => _ticketNumber;
 
         #endregion
 
