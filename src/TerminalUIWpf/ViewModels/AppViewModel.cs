@@ -98,7 +98,7 @@ namespace TerminalUIWpf.ViewModels
                 if (e.PropertyName == "IsConnect")
                 {
                     IsConnect = master.IsConnect;
-                    ColorBtn = master.IsConnect ? Brushes.SlateGray : ColorBtn = Brushes.Magenta;
+                    ColorBtn = master.IsConnect ? Brushes.SlateGray : ColorBtn = Brushes.DarkRed;
                 }
                 else if (e.PropertyName == "IsRunDataExchange")
                 {

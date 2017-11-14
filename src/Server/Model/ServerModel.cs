@@ -20,6 +20,7 @@ using Server.Service;
 using Server.Settings;
 using Sound;
 using Terminal.Infrastructure;
+using System.Collections.Concurrent;
 
 namespace Server.Model
 {
@@ -33,11 +34,11 @@ namespace Server.Model
         public TicketFactory TicketFactoryBaggageCheckout { get; } = new TicketFactory("B");      //Оформить багаж
         public TicketFactory TicketFactoryAdmin { get; } = new TicketFactory("A");                //Администратор
 
-        public Queue<TicketItem> QueueGetHelp { get; set; } = new Queue<TicketItem>();
-        public Queue<TicketItem> QueueBuyTicket { get; set; } = new Queue<TicketItem>();
-        public Queue<TicketItem> QueueBuyInterstateTicket { get; set; } = new Queue<TicketItem>();
-        public Queue<TicketItem> QueueBaggageCheckout { get; set; } = new Queue<TicketItem>();
-        public Queue<TicketItem> QueueAdmin { get; set; } = new Queue<TicketItem>();
+        public ConcurrentQueue<TicketItem> QueueGetHelp { get; set; } = new ConcurrentQueue<TicketItem>();
+        public ConcurrentQueue<TicketItem> QueueBuyTicket { get; set; } = new ConcurrentQueue<TicketItem>();
+        public ConcurrentQueue<TicketItem> QueueBuyInterstateTicket { get; set; } = new ConcurrentQueue<TicketItem>();
+        public ConcurrentQueue<TicketItem> QueueBaggageCheckout { get; set; } = new ConcurrentQueue<TicketItem>();
+        public ConcurrentQueue<TicketItem> QueueAdmin { get; set; } = new ConcurrentQueue<TicketItem>();
 
         public Log LogTicket { get; set; }
 
@@ -271,7 +272,7 @@ namespace Server.Model
             //DEBUG------ИНИЦИАЛИЗАЦИЯ ОЧЕРЕДИ---------------------
             for (int i = 0; i < 100; i++)
             {
-                var ticket2 = TicketFactoryGetHelp.Create((ushort) QueueGetHelp.Count);
+                var ticket2 = TicketFactoryGetHelp.Create((ushort)QueueGetHelp.Count);
                 QueueGetHelp.Enqueue(ticket2);
 
                 ticket2 = TicketFactoryBuyTicket.Create((ushort)QueueBuyTicket.Count);
@@ -293,7 +294,7 @@ namespace Server.Model
             //СОЗДАНИЕ КАССИРОВ------------------------------------------------------------------------------------------------
             foreach (var xmlCash in xmlCashier)
             {
-                Queue<TicketItem> queueTicket = null;
+                ConcurrentQueue<TicketItem> queueTicket = null;
                 switch (xmlCash.Prefix)
                 {
                     case "C":

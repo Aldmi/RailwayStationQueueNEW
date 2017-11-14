@@ -10,7 +10,7 @@ using Communication.Annotations;
 using Communication.Interfaces;
 using Communication.Settings;
 using Library.Async;
-
+using System.Diagnostics;
 
 namespace Communication.SerialPort
 {
@@ -184,7 +184,8 @@ namespace Communication.SerialPort
                 byte[] writeBuffer = dataProvider.GetDataByte();
                 if (writeBuffer != null && writeBuffer.Any())
                 {
-                    var readBuff = await RequestAndRespawnInstantlyAsync(writeBuffer, dataProvider.CountSetDataByte, timeRespoune,  ct);
+                    //var readBuff = await RequestAndRespawnInstantlyAsync(writeBuffer, dataProvider.CountSetDataByte, timeRespoune,  ct);
+                    var readBuff = await RequestAndRespawnConstPeriodAsync(writeBuffer, dataProvider.CountSetDataByte, timeRespoune, ct);
                     dataProvider.SetDataByte(readBuff);
                 }
             }
@@ -224,11 +225,12 @@ namespace Communication.SerialPort
 
             //проверяем ответ
             var buffer = new byte[nBytesRead];
-            if (_port.BytesToRead == nBytesRead)
+            if (_port.BytesToRead >= nBytesRead)
             {
                 _port.Read(buffer, 0, nBytesRead);
                 return buffer;
             }
+            Debug.WriteLine($"Время на ожидание ответа вышло {_port.BytesToRead} >= {nBytesRead}");
             throw new TimeoutException("Время на ожидание ответа вышло");
         }
 
@@ -252,6 +254,9 @@ namespace Communication.SerialPort
             _port.WriteTimeout = 500;
             _port.Write(writeBuffer, 0, writeBuffer.Length);
 
+
+            await Task.Delay(300); //Выравнивающая задержка переодичности отправки запросов в порт
+
             //ждем ответа....
             TaskCompletionSource<byte[]> tcs = new TaskCompletionSource<byte[]>();
 
@@ -272,9 +277,9 @@ namespace Communication.SerialPort
                 var buff = await AsyncHelp.WithTimeout(tcs.Task, readTimeout, ct);
                 return buff;
             }
-            catch (TimeoutException)
+            catch (TimeoutException ex)
             {
-                tcs.SetCanceled();
+                tcs.TrySetCanceled();
                 throw;
             }
             finally

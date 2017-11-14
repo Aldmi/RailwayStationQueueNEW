@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Communication.Annotations;
+using System.Collections.Concurrent;
 
 namespace Server.Entitys
 {
@@ -11,7 +12,7 @@ namespace Server.Entitys
         #region Fields
 
         private readonly byte _maxCountTryHandin;
-        private readonly Queue<TicketItem> _queueTicket;
+        private readonly ConcurrentQueue<TicketItem> _queueTicket;
         private TicketItem _currentTicket;
 
         #endregion
@@ -21,7 +22,7 @@ namespace Server.Entitys
 
         #region ctor
 
-        public Сashier(byte id, Queue<TicketItem> queueTicket, byte maxCountTryHandin1)
+        public Сashier(byte id, ConcurrentQueue<TicketItem> queueTicket, byte maxCountTryHandin1)
         {
             Id = id;
             _queueTicket = queueTicket;
@@ -61,13 +62,36 @@ namespace Server.Entitys
         /// </summary>    
         public TicketItem StartHandling()
         {
-            if (_queueTicket.Any() && CurrentTicket == null)
+            //Отправка синхронизации билета.
+            //если кассир выключил устройство, не обработав приглашенного посетителя, то после включения ус-ва и нажатия кнопки "Следующий"
+            //к кассиру придет текущий необработанный билет.
+            if (CurrentTicket != null)
             {
-                var newTicket= _queueTicket.Peek();
-                newTicket.Сashbox = Id;  
-                return newTicket;
+                return CurrentTicket;
+            }
+
+            if (!_queueTicket.IsEmpty && CurrentTicket == null)
+            {
+                TicketItem newTicket;
+                if (_queueTicket.TryPeek(out newTicket))
+                {
+                    newTicket.Сashbox = Id;
+                    return newTicket;
+                }
             }
             return null;
+
+
+            //if (!_queueTicket.IsEmpty && CurrentTicket == null)
+            //{
+            //    TicketItem newTicket;
+            //    if (_queueTicket.TryPeek(out newTicket))
+            //    {
+            //        newTicket.Сashbox = Id;
+            //        return newTicket;
+            //    }
+            //}
+            //return null;
         }
 
 
@@ -76,13 +100,15 @@ namespace Server.Entitys
         /// </summary>   
         public void SuccessfulStartHandling()
         {
-            if (_queueTicket.Any() && CurrentTicket == null)
+            if (!_queueTicket.IsEmpty && CurrentTicket == null)
             {
-                var newTicket = _queueTicket.Dequeue();
-                newTicket.Сashbox = Id;
-
-                CurrentTicket = newTicket;
-                CurrentTicket.CountTryHandling++;
+                TicketItem newTicket;
+                if (_queueTicket.TryDequeue(out newTicket))
+                {
+                    newTicket.Сashbox = Id;
+                    CurrentTicket = newTicket;
+                    CurrentTicket.CountTryHandling++;
+                }
             }
         }
 

@@ -25,3 +25,12 @@ D:\Git\RailwayStationQueueNEW\src\Terminal\bin\Debug\Library.pdb
 D:\Git\RailwayStationQueueNEW\src\Terminal\obj\Debug\Terminal.csprojResolveAssemblyReference.cache
 D:\Git\RailwayStationQueueNEW\src\Terminal\obj\Debug\Terminal.dll
 D:\Git\RailwayStationQueueNEW\src\Terminal\obj\Debug\Terminal.pdb
+C:\Users\User\Desktop\Эл.очередь\src\Terminal\bin\Debug\Terminal.dll
+C:\Users\User\Desktop\Эл.очередь\src\Terminal\bin\Debug\Terminal.pdb
+C:\Users\User\Desktop\Эл.очередь\src\Terminal\bin\Debug\Communication.dll
+C:\Users\User\Desktop\Эл.очередь\src\Terminal\bin\Debug\Library.dll
+C:\Users\User\Desktop\Эл.очередь\src\Terminal\bin\Debug\Communication.pdb
+C:\Users\User\Desktop\Эл.очередь\src\Terminal\bin\Debug\Library.pdb
+C:\Users\User\Desktop\Эл.очередь\src\Terminal\obj\Debug\Terminal.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\Эл.очередь\src\Terminal\obj\Debug\Terminal.dll
+C:\Users\User\Desktop\Эл.очередь\src\Terminal\obj\Debug\Terminal.pdb

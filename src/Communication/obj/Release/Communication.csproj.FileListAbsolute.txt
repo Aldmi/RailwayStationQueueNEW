@@ -67,3 +67,12 @@ D:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\NModbus4.xml
 D:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.csprojResolveAssemblyReference.cache
 D:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.dll
 D:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.pdb
+C:\Users\User\Desktop\Эл.очередь\src\Communication\bin\Release\Communication.dll
+C:\Users\User\Desktop\Эл.очередь\src\Communication\bin\Release\Communication.pdb
+C:\Users\User\Desktop\Эл.очередь\src\Communication\bin\Release\Library.dll
+C:\Users\User\Desktop\Эл.очередь\src\Communication\bin\Release\NModbus4.dll
+C:\Users\User\Desktop\Эл.очередь\src\Communication\bin\Release\Library.pdb
+C:\Users\User\Desktop\Эл.очередь\src\Communication\bin\Release\NModbus4.xml
+C:\Users\User\Desktop\Эл.очередь\src\Communication\obj\Release\Communication.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\Эл.очередь\src\Communication\obj\Release\Communication.dll
+C:\Users\User\Desktop\Эл.очередь\src\Communication\obj\Release\Communication.pdb

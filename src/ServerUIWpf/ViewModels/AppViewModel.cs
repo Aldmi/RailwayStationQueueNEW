@@ -38,13 +38,13 @@ namespace ServerUi.ViewModels
         private readonly ServerModel _model;
         private readonly Task _mainTask;
 
-        private const int LimitRowTable8X21 = 9;
-        private const int LimitRowTable8X22 = 8;
+        private const int LimitRowTable8X21 = 6;
+        private const int LimitRowTable8X22 = 6;
 
-        private const int LimitRowTable4X41 = 5;
-        private const int LimitRowTable4X42 = 5;
-        private const int LimitRowTable4X43 = 5;
-        private const int LimitRowTable4X44 = 2;
+        private const int LimitRowTable4X41 = 3;
+        private const int LimitRowTable4X42 = 3;
+        private const int LimitRowTable4X43 = 3;
+        private const int LimitRowTable4X44 = 3;
 
         private const string SettingUiNameFile = @"Settings\settingsUi.dat";
 
@@ -683,6 +683,10 @@ namespace ServerUi.ViewModels
 
                         case 16:
                             ColorBackgroundCashierTicket16 = deviceCashier.IsConnect ? Brushes.Green : Brushes.SlateGray;
+                            break;
+
+                        case 17:
+                            ColorBackgroundCashierTicket17 = deviceCashier.IsConnect ? Brushes.Green : Brushes.SlateGray;
                             break;
                     }
 

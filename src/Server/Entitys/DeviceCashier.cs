@@ -11,6 +11,7 @@ namespace Server.Entitys
 
         public Сashier Cashier { get; }
         public string Port { get; }
+        public int LastSyncLabel { get; set; } //Метка синхронизации времени (сбрасывается при отсутствии связи)
 
         private bool _isConnect;
         public bool IsConnect
@@ -18,11 +19,18 @@ namespace Server.Entitys
             get { return _isConnect; }
             set
             {
+                RaiseNotConnect2IsConnect = (!_isConnect && value);
+                RaiseIsConnect2NotConnect = (_isConnect && !value);
+
                 if (_isConnect == value) return;
                 _isConnect = value;
                 OnPropertyChanged();
             }
         }
+
+
+        public bool RaiseNotConnect2IsConnect { get; private set; } // State. Небыл на свзяи -> на связи
+        public bool RaiseIsConnect2NotConnect { get; private set; }// State. был на свзяи -> не на связи
 
 
         private bool _dataExchangeSuccess;

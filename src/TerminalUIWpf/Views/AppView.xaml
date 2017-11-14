@@ -116,7 +116,7 @@
         <Button
             Name="BtnBaggageCheckout"
             Grid.Row="4"
-            Content="Хранение багажа"
+            Content="Оформить багаж"
             Style="{StaticResource ButtonStyle}" />
 
         <Button

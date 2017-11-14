@@ -49,14 +49,23 @@ namespace Server.Service
 
                 if (!devCashier.IsConnect)
                 {
-                 //devCashier.Cashier.DisconectHandling();  //изъятие из очереди элемента, если кассир не на связи
-                 continue;
+                    //devCashier.Cashier.DisconectHandling();  //изъятие из очереди элемента, если кассир не на связи
+                    devCashier.LastSyncLabel = 0;
+                    continue;
                 }
 
                 if (readProvider.IsOutDataValid)
                 {
                     TicketItem item;
                     var cashierInfo = readProvider.OutputData;
+
+                    //Если устойство было не на связи, то Отправка запроса синхронизации времени раз в час, будет произведенна мгновенно.
+                    if (devCashier.LastSyncLabel != DateTime.Now.Hour)
+                    {
+                        devCashier.LastSyncLabel = DateTime.Now.Hour;
+                        var syncTimeProvider = new Server2CashierSyncTimeDataProvider();
+                        await port.DataExchangeAsync(_timeRespone, syncTimeProvider, ct);
+                    }
 
                     if (!cashierInfo.IsWork)
                         continue;
@@ -83,7 +92,6 @@ namespace Server.Service
 
                         case CashierHandling.IsSuccessfulAndStartHandling:
                             devCashier.Cashier.SuccessfulHandling();
-
                             item = devCashier.Cashier.StartHandling();
                             writeProvider = new Server2CashierWriteDataProvider { InputData = item };
                             await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
@@ -95,7 +103,6 @@ namespace Server.Service
 
                         case CashierHandling.IsErrorAndStartHandling:
                             devCashier.Cashier.ErrorHandling();
-
                             item = devCashier.Cashier.StartHandling();
                             writeProvider = new Server2CashierWriteDataProvider { InputData = item };
                             await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
@@ -110,15 +117,6 @@ namespace Server.Service
                             break;
                     }
                 }
-            }
-
-            //Отправка запроса синхронизации времени раз в час
-            if (_lastSyncLabel != DateTime.Now.Hour)
-            {
-                _lastSyncLabel = DateTime.Now.Hour;
-
-                var syncTimeProvider = new Server2CashierSyncTimeDataProvider();
-                await port.DataExchangeAsync(_timeRespone, syncTimeProvider, ct);
             }
         }
 
