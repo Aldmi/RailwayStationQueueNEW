@@ -141,7 +141,8 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnGetHelp()
         {
             const byte numberQueue = (byte)'C';
-            await _model.TrainSelection(numberQueue);
+            const string nameQueue = "Main";
+            await _model.TrainSelection(nameQueue, numberQueue);
         }
 
         /// <summary>
@@ -150,7 +151,8 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnBuyTicket()
         {
             const byte numberQueue = (byte)'T';
-            await _model.TrainSelection(numberQueue);
+            const string nameQueue = "Main";
+            await _model.TrainSelection(nameQueue, numberQueue);
         }
 
         /// <summary>
@@ -159,7 +161,8 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnBuyInterstateTicket()
         {
             const byte numberQueue = (byte)'M';
-            await _model.TrainSelection(numberQueue);
+            const string nameQueue = "Main";
+            await _model.TrainSelection(nameQueue, numberQueue);
         }
 
         /// <summary>
@@ -168,7 +171,8 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnBaggageCheckout()
         {
             const byte numberQueue = (byte)'B';
-            await _model.TrainSelection(numberQueue);
+            const string nameQueue = "Main";
+            await _model.TrainSelection(nameQueue, numberQueue);
         }
 
         /// <summary>
@@ -177,7 +181,8 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnAdmin()
         {
             const byte numberQueue = (byte)'A';
-            await _model.TrainSelection(numberQueue);
+            const string nameQueue = "Main";
+            await _model.TrainSelection(nameQueue, numberQueue);
         }
 
 

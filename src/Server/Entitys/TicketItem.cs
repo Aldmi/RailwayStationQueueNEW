@@ -4,12 +4,13 @@ namespace Server.Entitys
 {
     public class TicketItem
     {
-        public string Prefix { get; set; }          // строковый префикс элемента (A или B)
+        public string Prefix { get; set; }          // строковый префикс элемента
         public uint NumberElement { get; set; }     // номер в очереди на момент добавления
         public ushort CountElement { get; set; }    // кол-во клиентов в очереди на момент добавления
         public DateTime AddedTime{ get; set; }      // дата добавления
         public int? Сashbox { get; set; }           // номер кассира
         public byte CountTryHandling { get; set; }  // количество попыток обработки этого билета кассиром
+        public int Priority { get; set; }           // приоритет билета в очереди
 
         public override string ToString()
         {

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
 using Communication.Annotations;
 using Communication.Interfaces;
 using Terminal.Infrastructure;
@@ -12,7 +13,7 @@ namespace Server.Infrastructure
     {
         #region prop
 
-        public int CountSetDataByte => 4;
+        public int CountSetDataByte => 24;
         public int CountGetDataByte => 15;
 
         private TerminalInData _inputData;
@@ -82,6 +83,26 @@ namespace Server.Infrastructure
         /// байт[1]= 0хBB
         /// байт[2]= номер очереди
         /// байт[3]= действие
+        /// байт[4]= Название очереди (макс 10 симолов = 20 байт)
+        /// байт[5]= Название очереди
+        /// байт[6]= Название очереди
+        /// байт[7]= Название очереди
+        /// байт[8]= Название очереди
+        /// байт[9]= Название очереди
+        /// байт[10]= Название очереди
+        /// байт[11]= Название очереди
+        /// байт[12]= Название очереди
+        /// байт[13]= Название очереди
+        /// байт[14]= Название очереди
+        /// байт[15]= Название очереди
+        /// байт[16]= Название очереди
+        /// байт[17]= Название очереди
+        /// байт[18]= Название очереди
+        /// байт[19]= Название очереди
+        /// байт[20]= Название очереди
+        /// байт[21]= Название очереди
+        /// байт[22]= Название очереди
+        /// байт[23]= Название очереди
         /// </summary>
         public bool SetDataByte(byte[] data)
         {
@@ -93,7 +114,20 @@ namespace Server.Infrastructure
             if (data[0] == 0xAA &&
                 data[1] == 0xBB)
             {
-                InputData= new TerminalInData { NumberQueue = data[2], Action = (TerminalAction) data[3] };
+                string nameQueue;
+                try
+                {
+                    var encoding = Encoding.Unicode;
+                    nameQueue = encoding.GetString(data, 4, 20);
+                    nameQueue= nameQueue.TrimEnd();
+                }
+                catch (Exception ex)
+                {
+                    IsOutDataValid = false;
+                    return false;
+                }
+
+                InputData = new TerminalInData {NameQueue = nameQueue, NumberQueue = data[2], Action = (TerminalAction) data[3] };
                 IsOutDataValid = true;
             }
             else

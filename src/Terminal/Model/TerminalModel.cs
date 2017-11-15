@@ -108,13 +108,13 @@ namespace Terminal.Model
         }
 
 
-        public async Task TrainSelection(byte numberQueue)
+        public async Task TrainSelection(string nameQueue, byte numberQueue)
         {
             if (MasterTcpIp == null || !MasterTcpIp.IsConnect)
                 return;
 
             //ЗАПРОС О СОСТОЯНИИ ОЧЕРЕДИ
-            var provider = new Terminal2ServerExchangeDataProvider { InputData = new TerminalInData { NumberQueue = numberQueue, Action = TerminalAction.Info } };
+            var provider = new Terminal2ServerExchangeDataProvider { InputData = new TerminalInData { NameQueue = nameQueue, NumberQueue = numberQueue, Action = TerminalAction.Info } };
             await MasterTcpIp.RequestAndRespoune(provider);
 
    
@@ -128,7 +128,7 @@ namespace Terminal.Model
                 if (isAdded)
                 {
                     //ЗАПРОС О ДОБАВЛЕНИИ ЭЛЕМЕНТА В ОЧЕРЕДЬ
-                    provider = new Terminal2ServerExchangeDataProvider { InputData = new TerminalInData { NumberQueue = numberQueue, Action = TerminalAction.Add } };
+                    provider = new Terminal2ServerExchangeDataProvider { InputData = new TerminalInData { NameQueue = nameQueue, NumberQueue = numberQueue, Action = TerminalAction.Add } };
                     await MasterTcpIp.RequestAndRespoune(provider);
 
                     if (provider.IsOutDataValid)

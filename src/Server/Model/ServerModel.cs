@@ -40,6 +40,10 @@ namespace Server.Model
         public ConcurrentQueue<TicketItem> QueueBaggageCheckout { get; set; } = new ConcurrentQueue<TicketItem>();
         public ConcurrentQueue<TicketItem> QueueAdmin { get; set; } = new ConcurrentQueue<TicketItem>();
 
+        public List<QueuePriority> QueuePriorities { get; set; }= new List<QueuePriority>();
+
+
+
         public Log LogTicket { get; set; }
 
         public ListenerTcpIp Listener { get; set; }
@@ -94,6 +98,7 @@ namespace Server.Model
             IList<XmlSerialSettings> xmlSerials;
             XmlLogSettings xmlLog;
             List<XmlCashierSettings> xmlCashier;
+            List<XmlQueuesSettings> xmlQueues;
             try
             {
                 var xmlFile = XmlWorker.LoadXmlFile("Settings", "Setting.xml"); //все настройки в одном файле
@@ -104,6 +109,7 @@ namespace Server.Model
                 xmlSerials = XmlSerialSettings.LoadXmlSetting(xmlFile).ToList();
                 xmlLog = XmlLogSettings.LoadXmlSetting(xmlFile);
                 xmlCashier = XmlCashierSettings.LoadXmlSetting(xmlFile);
+                xmlQueues = XmlQueuesSettings.LoadXmlSetting(xmlFile);
             }
             catch (FileNotFoundException ex)
             {
@@ -112,13 +118,25 @@ namespace Server.Model
             }
             catch (Exception ex)
             {
-                ErrorString = "ОШИБКА в узлах дерева XML файла настроек:  " + ex;
+                ErrorString= "ОШИБКА в узлах дерева XML файла настроек:  " + ex;
                 return;
             }
 
 
             //СОЗДАНИЕ ЛОГА--------------------------------------------------------------------------
-            LogTicket = new Log("TicketLog.txt", xmlLog);
+            LogTicket= new Log("TicketLog.txt", xmlLog);
+
+
+            //СОЗДАНИЕ ОЧЕРЕДИ-----------------------------------------------------------------------
+            foreach (var xmlQueue in xmlQueues)
+            {
+                var queue= new QueuePriority (xmlQueue.Name, xmlQueue.Prefixes);
+                QueuePriorities.Add(queue);
+            }
+
+
+          //  var queuePriority  = new QueuePriority("Main", new List<Prefix> { new Prefix { Name = "C", Priority = 9 }, new Prefix { Name = "T", Priority = 5 }, new Prefix { Name = "M", Priority = 1 } });
+      
 
 
             //СОЗДАНИЕ СЛУШАТЕЛЯ ДЛЯ ТЕРМИНАЛОВ-------------------------------------------------------
@@ -131,138 +149,36 @@ namespace Server.Model
                 {
                     if (e.PropertyName == "InputData")
                     {
-                        TicketItem ticket;
                         provider.OutputData = provider.OutputData ?? new TerminalOutData();
-                        switch ((char)provider.InputData.NumberQueue)
+
+                        //Найдем очередь к которой обращен запрос
+                        var prefixQueue = ((char)provider.InputData.NumberQueue).ToString();
+                        var nameQueue = provider.InputData.NameQueue;
+                        var queue= QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, nameQueue, StringComparison.InvariantCultureIgnoreCase));
+
+                        if (queue == null)
+                           return;
+
+                        switch (provider.InputData.Action)
                         {
-                            //ПОЛУЧИТЬ СПРАВКУ---------------------------------------------------------------------
-                            case 'C':
-                                switch (provider.InputData.Action)
-                                {
-                                    //ИНФОРМАЦИЯ ОБ ОЧЕРЕДИ
-                                    case TerminalAction.Info:
-                                        provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
-                                        provider.OutputData.CountElement = (ushort)QueueGetHelp.Count;
-                                        provider.OutputData.NumberElement = (ushort)(TicketFactoryGetHelp.GetCurrentTicketNumber + 1);
-                                        provider.OutputData.AddedTime = DateTime.Now;
-                                        break;
-
-                                    //ДОБАВИТЬ БИЛЕТ В ОЧЕРЕДЬ
-                                    case TerminalAction.Add:
-                                        ticket = TicketFactoryGetHelp.Create((ushort)QueueGetHelp.Count);
-
-                                        provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
-                                        provider.OutputData.CountElement = ticket.CountElement;
-                                        provider.OutputData.NumberElement = (ushort)ticket.NumberElement;
-                                        provider.OutputData.AddedTime = ticket.AddedTime;
-
-                                        QueueGetHelp.Enqueue(ticket);
-                                        break;
-                                }
+                            //ИНФОРМАЦИЯ ОБ ОЧЕРЕДИ
+                            case TerminalAction.Info:
+                                provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
+                                provider.OutputData.CountElement = (ushort)queue.GetInseartPlace(prefixQueue);
+                                provider.OutputData.NumberElement = (ushort)(queue.GetCurrentTicketNumber + 1);
+                                provider.OutputData.AddedTime = DateTime.Now;
                                 break;
 
-                            //КУПИТЬ БИЛЕТ--------------------------------------------------------------------------
-                            case 'T':
-                                switch (provider.InputData.Action)
-                                {
-                                    //ИНФОРМАЦИЯ ОБ ОЧЕРЕДИ
-                                    case TerminalAction.Info:
-                                        provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
-                                        provider.OutputData.CountElement = (ushort)QueueBuyTicket.Count;
-                                        provider.OutputData.NumberElement = (ushort)(TicketFactoryBuyTicket.GetCurrentTicketNumber + 1);
-                                        provider.OutputData.AddedTime = DateTime.Now;
-                                        break;
+                            //ДОБАВИТЬ БИЛЕТ В ОЧЕРЕДЬ
+                            case TerminalAction.Add:
+                                var ticket = queue.CreateTicket(prefixQueue);
 
-                                    //ДОБАВИТЬ БИЛЕТ В ОЧЕРЕДЬ
-                                    case TerminalAction.Add:
-                                        ticket = TicketFactoryBuyTicket.Create((ushort)QueueBuyTicket.Count);
+                                provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
+                                provider.OutputData.CountElement = ticket.CountElement;
+                                provider.OutputData.NumberElement = (ushort)ticket.NumberElement;
+                                provider.OutputData.AddedTime = ticket.AddedTime;
 
-                                        provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
-                                        provider.OutputData.CountElement = ticket.CountElement;
-                                        provider.OutputData.NumberElement = (ushort)ticket.NumberElement;
-                                        provider.OutputData.AddedTime = ticket.AddedTime;
-
-                                        QueueBuyTicket.Enqueue(ticket);
-                                        break;
-                                }
-                                break;
-
-                            //КУПИТЬ БИЛЕТ МЕЖ ГОСУДАРСТВЕННОГО СООБЩЕНИЯ--------------------------------------------------------------------------
-                            case 'M':
-                                switch (provider.InputData.Action)
-                                {
-                                    //ИНФОРМАЦИЯ ОБ ОЧЕРЕДИ
-                                    case TerminalAction.Info:
-                                        provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
-                                        provider.OutputData.CountElement = (ushort)QueueBuyInterstateTicket.Count;
-                                        provider.OutputData.NumberElement = (ushort)(TicketFactoryBuyInterstateTicket.GetCurrentTicketNumber + 1);
-                                        provider.OutputData.AddedTime = DateTime.Now;
-                                        break;
-
-                                    //ДОБАВИТЬ БИЛЕТ В ОЧЕРЕДЬ
-                                    case TerminalAction.Add:
-                                        ticket = TicketFactoryBuyInterstateTicket.Create((ushort)QueueBuyInterstateTicket.Count);
-
-                                        provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
-                                        provider.OutputData.CountElement = ticket.CountElement;
-                                        provider.OutputData.NumberElement = (ushort)ticket.NumberElement;
-                                        provider.OutputData.AddedTime = ticket.AddedTime;
-
-                                        QueueBuyInterstateTicket.Enqueue(ticket);
-                                        break;
-                                }
-                                break;
-
-                            //ОФОРМИТЬ БАГАЖ--------------------------------------------------------------------------
-                            case 'B':
-                                switch (provider.InputData.Action)
-                                {
-                                    //ИНФОРМАЦИЯ ОБ ОЧЕРЕДИ
-                                    case TerminalAction.Info:
-                                        provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
-                                        provider.OutputData.CountElement = (ushort)QueueBaggageCheckout.Count;
-                                        provider.OutputData.NumberElement = (ushort)(TicketFactoryBaggageCheckout.GetCurrentTicketNumber + 1);
-                                        provider.OutputData.AddedTime = DateTime.Now;
-                                        break;
-
-                                    //ДОБАВИТЬ БИЛЕТ В ОЧЕРЕДЬ
-                                    case TerminalAction.Add:
-                                        ticket = TicketFactoryBaggageCheckout.Create((ushort)QueueBaggageCheckout.Count);
-
-                                        provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
-                                        provider.OutputData.CountElement = ticket.CountElement;
-                                        provider.OutputData.NumberElement = (ushort)ticket.NumberElement;
-                                        provider.OutputData.AddedTime = ticket.AddedTime;
-
-                                        QueueBaggageCheckout.Enqueue(ticket);
-                                        break;
-                                }
-                                break;
-
-                            //АДМИНИСТРАТОР--------------------------------------------------------------------------
-                            case 'A':
-                                switch (provider.InputData.Action)
-                                {
-                                    //ИНФОРМАЦИЯ ОБ ОЧЕРЕДИ
-                                    case TerminalAction.Info:
-                                        provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
-                                        provider.OutputData.CountElement = (ushort)QueueAdmin.Count;
-                                        provider.OutputData.NumberElement = (ushort)(TicketFactoryAdmin.GetCurrentTicketNumber + 1);
-                                        provider.OutputData.AddedTime = DateTime.Now;
-                                        break;
-
-                                    //ДОБАВИТЬ БИЛЕТ В ОЧЕРЕДЬ
-                                    case TerminalAction.Add:
-                                        ticket = TicketFactoryAdmin.Create((ushort)QueueAdmin.Count);
-
-                                        provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
-                                        provider.OutputData.CountElement = ticket.CountElement;
-                                        provider.OutputData.NumberElement = (ushort)ticket.NumberElement;
-                                        provider.OutputData.AddedTime = ticket.AddedTime;
-
-                                        QueueAdmin.Enqueue(ticket);
-                                        break;
-                                }
+                                queue.Enqueue(ticket);
                                 break;
                         }
                     }

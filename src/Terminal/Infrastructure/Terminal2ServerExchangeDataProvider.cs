@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+using System.Text;
 using Communication.Annotations;
 using Communication.Interfaces;
 
@@ -15,6 +18,7 @@ namespace Terminal.Infrastructure
     public class TerminalInData
     {
         public byte NumberQueue { get; set; }
+        public string NameQueue { get; set; }
         public TerminalAction Action { get; set; } //Узнать информацию об очереди или добавить элемент
     }
 
@@ -56,11 +60,50 @@ namespace Terminal.Infrastructure
         /// байт[1]= 0хBB
         /// байт[2]= номер очереди
         /// байт[3]= действие
+        /// байт[4]= Название очереди (макс 10 симолов = 20 байт)
+        /// байт[5]= Название очереди
+        /// байт[6]= Название очереди
+        /// байт[7]= Название очереди
+        /// байт[8]= Название очереди
+        /// байт[9]= Название очереди
+        /// байт[10]= Название очереди
+        /// байт[11]= Название очереди
+        /// байт[12]= Название очереди
+        /// байт[13]= Название очереди
+        /// байт[14]= Название очереди
+        /// байт[15]= Название очереди
+        /// байт[16]= Название очереди
+        /// байт[17]= Название очереди
+        /// байт[18]= Название очереди
+        /// байт[19]= Название очереди
+        /// байт[20]= Название очереди
+        /// байт[21]= Название очереди
+        /// байт[22]= Название очереди
+        /// байт[23]= Название очереди
         /// </summary>
         public byte[] GetDataByte()
         {
-            var buffer = new byte[] { 0xAA, 0xBB, InputData.NumberQueue, (byte) InputData.Action };
-            return buffer;
+            var buffer = new List<byte>
+            {
+                0xAA,
+                0xBB,
+                InputData.NumberQueue,
+                (byte)InputData.Action
+            };
+
+            try
+            {
+                var encoding = Encoding.Unicode;
+                var padSpace = InputData.NameQueue.PadRight(10); //дополнить пробелами справа до 10 симолов.
+                var nameQueueBytes = encoding.GetBytes(padSpace);
+                buffer.AddRange(nameQueueBytes);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return buffer.ToArray();
         }
 
 

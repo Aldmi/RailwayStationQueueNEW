@@ -5,6 +5,7 @@
 	<CountPortion>1000</CountPortion>
   </LogSetting>
 
+  
   <Server>
     <Listener>
       <Port>50000</Port>
@@ -31,12 +32,25 @@
 	</SerialPorts>
   </Server>
 
+  
+  <Queues>
+    <Queue Id="1" Name="Main">
+	    <Prefix Name="M" Priority="5"/>
+		<Prefix Name="A" Priority="9"/>
+	</Queue>
+  </Queues>
+  
+  
 <!-- Очереди: -->
-<!-- 1. Получить справку - префикс "C"                                    -  -->
-<!-- 2. Купить билет - префикс "T" -->
-<!-- 3. Купить билет меж государственного сообщения - префикс "M" -->
-<!-- 4. Оформить багаж - префикс "B" -->
-<!-- 5. Администратор - префикс "A" -->
+<!-- 1. Купить билет - префикс "К" --->
+<!-- 2. Купить билет меж государственного сообщения - префикс "M" -->
+<!-- 3. Оформление групп пассажиров                 - префикс "Т" -->
+<!-- 4. Оформление маломобильных пассажиров         - префикс "Н" -->
+<!-- 5. Возврат                                     - префикс "В" -->
+<!-- 6. Переоформление                              - префикс "Р" -->
+<!-- 7. Восстановление билетов                      - префикс "С" -->
+<!-- 8. Замена персональных данных                  - префикс "Е" -->
+<!-- 9. Получить справку                            - префикс "" -->
   
     <Cashiers>
 	   <Cashier Id="1" Port="9" Prefix="C" MaxCountTryHanding="3"/>
@@ -56,6 +70,6 @@
 	   <Cashier Id="14" Port="8" Prefix="T" MaxCountTryHanding="3"/>
 	   <Cashier Id="15" Port="8" Prefix="T" MaxCountTryHanding="3"/>
 	   <Cashier Id="16" Port="8" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="17" Port="8" Prefix="M" MaxCountTryHanding="3"/>
+	   <Cashier Id="17" Port="8" Queue="Main" Prefix="M,All" MaxCountTryHanding="3"/>
     </Cashiers>
 </Root>
