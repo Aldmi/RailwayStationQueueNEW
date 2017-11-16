@@ -108,19 +108,19 @@ namespace Terminal.Model
         }
 
 
-        public async Task TrainSelection(string nameQueue, byte numberQueue)
+        public async Task TrainSelection(string nameQueue, string prefixQueue)
         {
             if (MasterTcpIp == null || !MasterTcpIp.IsConnect)
                 return;
 
             //ЗАПРОС О СОСТОЯНИИ ОЧЕРЕДИ
-            var provider = new Terminal2ServerExchangeDataProvider { InputData = new TerminalInData { NameQueue = nameQueue, NumberQueue = numberQueue, Action = TerminalAction.Info } };
+            var provider = new Terminal2ServerExchangeDataProvider { InputData = new TerminalInData { NameQueue = nameQueue, PrefixQueue = prefixQueue, Action = TerminalAction.Info } };
             await MasterTcpIp.RequestAndRespoune(provider);
 
    
             if (provider.IsOutDataValid)
             {
-                var prefix = ((char)provider.OutputData.NumberQueue).ToString();
+                var prefix = provider.OutputData.PrefixQueue;
                 var ticketName = prefix + provider.OutputData.NumberElement.ToString("000");
                 var countPeople = provider.OutputData.CountElement.ToString();
 
@@ -128,12 +128,12 @@ namespace Terminal.Model
                 if (isAdded)
                 {
                     //ЗАПРОС О ДОБАВЛЕНИИ ЭЛЕМЕНТА В ОЧЕРЕДЬ
-                    provider = new Terminal2ServerExchangeDataProvider { InputData = new TerminalInData { NameQueue = nameQueue, NumberQueue = numberQueue, Action = TerminalAction.Add } };
+                    provider = new Terminal2ServerExchangeDataProvider { InputData = new TerminalInData { NameQueue = nameQueue, PrefixQueue = prefixQueue, Action = TerminalAction.Add } };
                     await MasterTcpIp.RequestAndRespoune(provider);
 
                     if (provider.IsOutDataValid)
                     {
-                        prefix = ((char)provider.OutputData.NumberQueue).ToString();
+                        prefix = provider.OutputData.PrefixQueue;
                         ticketName = prefix + provider.OutputData.NumberElement.ToString("000");
                         countPeople = provider.OutputData.CountElement.ToString();
 

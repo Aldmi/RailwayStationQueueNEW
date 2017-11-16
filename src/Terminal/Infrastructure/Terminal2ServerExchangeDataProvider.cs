@@ -17,7 +17,7 @@ namespace Terminal.Infrastructure
     /// </summary>
     public class TerminalInData
     {
-        public byte NumberQueue { get; set; }
+        public string PrefixQueue { get; set; }
         public string NameQueue { get; set; }
         public TerminalAction Action { get; set; } //Узнать информацию об очереди или добавить элемент
     }
@@ -30,7 +30,7 @@ namespace Terminal.Infrastructure
     {
         public DateTime AddedTime { get; set; }
         public ushort NumberElement { get; set; }
-        public byte NumberQueue { get; set; }
+        public string PrefixQueue { get; set; }
         public ushort CountElement { get; set; }    
     }
 
@@ -39,8 +39,8 @@ namespace Terminal.Infrastructure
     {
         #region prop
 
-        public int CountSetDataByte { get { return 15; } }
-        public int CountGetDataByte { get { return 4; } }
+        public int CountSetDataByte => 16;
+        public int CountGetDataByte => 25;
 
         public TerminalInData InputData { get; set; }  
         public TerminalOutData OutputData { get; set; }
@@ -58,10 +58,10 @@ namespace Terminal.Infrastructure
         /// формат запроса серверу:
         /// байт[0]= 0хAA
         /// байт[1]= 0хBB
-        /// байт[2]= номер очереди
-        /// байт[3]= действие
-        /// байт[4]= Название очереди (макс 10 симолов = 20 байт)
-        /// байт[5]= Название очереди
+        /// байт[2]= действие
+        /// байт[3]= префикс очереди (кирилица)
+        /// байт[4]= префикс очереди (кирилица)
+        /// байт[5]= Название очереди (макс 10 симолов = 20 байт)
         /// байт[6]= Название очереди
         /// байт[7]= Название очереди
         /// байт[8]= Название очереди
@@ -80,6 +80,7 @@ namespace Terminal.Infrastructure
         /// байт[21]= Название очереди
         /// байт[22]= Название очереди
         /// байт[23]= Название очереди
+        /// байт[24]= Название очереди
         /// </summary>
         public byte[] GetDataByte()
         {
@@ -87,13 +88,16 @@ namespace Terminal.Infrastructure
             {
                 0xAA,
                 0xBB,
-                InputData.NumberQueue,
-                (byte)InputData.Action
+               (byte)InputData.Action
             };
 
             try
             {
                 var encoding = Encoding.Unicode;
+
+                var prefixQueueBytes= encoding.GetBytes(InputData.PrefixQueue).Take(2).ToArray();
+                buffer.AddRange(prefixQueueBytes);
+
                 var padSpace = InputData.NameQueue.PadRight(10); //дополнить пробелами справа до 10 симолов.
                 var nameQueueBytes = encoding.GetBytes(padSpace);
                 buffer.AddRange(nameQueueBytes);
@@ -111,19 +115,20 @@ namespace Terminal.Infrastructure
         /// формат ответа от сервера:
         /// байт[0]= 0хAA
         /// байт[1]= 0хBB
-        /// байт[2]= номер очереди
-        /// байт[3]= номер элемента в очереди (Б0)
-        /// байт[4]= номер элемента в очереди (Б1)
-        /// байт[5]= кол-во элементов в очереди  (Б0)     
-        /// байт[6]= кол-во элементов в очереди  (Б1)
-        /// байт[7]= дата и время (Б0)
-        /// байт[8]= дата и время (Б1)
-        /// байт[9]= дата и время (Б2)
-        /// байт[10]= дата и время (Б3)
-        /// байт[11]= дата и время (Б4)
-        /// байт[12]= дата и время (Б5)
-        /// байт[13]= дата и время (Б6)
-        /// байт[14]= дата и время (Б7)
+        /// байт[2]= префикс очереди
+        /// байт[3]= префикс очереди
+        /// байт[4]= номер элемента в очереди (Б0)
+        /// байт[5]= номер элемента в очереди (Б1)
+        /// байт[6]= кол-во элементов в очереди  (Б0)     
+        /// байт[7]= кол-во элементов в очереди  (Б1)
+        /// байт[8]= дата и время (Б0)
+        /// байт[9]= дата и время (Б1)
+        /// байт[10]= дата и время (Б2)
+        /// байт[11]= дата и время (Б3)
+        /// байт[12]= дата и время (Б4)
+        /// байт[13]= дата и время (Б5)
+        /// байт[14]= дата и время (Б6)
+        /// байт[15]= дата и время (Б7)
         /// </summary>
         public bool SetDataByte(byte[] data)
         {
@@ -132,16 +137,20 @@ namespace Terminal.Infrastructure
             if (data == null || data.Count() < CountSetDataByte)
                 return IsOutDataValid;
 
+            var encoding = Encoding.Unicode;
+            var prefixQueueBytes = encoding.GetBytes(InputData.PrefixQueue).Take(2).ToArray();
+
             if (data[0] == 0xAA &&
                 data[1] == 0xBB &&
-                data[2] == InputData.NumberQueue)
+                data[2] == prefixQueueBytes[0] &&
+                data[3] == prefixQueueBytes[1])
             {
                 OutputData = new TerminalOutData
                 {
-                    NumberQueue = data[2],
-                    NumberElement = BitConverter.ToUInt16(data, 3),
-                    CountElement = BitConverter.ToUInt16(data, 5),
-                    AddedTime = new DateTime(BitConverter.ToInt64(data, 7))
+                    PrefixQueue = encoding.GetString(data, 2, 2),
+                    NumberElement = BitConverter.ToUInt16(data, 4),
+                    CountElement = BitConverter.ToUInt16(data, 6),
+                    AddedTime = new DateTime(BitConverter.ToInt64(data, 8))
                 };
                 IsOutDataValid = true;
             }

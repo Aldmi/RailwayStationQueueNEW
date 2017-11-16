@@ -140,9 +140,9 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnGetHelp()
         {
-            const byte numberQueue = (byte)'C';
+            const string prefixQueue = "З";
             const string nameQueue = "Main";
-            await _model.TrainSelection(nameQueue, numberQueue);
+            await _model.TrainSelection(nameQueue, prefixQueue);
         }
 
         /// <summary>
@@ -150,9 +150,9 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnBuyTicket()
         {
-            const byte numberQueue = (byte)'T';
+            const string prefixQueue = "Я";
             const string nameQueue = "Main";
-            await _model.TrainSelection(nameQueue, numberQueue);
+            await _model.TrainSelection(nameQueue, prefixQueue);
         }
 
         /// <summary>
@@ -160,9 +160,9 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnBuyInterstateTicket()
         {
-            const byte numberQueue = (byte)'M';
+            const string prefixQueue = "А";
             const string nameQueue = "Main";
-            await _model.TrainSelection(nameQueue, numberQueue);
+            await _model.TrainSelection(nameQueue, prefixQueue);
         }
 
         /// <summary>
@@ -170,9 +170,9 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnBaggageCheckout()
         {
-            const byte numberQueue = (byte)'B';
+            const string prefixQueue = "Е";
             const string nameQueue = "Main";
-            await _model.TrainSelection(nameQueue, numberQueue);
+            await _model.TrainSelection(nameQueue, prefixQueue);
         }
 
         /// <summary>
@@ -180,9 +180,9 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnAdmin()
         {
-            const byte numberQueue = (byte)'A';
+            const string prefixQueue = "Л";
             const string nameQueue = "Main";
-            await _model.TrainSelection(nameQueue, numberQueue);
+            await _model.TrainSelection(nameQueue, prefixQueue);
         }
 
 

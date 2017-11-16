@@ -58,15 +58,6 @@ C:\Users\admin\Desktop\src_terminal_1btn\Communication\bin\Release\NModbus4.xml
 C:\Users\admin\Desktop\src_terminal_1btn\Communication\obj\Release\Communication.csprojResolveAssemblyReference.cache
 C:\Users\admin\Desktop\src_terminal_1btn\Communication\obj\Release\Communication.dll
 C:\Users\admin\Desktop\src_terminal_1btn\Communication\obj\Release\Communication.pdb
-D:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\Communication.dll
-D:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\Communication.pdb
-D:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\Library.dll
-D:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\NModbus4.dll
-D:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\Library.pdb
-D:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\NModbus4.xml
-D:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.csprojResolveAssemblyReference.cache
-D:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.dll
-D:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.pdb
 C:\Users\User\Desktop\Эл.очередь\src\Communication\bin\Release\Communication.dll
 C:\Users\User\Desktop\Эл.очередь\src\Communication\bin\Release\Communication.pdb
 C:\Users\User\Desktop\Эл.очередь\src\Communication\bin\Release\Library.dll

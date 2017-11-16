@@ -5,7 +5,6 @@
 	<CountPortion>1000</CountPortion>
   </LogSetting>
 
-  
   <Server>
     <Listener>
       <Port>50000</Port>
@@ -13,16 +12,7 @@
 	
     <SerialPorts>
 		<Serial>
-		  <Port>8</Port>
-		  <BaudRate>57600</BaudRate>
-		  <DataBits>8</DataBits>
-		  <StopBits>1</StopBits>
-		  <TimeRespon>250</TimeRespon>
-		  <TimeCycleReConnect>3000</TimeCycleReConnect>
-		</Serial>
-
-		<Serial>
-		  <Port>9</Port>
+		  <Port>1</Port>
 		  <BaudRate>57600</BaudRate>
 		  <DataBits>8</DataBits>
 		  <StopBits>1</StopBits>
@@ -32,17 +22,18 @@
 	</SerialPorts>
   </Server>
 
-  
+
   <Queues>
     <Queue Id="1" Name="Main">
-	    <Prefix Name="M" Priority="5"/>
-		<Prefix Name="A" Priority="9"/>
+	    <Prefix Name="З" Priority="5"/>
+		<Prefix Name="Я" Priority="9"/>
+        <Prefix Name="А" Priority="4"/>
 	</Queue>
   </Queues>
   
   
 <!-- Очереди: -->
-<!-- 1. Купить билет - префикс "К" --->
+<!-- 1. Купить билет - префикс "К" -->
 <!-- 2. Купить билет меж государственного сообщения - префикс "M" -->
 <!-- 3. Оформление групп пассажиров                 - префикс "Т" -->
 <!-- 4. Оформление маломобильных пассажиров         - префикс "Н" -->
@@ -53,23 +44,7 @@
 <!-- 9. Получить справку                            - префикс "" -->
   
     <Cashiers>
-	   <Cashier Id="1" Port="9" Prefix="C" MaxCountTryHanding="3"/>
-	   <Cashier Id="2" Port="9" Prefix="C" MaxCountTryHanding="3"/>
-	   <Cashier Id="3" Port="9" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="4" Port="9" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="5" Port="9" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="6" Port="9" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="7" Port="9" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="8" Port="9" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="9" Port="9" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="10" Port="9" Prefix="A" MaxCountTryHanding="3"/>
-	   <Cashier Id="11" Port="9" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="12" Port="9" Prefix="T" MaxCountTryHanding="3"/>
-
-	   <Cashier Id="13" Port="8" Prefix="M" MaxCountTryHanding="3"/>
-	   <Cashier Id="14" Port="8" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="15" Port="8" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="16" Port="8" Prefix="T" MaxCountTryHanding="3"/>
-	   <Cashier Id="17" Port="8" Queue="Main" Prefix="M,All" MaxCountTryHanding="3"/>
+	   <Cashier Id="1" Port="1" Prefix="C" MaxCountTryHanding="3"/>
+	   <!-- <Cashier Id="2" Port="1" Queue="Main" Prefix="M,All" MaxCountTryHanding="3"/> -->
     </Cashiers>
 </Root>

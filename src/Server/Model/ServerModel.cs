@@ -21,6 +21,7 @@ using Server.Settings;
 using Sound;
 using Terminal.Infrastructure;
 using System.Collections.Concurrent;
+using System.Text;
 
 namespace Server.Model
 {
@@ -93,6 +94,12 @@ namespace Server.Model
 
         public void LoadSetting()
         {
+            //DEBUG----------------------
+            //var encoding = Encoding.Unicode;
+            //var prefixQueueBytes = encoding.GetBytes("З").Take(2).ToArray();
+            //var nameQueue1 = encoding.GetString(prefixQueueBytes, 0, 2);
+            //DEBUG----------------------
+
             //ЗАГРУЗКА НАСТРОЕК----------------------------------------------------------------
             XmlListenerSettings xmlListener;
             IList<XmlSerialSettings> xmlSerials;
@@ -152,7 +159,7 @@ namespace Server.Model
                         provider.OutputData = provider.OutputData ?? new TerminalOutData();
 
                         //Найдем очередь к которой обращен запрос
-                        var prefixQueue = ((char)provider.InputData.NumberQueue).ToString();
+                        var prefixQueue = provider.InputData.PrefixQueue;
                         var nameQueue = provider.InputData.NameQueue;
                         var queue= QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, nameQueue, StringComparison.InvariantCultureIgnoreCase));
 
@@ -163,7 +170,7 @@ namespace Server.Model
                         {
                             //ИНФОРМАЦИЯ ОБ ОЧЕРЕДИ
                             case TerminalAction.Info:
-                                provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
+                                provider.OutputData.PrefixQueue = provider.InputData.PrefixQueue;
                                 provider.OutputData.CountElement = (ushort)queue.GetInseartPlace(prefixQueue);
                                 provider.OutputData.NumberElement = (ushort)(queue.GetCurrentTicketNumber + 1);
                                 provider.OutputData.AddedTime = DateTime.Now;
@@ -173,7 +180,7 @@ namespace Server.Model
                             case TerminalAction.Add:
                                 var ticket = queue.CreateTicket(prefixQueue);
 
-                                provider.OutputData.NumberQueue = provider.InputData.NumberQueue;
+                                provider.OutputData.PrefixQueue = provider.InputData.PrefixQueue;
                                 provider.OutputData.CountElement = ticket.CountElement;
                                 provider.OutputData.NumberElement = (ushort)ticket.NumberElement;
                                 provider.OutputData.AddedTime = ticket.AddedTime;
