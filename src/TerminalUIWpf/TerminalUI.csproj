@@ -86,9 +86,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModels\AppViewModel.cs" />
+    <Compile Include="ViewModels\BuyTicketViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
     <Compile Include="Views\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BuyTicketView.xaml.cs">
+      <DependentUpon>BuyTicketView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DialogView.xaml.cs">
       <DependentUpon>DialogView.xaml</DependentUpon>
@@ -127,6 +131,10 @@
   <ItemGroup />
   <ItemGroup>
     <Page Include="Views\AppView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BuyTicketView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

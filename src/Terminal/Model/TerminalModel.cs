@@ -21,6 +21,9 @@ namespace Terminal.Model
         public MasterTcpIp MasterTcpIp { get; set; }
         public PrintTicket PrintTicket { get; set; }
 
+        public bool IsConnectTcpIp => (MasterTcpIp != null && MasterTcpIp.IsConnect);
+
+
         private string _errorString;
         public string ErrorString
         {
@@ -108,10 +111,13 @@ namespace Terminal.Model
         }
 
 
-        public async Task TrainSelection(string nameQueue, string prefixQueue)
+        public async Task QueueSelection(string nameQueue, string prefixQueue)
         {
-            if (MasterTcpIp == null || !MasterTcpIp.IsConnect)
+            if(!IsConnectTcpIp)
                 return;
+
+            //if (MasterTcpIp == null || !MasterTcpIp.IsConnect)
+            //    return;
 
             //ЗАПРОС О СОСТОЯНИИ ОЧЕРЕДИ
             var provider = new Terminal2ServerExchangeDataProvider { InputData = new TerminalInData { NameQueue = nameQueue, PrefixQueue = prefixQueue, Action = TerminalAction.Info } };

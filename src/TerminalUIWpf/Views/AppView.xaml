@@ -1,14 +1,13 @@
-﻿<Window
-    x:Class="TerminalUIWpf.Views.AppView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    AllowDrop="False"
-    Focusable="False"
-    WindowState="Maximized"
-    WindowStyle="None"
-    mc:Ignorable="d">
+﻿<Window x:Class="TerminalUIWpf.Views.AppView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        AllowDrop="False"
+        Focusable="False"
+        WindowState="Maximized"
+        WindowStyle="None"
+        mc:Ignorable="d">
 
 
     <Window.Resources>
@@ -18,7 +17,7 @@
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="White" />
             <Setter Property="Margin" Value="1,12,1,12" />
-            <Setter Property="Padding" Value="15" />
+            <Setter Property="Padding" Value="11" />
             <Setter Property="IsEnabled" Value="{Binding Path=BtnEnable, Mode=OneWay}" />
             <Setter Property="VerticalAlignment" Value="Stretch" />
             <Setter Property="MaxWidth" Value="1200" />
@@ -59,71 +58,77 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid
-            Grid.Row="0"
-            Margin="0,0,0,25"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Background="Crimson">
+        <Grid Grid.Row="0"
+              Margin="0,0,0,25"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              Background="Crimson">
 
-            <TextBlock
-                MaxWidth="1000"
-                Padding="5,25,5,25"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                FontSize="100"
-                Foreground="White"
-                IsEnabled="{Binding Path=IsConnect, Mode=OneWay}"
-                Style="{StaticResource TextBlockMainStyle}"
-                Text="Выберите специалиста"
-                TextAlignment="Center"
-                TextWrapping="Wrap" />
+            <TextBlock MaxWidth="1000"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       FontSize="60"
+                       Foreground="White"
+                       IsEnabled="{Binding Path=IsConnect,
+                                           Mode=OneWay}"
+                       Padding="5,35,5,35"
+                       Style="{StaticResource TextBlockMainStyle}"
+                       Text="Выберите специалиста"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap" />
 
-            <TextBlock
-                MaxWidth="1000"
-                Padding="5,10,5,10"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                FontSize="70"
-                Foreground="White"
-                IsEnabled="{Binding Path=IsConnect, Mode=OneWay}"
-                Style="{StaticResource TextBlockErrorStyle}"
-                Text="ОТСУТСТВУЕТ СВЯЗЬ. Обратитесь пожалуйста к администратору."
-                TextAlignment="Center"
-                TextWrapping="Wrap" />
+            <TextBlock MaxWidth="1000"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       FontSize="60"
+                       Foreground="White"
+                       IsEnabled="{Binding Path=IsConnect,
+                                           Mode=OneWay}"
+                       Padding="5,35,5,35"
+                       Style="{StaticResource TextBlockErrorStyle}"
+                       Text="ОТСУТСТВУЕТ СВЯЗЬ."
+                       TextAlignment="Center"
+                       TextWrapping="WrapWithOverflow" />
         </Grid>
 
 
 
-        <Button
-            Name="BtnGetHelp"
-            Grid.Row="1"
-            Content="Получить справку"
-            Style="{StaticResource ButtonStyle}" />
+        <Button Name="BtnBuyTicket"
+                Grid.Row="1"
+                Content="Билеты"
+                Style="{StaticResource ButtonStyle}" />
 
-        <Button
-            Name="BtnBuyTicket"
-            Grid.Row="2"
-            Content="Купить билет"
-            Style="{StaticResource ButtonStyle}" />
+        <Button Name="BtnBuyTicket1"
+                Grid.Row="2"
+                Content="Получить справку"
+                Style="{StaticResource ButtonStyle}" />
 
-        <Button
-            Name="BtnBuyInterstateTicket"
-            Grid.Row="3"
-            Content="Купить билет межгос. сообщения"
-            Style="{StaticResource ButtonStyle}" />
+        <Button Name="BtnBuyInterstateTicket"
+                Grid.Row="3"
+                Content="Оформить багаж/живность"
+                Style="{StaticResource ButtonStyle}" />
 
-        <Button
-            Name="BtnBaggageCheckout"
-            Grid.Row="4"
-            Content="Оформить багаж"
-            Style="{StaticResource ButtonStyle}" />
+        <Button Name="BtnAdmin"
+                Grid.Row="4"
+                Content="Администратор"
+                Style="{StaticResource ButtonStyle}" />
 
-        <Button
-            Name="BtnAdmin"
-            Grid.Row="5"
-            Content="Администратор"
-            Style="{StaticResource ButtonStyle}" />
+
+
+        <TextBlock Grid.Row="5"
+                   MaxWidth="1200"
+                   Margin="5,25,5,5"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   Background="Cornsilk"
+                   FontSize="32"
+                   Foreground="Black"
+                   IsEnabled="{Binding Path=IsConnect,
+                                       Mode=OneWay}"
+                   Padding="5,5,5,5"
+                   Text="Уважаемые пассажиры! Распечатать проездные документы ранее оформленные, через Интернет и приобрести проездные документы самостоятельно при наличии банковской карты (кроме льготных категорий пассажиров) можно в  транзакционных терминалах самообслуживания (ТТС) или в любой кассе."
+                   TextAlignment="Center"
+                   TextWrapping="Wrap" />
 
     </Grid>
 </Window>

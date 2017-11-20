@@ -136,23 +136,25 @@ namespace TerminalUIWpf.ViewModels
         #region Methode
 
         /// <summary>
-        /// Получить справку
+        /// Открыть окно покупки билетов
         /// </summary>
-        public async Task BtnGetHelp()
+        public void BtnBuyTicket()
         {
-            const string prefixQueue = "З";
-            const string nameQueue = "Main";
-            await _model.TrainSelection(nameQueue, prefixQueue);
+            if(!_model.IsConnectTcpIp)
+                return;
+
+            var dialog = new BuyTicketViewModel(_model);
+            _windowManager.ShowDialog(dialog);
         }
 
         /// <summary>
         /// Купить билет
         /// </summary>
-        public async Task BtnBuyTicket()
+        public async Task BtnBuyTicket1()
         {
             const string prefixQueue = "Я";
             const string nameQueue = "Main";
-            await _model.TrainSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue);
         }
 
         /// <summary>
@@ -162,7 +164,7 @@ namespace TerminalUIWpf.ViewModels
         {
             const string prefixQueue = "А";
             const string nameQueue = "Main";
-            await _model.TrainSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue);
         }
 
         /// <summary>
@@ -172,7 +174,7 @@ namespace TerminalUIWpf.ViewModels
         {
             const string prefixQueue = "Е";
             const string nameQueue = "Main";
-            await _model.TrainSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue);
         }
 
         /// <summary>
@@ -182,7 +184,7 @@ namespace TerminalUIWpf.ViewModels
         {
             const string prefixQueue = "Л";
             const string nameQueue = "Main";
-            await _model.TrainSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue);
         }
 
 
