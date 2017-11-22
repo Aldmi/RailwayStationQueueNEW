@@ -148,21 +148,11 @@ namespace TerminalUIWpf.ViewModels
         }
 
         /// <summary>
-        /// Купить билет
+        /// Получить справку
         /// </summary>
-        public async Task BtnBuyTicket1()
+        public async Task BtnGetHelp()
         {
-            const string prefixQueue = "Я";
-            const string nameQueue = "Main";
-            await _model.QueueSelection(nameQueue, prefixQueue);
-        }
-
-        /// <summary>
-        /// Купить билет меж государственного сообщения
-        /// </summary>
-        public async Task BtnBuyInterstateTicket()
-        {
-            const string prefixQueue = "А";
+            const string prefixQueue = "С";
             const string nameQueue = "Main";
             await _model.QueueSelection(nameQueue, prefixQueue);
         }
@@ -172,7 +162,7 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnBaggageCheckout()
         {
-            const string prefixQueue = "Е";
+            const string prefixQueue = "Б";
             const string nameQueue = "Main";
             await _model.QueueSelection(nameQueue, prefixQueue);
         }
@@ -182,7 +172,7 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnAdmin()
         {
-            const string prefixQueue = "Л";
+            const string prefixQueue = "А";
             const string nameQueue = "Main";
             await _model.QueueSelection(nameQueue, prefixQueue);
         }

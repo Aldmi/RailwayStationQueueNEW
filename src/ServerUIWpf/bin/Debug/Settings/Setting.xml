@@ -23,28 +23,25 @@
   </Server>
 
 
-  <Queues>
-    <Queue Id="1" Name="Main">
-	    <Prefix Name="З" Priority="5"/>
-		<Prefix Name="Я" Priority="9"/>
-        <Prefix Name="А" Priority="4"/>
-	</Queue>
-  </Queues>
-  
-  
-<!-- Очереди: -->
-<!-- 1. Купить билет - префикс "К" -->
-<!-- 2. Купить билет меж государственного сообщения - префикс "M" -->
-<!-- 3. Оформление групп пассажиров                 - префикс "Т" -->
-<!-- 4. Оформление маломобильных пассажиров         - префикс "Н" -->
-<!-- 5. Возврат                                     - префикс "В" -->
-<!-- 6. Переоформление                              - префикс "Р" -->
-<!-- 7. Восстановление билетов                      - префикс "С" -->
-<!-- 8. Замена персональных данных                  - префикс "Е" -->
-<!-- 9. Получить справку                            - префикс "" -->
-  
-    <Cashiers>
+	<Queues>
+		<Queue Id="1" Name="Main">
+			<Prefix Name="К" Priority="5"/>  <!-- 1. Купить билет -->
+			<Prefix Name="М" Priority="6"/>  <!-- 2. Купить билет в международном сообщении -->
+			<Prefix Name="Г" Priority="7"/>  <!-- 3. Оформление групп пассажиров-->
+			<Prefix Name="Н" Priority="10"/> <!-- 4. оформление маломобильных пассажиров -->
+			<Prefix Name="В" Priority="8"/>  <!-- 5. Возврат -->
+			<Prefix Name="П" Priority="8"/>  <!-- 6. Переоформление -->
+			<Prefix Name="У" Priority="8"/>  <!-- 7. Восстановление утеренных, испорченных билетов -->
+			<Prefix Name="З" Priority="7"/>  <!-- 8. Замена персональных данных-->
+			<Prefix Name="С" Priority="4"/>  <!-- 9. Получить справку -->
+			<Prefix Name="Б" Priority="5"/>  <!-- 10. Оформить Багаж/живность -->
+			<Prefix Name="А" Priority="4"/>  <!-- 12. Администратор -->
+		</Queue>
+	</Queues>
+
+
+	<Cashiers>
 	   <Cashier Id="1" Port="1" Prefix="C" MaxCountTryHanding="3"/>
 	   <!-- <Cashier Id="2" Port="1" Queue="Main" Prefix="M,All" MaxCountTryHanding="3"/> -->
-    </Cashiers>
+	</Cashiers>
 </Root>
