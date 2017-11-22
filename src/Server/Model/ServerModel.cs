@@ -94,12 +94,6 @@ namespace Server.Model
 
         public void LoadSetting()
         {
-            //DEBUG----------------------
-            //var encoding = Encoding.Unicode;
-            //var prefixQueueBytes = encoding.GetBytes("З").Take(2).ToArray();
-            //var nameQueue1 = encoding.GetString(prefixQueueBytes, 0, 2);
-            //DEBUG----------------------
-
             //ЗАГРУЗКА НАСТРОЕК----------------------------------------------------------------
             XmlListenerSettings xmlListener;
             IList<XmlSerialSettings> xmlSerials;
@@ -140,10 +134,6 @@ namespace Server.Model
                 var queue= new QueuePriority (xmlQueue.Name, xmlQueue.Prefixes);
                 QueuePriorities.Add(queue);
             }
-
-
-          //  var queuePriority  = new QueuePriority("Main", new List<Prefix> { new Prefix { Name = "C", Priority = 9 }, new Prefix { Name = "T", Priority = 5 }, new Prefix { Name = "M", Priority = 1 } });
-      
 
 
             //СОЗДАНИЕ СЛУШАТЕЛЯ ДЛЯ ТЕРМИНАЛОВ-------------------------------------------------------
@@ -193,56 +183,35 @@ namespace Server.Model
             };
 
             //DEBUG------ИНИЦИАЛИЗАЦИЯ ОЧЕРЕДИ---------------------
-            for (int i = 0; i < 100; i++)
-            {
-                var ticket2 = TicketFactoryGetHelp.Create((ushort)QueueGetHelp.Count);
-                QueueGetHelp.Enqueue(ticket2);
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    var ticket2 = TicketFactoryGetHelp.Create((ushort)QueueGetHelp.Count);
+            //    QueueGetHelp.Enqueue(ticket2);
 
-                ticket2 = TicketFactoryBuyTicket.Create((ushort)QueueBuyTicket.Count);
-                QueueBuyTicket.Enqueue(ticket2);
+            //    ticket2 = TicketFactoryBuyTicket.Create((ushort)QueueBuyTicket.Count);
+            //    QueueBuyTicket.Enqueue(ticket2);
 
-                ticket2 = TicketFactoryBaggageCheckout.Create((ushort)QueueBaggageCheckout.Count);
-                QueueBaggageCheckout.Enqueue(ticket2);
+            //    ticket2 = TicketFactoryBaggageCheckout.Create((ushort)QueueBaggageCheckout.Count);
+            //    QueueBaggageCheckout.Enqueue(ticket2);
 
-                ticket2 = TicketFactoryAdmin.Create((ushort)QueueAdmin.Count);
-                QueueAdmin.Enqueue(ticket2);
+            //    ticket2 = TicketFactoryAdmin.Create((ushort)QueueAdmin.Count);
+            //    QueueAdmin.Enqueue(ticket2);
 
-                ticket2 = TicketFactoryBuyInterstateTicket.Create((ushort)QueueBuyInterstateTicket.Count);
-                QueueBuyInterstateTicket.Enqueue(ticket2);
-            }
+            //    ticket2 = TicketFactoryBuyInterstateTicket.Create((ushort)QueueBuyInterstateTicket.Count);
+            //    QueueBuyInterstateTicket.Enqueue(ticket2);
+            //}
             //DEBUG------------------------------
-
 
 
             //СОЗДАНИЕ КАССИРОВ------------------------------------------------------------------------------------------------
             foreach (var xmlCash in xmlCashier)
             {
-                ConcurrentQueue<TicketItem> queueTicket = null;
-                switch (xmlCash.Prefix)
-                {
-                    case "C":
-                        queueTicket = QueueGetHelp;
-                        break;
-
-                    case "T":
-                        queueTicket = QueueBuyTicket;
-                        break;
-
-                    case "M":
-                        queueTicket = QueueBuyInterstateTicket;
-                        break;
-
-                    case "B":
-                        queueTicket = QueueBaggageCheckout;
-                        break;
-
-                    case "A":
-                        queueTicket = QueueAdmin;
-                        break;
-                }
-
-                var casher = new Сashier(xmlCash.Id, queueTicket, xmlCash.MaxCountTryHanding);
-                DeviceCashiers.Add(new DeviceCashier(casher, xmlCash.Port));
+               var queue= QueuePriorities.FirstOrDefault(q => q.Name == xmlCash.NameQueue);
+               if (queue != null)
+               {
+                   var casher = new Сashier(xmlCash.Id, xmlCash.Prefixs, queue, xmlCash.MaxCountTryHanding);
+                   DeviceCashiers.Add(new DeviceCashier(casher, xmlCash.Port));
+               }
             }
 
 

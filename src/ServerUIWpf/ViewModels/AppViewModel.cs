@@ -98,9 +98,6 @@ namespace ServerUi.ViewModels
 
             var settingUi= LoadSettingUi();
             ApplySetting(settingUi);
-
-
-
         }
 
 

@@ -173,7 +173,7 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnAdmin()
         {
             const string prefixQueue = "А";
-            const string nameQueue = "Main";
+            const string nameQueue = "Admin"; //Main
             await _model.QueueSelection(nameQueue, prefixQueue);
         }
 

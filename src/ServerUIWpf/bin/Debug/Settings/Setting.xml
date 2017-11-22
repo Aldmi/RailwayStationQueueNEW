@@ -35,13 +35,16 @@
 			<Prefix Name="З" Priority="7"/>  <!-- 8. Замена персональных данных-->
 			<Prefix Name="С" Priority="4"/>  <!-- 9. Получить справку -->
 			<Prefix Name="Б" Priority="5"/>  <!-- 10. Оформить Багаж/живность -->
+		</Queue>
+		
+		<Queue Id="2" Name="Admin">
 			<Prefix Name="А" Priority="4"/>  <!-- 12. Администратор -->
 		</Queue>
 	</Queues>
 
 
 	<Cashiers>
-	   <Cashier Id="1" Port="1" Prefix="C" MaxCountTryHanding="3"/>
+	   <Cashier Id="1" Port="1" NameQueue="Main" Prefix="Г,M,All" MaxCountTryHanding="3"/>
 	   <!-- <Cashier Id="2" Port="1" Queue="Main" Prefix="M,All" MaxCountTryHanding="3"/> -->
 	</Cashiers>
 </Root>

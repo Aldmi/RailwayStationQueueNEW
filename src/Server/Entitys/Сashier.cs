@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using Communication.Annotations;
 using System.Collections.Concurrent;
 
+
 namespace Server.Entitys
 {
     public class Сashier : INotifyPropertyChanged
@@ -12,7 +13,8 @@ namespace Server.Entitys
         #region Fields
 
         private readonly byte _maxCountTryHandin;
-        private readonly ConcurrentQueue<TicketItem> _queueTicket;
+        private readonly QueuePriority _queueTicket;
+        private readonly List<string> _prefixes;   //префиксы в порядке приоритета.
         private TicketItem _currentTicket;
 
         #endregion
@@ -22,11 +24,12 @@ namespace Server.Entitys
 
         #region ctor
 
-        public Сashier(byte id, ConcurrentQueue<TicketItem> queueTicket, byte maxCountTryHandin1)
+        public Сashier(byte id, List<string> prefixes, QueuePriority queueTicket, byte maxCountTryHanding)
         {
             Id = id;
+            _prefixes = prefixes;
             _queueTicket = queueTicket;
-            _maxCountTryHandin = maxCountTryHandin1;
+            _maxCountTryHandin = maxCountTryHanding;
         }
 
         #endregion
@@ -72,26 +75,14 @@ namespace Server.Entitys
 
             if (!_queueTicket.IsEmpty && CurrentTicket == null)
             {
-                TicketItem newTicket;
-                if (_queueTicket.TryPeek(out newTicket))
+                var newTicket = _queueTicket.PeekByPriority(_prefixes);
+                if (newTicket != null)
                 {
                     newTicket.Сashbox = Id;
                     return newTicket;
                 }
             }
             return null;
-
-
-            //if (!_queueTicket.IsEmpty && CurrentTicket == null)
-            //{
-            //    TicketItem newTicket;
-            //    if (_queueTicket.TryPeek(out newTicket))
-            //    {
-            //        newTicket.Сashbox = Id;
-            //        return newTicket;
-            //    }
-            //}
-            //return null;
         }
 
 
@@ -102,13 +93,19 @@ namespace Server.Entitys
         {
             if (!_queueTicket.IsEmpty && CurrentTicket == null)
             {
-                TicketItem newTicket;
-                if (_queueTicket.TryDequeue(out newTicket))
+                TicketItem newTicket = _queueTicket.DequeueByPriority(_prefixes);
+                if (newTicket != null)
                 {
                     newTicket.Сashbox = Id;
                     CurrentTicket = newTicket;
                     CurrentTicket.CountTryHandling++;
                 }
+                //if (_queueTicket.TryDequeue(out newTicket))
+                //{
+                //    newTicket.Сashbox = Id;
+                //    CurrentTicket = newTicket;
+                //    CurrentTicket.CountTryHandling++;
+                //}
             }
         }
 

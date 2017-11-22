@@ -11,11 +11,15 @@ namespace Server.Entitys
     {
         #region prop
 
+        private object _locker = new object();//TODO: сделать критичеакие секции на доступ к Queue
+
         public string Name { get; set; }
         public List<Prefix> Prefixes { get; set; } // список типов очередей
 
         private ConcurrentQueue<TicketItem> Queue { get; set; } = new ConcurrentQueue<TicketItem>();
         public int Count => Queue.Count;
+        public bool IsEmpty => Queue.IsEmpty;
+
 
         public TicketFactoryNew TicketFactory { get; set; } = new TicketFactoryNew();
         public uint GetCurrentTicketNumber => TicketFactory.GetCurrentTicketNumber;
@@ -72,19 +76,61 @@ namespace Server.Entitys
         }
 
 
-
+        /// <summary>
+        /// Добавить элемент в очередь
+        /// </summary>
         public void Enqueue(TicketItem item)
         {
             var items= new List<TicketItem>(Queue) {item};
             var ordered= items.OrderByDescending(t => t.Priority);
-
             Queue= new ConcurrentQueue<TicketItem>(ordered);
         }
 
 
-        public TicketItem Dequeue()
+
+        /// <summary>
+        /// Показать первый элемент из очереди, по совпадению с элементами prefixes
+        /// </summary>
+        public TicketItem PeekByPriority(IList<string> prefixes)
         {
-            throw new NotImplementedException();
+            var priorityItem = GetFirstPriorityItem(prefixes);
+            return priorityItem;
+        }
+
+
+        /// <summary>
+        /// Извлечь первый элемент из очереди, по совпадению с элементами prefixes
+        /// </summary>
+        public TicketItem DequeueByPriority(IList<string> prefixes)
+        {
+            var priorityItem = GetFirstPriorityItem(prefixes);
+            if (priorityItem != null)
+            {
+                var items = new List<TicketItem>(Queue);
+                items.Remove(priorityItem);
+                Queue = new ConcurrentQueue<TicketItem>(items);
+                return priorityItem;
+            }
+            return null;
+        }
+
+
+        private TicketItem GetFirstPriorityItem(IEnumerable<string> prefixes)
+        {
+            foreach (var pref in prefixes)
+            {
+                if (pref == "All")
+                {
+                   return Queue.FirstOrDefault();
+                }
+
+                var priorityItem = Queue.FirstOrDefault(q => q.Prefix == pref);
+                if (priorityItem != null)
+                {
+                    return priorityItem;
+                }
+            }
+            return null;
         }
 
         #endregion

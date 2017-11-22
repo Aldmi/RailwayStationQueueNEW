@@ -10,7 +10,8 @@ namespace Server.Settings
 
         public byte Id { get; set; }
         public string Port { get; set; }
-        public string Prefix { get; set; }
+        public string NameQueue { get; set; }
+        public List<string> Prefixs { get; set; }
         public byte MaxCountTryHanding { get; set; }
 
         #endregion
@@ -20,11 +21,12 @@ namespace Server.Settings
 
         #region ctor
 
-        private XmlCashierSettings(string id, string port, string prefix, string maxCountTryHanding)
+        private XmlCashierSettings(string id, string port, string nameQueue, List<string> prefixs, string maxCountTryHanding)
         {
             Id = byte.Parse(id);
             Port = port;
-            Prefix = prefix;
+            NameQueue = nameQueue;
+            Prefixs = prefixs;
             MaxCountTryHanding = byte.Parse(maxCountTryHanding);
         }
 
@@ -33,9 +35,8 @@ namespace Server.Settings
 
 
 
+
         #region Methode
-
-
 
         public static List<XmlCashierSettings> LoadXmlSetting(XElement xml)
         {
@@ -44,10 +45,21 @@ namespace Server.Settings
                 select new XmlCashierSettings(
                            (string)el.Attribute("Id"),
                            (string)el.Attribute("Port"),
-                           (string)el.Attribute("Prefix"),
+                           (string)el.Attribute("NameQueue"),             
+                           ParsePrefix((string)el.Attribute("Prefix")), 
                            (string)el.Attribute("MaxCountTryHanding"));
 
             return sett.ToList();
+        }
+
+
+
+        private static List<string> ParsePrefix(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return null;
+
+            return str.Split(',').ToList();
         }
 
         #endregion
