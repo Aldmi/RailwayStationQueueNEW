@@ -89,21 +89,21 @@ namespace Server.Entitys
 
 
         /// <summary>
-        /// Показать первый элемент из очереди, по совпадению с элементами prefixes
+        /// Показать первый элемент из очереди, по совпадению с элементами cachier.prefixes
         /// </summary>
-        public TicketItem PeekByPriority(IList<string> prefixes)
+        public TicketItem PeekByPriority(ICasher cachier)
         {
-            var priorityItem = GetFirstPriorityItem(prefixes);
+            var priorityItem = GetFirstPriorityItem(cachier);
             return priorityItem;
         }
 
 
         /// <summary>
-        /// Извлечь первый элемент из очереди, по совпадению с элементами prefixes
+        /// Извлечь первый элемент из очереди, по совпадению с элементами cachier.prefixes
         /// </summary>
-        public TicketItem DequeueByPriority(IList<string> prefixes)
+        public TicketItem DequeueByPriority(ICasher cachier)
         {
-            var priorityItem = GetFirstPriorityItem(prefixes);
+            var priorityItem = GetFirstPriorityItem(cachier);
             if (priorityItem != null)
             {
                 var items = new List<TicketItem>(Queue);
@@ -115,13 +115,25 @@ namespace Server.Entitys
         }
 
 
-        private TicketItem GetFirstPriorityItem(IEnumerable<string> prefixes)
+        private TicketItem GetFirstPriorityItem(ICasher cachier)
         {
-            foreach (var pref in prefixes)
+            foreach (var pref in cachier.Prefixes)
             {
                 if (pref == "All")
                 {
-                   return Queue.FirstOrDefault();
+                    //Поиск превого билета который не попадает под исключения
+                    if (cachier.PrefixesExclude != null && cachier.PrefixesExclude.Any())
+                    {
+                        foreach (var item in Queue)
+                        {
+                            if (!cachier.PrefixesExclude.Contains(item.Prefix))
+                                return item;
+                        }
+                        return null;
+                    }
+
+                    //Список исключенгий пуст, вернем первый элемент
+                    return Queue.FirstOrDefault();
                 }
 
                 var priorityItem = Queue.FirstOrDefault(q => q.Prefix == pref);

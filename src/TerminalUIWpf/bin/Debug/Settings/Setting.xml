@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Root>
   <Server>
-	   <IpAdress>192.168.0.47</IpAdress>
+	   <IpAdress>192.168.1.33</IpAdress>
 	   <IpPort>50000</IpPort>
 	   <TimeRespoune>1000</TimeRespoune>
 	   <NumberTryingTakeData>1</NumberTryingTakeData>

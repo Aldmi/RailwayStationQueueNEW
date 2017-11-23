@@ -44,7 +44,7 @@
 
 
 	<Cashiers>
-	   <Cashier Id="1" Port="1" NameQueue="Main" Prefix="Г,M,All" MaxCountTryHanding="3"/>
-	   <!-- <Cashier Id="2" Port="1" Queue="Main" Prefix="M,All" MaxCountTryHanding="3"/> -->
+	   <Cashier Id="1" Port="1" NameQueue="Main" Prefix="Г,M,All,В,Б" MaxCountTryHanding="3"/>
+	   <Cashier Id="2" Port="1" NameQueue="Admin" Prefix="А" MaxCountTryHanding="3"/>
 	</Cashiers>
 </Root>

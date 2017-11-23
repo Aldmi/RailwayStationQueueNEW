@@ -11,7 +11,8 @@ namespace Server.Settings
         public byte Id { get; set; }
         public string Port { get; set; }
         public string NameQueue { get; set; }
-        public List<string> Prefixs { get; set; }
+        public List<string> Prefixs { get; set; }    //Указываем в порядке приоритета обработки, All - обработка с головы очереди, префиксы которые идут за All - это искючая обработку.       
+
         public byte MaxCountTryHanding { get; set; }
 
         #endregion

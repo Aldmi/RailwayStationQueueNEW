@@ -1259,6 +1259,21 @@ namespace ServerUi.ViewModels
             _model.DeviceCashiers[idCashier - 1].Cashier.SuccessfulHandling();
         }
 
+
+        public void Redirect(int idCashier)
+        {
+            if (_model.AdminCasher != null)
+            {
+                var redirectTicket= _model.DeviceCashiers[idCashier - 1].Cashier.CurrentTicket;
+                if (redirectTicket != null)
+                {
+                    _model.AdminCasher.Cashier.AddRedirectedTicket(redirectTicket);
+                }
+            }
+
+            _model.DeviceCashiers[idCashier - 1].Cashier.SuccessfulHandling();
+        }
+
         #endregion
 
     }

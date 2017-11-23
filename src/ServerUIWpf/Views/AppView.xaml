@@ -1101,6 +1101,12 @@
             </Button>
             <Button Width="35"
                     Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Redirect(1)">
+                1Р
+            </Button>
+            <Button Width="35"
+                    Height="25"
                     Margin="2,2,10,2"
                     cal:Message.Attach="Dell(1)">
                 1У
@@ -1111,6 +1117,12 @@
                     Margin="2"
                     cal:Message.Attach="Add(2)">
                 2Д
+            </Button>
+            <Button Width="35"
+                    Height="25"
+                    Margin="2"
+                    cal:Message.Attach="Redirect(2)">
+                1Р
             </Button>
             <Button Width="35"
                     Height="25"

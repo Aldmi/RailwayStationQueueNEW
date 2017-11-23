@@ -8,29 +8,26 @@ using System.Collections.Concurrent;
 
 namespace Server.Entitys
 {
-    public class Сashier : INotifyPropertyChanged
+    /// <summary>
+    /// Узкий интрефейс кассира
+    /// </summary>
+    public interface ICasher : INotifyPropertyChanged
+    {
+        List<string> Prefixes { get; }
+        List<string> PrefixesExclude { get; }
+    }
+
+
+
+    public class Сashier : ICasher
     {
         #region Fields
 
         private readonly byte _maxCountTryHandin;
         private readonly QueuePriority _queueTicket;
-        private readonly List<string> _prefixes;   //префиксы в порядке приоритета.
-        private TicketItem _currentTicket;
 
-        #endregion
-
-
-
-
-        #region ctor
-
-        public Сashier(byte id, List<string> prefixes, QueuePriority queueTicket, byte maxCountTryHanding)
-        {
-            Id = id;
-            _prefixes = prefixes;
-            _queueTicket = queueTicket;
-            _maxCountTryHandin = maxCountTryHanding;
-        }
+        // Внутренняя очередь кассира, хранит Перенаправленные билеты, самая приоритетная на извлечение.
+        private readonly Queue<TicketItem> _internalQueueTicket = new Queue<TicketItem>(); 
 
         #endregion
 
@@ -38,7 +35,11 @@ namespace Server.Entitys
 
 
         #region prop
+        public byte Id { get; }
+        public List<string> Prefixes { get; }
+        public List<string> PrefixesExclude { get; }
 
+        private TicketItem _currentTicket;
         public TicketItem CurrentTicket
         {
             get { return _currentTicket; }
@@ -51,9 +52,30 @@ namespace Server.Entitys
             }
         }
 
-        public byte Id { get; }
+        #endregion
+
+
+
+
+        #region ctor
+
+        public Сashier(byte id, List<string> prefixes, QueuePriority queueTicket, byte maxCountTryHanding)
+        {
+            Id = id;
+            Prefixes = prefixes;
+            _queueTicket = queueTicket;
+            _maxCountTryHandin = maxCountTryHanding;
+
+           //Выделить префиксы идущие за All.
+           var prefixExclude= Prefixes.SkipWhile(p => p != "All").ToList();
+           if (prefixExclude.Count > 1)
+           {
+               PrefixesExclude = prefixExclude.Skip(1).ToList();
+           }
+        }
 
         #endregion
+
 
 
 
@@ -73,9 +95,18 @@ namespace Server.Entitys
                 return CurrentTicket;
             }
 
+            //Если внутреняя очередь не пуста, работаем с ней
+            if (_internalQueueTicket != null && _internalQueueTicket.Any())
+            {
+                var newTicket = _internalQueueTicket.Peek();
+                newTicket.Сashbox = Id;
+                return newTicket;
+            }
+
+            //Работаем с внешней очередью
             if (!_queueTicket.IsEmpty && CurrentTicket == null)
             {
-                var newTicket = _queueTicket.PeekByPriority(_prefixes);
+                var newTicket = _queueTicket.PeekByPriority(this);
                 if (newTicket != null)
                 {
                     newTicket.Сashbox = Id;
@@ -91,21 +122,26 @@ namespace Server.Entitys
         /// </summary>   
         public void SuccessfulStartHandling()
         {
+            //Если внутреняя очередь не пуста, работаем с ней
+            if (_internalQueueTicket != null && _internalQueueTicket.Any())
+            {
+                var newTicket = _internalQueueTicket.Dequeue();
+                newTicket.Сashbox = Id;
+                CurrentTicket = newTicket;
+                CurrentTicket.CountTryHandling++;
+                return;
+            }
+
+            //Работаем с внешней очередью
             if (!_queueTicket.IsEmpty && CurrentTicket == null)
             {
-                TicketItem newTicket = _queueTicket.DequeueByPriority(_prefixes);
+                TicketItem newTicket = _queueTicket.DequeueByPriority(this);
                 if (newTicket != null)
                 {
                     newTicket.Сashbox = Id;
                     CurrentTicket = newTicket;
                     CurrentTicket.CountTryHandling++;
                 }
-                //if (_queueTicket.TryDequeue(out newTicket))
-                //{
-                //    newTicket.Сashbox = Id;
-                //    CurrentTicket = newTicket;
-                //    CurrentTicket.CountTryHandling++;
-                //}
             }
         }
 
@@ -133,6 +169,7 @@ namespace Server.Entitys
             return CurrentTicket;
         }
 
+
         public void DisconectHandling()
         {
             if (CurrentTicket != null)
@@ -140,6 +177,15 @@ namespace Server.Entitys
                 _queueTicket.Enqueue(CurrentTicket);
                 CurrentTicket = null;
             }
+        }
+
+
+        /// <summary>
+        /// Добавить перенаправленный билет
+        /// </summary>
+        public void AddRedirectedTicket(TicketItem ticket)
+        {
+            _internalQueueTicket.Enqueue(ticket);
         }
 
         #endregion

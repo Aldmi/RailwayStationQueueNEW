@@ -29,18 +29,6 @@ namespace Server.Model
     {
         #region prop
 
-        public TicketFactory TicketFactoryGetHelp { get; } = new TicketFactory("C");              //Получить справку
-        public TicketFactory TicketFactoryBuyTicket { get; } = new TicketFactory("T");            //Купить билет
-        public TicketFactory TicketFactoryBuyInterstateTicket { get; } = new TicketFactory("M");  //Купить билет меж государственного сообщения
-        public TicketFactory TicketFactoryBaggageCheckout { get; } = new TicketFactory("B");      //Оформить багаж
-        public TicketFactory TicketFactoryAdmin { get; } = new TicketFactory("A");                //Администратор
-
-        public ConcurrentQueue<TicketItem> QueueGetHelp { get; set; } = new ConcurrentQueue<TicketItem>();
-        public ConcurrentQueue<TicketItem> QueueBuyTicket { get; set; } = new ConcurrentQueue<TicketItem>();
-        public ConcurrentQueue<TicketItem> QueueBuyInterstateTicket { get; set; } = new ConcurrentQueue<TicketItem>();
-        public ConcurrentQueue<TicketItem> QueueBaggageCheckout { get; set; } = new ConcurrentQueue<TicketItem>();
-        public ConcurrentQueue<TicketItem> QueueAdmin { get; set; } = new ConcurrentQueue<TicketItem>();
-
         public List<QueuePriority> QueuePriorities { get; set; }= new List<QueuePriority>();
 
 
@@ -53,11 +41,12 @@ namespace Server.Model
         public SoundQueue SoundQueue { get; set; } = new SoundQueue(new SoundPlayer(), new SoundNameService(), 100);
 
 
-        public List<MasterSerialPort> MasterSerialPorts { get; set; } = new List<MasterSerialPort>();
-        public List<DeviceCashier> DeviceCashiers { get; set; } = new List<DeviceCashier>();
-        public List<CashierExchangeService> CashierExchangeServices { get; set; } = new List<CashierExchangeService>();
+        public List<MasterSerialPort> MasterSerialPorts { get; } = new List<MasterSerialPort>();
+        public List<DeviceCashier> DeviceCashiers { get; } = new List<DeviceCashier>();
+        public DeviceCashier AdminCasher { get; private set; } //Ссылка на администратора кассира (сам кассир находится в DeviceCashiers)
+        public List<CashierExchangeService> CashierExchangeServices { get; } = new List<CashierExchangeService>();
 
-        public List<Task> BackGroundTasks { get; set; } = new List<Task>();
+        public List<Task> BackGroundTasks { get; } = new List<Task>();
 
         private string _errorString;
         public string ErrorString
@@ -213,6 +202,7 @@ namespace Server.Model
                    DeviceCashiers.Add(new DeviceCashier(casher, xmlCash.Port));
                }
             }
+            AdminCasher = DeviceCashiers.FirstOrDefault(d => d.Cashier.Prefixes.Contains("А"));
 
 
             //СОЗДАНИЕ ПОСЛЕД. ПОРТА ДЛЯ ОПРОСА КАССИРОВ-----------------------------------------------------------------------
