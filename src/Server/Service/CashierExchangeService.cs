@@ -13,6 +13,7 @@ namespace Server.Service
         #region field
 
         private readonly List<DeviceCashier> _deviceCashiers;
+        private readonly DeviceCashier _adminCashier;
         private readonly ushort _timeRespone;
 
         private int _lastSyncLabel;
@@ -24,9 +25,10 @@ namespace Server.Service
 
         #region ctor
 
-        public CashierExchangeService(List<DeviceCashier> deviceCashiers, ushort timeRespone)
+        public CashierExchangeService(List<DeviceCashier> deviceCashiers, DeviceCashier adminCashier, ushort timeRespone)
         {
             _deviceCashiers = deviceCashiers;
+            _adminCashier = adminCashier;
             _timeRespone = timeRespone;
         }
 
@@ -44,8 +46,8 @@ namespace Server.Service
 
             foreach (var devCashier in _deviceCashiers)              //Запуск опроса кассиров
             {
-                var readProvider= new Server2CashierReadDataProvider { InputData = devCashier.Cashier.Id };
-                devCashier.DataExchangeSuccess= await port.DataExchangeAsync(_timeRespone, readProvider, ct);
+                var readProvider = new Server2CashierReadDataProvider { InputData = devCashier.Cashier.Id };
+                devCashier.DataExchangeSuccess = await port.DataExchangeAsync(_timeRespone, readProvider, ct);
 
                 if (!devCashier.IsConnect)
                 {
@@ -86,7 +88,19 @@ namespace Server.Service
                             await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                             if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
                             {
-                             devCashier.Cashier.SuccessfulStartHandling();
+                                devCashier.Cashier.SuccessfulStartHandling();
+                            }
+                            break;
+
+                        case CashierHandling.IsRedirectHandling:
+                            if (_adminCashier != null)
+                            {
+                                var redirectTicket = devCashier.Cashier.CurrentTicket;
+                                if (redirectTicket != null)
+                                {
+                                    _adminCashier.Cashier.AddRedirectedTicket(redirectTicket);
+                                }
+                                devCashier.Cashier.SuccessfulHandling();
                             }
                             break;
 
@@ -97,7 +111,27 @@ namespace Server.Service
                             await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                             if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
                             {
-                             devCashier.Cashier.SuccessfulStartHandling();
+                                devCashier.Cashier.SuccessfulStartHandling();
+                            }
+                            break;
+
+                        case CashierHandling.IsRedirectAndStartHandling:
+                            if (_adminCashier != null)
+                            {
+                                var redirectTicket = devCashier.Cashier.CurrentTicket;
+                                if (redirectTicket != null)
+                                {
+                                    _adminCashier.Cashier.AddRedirectedTicket(redirectTicket);
+                                }
+                                devCashier.Cashier.SuccessfulHandling();
+
+                                item = devCashier.Cashier.StartHandling();
+                                writeProvider = new Server2CashierWriteDataProvider { InputData = item };
+                                await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
+                                if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
+                                {
+                                    devCashier.Cashier.SuccessfulStartHandling();
+                                }
                             }
                             break;
 
@@ -108,7 +142,7 @@ namespace Server.Service
                             await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                             if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
                             {
-                              devCashier.Cashier.SuccessfulStartHandling();
+                                devCashier.Cashier.SuccessfulStartHandling();
                             }
                             break;
 

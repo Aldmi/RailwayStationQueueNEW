@@ -172,24 +172,40 @@ namespace Server.Model
             };
 
             //DEBUG------ИНИЦИАЛИЗАЦИЯ ОЧЕРЕДИ---------------------
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    var ticket2 = TicketFactoryGetHelp.Create((ushort)QueueGetHelp.Count);
-            //    QueueGetHelp.Enqueue(ticket2);
+            var queueTemp = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Main", StringComparison.InvariantCultureIgnoreCase));
+            for (int i = 0; i < 2; i++)
+            {
+                var ticket = queueTemp.CreateTicket("К");
+                queueTemp.Enqueue(ticket);
 
-            //    ticket2 = TicketFactoryBuyTicket.Create((ushort)QueueBuyTicket.Count);
-            //    QueueBuyTicket.Enqueue(ticket2);
+                ticket = queueTemp.CreateTicket("М");
+                queueTemp.Enqueue(ticket);
 
-            //    ticket2 = TicketFactoryBaggageCheckout.Create((ushort)QueueBaggageCheckout.Count);
-            //    QueueBaggageCheckout.Enqueue(ticket2);
+                ticket = queueTemp.CreateTicket("Г");
+                queueTemp.Enqueue(ticket);
 
-            //    ticket2 = TicketFactoryAdmin.Create((ushort)QueueAdmin.Count);
-            //    QueueAdmin.Enqueue(ticket2);
+                ticket = queueTemp.CreateTicket("И");
+                queueTemp.Enqueue(ticket);
 
-            //    ticket2 = TicketFactoryBuyInterstateTicket.Create((ushort)QueueBuyInterstateTicket.Count);
-            //    QueueBuyInterstateTicket.Enqueue(ticket2);
-            //}
-            //DEBUG------------------------------
+                ticket = queueTemp.CreateTicket("В");
+                queueTemp.Enqueue(ticket);
+
+                ticket = queueTemp.CreateTicket("П");
+                queueTemp.Enqueue(ticket);
+
+                ticket = queueTemp.CreateTicket("У");
+                queueTemp.Enqueue(ticket);
+
+                ticket = queueTemp.CreateTicket("З");
+                queueTemp.Enqueue(ticket);
+
+                ticket = queueTemp.CreateTicket("С");
+                queueTemp.Enqueue(ticket);
+
+                ticket = queueTemp.CreateTicket("Б");
+                queueTemp.Enqueue(ticket);
+            }
+            //DEBUG----------------------------------------------
 
 
             //СОЗДАНИЕ КАССИРОВ------------------------------------------------------------------------------------------------
@@ -211,7 +227,7 @@ namespace Server.Model
             {
                 var sp= new MasterSerialPort(xmlSerial);
                 var cashiers= cashersGroup[xmlSerial.Port];
-                var cashierExch= new CashierExchangeService(cashiers, xmlSerial.TimeRespoune);
+                var cashierExch= new CashierExchangeService(cashiers, AdminCasher, xmlSerial.TimeRespoune);
                 sp.AddFunc(cashierExch.ExchangeService);
                 sp.PropertyChanged+= (o, e) =>
                 {

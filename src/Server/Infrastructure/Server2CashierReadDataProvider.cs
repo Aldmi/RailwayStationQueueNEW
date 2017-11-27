@@ -9,7 +9,7 @@ using Server.Entitys;
 
 namespace Server.Infrastructure
 {
-    public enum CashierHandling : byte { IsNotHandling, IsStartHandling, IsSuccessfulHandling, IsErrorHandling, IsSuccessfulAndStartHandling, IsErrorAndStartHandling }
+    public enum CashierHandling : byte { IsNotHandling, IsStartHandling, IsSuccessfulHandling, IsRedirectHandling, IsErrorHandling, IsSuccessfulAndStartHandling, IsRedirectAndStartHandling, IsErrorAndStartHandling }
 
 
     /// <summary>
@@ -129,19 +129,25 @@ namespace Server.Infrastructure
             {
                 OutputData = new CashierOutData { IsWork = (dataBuffer[1] & 0x01) != 0x00, Handling = CashierHandling.IsNotHandling };
 
+                //Статутс Мл.Байт
                 if ((dataBuffer[1] & 0x04) == 0x00)        // (== 0x00) НЕ идет обработка пассажира
                 {
                     if ((dataBuffer[1] & 0x02) != 0x00)    
                     {
-                        OutputData.Handling = CashierHandling.IsStartHandling;                      // приглашен новый пассажир.
+                        OutputData.Handling = CashierHandling.IsStartHandling;                      //Приглашен новый пассажир.
 
-                        if ((dataBuffer[1] & 0x08) != 0x00 && (dataBuffer[1] & 0x10) != 0x00)       //приглашен новый пассажир + Последний пассажир обработан и обработанн успешно                           
+                        if ((dataBuffer[1] & 0x08) != 0x00 && (dataBuffer[1] & 0x10) != 0x00)       //Приглашен новый пассажир + Последний пассажир обработан и обработанн успешно                           
                         {
                             OutputData.Handling = CashierHandling.IsSuccessfulAndStartHandling;
                         }
-                        else if ((dataBuffer[1] & 0x08) != 0x00 && (dataBuffer[1] & 0x20) != 0x00)  //приглашен новый пассажир + Последний пассажир обработан и обработанн НЕ успешно                         
+                        else if ((dataBuffer[1] & 0x08) != 0x00 && (dataBuffer[1] & 0x20) != 0x00)  //Приглашен новый пассажир + Последний пассажир обработан и обработанн НЕ успешно                         
                         {
                             OutputData.Handling = CashierHandling.IsErrorAndStartHandling;
+                        }
+                        // бит 7: перенаправление на АДМИНА
+                        else if ((dataBuffer[1] & 0x08) != 0x00 && (dataBuffer[1] & 0x80) != 0x00)   //Приглашен новый пассажир + Последний пассажир обработан и перенаправлен на АДМИНА                     
+                        {
+                            OutputData.Handling = CashierHandling.IsRedirectAndStartHandling;
                         }
                     }
                     else
@@ -150,9 +156,14 @@ namespace Server.Infrastructure
                         {
                             OutputData.Handling = CashierHandling.IsSuccessfulHandling;
                         }
-                        else if ((dataBuffer[1] & 0x08) != 0x00 && (dataBuffer[1] & 0x20) != 0x00)  //Последний пассажир обработан и обработанн НЕ успешно                         
+                        else if ((dataBuffer[1] & 0x08) != 0x00 && (dataBuffer[1] & 0x20) != 0x00)   //Последний пассажир обработан и обработанн НЕ успешно                         
                         {
                             OutputData.Handling = CashierHandling.IsErrorHandling;
+                        }
+                        // бит 7: перенаправление на АДМИНА
+                        else if ((dataBuffer[1] & 0x08) != 0x00 && (dataBuffer[1] & 0x80) != 0x00)   //Последний пассажир обработан и перенаправлен на АДМИНА                     
+                        {
+                            OutputData.Handling = CashierHandling.IsRedirectHandling;
                         }
                     }
                 }

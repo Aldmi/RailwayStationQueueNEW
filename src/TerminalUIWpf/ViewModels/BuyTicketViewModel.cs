@@ -66,7 +66,7 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnLowMobilityTicket()
         {
-            const string prefixQueue = "Н";
+            const string prefixQueue = "И";
             const string nameQueue = "Main";
             await _model.QueueSelection(nameQueue, prefixQueue);
         }
