@@ -208,7 +208,6 @@ C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\App.baml
 C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.g.resources
 C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.Properties.Resources.resources
 C:\Users\admin\Desktop\src_terminal_1btn\ServerUIWpf\obj\Release\ServerUi.csproj.GenerateResource.Cache
-C:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\ServerUi.exe.config
 C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\bin\Release\ServerUi.exe.config
 C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\bin\Release\ServerUi.exe
 C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\bin\Release\ServerUi.pdb

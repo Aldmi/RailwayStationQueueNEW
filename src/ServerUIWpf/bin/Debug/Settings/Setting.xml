@@ -12,7 +12,7 @@
 	
     <SerialPorts>
 		<Serial>
-		  <Port>1</Port>
+		  <Port>4</Port>
 		  <BaudRate>57600</BaudRate>
 		  <DataBits>8</DataBits>
 		  <StopBits>1</StopBits>
@@ -38,12 +38,17 @@
 		</Queue>
 		
 		<Queue Id="2" Name="Admin">
-			<Prefix Name="А" Priority="4"/>  <!-- 12. Администратор -->
+			<Prefix Name="А" Priority="10"/>  <!-- 12. Администратор -->
 		</Queue>
 	</Queues>
 
 
 	<Cashiers>
+	   <Cashier Id="1" Port="4" NameQueue="Admin" Prefix="А" MaxCountTryHanding="2"/>
+	   <Cashier Id="2" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	</Cashiers>
+
+<!-- 	<Cashiers>
 	   <Cashier Id="1" Port="1" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/>
 	   <Cashier Id="2" Port="1" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/>
 	   <Cashier Id="3" Port="1" NameQueue="Main" Prefix="И,All,C" MaxCountTryHanding="2"/>
@@ -61,5 +66,5 @@
 	   <Cashier Id="15" Port="1" NameQueue="Main" Prefix="All,C" MaxCountTryHanding="2"/>  
 	   <Cashier Id="16" Port="1" NameQueue="Main" Prefix="Г,All,C" MaxCountTryHanding="2"/>
 	   <Cashier Id="17" Port="1" NameQueue="Main" Prefix="М,All,C" MaxCountTryHanding="2"/>
-	</Cashiers>
+	</Cashiers> -->
 </Root>
