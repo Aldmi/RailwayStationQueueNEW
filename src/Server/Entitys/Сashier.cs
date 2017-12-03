@@ -56,7 +56,7 @@ namespace Server.Entitys
 
 
 
-
+        
         #region ctor
 
         public Сashier(byte id, List<string> prefixes, QueuePriority queueTicket, byte maxCountTryHanding)
