@@ -12,7 +12,16 @@
 	
     <SerialPorts>
 		<Serial>
-		  <Port>1</Port>
+		  <Port>8</Port>
+		  <BaudRate>57600</BaudRate>
+		  <DataBits>8</DataBits>
+		  <StopBits>1</StopBits>
+		  <TimeRespon>250</TimeRespon>
+		  <TimeCycleReConnect>3000</TimeCycleReConnect>
+		</Serial>
+		
+		<Serial>
+		  <Port>9</Port>
 		  <BaudRate>57600</BaudRate>
 		  <DataBits>8</DataBits>
 		  <StopBits>1</StopBits>
@@ -25,41 +34,42 @@
 
 	<Queues>
 		<Queue Id="1" Name="Main">
-			<Prefix Name="К" Priority="5"/>  <!-- 1. Купить билет -->
-			<Prefix Name="М" Priority="6"/>  <!-- 2. Купить билет в международном сообщении -->
-			<Prefix Name="Г" Priority="7"/>  <!-- 3. Оформление групп пассажиров-->
+			<Prefix Name="К" Priority="7"/>  <!-- 1. Купить билет -->
+			<Prefix Name="М" Priority="10"/> <!-- 2. Купить билет в международном сообщении -->
+			<Prefix Name="Г" Priority="10"/> <!-- 3. Оформление групп пассажиров-->
 			<Prefix Name="И" Priority="10"/> <!-- 4. Оформление маломобильных пассажиров -->
-			<Prefix Name="В" Priority="8"/>  <!-- 5. Возврат -->
-			<Prefix Name="П" Priority="8"/>  <!-- 6. Переоформление -->
-			<Prefix Name="У" Priority="8"/>  <!-- 7. Восстановление утеренных, испорченных билетов -->
-			<Prefix Name="З" Priority="7"/>  <!-- 8. Замена персональных данных-->
-			<Prefix Name="С" Priority="1"/>  <!-- 9. Получить справку -->
-			<Prefix Name="Б" Priority="2"/>  <!-- 10.Оформить Багаж/живность -->
+			<Prefix Name="В" Priority="7"/>  <!-- 5. Возврат -->
+			<Prefix Name="П" Priority="7"/>  <!-- 6. Переоформление -->
+			<Prefix Name="У" Priority="9"/>  <!-- 7. Восстановление утеренных, испорченных билетов -->
+			<Prefix Name="З" Priority="8"/>  <!-- 8. Замена персональных данных-->
+			<Prefix Name="С" Priority="10"/> <!-- 9. Получить справку -->
+			<Prefix Name="Б" Priority="7"/>  <!-- 10.Оформить Багаж/живность -->
 		</Queue>
 		
 		<Queue Id="2" Name="Admin">
-			<Prefix Name="А" Priority="4"/>  <!-- 12. Администратор -->
+			<Prefix Name="А" Priority="10"/>  <!-- 12. Администратор -->
 		</Queue>
 	</Queues>
 
 
-	<Cashiers>
-	   <Cashier Id="1" Port="1" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/>
-	   <Cashier Id="2" Port="1" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/>
-	   <Cashier Id="3" Port="1" NameQueue="Main" Prefix="И,All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="4" Port="1" NameQueue="Main" Prefix="All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="5" Port="1" NameQueue="Main" Prefix="All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="6" Port="1" NameQueue="Main" Prefix="У,All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="7" Port="1" NameQueue="Main" Prefix="All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="8" Port="1" NameQueue="Main" Prefix="All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="9" Port="1" NameQueue="Main" Prefix="All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="10" Port="1" NameQueue="Admin" Prefix="А" MaxCountTryHanding="2"/>
-	   <Cashier Id="11" Port="1" NameQueue="Main" Prefix="All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="12" Port="1" NameQueue="Main" Prefix="All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="13" Port="1" NameQueue="Main" Prefix="All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="14" Port="1" NameQueue="Main" Prefix="All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="15" Port="1" NameQueue="Main" Prefix="All,C" MaxCountTryHanding="2"/>  
-	   <Cashier Id="16" Port="1" NameQueue="Main" Prefix="Г,All,C" MaxCountTryHanding="2"/>
-	   <Cashier Id="17" Port="1" NameQueue="Main" Prefix="М,All,C" MaxCountTryHanding="2"/>
+	
+	<Cashiers>	`
+	   <Cashier Id="1" Port="9" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/>
+	   <Cashier Id="2" Port="9" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/>
+	   <Cashier Id="3" Port="9" NameQueue="Main" Prefix="И,All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="4" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="5" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="6" Port="9" NameQueue="Main" Prefix="У,All,С,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="7" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="8" Port="9" NameQueue="Main" Prefix="У,All,С,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="9" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="10" Port="9" NameQueue="Admin" Prefix="А" MaxCountTryHanding="2"/>
+	   <Cashier Id="11" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="12" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="13" Port="8" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="14" Port="8" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="15" Port="8" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>  
+	   <Cashier Id="16" Port="8" NameQueue="Main" Prefix="Г,All,С,У,М" MaxCountTryHanding="2"/>
+	   <Cashier Id="17" Port="8" NameQueue="Main" Prefix="М,All,Г,У,С" MaxCountTryHanding="2"/>
 	</Cashiers>
 </Root>

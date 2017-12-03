@@ -293,7 +293,7 @@
                 Style="{StaticResource LabelCashierNumberStyle}" />
 
 
-            <StackPanel Grid.Row="1" Grid.Column="0">
+            <!--<StackPanel Grid.Row="1" Grid.Column="0">
                 <TextBox
                     Height="24"
                     Margin="0"
@@ -316,15 +316,15 @@
                     FontSize="33"
                     Foreground="White"
                     Text="001" />
-            </StackPanel>
+            </StackPanel>-->
 
 
 
-            <!--<TextBox
+            <TextBox
                 Grid.Row="1"
                 Grid.Column="0"
                 Style="{StaticResource TextBoxCashierStyle}"
-                Text="{Binding Path=CashierTicket1.TicketName, Mode=OneWay}" />-->
+                Text="{Binding Path=CashierTicket1.TicketName, Mode=OneWay}" />
             <TextBox
                 Grid.Row="1"
                 Grid.Column="1"
