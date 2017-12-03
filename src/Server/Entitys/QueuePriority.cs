@@ -10,10 +10,8 @@ namespace Server.Entitys
     public class QueuePriority
     {
         #region prop
-        //Объект синхронизации.
-        // Паралельное наполнение очереди (4 терминала)
-        //Паралельное изьятие кассирами билетов (2 послед порта)
-        private readonly object _locker = new object();
+
+        private object _locker = new object();//TODO: сделать критичеакие секции на доступ к Queue
 
         public string Name { get; set; }
         public List<Prefix> Prefixes { get; set; } // список типов очередей
@@ -52,19 +50,16 @@ namespace Server.Entitys
         /// </summary>
         public int GetInseartPlace(string prefix)
         {
-            lock (_locker)
+            var item = new TicketItem {Prefix = prefix, Priority = 0};
+            var priority = Prefixes.FirstOrDefault(p => p.Name == prefix)?.Priority;
+            if (priority.HasValue)
             {
-                var item = new TicketItem {Prefix = prefix, Priority = 0};
-                var priority = Prefixes.FirstOrDefault(p => p.Name == prefix)?.Priority;
-                if (priority.HasValue)
-                {
-                    item.Priority = priority.Value;
-                }
-
-                var items = new List<TicketItem>(Queue) {item};
-                var ordered = items.OrderByDescending(t => t.Priority).ToList();
-                return ordered.IndexOf(item);
+                item.Priority = priority.Value;
             }
+        
+            var items = new List<TicketItem>(Queue) { item };
+            var ordered = items.OrderByDescending(t => t.Priority).ToList();
+            return ordered.IndexOf(item);
         }
 
 
@@ -86,12 +81,9 @@ namespace Server.Entitys
         /// </summary>
         public void Enqueue(TicketItem item)
         {
-            lock (_locker)
-            {
-                var items = new List<TicketItem>(Queue) {item};
-                var ordered = items.OrderByDescending(t => t.Priority);
-                Queue = new ConcurrentQueue<TicketItem>(ordered);
-            }
+            var items= new List<TicketItem>(Queue) {item};
+            var ordered= items.OrderByDescending(t => t.Priority);
+            Queue= new ConcurrentQueue<TicketItem>(ordered);
         }
 
 
@@ -101,11 +93,8 @@ namespace Server.Entitys
         /// </summary>
         public TicketItem PeekByPriority(ICasher cachier)
         {
-            lock (_locker)
-            {
-                var priorityItem = GetFirstPriorityItem(cachier);
-                return priorityItem;
-            }
+            var priorityItem = GetFirstPriorityItem(cachier);
+            return priorityItem;
         }
 
 
@@ -114,28 +103,25 @@ namespace Server.Entitys
         /// </summary>
         public TicketItem DequeueByPriority(ICasher cachier)
         {
-            lock (_locker)
+            var priorityItem = GetFirstPriorityItem(cachier);
+            if (priorityItem != null)
             {
-                var priorityItem = GetFirstPriorityItem(cachier);
-                if (priorityItem != null)
-                {
-                    var items = new List<TicketItem>(Queue);
-                    items.Remove(priorityItem);
-                    Queue = new ConcurrentQueue<TicketItem>(items);
-                    return priorityItem;
-                }
-                return null;
+                var items = new List<TicketItem>(Queue);
+                items.Remove(priorityItem);
+                Queue = new ConcurrentQueue<TicketItem>(items);
+                return priorityItem;
             }
+            return null;
         }
 
 
         private TicketItem GetFirstPriorityItem(ICasher cachier)
         {
-            foreach (var pref in cachier.PrefixesInclude)
+            foreach (var pref in cachier.Prefixes)
             {
                 if (pref == "All")
                 {
-                    //Поиск первого билета который не попадает под исключения
+                    //Поиск превого билета который не попадает под исключения
                     if (cachier.PrefixesExclude != null && cachier.PrefixesExclude.Any())
                     {
                         foreach (var item in Queue)
@@ -146,7 +132,7 @@ namespace Server.Entitys
                         return null;
                     }
 
-                    //Список исключений пуст, вернем первый элемент
+                    //Список исключенгий пуст, вернем первый элемент
                     return Queue.FirstOrDefault();
                 }
 

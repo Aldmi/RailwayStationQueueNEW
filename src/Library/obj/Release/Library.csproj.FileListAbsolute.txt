@@ -31,7 +31,3 @@ C:\Users\User\Desktop\Эл.очередь\src\Library\bin\Release\Library.dll
 C:\Users\User\Desktop\Эл.очередь\src\Library\bin\Release\Library.pdb
 C:\Users\User\Desktop\Эл.очередь\src\Library\obj\Release\Library.dll
 C:\Users\User\Desktop\Эл.очередь\src\Library\obj\Release\Library.pdb
-D:\Git\RailwayStationQueueNEW\src\Library\bin\Release\Library.dll
-D:\Git\RailwayStationQueueNEW\src\Library\bin\Release\Library.pdb
-D:\Git\RailwayStationQueueNEW\src\Library\obj\Release\Library.dll
-D:\Git\RailwayStationQueueNEW\src\Library\obj\Release\Library.pdb

@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using Communication.Annotations;
 using Communication.Interfaces;
 using Library.Library;
@@ -76,12 +75,14 @@ namespace Server.Infrastructure
 
             buff[6] = (NWriteRegister * 2);
 
-            //Название билета(буква - кирилицы, число - 0...999)
-            var encoding = Encoding.Unicode;
-            var prefixQueueBytes = encoding.GetBytes(InputData.Prefix).Take(2).ToArray();
-            ushort prefix = (ushort) (BitConverter.ToUInt16(prefixQueueBytes, 0) - 0x3F6); //prefix= 0x1A - А, 0x1B - Б
-            ushort formatNameTicket = (ushort)(InputData.NumberElement & 0x3FF);                           
+            ushort formatNameTicket = (ushort)(InputData.NumberElement & 0x3FF);
+
+
+            var prefixByte = (byte)InputData.Prefix.ToCharArray().FirstOrDefault();
+            var prefix = (ushort)(prefixByte - 65) & 0x3F;
             formatNameTicket |= (ushort)(prefix << 10);
+
+
             var ticketNameBuff = BitConverter.GetBytes(formatNameTicket).Reverse().ToArray();
             ticketNameBuff.CopyTo(buff, 7);
 

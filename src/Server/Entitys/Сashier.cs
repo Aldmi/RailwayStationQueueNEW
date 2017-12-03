@@ -13,7 +13,7 @@ namespace Server.Entitys
     /// </summary>
     public interface ICasher : INotifyPropertyChanged
     {
-        List<string> PrefixesInclude { get; }
+        List<string> Prefixes { get; }
         List<string> PrefixesExclude { get; }
     }
 
@@ -36,7 +36,7 @@ namespace Server.Entitys
 
         #region prop
         public byte Id { get; }
-        public List<string> PrefixesInclude { get; }
+        public List<string> Prefixes { get; }
         public List<string> PrefixesExclude { get; }
 
         private TicketItem _currentTicket;
@@ -56,25 +56,22 @@ namespace Server.Entitys
 
 
 
-        
+
         #region ctor
 
         public Сashier(byte id, List<string> prefixes, QueuePriority queueTicket, byte maxCountTryHanding)
         {
             Id = id;
-
+            Prefixes = prefixes;
             _queueTicket = queueTicket;
             _maxCountTryHandin = maxCountTryHanding;
 
            //Выделить префиксы идущие за All.
-           var prefixExclude= prefixes.SkipWhile(p => p != "All").ToList();
+           var prefixExclude= Prefixes.SkipWhile(p => p != "All").ToList();
            if (prefixExclude.Count > 1)
            {
                PrefixesExclude = prefixExclude.Skip(1).ToList();
            }
-
-            //Выделить префиксы идущие перед All.
-            PrefixesInclude = (PrefixesExclude == null) ? prefixes : prefixes.Except(PrefixesExclude).ToList();
         }
 
         #endregion

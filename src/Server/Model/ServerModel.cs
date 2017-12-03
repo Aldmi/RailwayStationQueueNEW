@@ -173,13 +173,8 @@ namespace Server.Model
 
             //DEBUG------ИНИЦИАЛИЗАЦИЯ ОЧЕРЕДИ---------------------
             var queueTemp = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Main", StringComparison.InvariantCultureIgnoreCase));
-            var queueAdmin = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Admin", StringComparison.InvariantCultureIgnoreCase));
             for (int i = 0; i < 2; i++)
             {
-                var ticketAdmin = queueTemp.CreateTicket("А");
-                //queueAdmin.Enqueue(ticketAdmin);
-
-
                 var ticket = queueTemp.CreateTicket("К");
                 queueTemp.Enqueue(ticket);
 
@@ -223,7 +218,7 @@ namespace Server.Model
                    DeviceCashiers.Add(new DeviceCashier(casher, xmlCash.Port));
                }
             }
-            AdminCasher = DeviceCashiers.FirstOrDefault(d => d.Cashier.PrefixesInclude.Contains("А"));
+            AdminCasher = DeviceCashiers.FirstOrDefault(d => d.Cashier.Prefixes.Contains("А"));
 
 
             //СОЗДАНИЕ ПОСЛЕД. ПОРТА ДЛЯ ОПРОСА КАССИРОВ-----------------------------------------------------------------------
