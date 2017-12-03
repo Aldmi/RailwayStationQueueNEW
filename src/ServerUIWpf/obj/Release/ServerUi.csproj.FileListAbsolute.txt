@@ -263,4 +263,3 @@ C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\obj\Release\ServerUi.P
 C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\obj\Release\ServerUi.csproj.GenerateResource.Cache
 C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\obj\Release\ServerUi.exe
 C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\obj\Release\ServerUi.pdb
-D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Release\ServerUi.exe.config

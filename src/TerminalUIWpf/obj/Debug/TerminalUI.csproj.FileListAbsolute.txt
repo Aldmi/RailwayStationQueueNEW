@@ -71,3 +71,5 @@ C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Debug\TerminalUI
 C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Debug\TerminalUI.csproj.GenerateResource.Cache
 C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.exe
 C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.pdb
+C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Debug\Views\BuyTicketView.baml
+C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Debug\Views\BuyTicketView.g.cs

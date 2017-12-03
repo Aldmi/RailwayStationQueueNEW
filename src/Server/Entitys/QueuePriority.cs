@@ -131,11 +131,11 @@ namespace Server.Entitys
 
         private TicketItem GetFirstPriorityItem(ICasher cachier)
         {
-            foreach (var pref in cachier.Prefixes)
+            foreach (var pref in cachier.PrefixesInclude)
             {
                 if (pref == "All")
                 {
-                    //Поиск превого билета который не попадает под исключения
+                    //Поиск первого билета который не попадает под исключения
                     if (cachier.PrefixesExclude != null && cachier.PrefixesExclude.Any())
                     {
                         foreach (var item in Queue)
@@ -146,7 +146,7 @@ namespace Server.Entitys
                         return null;
                     }
 
-                    //Список исключенгий пуст, вернем первый элемент
+                    //Список исключений пуст, вернем первый элемент
                     return Queue.FirstOrDefault();
                 }
 
