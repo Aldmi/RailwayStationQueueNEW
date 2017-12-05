@@ -52,6 +52,7 @@
     <Compile Include="Infrastructure\Server2TerminalExchangeDataProvider.cs" />
     <Compile Include="Model\ServerModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializableModel\QueuePriorityModelSerializable.cs" />
     <Compile Include="Service\CashierExchangeService.cs" />
     <Compile Include="Service\TicketFactoryNew.cs" />
     <Compile Include="Service\TicketFactory.cs" />

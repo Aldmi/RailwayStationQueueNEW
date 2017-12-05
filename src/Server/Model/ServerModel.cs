@@ -21,7 +21,9 @@ using Server.Settings;
 using Sound;
 using Terminal.Infrastructure;
 using System.Collections.Concurrent;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using Server.SerializableModel;
 
 namespace Server.Model
 {
@@ -172,45 +174,46 @@ namespace Server.Model
             };
 
             //DEBUG------ИНИЦИАЛИЗАЦИЯ ОЧЕРЕДИ---------------------
-            var queueTemp = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Main", StringComparison.InvariantCultureIgnoreCase));
-            var queueAdmin = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Admin", StringComparison.InvariantCultureIgnoreCase));
-            for (int i = 0; i < 2; i++)
-            {
-                var ticketAdmin = queueTemp.CreateTicket("А");
-                //queueAdmin.Enqueue(ticketAdmin);
+            //var queueTemp = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Main", StringComparison.InvariantCultureIgnoreCase));
+            //var queueAdmin = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Admin", StringComparison.InvariantCultureIgnoreCase));
+            //for (int i = 0; i < 2; i++)
+            //{
+            //    var ticketAdmin = queueTemp.CreateTicket("А");
+            //    //queueAdmin.Enqueue(ticketAdmin);
 
 
-                var ticket = queueTemp.CreateTicket("К");
-                queueTemp.Enqueue(ticket);
+            //    var ticket = queueTemp.CreateTicket("К");
+            //    queueTemp.Enqueue(ticket);
 
-                ticket = queueTemp.CreateTicket("М");
-                queueTemp.Enqueue(ticket);
+            //    ticket = queueTemp.CreateTicket("М");
+            //    queueTemp.Enqueue(ticket);
 
-                ticket = queueTemp.CreateTicket("Г");
-                queueTemp.Enqueue(ticket);
+            //    ticket = queueTemp.CreateTicket("Г");
+            //    queueTemp.Enqueue(ticket);
 
-                ticket = queueTemp.CreateTicket("И");
-                queueTemp.Enqueue(ticket);
+            //    ticket = queueTemp.CreateTicket("И");
+            //    queueTemp.Enqueue(ticket);
 
-                ticket = queueTemp.CreateTicket("В");
-                queueTemp.Enqueue(ticket);
+            //    ticket = queueTemp.CreateTicket("В");
+            //    queueTemp.Enqueue(ticket);
 
-                ticket = queueTemp.CreateTicket("П");
-                queueTemp.Enqueue(ticket);
+            //    ticket = queueTemp.CreateTicket("П");
+            //    queueTemp.Enqueue(ticket);
 
-                ticket = queueTemp.CreateTicket("У");
-                queueTemp.Enqueue(ticket);
+            //    ticket = queueTemp.CreateTicket("У");
+            //    queueTemp.Enqueue(ticket);
 
-                ticket = queueTemp.CreateTicket("З");
-                queueTemp.Enqueue(ticket);
+            //    ticket = queueTemp.CreateTicket("З");
+            //    queueTemp.Enqueue(ticket);
 
-                ticket = queueTemp.CreateTicket("С");
-                queueTemp.Enqueue(ticket);
+            //    ticket = queueTemp.CreateTicket("С");
+            //    queueTemp.Enqueue(ticket);
 
-                ticket = queueTemp.CreateTicket("Б");
-                queueTemp.Enqueue(ticket);
-            }
+            //    ticket = queueTemp.CreateTicket("Б");
+            //    queueTemp.Enqueue(ticket);
+            //}
             //DEBUG----------------------------------------------
+
 
 
             //СОЗДАНИЕ КАССИРОВ------------------------------------------------------------------------------------------------
@@ -224,6 +227,10 @@ namespace Server.Model
                }
             }
             AdminCasher = DeviceCashiers.FirstOrDefault(d => d.Cashier.PrefixesInclude.Contains("А"));
+
+
+            //ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ ОБЪЕКТОВ (сохранялись на момент закрытия программы)----------------------------------------------------------------------------------------
+            LoadStates();
 
 
             //СОЗДАНИЕ ПОСЛЕД. ПОРТА ДЛЯ ОПРОСА КАССИРОВ-----------------------------------------------------------------------
@@ -284,6 +291,95 @@ namespace Server.Model
                 ErrorString = taskFirst.Exception.ToString();
         }
 
+
+        /// <summary>
+        /// Сохранить состояние: билеты в очереди, текущие обрабаываемые билеты.
+        /// </summary>
+        private void SaveStates()
+        {
+            var model= new QueuePrioritysModelSerializable();
+
+            //сохранить элементы очереди
+            foreach (var queuePriority in QueuePriorities)
+            {
+                var queue = new QueuePriorityModelSerializable
+                {
+                    Name = queuePriority.Name,
+                    Queue = queuePriority.GetQueueItems.ToList()
+                };
+                model.Queues.Add(queue);
+            }
+
+            //сохранить текущие обрабатываемые билеты кассирами
+            foreach (var deviceCashier in DeviceCashiers)
+            {
+                var cashier = new СashierModelSerializable
+                {
+                    Id = deviceCashier.Cashier.Id,
+                    CurrenTicketItem = deviceCashier.Cashier.CurrentTicket
+                };
+                model.Cashiers.Add(cashier);
+            }
+
+            try
+            {
+                // создаем объект BinaryFormatter
+                var formatter = new BinaryFormatter();
+                using (var fs = new FileStream("States.dat", FileMode.OpenOrCreate))
+                {
+                    formatter.Serialize(fs, model);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
+        /// <summary>
+        /// Загрузить состояние: билеты в очереди, текущие обрабаываемые билеты попадают в приоритетеную очередь кассира и будут обработанны касииром снова
+        /// </summary>
+        private void LoadStates()
+        {
+            try
+            {
+                if (File.Exists("States.dat"))
+                {
+                    var formatter = new BinaryFormatter();
+                    using (var fs = new FileStream("States.dat", FileMode.Open))
+                    {
+                        var model = (QueuePrioritysModelSerializable)formatter.Deserialize(fs);
+
+                        //восстановить элементы очереди
+                        foreach (var newQueue in model.Queues)
+                        {
+                            var queue = QueuePriorities.FirstOrDefault(q => q.Name == newQueue.Name);
+                            if (queue != null)
+                            {
+                                queue.SetQueueItems = newQueue.Queue;
+                            }
+                        }
+
+                        //восстановить нтекущие обрабатываемые билеты кассирами
+                        foreach (var newCashier in model.Cashiers)
+                        {
+                            if(newCashier.CurrenTicketItem == null)
+                                continue;
+
+                            var cashier = DeviceCashiers.FirstOrDefault(d => d.Cashier.Id == newCashier.Id);
+                            cashier?.Cashier.AddRedirectedTicket(newCashier.CurrenTicketItem);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
         #endregion
 
 
@@ -293,6 +389,8 @@ namespace Server.Model
 
         public void Dispose()
         {
+            SaveStates();
+
             Listener?.Dispose();
             foreach (var sp in MasterSerialPorts)
             {

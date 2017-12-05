@@ -21,6 +21,18 @@ namespace Server.Entitys
         private ConcurrentQueue<TicketItem> Queue { get; set; } = new ConcurrentQueue<TicketItem>();
         public int Count => Queue.Count;
         public bool IsEmpty => Queue.IsEmpty;
+        public IEnumerable<TicketItem> GetQueueItems => Queue.ToList();
+
+        public IEnumerable<TicketItem> SetQueueItems
+        {
+            set
+            {
+                if (value != null && value.Any())
+                {
+                    Queue = new ConcurrentQueue<TicketItem>(value);
+                }
+            }
+        }
 
 
         public TicketFactoryNew TicketFactory { get; set; } = new TicketFactoryNew();

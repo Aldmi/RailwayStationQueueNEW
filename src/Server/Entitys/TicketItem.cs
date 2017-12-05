@@ -2,6 +2,7 @@
 
 namespace Server.Entitys
 {
+    [Serializable]
     public class TicketItem
     {
         public string Prefix { get; set; }          // строковый префикс элемента

@@ -12,22 +12,13 @@
 	
     <SerialPorts>
 		<Serial>
-		  <Port>8</Port>
+		  <Port>1</Port>
 		  <BaudRate>57600</BaudRate>
 		  <DataBits>8</DataBits>
 		  <StopBits>1</StopBits>
 		  <TimeRespon>250</TimeRespon>
 		  <TimeCycleReConnect>3000</TimeCycleReConnect>
-		</Serial>
-		
-		<Serial>
-		  <Port>9</Port>
-		  <BaudRate>57600</BaudRate>
-		  <DataBits>8</DataBits>
-		  <StopBits>1</StopBits>
-		  <TimeRespon>250</TimeRespon>
-		  <TimeCycleReConnect>3000</TimeCycleReConnect>
-		</Serial>
+		</Serial>		
 	</SerialPorts>
   </Server>
 
@@ -54,22 +45,13 @@
 
 	
 	<Cashiers>	`
-	   <Cashier Id="1" Port="9" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/>
-	   <Cashier Id="2" Port="9" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/>
-	   <Cashier Id="3" Port="9" NameQueue="Main" Prefix="И,All,С,У,М,Г" MaxCountTryHanding="2"/>
-	   <Cashier Id="4" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
-	   <Cashier Id="5" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
-	   <Cashier Id="6" Port="9" NameQueue="Main" Prefix="У,All,С,М,Г" MaxCountTryHanding="2"/>
-	   <Cashier Id="7" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
-	   <Cashier Id="8" Port="9" NameQueue="Main" Prefix="У,All,С,М,Г" MaxCountTryHanding="2"/>
-	   <Cashier Id="9" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
-	   <Cashier Id="10" Port="9" NameQueue="Admin" Prefix="А" MaxCountTryHanding="2"/>
-	   <Cashier Id="11" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
-	   <Cashier Id="12" Port="9" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
-	   <Cashier Id="13" Port="8" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
-	   <Cashier Id="14" Port="8" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
-	   <Cashier Id="15" Port="8" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>  
-	   <Cashier Id="16" Port="8" NameQueue="Main" Prefix="Г,All,С,У,М" MaxCountTryHanding="2"/>
-	   <Cashier Id="17" Port="8" NameQueue="Main" Prefix="М,All,Г,У,С" MaxCountTryHanding="2"/>
+	   <Cashier Id="1" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="2" Port="1" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/>
+	   <Cashier Id="3" Port="1" NameQueue="Main" Prefix="И,All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="4" Port="1" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="5" Port="1" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="6" Port="1" NameQueue="Main" Prefix="У,All,С,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="7" Port="1" NameQueue="Main" Prefix="All,С,У,М,Г" MaxCountTryHanding="2"/>
+	   <Cashier Id="8" Port="1" NameQueue="Main" Prefix="У,All,С,М,Г" MaxCountTryHanding="2"/>
 	</Cashiers>
 </Root>
