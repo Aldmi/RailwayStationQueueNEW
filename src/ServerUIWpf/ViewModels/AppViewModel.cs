@@ -78,6 +78,15 @@ namespace ServerUi.ViewModels
             _model.SoundQueue.StartQueue();
 
 
+           var queueMain= _model.QueuePriorities.FirstOrDefault(q => q.Name == "Main");
+           if (queueMain != null)
+           {
+              queueMain.PropertyChanged += QueueMain_PropertyChanged;
+           }
+ 
+
+
+
             //ЗАГРУЗКА НАСТРОЕК ТАБЛО
 
             HeaderBackgroundColor = new SolidColorBrush(Colors.DarkRed);
@@ -107,7 +116,6 @@ namespace ServerUi.ViewModels
         }
 
 
-
         private void SoundQueue_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var soundQueue = sender as SoundQueue;
@@ -117,6 +125,20 @@ namespace ServerUi.ViewModels
                 {
                     SoundTemplates.Clear();
                     SoundTemplates.AddRange(soundQueue.GetQueue);
+                }
+            }
+        }
+
+
+        private void QueueMain_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var queuePriority = sender as QueuePriority;
+            if (queuePriority != null)
+            {
+                if (e.PropertyName == "QueuePriority")
+                {
+                    QueuePriority.Clear();
+                    QueuePriority.AddRange(queuePriority.GetQueueItems);
                 }
             }
         }
@@ -561,6 +583,8 @@ namespace ServerUi.ViewModels
 
 
         public BindableCollection<SoundTemplate> SoundTemplates { get; set; } = new BindableCollection<SoundTemplate>();  //Звуковые шалоны в очереди
+
+        public BindableCollection<Server.Entitys.TicketItem> QueuePriority { get; set; } = new BindableCollection<Server.Entitys.TicketItem>(); //Основная очередь
 
         #endregion
 

@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
+using Communication.Annotations;
 using Server.Service;
 
 namespace Server.Entitys
 {
-    public class QueuePriority
+    public class QueuePriority : INotifyPropertyChanged
     {
         #region prop
         //Объект синхронизации.
@@ -21,7 +24,7 @@ namespace Server.Entitys
         private ConcurrentQueue<TicketItem> Queue { get; set; } = new ConcurrentQueue<TicketItem>();
         public int Count => Queue.Count;
         public bool IsEmpty => Queue.IsEmpty;
-        public IEnumerable<TicketItem> GetQueueItems => Queue.ToList();
+        public IEnumerable<TicketItem> GetQueueItems => Queue;
 
         public IEnumerable<TicketItem> SetQueueItems
         {
@@ -57,6 +60,19 @@ namespace Server.Entitys
 
 
 
+        #region Events
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+
+
         #region Methode
 
         /// <summary>
@@ -74,7 +90,7 @@ namespace Server.Entitys
                 }
 
                 var items = new List<TicketItem>(Queue) {item};
-                var ordered = items.OrderByDescending(t => t.Priority).ToList();
+                var ordered = items.OrderByDescending(t => t.Priority).ToList(); //TODO: упорядочевать еще и по дате добавления внутри группы
                 return ordered.IndexOf(item);
             }
         }
@@ -103,6 +119,7 @@ namespace Server.Entitys
                 var items = new List<TicketItem>(Queue) {item};
                 var ordered = items.OrderByDescending(t => t.Priority);
                 Queue = new ConcurrentQueue<TicketItem>(ordered);
+                OnPropertyChanged("QueuePriority");
             }
         }
 
@@ -134,6 +151,7 @@ namespace Server.Entitys
                     var items = new List<TicketItem>(Queue);
                     items.Remove(priorityItem);
                     Queue = new ConcurrentQueue<TicketItem>(items);
+                    OnPropertyChanged("QueuePriority");
                     return priorityItem;
                 }
                 return null;
