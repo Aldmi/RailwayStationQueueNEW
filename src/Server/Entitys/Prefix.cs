@@ -1,6 +1,5 @@
 ﻿namespace Server.Entitys
 {
-    
     public class Prefix
     {
         public string Name { get; set; }

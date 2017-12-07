@@ -21,9 +21,9 @@ using Server.Settings;
 using Sound;
 using Terminal.Infrastructure;
 using System.Collections.Concurrent;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using Server.SerializableModel;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Server.Model
 {
@@ -33,15 +33,12 @@ namespace Server.Model
 
         public List<QueuePriority> QueuePriorities { get; set; }= new List<QueuePriority>();
 
-
-
         public Log LogTicket { get; set; }
 
         public ListenerTcpIp Listener { get; set; }
         public IExchangeDataProvider<TerminalInData, TerminalOutData> ProviderTerminal { get; set; }
 
         public SoundQueue SoundQueue { get; set; } = new SoundQueue(new SoundPlayer(), new SoundNameService(), 100);
-
 
         public List<MasterSerialPort> MasterSerialPorts { get; } = new List<MasterSerialPort>();
         public List<DeviceCashier> DeviceCashiers { get; } = new List<DeviceCashier>();
@@ -176,7 +173,7 @@ namespace Server.Model
             //DEBUG------ИНИЦИАЛИЗАЦИЯ ОЧЕРЕДИ---------------------
             //var queueTemp = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Main", StringComparison.InvariantCultureIgnoreCase));
             //var queueAdmin = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Admin", StringComparison.InvariantCultureIgnoreCase));
-            //for (int i = 0; i < 2; i++)
+            //for (int i = 0; i < 5; i++)
             //{
             //    var ticketAdmin = queueTemp.CreateTicket("А");
             //    //queueAdmin.Enqueue(ticketAdmin);
@@ -215,7 +212,6 @@ namespace Server.Model
             //DEBUG----------------------------------------------
 
 
-
             //СОЗДАНИЕ КАССИРОВ------------------------------------------------------------------------------------------------
             foreach (var xmlCash in xmlCashier)
             {
@@ -226,7 +222,7 @@ namespace Server.Model
                    DeviceCashiers.Add(new DeviceCashier(casher, xmlCash.Port));
                }
             }
-            AdminCasher = DeviceCashiers.FirstOrDefault(d => d.Cashier.PrefixesInclude.Contains("А"));
+            AdminCasher = DeviceCashiers.FirstOrDefault(d => d.Cashier.Prefixes.Contains("А"));
 
 
             //ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ ОБЪЕКТОВ (сохранялись на момент закрытия программы)----------------------------------------------------------------------------------------
@@ -297,7 +293,7 @@ namespace Server.Model
         /// </summary>
         private void SaveStates()
         {
-            var model= new QueuePrioritysModelSerializable();
+            var model = new QueuePrioritysModelSerializable();
 
             //сохранить элементы очереди
             foreach (var queuePriority in QueuePriorities)
@@ -364,7 +360,7 @@ namespace Server.Model
                         //восстановить нтекущие обрабатываемые билеты кассирами
                         foreach (var newCashier in model.Cashiers)
                         {
-                            if(newCashier.CurrenTicketItem == null)
+                            if (newCashier.CurrenTicketItem == null)
                                 continue;
 
                             var cashier = DeviceCashiers.FirstOrDefault(d => d.Cashier.Id == newCashier.Id);
@@ -379,6 +375,8 @@ namespace Server.Model
                 throw;
             }
         }
+
+
 
         #endregion
 

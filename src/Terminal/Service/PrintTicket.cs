@@ -67,29 +67,31 @@ namespace Terminal.Service
 
             //ПЕЧАТЬ ТЕКСТА
             string printText = $"              Уважаемые пассажиры!\r\n" +
-                               $"    Вы можете через транзакционные\r\n" +
-                               $"терминалы самообслуживания (ТТС)\r\n" +
-                               $"         распечатать билеты, ранее\r\n" +
-                               $"    оформленные через Интернет или\r\n" +
-                               $"  самостоятельно приобрести билеты\r\n" +
-                               $"    при условии наличия банковской\r\n" +
-                               $"карты и если до отправления поезда\r\n" +
-                               $" осталось не менее 30 минут, кроме\r\n" +
-                               $"     льготных категорий пассажиров\r\n";
+                               $"Вы можете самостоятельно распечать\r\n" +
+                               $"   билеты, ранее оформленные через\r\n" +
+                               $"    Интернет, с помощью терминалов\r\n" +
+                               $"       самообслуживания. Вы можете\r\n" +
+                               $"самостоятельно приобрести билеты с\r\n" +
+                               $"                помощью терминалов\r\n" +
+                               $"          самообслуживания если до\r\n" +
+                               $"      отправления поезда осталось,\r\n" +
+                               $" не менее 30 минут (кроме льготных\r\n" +
+                               $"      категорий пассажиров; оплата\r\n" + 
+                               $"      с помощью банковской карты).\r\n";
 
             Font printFont = new Font("Times New Roman", 4, FontStyle.Regular, GraphicsUnit.Millimeter);
             e.Graphics.DrawString(printText, printFont, Brushes.Black, 0, 2);
 
-            e.Graphics.DrawLine(new Pen(Color.Black), 5, 185, 245, 185);
+            e.Graphics.DrawLine(new Pen(Color.Black), 5, 222, 245, 222);
 
             //ПЕЧАТЬ ТЕКСТА
             printText = $"{_ticketName}\r\n";
             printFont = new Font("Times New Roman", 20, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 33, 190);//9,150
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 33, 225);//9,150
 
-            printText =$"перед вами {_countPeople} чел.\r\n";
-            printFont = new Font("Times New Roman", 7, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 12, 285); //9,260
+            //printText =$"перед вами {_countPeople} чел.\r\n";
+            //printFont = new Font("Times New Roman", 7, FontStyle.Regular, GraphicsUnit.Millimeter);
+            //e.Graphics.DrawString(printText, printFont, Brushes.Black, 12, 310); //9,260
 
             printText = "\r\n \r\n ";
             printText += $"{_dateAdded.ToString("T")}            {_dateAdded.ToString("d")}";

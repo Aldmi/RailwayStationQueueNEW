@@ -75,7 +75,7 @@
                 Foreground="White"
                 IsEnabled="{Binding Path=IsConnect, Mode=OneWay}"
                 Style="{StaticResource TextBlockMainStyle}"
-                Text="Выберите специалиста"
+                Text="Выберите услугу"
                 TextAlignment="Center"
                 TextWrapping="Wrap" />
 
@@ -109,7 +109,7 @@
         <Button
             Name="BtnBaggageCheckout"
             Grid.Row="3"
-            Content="Оформить багаж/живность"
+            Content="Оформить багаж/животных"
             Style="{StaticResource ButtonStyle}" />
 
         <Button
@@ -131,7 +131,7 @@
             FontSize="34"
             Foreground="Black"
             IsEnabled="{Binding Path=IsConnect, Mode=OneWay}"
-            Text="Уважаемые пассажиры! Вы можете через транзакционные терминалы самообслуживания (ТТС) распечатать билеты, ранее оформленные через Интернет или самостоятельно приобрести билеты при условии наличия банковской карты и если до отправления поезда осталось не менее 30 минут, кроме льготных категорий пассажиров."
+            Text="Уважаемые пассажиры! Вы можете самостоятельно распечатать билеты, ранее оформленные через Интеренет, с помощью терминалов самообслуживания, если до отправления поезда осталось не менее 30 минут (кроме льготных категорий пассажиров; оплата с помощью банковской карты)"
             TextAlignment="Center"
             TextWrapping="Wrap" />
 

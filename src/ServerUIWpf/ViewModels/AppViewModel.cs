@@ -27,6 +27,7 @@ using Xceed.Wpf.Toolkit;
 using Brush = System.Windows.Media.Brush;
 using Color = System.Windows.Media.Color;
 using MessageBox = System.Windows.MessageBox;
+using Timer = System.Timers.Timer;
 
 
 namespace ServerUi.ViewModels
@@ -98,6 +99,11 @@ namespace ServerUi.ViewModels
 
             var settingUi= LoadSettingUi();
             ApplySetting(settingUi);
+
+
+            //DEBUG-------------
+            //TimerAutoTest.Elapsed += TimerAutoTest_Elapsed;   
+            //TimerAutoTest.Start();
         }
 
 
@@ -590,8 +596,8 @@ namespace ServerUi.ViewModels
                         FillTable8X2(ticket, Table8X21, Table8X22);
                         FillTable8X2(ticket, Table8X23, Table8X24);
 
-                        var task = _model.LogTicket?.Add(сashier.CurrentTicket.ToString());
-                        if (task != null) await task;
+                       // var task = _model.LogTicket?.Add(сashier.CurrentTicket.ToString());
+                      //  if (task != null) await task;
                     }
                     else                                 //удалить элемент из списка
                     {
@@ -1273,6 +1279,22 @@ namespace ServerUi.ViewModels
 
             _model.DeviceCashiers[idCashier - 1].Cashier.SuccessfulHandling();
         }
+
+
+
+        //Авто тест-------------------------------------------------------------------
+        //public Timer TimerAutoTest { get; set; } = new Timer(15000);
+        //private void TimerAutoTest_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        //{
+        //    TimerAutoTest.Stop();
+        //    for (int i = 1 ; i < 13; i++)
+        //    {
+        //        Add(i);   
+        //        Thread.Sleep(12000);
+        //        Dell(i);
+        //    }
+        //    TimerAutoTest.Start();
+        //}
 
         #endregion
 

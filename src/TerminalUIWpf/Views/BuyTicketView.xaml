@@ -73,13 +73,13 @@
         <Button
             Name="BtnBuyInterstateTicket"
             Grid.Row="2"
-            Content="Купить билет/возврат в международном сообщении"
+            Content="Международное сообщение (купить/возврат билета)"
             Style="{StaticResource ButtonStyle}" />
 
         <Button
             Name="BtnGroupsTicket"
             Grid.Row="3"
-            Content="Оформление организованных групп пассажиров (по заявкам)"
+            Content="Организованные группы пассажиров (по предварит. заявкам)"
             Style="{StaticResource ButtonStyle}" />
 
 
@@ -101,7 +101,7 @@
         <Button
             Name="BtnReturnTicket"
             Grid.Row="5"
-            Content="Возврат"
+            Content="Возврат билета"
             Style="{StaticResource ButtonStyle}" />
 
         <Button

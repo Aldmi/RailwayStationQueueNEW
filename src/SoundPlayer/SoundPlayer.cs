@@ -4,18 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NAudio.Wave;
+using NLog;
 
 namespace Sound
 {
     public class SoundPlayer : ISoundPlayer
     {
+
+       #region field
+
+        private object _locker= new object();
+
+       #endregion
+
+
+
+
         #region prop
 
-        public IWavePlayer WaveOutDevice { get; set; } = new WaveOut();
+        public IWavePlayer WaveOutDevice { get; set; }
         public AudioFileReader AudioFileReader { get; set; }
 
         #endregion
-
 
 
 
@@ -24,31 +34,40 @@ namespace Sound
 
         public bool PlayFile(string file)
         {
-            if (AudioFileReader != null)
+            lock (_locker)
             {
-                AudioFileReader.Dispose();
-                AudioFileReader = null;
-            }
-
-            try
-            {
-                if (System.IO.File.Exists(file))
+                if (AudioFileReader != null)
                 {
-                    AudioFileReader = new AudioFileReader(file);
-                    WaveOutDevice.Init(AudioFileReader);
-
-                    SetVolume(0.9f);
-                    Play();
-
-                    return true;
+                    AudioFileReader.Dispose();
+                    AudioFileReader = null;
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
 
-            return false;
+                try
+                {
+                    if (System.IO.File.Exists(file))
+                    {
+                        AudioFileReader = new AudioFileReader(file);
+
+                        WaveOutDevice?.Stop();
+                        WaveOutDevice?.Dispose();
+                        WaveOutDevice = new WaveOut();
+
+                        WaveOutDevice.Init(AudioFileReader);
+
+                        SetVolume(0.9f);
+                        Play();
+
+                        return true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var logger = LogManager.GetCurrentClassLogger();
+                    logger.Error($"SoundPlayer/PlayFile. {ex.Message}");
+                }
+
+                return false;
+            }
         }
 
 
@@ -66,9 +85,10 @@ namespace Sound
                     WaveOutDevice.Play();
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e);
+                var logger = LogManager.GetCurrentClassLogger();
+                logger.Error($"SoundPlayer/Play {ex.Message}");
                 throw;
             }
         }
@@ -147,7 +167,7 @@ namespace Sound
 
         public PlaybackState GetStatus()
         {
-            return WaveOutDevice.PlaybackState;
+            return WaveOutDevice?.PlaybackState ?? PlaybackState.Stopped;
         }
 
         #endregion

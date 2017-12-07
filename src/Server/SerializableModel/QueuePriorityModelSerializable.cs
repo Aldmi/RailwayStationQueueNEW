@@ -6,11 +6,22 @@ using Server.Entitys;
 namespace Server.SerializableModel
 {
     [Serializable]
+    public class QueuePrioritysModelSerializable
+    {
+        public List<QueuePriorityModelSerializable> Queues { get; set; } = new List<QueuePriorityModelSerializable>();
+        public List<СashierModelSerializable> Cashiers { get; set; } = new List<СashierModelSerializable>();
+    }
+
+
+
+    [Serializable]
     public class QueuePriorityModelSerializable
     {
         public string Name { get; set; }
         public List<TicketItem> Queue { get; set; } = new List<TicketItem>();
     }
+
+
 
     [Serializable]
     public class СashierModelSerializable
@@ -19,13 +30,5 @@ namespace Server.SerializableModel
         public TicketItem CurrenTicketItem { get; set; }
     }
 
-    
 
-
-    [Serializable]
-    public class QueuePrioritysModelSerializable
-    {
-        public List<QueuePriorityModelSerializable> Queues { get; set; } = new List<QueuePriorityModelSerializable>();
-        public List<СashierModelSerializable> Cashiers { get; set; } = new List<СashierModelSerializable>();
-    }
 }
