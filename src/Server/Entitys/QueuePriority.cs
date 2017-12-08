@@ -33,6 +33,7 @@ namespace Server.Entitys
                 if (value != null && value.Any())
                 {
                     Queue = new ConcurrentQueue<TicketItem>(value);
+                    OnPropertyChanged("QueuePriority");
                 }
             }
         }
