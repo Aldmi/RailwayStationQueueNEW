@@ -89,9 +89,9 @@ namespace Terminal.Service
             printFont = new Font("Times New Roman", 20, FontStyle.Regular, GraphicsUnit.Millimeter);
             e.Graphics.DrawString(printText, printFont, Brushes.Black, 33, 225);//9,150
 
-            //printText =$"перед вами {_countPeople} чел.\r\n";
-            //printFont = new Font("Times New Roman", 7, FontStyle.Regular, GraphicsUnit.Millimeter);
-            //e.Graphics.DrawString(printText, printFont, Brushes.Black, 12, 310); //9,260
+            printText = $"перед вами {_countPeople} чел.\r\n";
+            printFont = new Font("Times New Roman", 7, FontStyle.Regular, GraphicsUnit.Millimeter);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 12, 310); //9,260
 
             printText = "\r\n \r\n ";
             printText += $"{_dateAdded.ToString("T")}            {_dateAdded.ToString("d")}";

@@ -14,7 +14,7 @@ namespace Server.Entitys
     {
         #region prop
         //Объект синхронизации.
-        // Паралельное наполнение очереди (4 терминала)
+        //Паралельное наполнение очереди (4 терминала)
         //Паралельное изьятие кассирами билетов (2 послед порта)
         private readonly object _locker = new object();
 
@@ -60,7 +60,6 @@ namespace Server.Entitys
 
 
 
-
         #region Events
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -74,6 +73,7 @@ namespace Server.Entitys
 
 
 
+
         #region Methode
 
         /// <summary>
@@ -81,19 +81,21 @@ namespace Server.Entitys
         /// </summary>
         public int GetInseartPlace(string prefix)
         {
-            lock (_locker)
-            {
-                var item = new TicketItem {Prefix = prefix, Priority = 0};
-                var priority = Prefixes.FirstOrDefault(p => p.Name == prefix)?.Priority;
-                if (priority.HasValue)
-                {
-                    item.Priority = priority.Value;
-                }
+            //lock (_locker)
+            //{
+            //    var item = new TicketItem {Prefix = prefix, Priority = 0};
+            //    var priority = Prefixes.FirstOrDefault(p => p.Name == prefix)?.Priority;
+            //    if (priority.HasValue)
+            //    {
+            //        item.Priority = priority.Value;
+            //    }
 
-                var items = new List<TicketItem>(Queue) {item};
-                var ordered = items.OrderByDescending(t => t.Priority).ToList(); //TODO: упорядочевать еще и по дате добавления внутри группы
-                return ordered.IndexOf(item);
-            }
+            //    var items = new List<TicketItem>(Queue) {item};
+            //    var ordered = items.OrderByDescending(t => t.Priority).ToList(); //TODO: упорядочевать еще и по дате добавления внутри группы
+            //    return ordered.IndexOf(item);
+            //}
+
+            return Queue.Count(t => t.Prefix == prefix);
         }
 
 
@@ -111,14 +113,14 @@ namespace Server.Entitys
 
 
         /// <summary>
-        /// Добавить элемент в очередь
+        /// Добавить элемент в очередь, по приориету.
         /// </summary>
         public void Enqueue(TicketItem item)
         {
             lock (_locker)
             {
                 var items = new List<TicketItem>(Queue) {item};
-                var ordered = items.OrderByDescending(t => t.Priority);
+                var ordered = items.OrderByDescending(t => t.Priority).ThenBy(t=>t.AddedTime);
                 Queue = new ConcurrentQueue<TicketItem>(ordered);
                 OnPropertyChanged("QueuePriority");
             }

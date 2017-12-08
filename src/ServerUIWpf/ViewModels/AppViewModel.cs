@@ -84,7 +84,7 @@ namespace ServerUi.ViewModels
               queueMain.PropertyChanged += QueueMain_PropertyChanged;
            }
  
-           _model.LoadStates();
+           //_model.LoadStates();//TODO: раскоментить!!!!
 
 
 
