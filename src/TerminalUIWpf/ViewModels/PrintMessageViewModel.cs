@@ -1,4 +1,7 @@
-﻿using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using Caliburn.Micro;
@@ -6,17 +9,11 @@ using Timer = System.Timers.Timer;
 
 namespace TerminalUIWpf.ViewModels
 {
-    public enum Act
-    {
-        Ok, Cancel, Undefined
-    }
-
-    public class DialogViewModel : Screen
+    public class PrintMessageViewModel : Screen
     {
         #region field
 
-        private readonly IWindowManager _windowManager;
-        private const double TimerPeriod = 8000; // Таймер закрытия окна
+        private const double TimerPeriod = 2000; // Таймер закрытия окна
         private readonly Timer _timer;
 
         #endregion
@@ -26,9 +23,8 @@ namespace TerminalUIWpf.ViewModels
 
         #region ctor
 
-        public DialogViewModel(IWindowManager windowManager)
+        public PrintMessageViewModel()
         {
-            _windowManager = windowManager;
             _timer = new Timer(TimerPeriod);
             _timer.Elapsed += _timer_AutoCloseWindow;
         }
@@ -63,42 +59,6 @@ namespace TerminalUIWpf.ViewModels
 
         private void _timer_AutoCloseWindow(object sender, ElapsedEventArgs e)
         {
-            Act = Act.Cancel;
-            TryClose();
-        }
-
-        #endregion
-
-
-
-
-
-        #region prop
-
-        public string TicketName { get; set; }
-        public string CountPeople { get; set; }
-
-        public Act Act { get; set; }
-
-        #endregion
-
-
-
-
-        #region Methode
-
-        public void BtnOk()
-        {
-            var dialog = new PrintMessageViewModel();
-            _windowManager.ShowDialog(dialog);
-
-            Act = Act.Ok;
-            TryClose();
-        }
-
-        public void BtnCancel()
-        {
-            Act = Act.Cancel;
             TryClose();
         }
 

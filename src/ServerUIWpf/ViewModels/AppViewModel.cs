@@ -84,12 +84,11 @@ namespace ServerUi.ViewModels
               queueMain.PropertyChanged += QueueMain_PropertyChanged;
            }
  
-           //_model.LoadStates();//TODO: раскоментить!!!!
+           _model.LoadStates();//TODO: раскоментить!!!!
 
 
 
             //ЗАГРУЗКА НАСТРОЕК ТАБЛО
-
             HeaderBackgroundColor = new SolidColorBrush(Colors.DarkRed);
             HeaderFontColor = new SolidColorBrush(Colors.Black);
             ColorListRows = new SolidColorBrush(Colors.Azure);
