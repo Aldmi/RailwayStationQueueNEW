@@ -90,7 +90,7 @@ namespace TerminalUIWpf.ViewModels
         public void BtnOk()
         {
             var dialog = new PrintMessageViewModel();
-            _windowManager.ShowDialog(dialog);
+            _windowManager.ShowWindow(dialog);
 
             Act = Act.Ok;
             TryClose();

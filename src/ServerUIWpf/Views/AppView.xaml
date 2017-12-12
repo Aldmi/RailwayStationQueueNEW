@@ -1191,30 +1191,30 @@
             Orientation="Horizontal"
             Visibility="Visible">
 
-            <StackPanel>
-                <Button
-                    Width="25"
-                    Height="25"
-                    Margin="1"
-                    cal:Message.Attach="Add(1)">
-                    1Д
-                </Button>
-                <Button
-                    Width="25"
-                    Height="25"
-                    Margin="1"
-                    cal:Message.Attach="Redirect(1)">
-                    1Р
-                </Button>
-                <Button
-                    Width="25"
-                    Height="25"
-                    Margin="2,2,3,2"
-                    cal:Message.Attach="Dell(1)">
-                    1У
-                </Button>
-            </StackPanel>
-            <StackPanel>
+            <!--<StackPanel>-->
+            <Button
+                Width="25"
+                Height="25"
+                Margin="1"
+                cal:Message.Attach="Add(1)">
+                1Д
+            </Button>
+            <Button
+                Width="25"
+                Height="25"
+                Margin="1"
+                cal:Message.Attach="Redirect(1)">
+                1Р
+            </Button>
+            <Button
+                Width="25"
+                Height="25"
+                Margin="2,2,3,2"
+                cal:Message.Attach="Dell(1)">
+                1У
+            </Button>
+            <!--</StackPanel>-->
+            <!--<StackPanel>
                 <Button
                     Width="25"
                     Height="25"
@@ -1592,7 +1592,7 @@
                     cal:Message.Attach="Dell(17)">
                     17У
                 </Button>
-            </StackPanel>
+            </StackPanel>-->
 
         </StackPanel>
 
