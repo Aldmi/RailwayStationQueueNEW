@@ -16,7 +16,7 @@
 		  <BaudRate>57600</BaudRate>
 		  <DataBits>8</DataBits>
 		  <StopBits>1</StopBits>
-		  <TimeRespon>250</TimeRespon>
+		  <TimeRespon>1000</TimeRespon>
 		  <TimeCycleReConnect>3000</TimeCycleReConnect>
 		</Serial>	
 	</SerialPorts>
@@ -45,6 +45,6 @@
 
 	
 	<Cashiers>	`
-	   <Cashier Id="13" Port="4" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/>
+	   <Cashier Id="13" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
 	</Cashiers>
 </Root>

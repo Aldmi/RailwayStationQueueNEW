@@ -12,6 +12,7 @@ namespace Server.Infrastructure
     public class Server2TerminalExchangeDataProvider : IExchangeDataProvider<TerminalInData, TerminalOutData>
     {
         #region prop
+        private  readonly object _locker = new object();
 
         public int CountSetDataByte => 25;
         public int CountGetDataByte => 16;
@@ -22,8 +23,11 @@ namespace Server.Infrastructure
             get { return _inputData; }
             set
             {
-                _inputData = value;
-                OnPropertyChanged();
+                lock (_locker)                               //Если один объект DataProvider используется для нескольких ClientTcpIp, то сработка OnPropertyChanged (обработка InputData), должна производится последовательно для всех ClientTcpIp.
+                {
+                    _inputData = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -135,7 +139,7 @@ namespace Server.Infrastructure
                     return false;
                 }
 
-                InputData = new TerminalInData {NameQueue = nameQueue, PrefixQueue = prefixQueue, Action = (TerminalAction) data[2] };
+                InputData = new TerminalInData { NameQueue = nameQueue, PrefixQueue = prefixQueue, Action = (TerminalAction) data[2] };
                 IsOutDataValid = true;
             }
             else

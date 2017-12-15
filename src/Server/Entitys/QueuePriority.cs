@@ -81,34 +81,23 @@ namespace Server.Entitys
         /// </summary>
         public int GetInseartPlace(string prefix)
         {
-            //lock (_locker)
-            //{
-            //    var item = new TicketItem {Prefix = prefix, Priority = 0};
-            //    var priority = Prefixes.FirstOrDefault(p => p.Name == prefix)?.Priority;
-            //    if (priority.HasValue)
-            //    {
-            //        item.Priority = priority.Value;
-            //    }
-
-            //    var items = new List<TicketItem>(Queue) {item};
-            //    var ordered = items.OrderByDescending(t => t.Priority).ToList(); //TODO: упорядочевать еще и по дате добавления внутри группы
-            //    return ordered.IndexOf(item);
-            //}
-
             return Queue.Count(t => t.Prefix == prefix);
         }
 
 
         public TicketItem CreateTicket(string prefix)
         {
-            var inseartPlase= (ushort)GetInseartPlace(prefix);
-            var ticket = TicketFactory.Create(inseartPlase, prefix);
-            var priority = Prefixes.FirstOrDefault(p => p.Name == prefix)?.Priority;
-            if (priority.HasValue)
+            lock (_locker)
             {
-                ticket.Priority = priority.Value;
+                var inseartPlase = (ushort) GetInseartPlace(prefix);
+                var ticket = TicketFactory.Create(inseartPlase, prefix);
+                var priority = Prefixes.FirstOrDefault(p => p.Name == prefix)?.Priority;
+                if (priority.HasValue)
+                {
+                    ticket.Priority = priority.Value;
+                }
+                return ticket;
             }
-            return ticket;
         }
 
 

@@ -60,34 +60,30 @@ namespace Terminal.Service
 
         private void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
-            //ПЕЧАТЬ ЛОГОТИПА
-            //string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Picture", "RZD_logo.jpg");
-            //if (File.Exists(filePath))
-            //    e.Graphics.DrawImage(Image.FromFile(filePath), 10, 5);
-
             //ПЕЧАТЬ ТЕКСТА
-            string printText = $"              Уважаемые пассажиры!\r\n" +
-                               $"Вы можете самостоятельно распечать\r\n" +
-                               $"   билеты, ранее оформленные через\r\n" +
-                               $"    Интернет, с помощью терминалов\r\n" +
-                               $"       самообслуживания. Вы можете\r\n" +
-                               $"самостоятельно приобрести билеты с\r\n" +
-                               $"                помощью терминалов\r\n" +
-                               $"          самообслуживания если до\r\n" +
-                               $"      отправления поезда осталось,\r\n" +
-                               $" не менее 30 минут (кроме льготных\r\n" +
-                               $"      категорий пассажиров; оплата\r\n" + 
-                               $"      с помощью банковской карты).\r\n";
+            string printText = $"            Уважаемые пассажиры!\r\n" +
+                               $"        Вы можете самостоятельно\r\n" +
+                               $"         распечать билеты, ранее\r\n" +
+                               $"   оформленные через Интернет, с\r\n" +
+                               $"              помощью терминалов\r\n" +
+                               $"     самообслуживания. Вы можете\r\n" +
+                               $"самостоятельно приобрести билеты\r\n" +
+                               $"            с помощью терминалов\r\n" +
+                               $"        самообслуживания если до\r\n" +
+                               $" отправления поезда осталось, не\r\n" +
+                               $"  менее 30 минут (кроме льготных\r\n" +
+                               $"  категорий пассажиров; оплата с\r\n" +
+                               $"      помощью банковской карты).\r\n";
 
             Font printFont = new Font("Times New Roman", 4, FontStyle.Regular, GraphicsUnit.Millimeter);
             e.Graphics.DrawString(printText, printFont, Brushes.Black, 0, 2);
 
-            e.Graphics.DrawLine(new Pen(Color.Black), 5, 222, 245, 222);
+            e.Graphics.DrawLine(new Pen(Color.Black), 5, 239, 245, 239);
 
             //ПЕЧАТЬ ТЕКСТА
             printText = $"{_ticketName}\r\n";
             printFont = new Font("Times New Roman", 20, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 33, 225);//9,150
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 20, 236);//9,150
 
             printText = $"перед вами {_countPeople} чел.\r\n";
             printFont = new Font("Times New Roman", 7, FontStyle.Regular, GraphicsUnit.Millimeter);
