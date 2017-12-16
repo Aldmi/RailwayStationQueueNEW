@@ -1,27 +1,26 @@
-﻿<Window
-    x:Class="TerminalUIWpf.Views.BuyTicketView"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    AllowDrop="False"
-    Focusable="False"
-    WindowState="Maximized"
-    WindowStyle="None"
-    mc:Ignorable="d">
+﻿<Window x:Class="TerminalUIWpf.Views.BuyTicketView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        AllowDrop="False"
+        Focusable="False"
+        WindowState="Maximized"
+        WindowStyle="None"
+        mc:Ignorable="d">
 
 
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="35" />
+            <Setter Property="FontSize" Value="48" />
             <Setter Property="Background" Value="SlateGray" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="1,8,1,8" />
-            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="1,10,1,10" />
+            <Setter Property="Padding" Value="13" />
             <Setter Property="VerticalAlignment" Value="Stretch" />
             <Setter Property="Width" Value="1200" />
-            <Setter Property="Height" Value="78" />
+            <!--<Setter Property="Height" Value="78" />-->
         </Style>
 
     </Window.Resources>
@@ -36,99 +35,95 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
 
-        <Grid
-            Grid.Row="0"
-            Margin="0,0,0,25"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Background="Crimson">
+        <Grid Grid.Row="0"
+              Margin="0,0,0,25"
+              HorizontalAlignment="Stretch"
+              VerticalAlignment="Stretch"
+              Background="Crimson">
 
-            <TextBlock
-                MaxWidth="1000"
-                Padding="5,35,5,35"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                FontSize="55"
-                Foreground="White"
-                IsEnabled="{Binding Path=IsConnect, Mode=OneWay}"
-                Text="БИЛЕТЫ"
-                TextAlignment="Center"
-                TextWrapping="Wrap" />
+            <TextBlock MaxWidth="1000"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       FontSize="55"
+                       Foreground="White"
+                       IsEnabled="{Binding Path=IsConnect,
+                                           Mode=OneWay}"
+                       Padding="5,35,5,35"
+                       Text="БИЛЕТЫ"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap" />
         </Grid>
 
 
-        <Button
-            Name="BtnBuyTicket"
-            Grid.Row="1"
-            Content="Купить билет"
-            Style="{StaticResource ButtonStyle}" />
+        <Button Name="BtnBuyTicket"
+                Grid.Row="1"
+                Style="{StaticResource ButtonStyle}">
+            <StackPanel>
+                <TextBlock Text="Купить билет / Возврат билета / "
+                           TextAlignment="Center"
+                           TextWrapping="WrapWithOverflow" />
+                <TextBlock Text="замена персональных данных в билете /"
+                           TextAlignment="Center"
+                           TextWrapping="WrapWithOverflow" />
+                <TextBlock Text="переоформление билетов /"
+                           TextAlignment="Center"
+                           TextWrapping="WrapWithOverflow" />
+                <TextBlock Text="оформление багажа"
+                           TextAlignment="Center"
+                           TextWrapping="WrapWithOverflow" />
+            </StackPanel>
+        </Button>
 
-        <Button
-            Name="BtnBuyInterstateTicket"
-            Grid.Row="2"
-            Content="Международное сообщение (купить/возврат билета)"
-            Style="{StaticResource ButtonStyle}" />
+        <Button Name="BtnBuyInterstateTicket"
+                Grid.Row="2"
+                Style="{StaticResource ButtonStyle}">
+            <StackPanel>
+                <TextBlock Text="Купить билет в страны "
+                           TextAlignment="Center"
+                           TextWrapping="WrapWithOverflow" />
+                <TextBlock Text="Европы, Монголию, Китай"
+                           TextAlignment="Center"
+                           TextWrapping="WrapWithOverflow" />
+            </StackPanel>
+        </Button>
 
-        <Button
-            Name="BtnGroupsTicket"
-            Grid.Row="3"
-            Content="Организованные группы пассажиров (по предварит. заявкам)"
-            Style="{StaticResource ButtonStyle}" />
+        <Button Name="BtnGroupsTicket"
+                Grid.Row="3"
+                Style="{StaticResource ButtonStyle}">
+            <StackPanel>
+                <TextBlock Text="Оформление организованных групп пассажиров"
+                           TextAlignment="Center"
+                           TextWrapping="WrapWithOverflow" />
+                <TextBlock Text="(по предварительным заявкам)"
+                           TextAlignment="Center"
+                           TextWrapping="WrapWithOverflow" />
+            </StackPanel>
+        </Button>
 
 
-        <Button
-            Name="BtnLowMobilityTicket"
-            Grid.Row="4"
-            Padding="1"
-            Style="{StaticResource ButtonStyle}">
+        <Button Name="BtnLowMobilityTicket"
+                Grid.Row="4"
+                Padding="1"
+                Style="{StaticResource ButtonStyle}">
             <StackPanel Orientation="Horizontal">
-                <Image
-                    Width="65"
-                    Height="65"
-                    Margin="2,0,70,0"
-                    Source="/Pictures/invalid.jpg" />
+                <Image Width="65"
+                       Height="65"
+                       Margin="2,0,70,0"
+                       Source="/Pictures/invalid.jpg" />
                 <TextBlock Padding="10">Оформление маломобильных пассажиров</TextBlock>
             </StackPanel>
         </Button>
 
-        <Button
-            Name="BtnReturnTicket"
-            Grid.Row="5"
-            Content="Возврат билета"
-            Style="{StaticResource ButtonStyle}" />
 
-        <Button
-            Name="BtnReformTicket"
-            Grid.Row="6"
-            Content="Переоформление"
-            Style="{StaticResource ButtonStyle}" />
-
-        <Button
-            Name="BtnRestoreTicket"
-            Grid.Row="7"
-            Content="Восстановление утерянных, испорченных билетов"
-            Style="{StaticResource ButtonStyle}" />
-
-        <Button
-            Name="BtnReplacementPersonalData"
-            Grid.Row="8"
-            Content="Замена персональных данных в билете"
-            Style="{StaticResource ButtonStyle}" />
-
-        <Button
-            Name="BtnClouseWindow"
-            Grid.Row="9"
-            Height="100"
-            Content="НАЗАД"
-            Foreground="DarkKhaki"
-            Style="{StaticResource ButtonStyle}" />
+        <Button Name="BtnClouseWindow"
+                Grid.Row="5"
+                Height="100"
+                Content="НАЗАД"
+                Foreground="DarkKhaki"
+                Style="{StaticResource ButtonStyle}" />
 
     </Grid>
 </Window>
