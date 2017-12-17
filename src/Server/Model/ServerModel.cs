@@ -85,7 +85,6 @@ namespace Server.Model
             //ЗАГРУЗКА НАСТРОЕК----------------------------------------------------------------
             XmlListenerSettings xmlListener;
             IList<XmlSerialSettings> xmlSerials;
-            XmlLogSettings xmlLog;
             List<XmlCashierSettings> xmlCashier;
             List<XmlQueuesSettings> xmlQueues;
             try
@@ -96,7 +95,6 @@ namespace Server.Model
 
                 xmlListener = XmlListenerSettings.LoadXmlSetting(xmlFile);
                 xmlSerials = XmlSerialSettings.LoadXmlSetting(xmlFile).ToList();
-                xmlLog = XmlLogSettings.LoadXmlSetting(xmlFile);
                 xmlCashier = XmlCashierSettings.LoadXmlSetting(xmlFile);
                 xmlQueues = XmlQueuesSettings.LoadXmlSetting(xmlFile);
             }
@@ -113,8 +111,7 @@ namespace Server.Model
 
 
             //СОЗДАНИЕ ЛОГА--------------------------------------------------------------------------
-            LogTicket= new Log("TicketLog.txt", xmlLog);
-
+       
 
             //СОЗДАНИЕ ОЧЕРЕДИ-----------------------------------------------------------------------
             foreach (var xmlQueue in xmlQueues)

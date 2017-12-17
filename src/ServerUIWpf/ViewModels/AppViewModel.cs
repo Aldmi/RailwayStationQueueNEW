@@ -28,6 +28,7 @@ using Brush = System.Windows.Media.Brush;
 using Color = System.Windows.Media.Color;
 using MessageBox = System.Windows.MessageBox;
 using Timer = System.Timers.Timer;
+using NLog;
 
 
 namespace ServerUi.ViewModels
@@ -594,7 +595,7 @@ namespace ServerUi.ViewModels
 
         #region EventHandler
 
-        private async void Cashier_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void Cashier_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var сashier = sender as Сashier;
             if (сashier != null)
@@ -620,8 +621,9 @@ namespace ServerUi.ViewModels
                         FillTable8X2(ticket, Table8X21, Table8X22);
                         FillTable8X2(ticket, Table8X23, Table8X24);
 
-                       // var task = _model.LogTicket?.Add(сashier.CurrentTicket.ToString());
-                      //  if (task != null) await task;
+
+                        var log = NLog.LogManager.GetCurrentClassLogger();
+                        log.Info(сashier.CurrentTicket.ToString());
                     }
                     else                                 //удалить элемент из списка
                     {

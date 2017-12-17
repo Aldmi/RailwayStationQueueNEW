@@ -31,9 +31,9 @@ namespace Library.Logs
             _countPortion = countPortion;
         }
 
-        public Log(string filename, XmlLogSettings settings) : this(filename, settings.PortionString, settings.CountPortion)
-        { 
-        }
+        //public Log(string filename, XmlLogSettings settings) : this(filename, settings.PortionString, settings.CountPortion)
+        //{ 
+        //}
 
 
 

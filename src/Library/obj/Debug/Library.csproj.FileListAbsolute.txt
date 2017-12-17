@@ -20,3 +20,10 @@ C:\Users\User\Desktop\Эл.очередь\src\Library\bin\Debug\Library.dll
 C:\Users\User\Desktop\Эл.очередь\src\Library\bin\Debug\Library.pdb
 C:\Users\User\Desktop\Эл.очередь\src\Library\obj\Debug\Library.dll
 C:\Users\User\Desktop\Эл.очередь\src\Library\obj\Debug\Library.pdb
+D:\Git\RailwayStationQueueNew\src\Library\bin\Debug\NLog.config
+D:\Git\RailwayStationQueueNew\src\Library\bin\Debug\Library.dll
+D:\Git\RailwayStationQueueNew\src\Library\bin\Debug\Library.pdb
+D:\Git\RailwayStationQueueNew\src\Library\bin\Debug\NLog.dll
+D:\Git\RailwayStationQueueNew\src\Library\bin\Debug\NLog.xml
+D:\Git\RailwayStationQueueNew\src\Library\obj\Debug\Library.dll
+D:\Git\RailwayStationQueueNew\src\Library\obj\Debug\Library.pdb
