@@ -1,18 +1,19 @@
-﻿<Window x:Class="TerminalUIWpf.Views.PrintMessageView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:TerminalUIWpf.Views"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Width="850"
-        Height="200"
-        AllowDrop="False"
-        Background="LightGreen"
-        Focusable="False"
-        WindowStartupLocation="CenterScreen"
-        WindowState="Normal"
-        WindowStyle="None"
-        mc:Ignorable="d">
+﻿<Window
+    x:Class="TerminalUIWpf.Views.PrintMessageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TerminalUIWpf.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="850"
+    Height="200"
+    AllowDrop="False"
+    Background="LightGreen"
+    Focusable="False"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Normal"
+    WindowStyle="None"
+    mc:Ignorable="d">
 
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
@@ -20,11 +21,12 @@
         </Grid.RowDefinitions>
 
 
-        <TextBlock Grid.Row="0"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="80"
-                   Text="Идет печать билета ..." />
+        <TextBlock
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="80"
+            Text="Идет печать билета ..." />
 
 
     </Grid>

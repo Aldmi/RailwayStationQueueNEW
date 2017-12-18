@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Media;
-using System.Xml.Serialization;
 using Caliburn.Micro;
 using Communication.TcpIp;
 using Server.Entitys;
@@ -20,14 +16,10 @@ using Server.Model;
 using ServerUi.Model;
 using Sound;
 using Brushes = System.Windows.Media.Brushes;
-using FontFamily = System.Windows.Media.FontFamily;
 using Screen = Caliburn.Micro.Screen;
 using TicketItem = ServerUi.Model.TicketItem;
-using Xceed.Wpf.Toolkit;
 using Brush = System.Windows.Media.Brush;
-using Color = System.Windows.Media.Color;
 using MessageBox = System.Windows.MessageBox;
-using Timer = System.Timers.Timer;
 using NLog;
 
 
@@ -39,6 +31,7 @@ namespace ServerUi.ViewModels
 
         private readonly ServerModel _model;
         private readonly Task _mainTask;
+        private readonly Logger _logger;
 
         private const int LimitRowTable8X21 = 6;
         private const int LimitRowTable8X22 = 6;
@@ -59,6 +52,8 @@ namespace ServerUi.ViewModels
 
         public AppViewModel()
         {
+            _logger = NLog.LogManager.GetCurrentClassLogger();
+
             _model = new ServerModel();
             _model.PropertyChanged += _model_PropertyChanged;
 
@@ -85,7 +80,7 @@ namespace ServerUi.ViewModels
               queueMain.PropertyChanged += QueueMain_PropertyChanged;
            }
  
-           _model.LoadStates();//TODO: раскоментить!!!!
+           _model.LoadStates();
 
 
 
@@ -621,9 +616,8 @@ namespace ServerUi.ViewModels
                         FillTable8X2(ticket, Table8X21, Table8X22);
                         FillTable8X2(ticket, Table8X23, Table8X24);
 
-
-                        var log = NLog.LogManager.GetCurrentClassLogger();
-                        log.Info(сashier.CurrentTicket.ToString());
+                        //LOG
+                        _logger.Info(сashier.CurrentTicket.ToString());
                     }
                     else                                 //удалить элемент из списка
                     {
@@ -719,7 +713,8 @@ namespace ServerUi.ViewModels
                             break;
                     }
 
-
+                    //LOG
+                    _logger.Debug($"Кассиры на связи Id: {deviceCashier.Cashier.Id}    IsConnect: {deviceCashier.IsConnect}");
                     //TODO: добавить IsConnect на каждого кассира
                 }
             }
@@ -742,6 +737,14 @@ namespace ServerUi.ViewModels
                   var ipTcpClients=  listener.GetClients.Select(c=>c.Ip).ToList();
                   TerminalsIp.Clear();
                   TerminalsIp.AddRange(ipTcpClients);
+
+                  //LOG
+                  var strb = new StringBuilder("Терминалы на свзяи: ");
+                  foreach (var c in ipTcpClients)
+                  {
+                     strb.Append(c).Append("; ");
+                  }
+                  _logger.Debug(strb);
                 }
             }
         }
@@ -755,6 +758,8 @@ namespace ServerUi.ViewModels
             {
                 if (e.PropertyName == "ErrorString")
                 {
+                    _logger.Error($"ServerModel/ErrorString= {server.ErrorString}");
+
                     //  MessageBox.Show(server.ErrorString); //TODO: как вызвать MessageBox
                 }
             }
