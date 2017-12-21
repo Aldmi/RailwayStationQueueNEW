@@ -178,6 +178,7 @@ namespace Communication.SerialPort
             if (dataProvider == null)
                 return false;
 
+  
             IsRunDataExchange = true;
             try
             {

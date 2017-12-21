@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
@@ -558,6 +560,200 @@ namespace ServerUi.ViewModels
 
 
 
+        #region ОПРОС КАССИРОВ
+
+        private SolidColorBrush _colorForegroundCashierTicket1 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket1
+        {
+            get { return _colorForegroundCashierTicket1; }
+            set
+            {
+                _colorForegroundCashierTicket1 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket1);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket2 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket2
+        {
+            get { return _colorForegroundCashierTicket2; }
+            set
+            {
+                _colorForegroundCashierTicket2 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket2);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket3 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket3
+        {
+            get { return _colorForegroundCashierTicket3; }
+            set
+            {
+                _colorForegroundCashierTicket3 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket3);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket4 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket4
+        {
+            get { return _colorForegroundCashierTicket4; }
+            set
+            {
+                _colorForegroundCashierTicket4 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket4);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket5 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket5
+        {
+            get { return _colorForegroundCashierTicket5; }
+            set
+            {
+                _colorForegroundCashierTicket5 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket5);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket6 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket6
+        {
+            get { return _colorForegroundCashierTicket6; }
+            set
+            {
+                _colorForegroundCashierTicket6 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket6);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket7 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket7
+        {
+            get { return _colorForegroundCashierTicket7; }
+            set
+            {
+                _colorForegroundCashierTicket7 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket7);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket8 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket8
+        {
+            get { return _colorForegroundCashierTicket8; }
+            set
+            {
+                _colorForegroundCashierTicket8 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket8);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket9 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket9
+        {
+            get { return _colorForegroundCashierTicket9; }
+            set
+            {
+                _colorForegroundCashierTicket9 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket9);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket10 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket10
+        {
+            get { return _colorForegroundCashierTicket10; }
+            set
+            {
+                _colorForegroundCashierTicket10 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket10);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket11 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket11
+        {
+            get { return _colorForegroundCashierTicket11; }
+            set
+            {
+                _colorForegroundCashierTicket11 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket11);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket12 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket12
+        {
+            get { return _colorForegroundCashierTicket12; }
+            set
+            {
+                _colorForegroundCashierTicket12 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket12);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket13 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket13
+        {
+            get { return _colorForegroundCashierTicket13; }
+            set
+            {
+                _colorForegroundCashierTicket13 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket13);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket14 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket14
+        {
+            get { return _colorForegroundCashierTicket14; }
+            set
+            {
+                _colorForegroundCashierTicket14 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket14);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket15 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket15
+        {
+            get { return _colorForegroundCashierTicket15; }
+            set
+            {
+                _colorForegroundCashierTicket15 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket15);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket16 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket16
+        {
+            get { return _colorForegroundCashierTicket16; }
+            set
+            {
+                _colorForegroundCashierTicket16 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket16);
+            }
+        }
+
+        private SolidColorBrush _colorForegroundCashierTicket17 = Brushes.Black;
+        public SolidColorBrush ColorForegroundCashierTicket17
+        {
+            get { return _colorForegroundCashierTicket17; }
+            set
+            {
+                _colorForegroundCashierTicket17 = value;
+                NotifyOfPropertyChange(() => ColorForegroundCashierTicket17);
+            }
+        }
+
+        #endregion
+
+
+
+
         #region СВЯЗЬ С ТЕРМИНАЛАМИ
 
         public BindableCollection<string> TerminalsIp { get; set; } = new BindableCollection<string>();
@@ -634,7 +830,7 @@ namespace ServerUi.ViewModels
         /// <summary>
         /// Обработка события IsConnect
         /// </summary>
-        private void DevCashierOnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private async void DevCashierOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var deviceCashier = sender as DeviceCashier;
             if (deviceCashier != null)
@@ -715,7 +911,118 @@ namespace ServerUi.ViewModels
 
                     //LOG
                     _logger.Debug($"Кассиры на связи Id: {deviceCashier.Cashier.Id}    IsConnect: {deviceCashier.IsConnect}");
-                    //TODO: добавить IsConnect на каждого кассира
+                }
+
+
+                //отобразить (миганием) процесс обмена с кассами
+                if (e.PropertyName == "DataExchangeSuccess")
+                {
+                    Debug.WriteLine($"{DateTime.Now.Second}  {DateTime.Now.Millisecond} ");
+
+                    switch (deviceCashier.Cashier.Id)
+                    {
+                        case 1:
+                            ColorForegroundCashierTicket1 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket1 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 2:
+                            ColorForegroundCashierTicket2 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket2 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 3:
+                            ColorForegroundCashierTicket3 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket3 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 4:
+                            ColorForegroundCashierTicket4 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket4 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 5:
+                            ColorForegroundCashierTicket5 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket5 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 6:
+                            ColorForegroundCashierTicket6 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket6 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 7:
+                            ColorForegroundCashierTicket7 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket7 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 8:
+                            ColorForegroundCashierTicket8 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket8 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 9:
+                            ColorForegroundCashierTicket9 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket9 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 10:
+                            ColorForegroundCashierTicket10 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket10 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 11:
+                            ColorForegroundCashierTicket11 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket11 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 12:
+                            ColorForegroundCashierTicket12 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket12 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 13:
+                            ColorForegroundCashierTicket13 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket13 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 14:
+                            ColorForegroundCashierTicket14 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket14 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 15:
+                            ColorForegroundCashierTicket15 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket15 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 16:
+                            ColorForegroundCashierTicket16 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket16 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+
+                        case 17:
+                            ColorForegroundCashierTicket17 = Brushes.Red;
+                            await Task.Delay(100);
+                            ColorForegroundCashierTicket17 = deviceCashier.DataExchangeSuccess ? Brushes.White : Brushes.Black;
+                            break;
+                    }
                 }
             }
         }
