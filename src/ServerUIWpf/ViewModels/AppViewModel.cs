@@ -917,8 +917,6 @@ namespace ServerUi.ViewModels
                 //отобразить (миганием) процесс обмена с кассами
                 if (e.PropertyName == "DataExchangeSuccess")
                 {
-                    Debug.WriteLine($"{DateTime.Now.Second}  {DateTime.Now.Millisecond} ");
-
                     switch (deviceCashier.Cashier.Id)
                     {
                         case 1:
@@ -1066,8 +1064,6 @@ namespace ServerUi.ViewModels
                 if (e.PropertyName == "ErrorString")
                 {
                     _logger.Error($"ServerModel/ErrorString= {server.ErrorString}");
-
-                    //  MessageBox.Show(server.ErrorString); //TODO: как вызвать MessageBox
                 }
             }
         }

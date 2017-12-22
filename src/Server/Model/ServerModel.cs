@@ -231,17 +231,17 @@ namespace Server.Model
                 var cashiers= cashersGroup[xmlSerial.Port];
                 var cashierExch= new CashierExchangeService(cashiers, AdminCasher, xmlSerial.TimeRespoune);
                 sp.AddFunc(cashierExch.ExchangeService);
-                sp.PropertyChanged+= (o, e) =>
-                {
-                    var port = o as MasterSerialPort;
-                    if (port != null)
-                    {
-                        if (e.PropertyName == "StatusString")
-                        {
-                            ErrorString = port.StatusString;                     //TODO: РАЗДЕЛЯЕМЫЙ РЕСУРС возможно нужна блокировка
+                sp.PropertyChanged += (o, e) =>
+                 {
+                     var port = o as MasterSerialPort;
+                     if (port != null)
+                     {
+                         if (e.PropertyName == "StatusString")
+                         {
+                             ErrorString = port.StatusString;                     //TODO: РАЗДЕЛЯЕМЫЙ РЕСУРС возможно нужна блокировка
                         }
-                    }
-                };
+                     }
+                 };
                 MasterSerialPorts.Add(sp);
                 CashierExchangeServices.Add(cashierExch);
             }
