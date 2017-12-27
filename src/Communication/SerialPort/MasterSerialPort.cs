@@ -158,9 +158,16 @@ namespace Communication.SerialPort
         {
             while (!Cts.IsCancellationRequested)
             {
-                foreach (var func in Funcs)
+                try
                 {
-                    await func(this, Cts.Token);
+                    foreach (var func in Funcs)
+                    {
+                        await func(this, Cts.Token);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    StatusString = $"Ошибка работы с портом: {_port.PortName}. ОШИБКА: {ex}";
                 }
             }
         }
@@ -178,6 +185,7 @@ namespace Communication.SerialPort
             if (dataProvider == null)
                 return false;
 
+  
             IsRunDataExchange = true;
             try
             {

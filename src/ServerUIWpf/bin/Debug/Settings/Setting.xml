@@ -12,11 +12,11 @@
 	
     <SerialPorts>
 		<Serial>
-		  <Port>4</Port>
+		  <Port>1</Port>
 		  <BaudRate>57600</BaudRate>
 		  <DataBits>8</DataBits>
 		  <StopBits>1</StopBits>
-		  <TimeRespon>1000</TimeRespon>
+		  <TimeRespon>300</TimeRespon>
 		  <TimeCycleReConnect>3000</TimeCycleReConnect>
 		</Serial>	
 	</SerialPorts>
@@ -40,6 +40,22 @@
 
 	
 	<Cashiers>	`
-	   <Cashier Id="13" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="1" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="2" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="3" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="4" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="5" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="6" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="7" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="8" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="9" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="10" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="11" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="12" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="13" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="14" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="15" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="16" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="17" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
 	</Cashiers>
 </Root>

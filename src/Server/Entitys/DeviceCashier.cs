@@ -53,6 +53,7 @@ namespace Server.Entitys
                         IsConnect = false;
                     }
                 }
+                OnPropertyChanged(); //TODO: вызывается очень часто раз в 250мс!!!!!!!!!!!!!!
             }
         }
 

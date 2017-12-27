@@ -142,6 +142,16 @@ namespace Communication.TcpIp
         {
             using (var client = new Client(c))
             {
+                // Если Ip нового клиента уже есть в списке, значит этот клиент выполнил аварийный реконект (без вызова Dispose),
+                //Т.е. просто отключение терминала по питанию. 
+                //Вручную удалим старого клиента.
+               var fatalDisposeClient= _clients.FirstOrDefault(cl => cl.Ip == client.Ip);
+               if (fatalDisposeClient != null)
+               {
+                   fatalDisposeClient.Dispose();
+                   _clients.Remove(fatalDisposeClient);
+               }
+
                 _clients.Add(client);
                 while (c.Connected && !token.IsCancellationRequested)
                 {

@@ -207,4 +207,3 @@ C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Release\Terminal
 C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.GenerateResource.Cache
 C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Release\TerminalUIWpf.exe
 C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Release\TerminalUIWpf.pdb
-D:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\bin\Release\TerminalUIWpf.exe.config

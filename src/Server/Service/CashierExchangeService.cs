@@ -51,7 +51,6 @@ namespace Server.Service
 
                 if (!devCashier.IsConnect)
                 {
-                    //devCashier.Cashier.DisconectHandling();  //изъятие из очереди элемента, если кассир не на связи
                     devCashier.LastSyncLabel = 0;
                     continue;
                 }
