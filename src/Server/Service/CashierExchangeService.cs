@@ -69,7 +69,13 @@ namespace Server.Service
                     }
 
                     if (!cashierInfo.IsWork)
+                    {
+                        //Если кассир быстро закрыла сессию (до того как опрос порта дошел до нее), то билет из обработки надо убрать.
+                        if (devCashier.Cashier.CurrentTicket != null)
+                           devCashier.Cashier.SuccessfulHandling();
+
                         continue;
+                    }
 
                     switch (cashierInfo.Handling)
                     {
