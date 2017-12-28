@@ -213,7 +213,7 @@ namespace Server.Model
                if (queue != null)
                {
                    var casher = new Сashier(xmlCash.Id, xmlCash.Prefixs, queue, xmlCash.MaxCountTryHanding);
-                   DeviceCashiers.Add(new DeviceCashier(casher, xmlCash.Port));
+                   DeviceCashiers.Add(new DeviceCashier(xmlCash.AddressDevice, casher, xmlCash.Port));
                }
             }
             AdminCasher = DeviceCashiers.FirstOrDefault(d => d.Cashier.Prefixes.Contains("А"));

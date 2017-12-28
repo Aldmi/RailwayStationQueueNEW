@@ -9,6 +9,7 @@ namespace Server.Entitys
         private const byte MaxCountFaildRespowne = 2;
         private byte _countFaildRespowne;
 
+        public byte AddresDevice { get; }
         public Сashier Cashier { get; }
         public string Port { get; }
         public int LastSyncLabel { get; set; } //Метка синхронизации времени (сбрасывается при отсутствии связи)
@@ -58,8 +59,9 @@ namespace Server.Entitys
         }
 
 
-        public DeviceCashier(Сashier cashier, string port)
+        public DeviceCashier(byte addresDevice, Сashier cashier, string port)
         {
+            AddresDevice = addresDevice;
             Cashier = cashier;
             Port = port;
         }

@@ -46,7 +46,7 @@ namespace Server.Service
 
             foreach (var devCashier in _deviceCashiers)              //Запуск опроса кассиров
             {
-                var readProvider = new Server2CashierReadDataProvider { InputData = devCashier.Cashier.Id };
+                var readProvider = new Server2CashierReadDataProvider(devCashier.AddresDevice);
                 devCashier.DataExchangeSuccess = await port.DataExchangeAsync(_timeRespone, readProvider, ct);
 
                 if (!devCashier.IsConnect)
@@ -83,7 +83,7 @@ namespace Server.Service
 
                         case CashierHandling.IsStartHandling:
                             item = devCashier.Cashier.StartHandling();
-                            var writeProvider = new Server2CashierWriteDataProvider { InputData = item };
+                            var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
                             await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                             if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
                             {
@@ -106,7 +106,7 @@ namespace Server.Service
                         case CashierHandling.IsSuccessfulAndStartHandling:
                             devCashier.Cashier.SuccessfulHandling();
                             item = devCashier.Cashier.StartHandling();
-                            writeProvider = new Server2CashierWriteDataProvider { InputData = item };
+                            writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
                             await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                             if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
                             {
@@ -125,7 +125,7 @@ namespace Server.Service
                                 devCashier.Cashier.SuccessfulHandling();
 
                                 item = devCashier.Cashier.StartHandling();
-                                writeProvider = new Server2CashierWriteDataProvider { InputData = item };
+                                writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
                                 await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                                 if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
                                 {
@@ -137,7 +137,7 @@ namespace Server.Service
                         case CashierHandling.IsErrorAndStartHandling:
                             devCashier.Cashier.ErrorHandling();
                             item = devCashier.Cashier.StartHandling();
-                            writeProvider = new Server2CashierWriteDataProvider { InputData = item };
+                            writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
                             await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                             if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
                             {
