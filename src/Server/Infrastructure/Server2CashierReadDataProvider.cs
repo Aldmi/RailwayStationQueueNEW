@@ -34,6 +34,19 @@ namespace Server.Infrastructure
         private const ushort StartAddresRead = 0x0000;
         private const ushort NReadRegister = 0x0003;
 
+        private readonly byte _addressDevice;
+        #endregion
+
+
+
+
+        #region ctor
+
+        public Server2CashierReadDataProvider(byte addressDevice)
+        {
+            _addressDevice = addressDevice;
+        }
+
         #endregion
 
 
@@ -44,7 +57,7 @@ namespace Server.Infrastructure
         public int CountGetDataByte { get; } = 0x08;                            // N байт запроса
         public int CountSetDataByte { get; } = (0x05 + NReadRegister * 2);      // N байт ответа
 
-        public byte InputData { get; set; }                                      //Номер кассира для опроса
+        public byte InputData { get; set; }                                      // Нет входных данных
         public CashierOutData OutputData { get; private set; }                   //Номер кнопки нажатой кассиром
         public bool IsOutDataValid { get; private set; }
 
@@ -57,7 +70,7 @@ namespace Server.Infrastructure
 
         /// <summary>
         /// Данные запроса функц 0x03:
-        /// байт[0]= InputData
+        /// байт[0]= _addressDevice
         /// байт[1]= 0x03
         /// байт[2]= Адр. Ст.
         /// байт[3]= Адр. Мл.
@@ -70,7 +83,7 @@ namespace Server.Infrastructure
         {
             byte[] buff = new byte[CountGetDataByte];
 
-            buff[0] = InputData;
+            buff[0] = _addressDevice;
             buff[1] = 0x03;
 
             var addrBuff = BitConverter.GetBytes(StartAddresRead).Reverse().ToArray();
@@ -87,7 +100,7 @@ namespace Server.Infrastructure
 
         /// <summary>
         /// Данные ответа:
-        /// байт[0]= InputData
+        /// байт[0]= _addressDevice
         /// байт[1]= 0x03
         /// байт[2]= кол-во байт  (0x06)
         /// байт[3]= Статутс Ст.
@@ -118,7 +131,7 @@ namespace Server.Infrastructure
             }
 
             byte[] dataBuffer = null;
-            if (data[0] == InputData &&
+            if (data[0] == _addressDevice &&
                 data[1] == 0x03 &&
                 data[2] == (NReadRegister * 2) &&
                 Crc16.CheckCrc(data))

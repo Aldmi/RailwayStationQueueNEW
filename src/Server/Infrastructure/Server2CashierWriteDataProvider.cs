@@ -20,6 +20,19 @@ namespace Server.Infrastructure
         private const ushort StartAddresWrite = 0x0002;
         private const ushort NWriteRegister = 0x0001;
 
+        private readonly byte _addressDevice;
+        #endregion
+
+
+
+
+        #region ctor
+
+        public Server2CashierWriteDataProvider(byte addressDevice)
+        {
+            _addressDevice = addressDevice;
+        }
+
         #endregion
 
 
@@ -43,7 +56,7 @@ namespace Server.Infrastructure
 
         /// <summary>
         /// Данные запроса по записи информации о билете (функц 0x10):
-        /// байт[0]= InputData.Сashbox
+        /// байт[0]= I_addressDevice
         /// байт[1]= 0x10
         /// байт[2]= Адр. Ст.
         /// байт[3]= Адр. Мл.
@@ -63,9 +76,8 @@ namespace Server.Infrastructure
 
             byte[] buff = new byte[CountGetDataByte];
 
-            if (InputData.Сashbox != null)
-                buff[0] = (byte) InputData.Сashbox.Value;
 
+            buff[0] = _addressDevice;
             buff[1] = 0x10;
 
             var addrBuff = BitConverter.GetBytes(StartAddresWrite).Reverse().ToArray();
@@ -95,7 +107,7 @@ namespace Server.Infrastructure
 
         /// <summary>
         /// Обработка ответа на данные записи информации о билете (функц 0x10):
-        /// байт[0]= InputData.Сashbox
+        /// байт[0]= _addressDevice
         /// байт[1]= 0x10
         /// байт[2]= Адр. Ст.
         /// байт[3]= Адр. Мл.
@@ -112,7 +124,7 @@ namespace Server.Infrastructure
                 return false;
             }
 
-            if (data[0] == InputData.Сashbox &&
+            if (data[0] == _addressDevice &&
                 data[1] == 0x10 &&
                 Crc16.CheckCrc(data))
             {
