@@ -40,11 +40,22 @@
 
 	
 	<Cashiers>	`
-	   <Cashier Id="1" Address="1" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
-	   <Cashier Id="2" Address="2" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
-	   <Cashier Id="3" Address="3" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
-	   <Cashier Id="4" Address="4" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
-	   <Cashier Id="5" Address="5" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
-	   <Cashier Id="6" Address="6" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="1" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="2" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="3" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="4" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="5" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="6" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="7" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="8" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="9" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="10" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="11" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="12" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="13" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="14" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="15" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="16" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="17" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
 	</Cashiers>
 </Root>
