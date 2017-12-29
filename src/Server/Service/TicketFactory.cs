@@ -8,7 +8,6 @@ namespace Server.Service
         #region field
 
         private const uint MaxTicketNumber = 999;
-        private readonly string _ticketPrefix;
         private uint _ticketNumber;
         private int _currentDay;
     
@@ -19,9 +18,8 @@ namespace Server.Service
 
         #region ctor
 
-        public TicketFactory(string ticketPrefix)
+        public TicketFactory()
         {
-            _ticketPrefix = ticketPrefix;
             _currentDay = DateTime.Now.Day;
         }
 
@@ -30,18 +28,21 @@ namespace Server.Service
 
 
 
-
-
         #region prop      
 
         public uint GetCurrentTicketNumber => _ticketNumber;
+
+        public uint SetCurrentTicketNumber         //Установка начального значения номера билета, после восстановления состояния очереди (перезагрузки)
+        {
+            set { _ticketNumber = value; }
+        }
 
         #endregion
 
 
 
 
-        public TicketItem Create(ushort countElement)
+        public TicketItem Create(ushort countElement, string ticketPrefix)
         {
             if (++_ticketNumber >= MaxTicketNumber)
                 _ticketNumber = 0;
@@ -52,7 +53,7 @@ namespace Server.Service
                 _currentDay = DateTime.Now.Day;
             }
 
-            return new TicketItem() { NumberElement = _ticketNumber, CountElement = countElement, AddedTime = DateTime.Now, Prefix = _ticketPrefix, Сashbox = null, CountTryHandling = 0 };
+            return new TicketItem() { NumberElement = _ticketNumber, CountElement = countElement, AddedTime = DateTime.Now, Prefix = ticketPrefix, Сashbox = null, CountTryHandling = 0 };
         }
     }
 }

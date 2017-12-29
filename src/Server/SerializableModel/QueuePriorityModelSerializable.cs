@@ -18,6 +18,7 @@ namespace Server.SerializableModel
     public class QueuePriorityModelSerializable
     {
         public string Name { get; set; }
+        public uint CurrentTicketNumber { get; set; }
         public List<TicketItem> Queue { get; set; } = new List<TicketItem>();
     }
 

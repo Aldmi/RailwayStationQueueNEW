@@ -39,8 +39,13 @@ namespace Server.Entitys
         }
 
 
-        public TicketFactoryNew TicketFactory { get; set; } = new TicketFactoryNew();
+        public TicketFactory TicketFactory { get; set; } = new TicketFactory();
         public uint GetCurrentTicketNumber => TicketFactory.GetCurrentTicketNumber;
+
+        public uint SetCurrentTicketNumber
+        {
+            set { TicketFactory.SetCurrentTicketNumber = value; }
+        }
 
         #endregion
 

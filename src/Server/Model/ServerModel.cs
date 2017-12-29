@@ -295,8 +295,10 @@ namespace Server.Model
                 var queue = new QueuePriorityModelSerializable
                 {
                     Name = queuePriority.Name,
-                    Queue = queuePriority.GetQueueItems.ToList()
+                    CurrentTicketNumber = queuePriority.GetCurrentTicketNumber,
+                    Queue = queuePriority.GetQueueItems.ToList(),
                 };
+              
                 model.Queues.Add(queue);
             }
 
@@ -348,10 +350,11 @@ namespace Server.Model
                             if (queue != null)
                             {
                                 queue.SetQueueItems = newQueue.Queue;
+                                queue.SetCurrentTicketNumber = newQueue.CurrentTicketNumber;
                             }
                         }
 
-                        //восстановить нтекущие обрабатываемые билеты кассирами
+                        //восстановить текущие обрабатываемые билеты кассирами
                         foreach (var newCashier in model.Cashiers)
                         {
                             if (newCashier.CurrenTicketItem == null)
