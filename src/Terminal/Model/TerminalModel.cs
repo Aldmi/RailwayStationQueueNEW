@@ -116,9 +116,6 @@ namespace Terminal.Model
             if(!IsConnectTcpIp)
                 return;
 
-            //if (MasterTcpIp == null || !MasterTcpIp.IsConnect)
-            //    return;
-
             //ЗАПРОС О СОСТОЯНИИ ОЧЕРЕДИ
             var provider = new Terminal2ServerExchangeDataProvider { InputData = new TerminalInData { NameQueue = nameQueue, PrefixQueue = prefixQueue, Action = TerminalAction.Info } };
             await MasterTcpIp.RequestAndRespoune(provider);

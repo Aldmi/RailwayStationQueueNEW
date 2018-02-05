@@ -26,7 +26,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             FontSize="80"
-            Text="Идет печать билета ..." />
+            Text="Идет печать талона ..." />
 
 
     </Grid>

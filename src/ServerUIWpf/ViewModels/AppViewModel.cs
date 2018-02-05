@@ -1575,12 +1575,21 @@ namespace ServerUi.ViewModels
 
         protected override void OnDeactivate(bool close)
         {
+            _model.PropertyChanged -= _model_PropertyChanged;
+            foreach (var devCashier in _model.DeviceCashiers)
+            {
+                devCashier.Cashier.PropertyChanged -= Cashier_PropertyChanged;
+                devCashier.PropertyChanged -= DevCashierOnPropertyChanged;
+            }
+            _model.Listener.PropertyChanged -= Listener_PropertyChanged;
+            _model.SoundQueue.PropertyChanged -= SoundQueue_PropertyChanged;
+
+
             _model.Dispose();
             base.OnDeactivate(close);
         }
 
         #endregion
-
 
 
 

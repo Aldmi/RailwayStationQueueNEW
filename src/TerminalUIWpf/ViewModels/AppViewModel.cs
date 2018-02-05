@@ -123,7 +123,7 @@ namespace TerminalUIWpf.ViewModels
 
         private bool _model_ConfirmationAdded(string ticketName, string countPeople)
         {
-            var dialog = new DialogViewModel(_windowManager) { CountPeople = $"Впереди вас {countPeople} человек", TicketName = $"Номер вашего билета {ticketName}" };
+            var dialog = new DialogViewModel(_windowManager) { CountPeople = $"Впереди вас {countPeople} человек", TicketName = $"Номер вашего талона {ticketName}" };
             _windowManager.ShowDialog(dialog);
             return dialog.Act == Act.Ok;
         }
