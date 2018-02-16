@@ -16,7 +16,7 @@
 		  <BaudRate>57600</BaudRate>
 		  <DataBits>8</DataBits>
 		  <StopBits>1</StopBits>
-		  <TimeRespon>300</TimeRespon>
+		  <TimeRespon>2000</TimeRespon>
 		  <TimeCycleReConnect>3000</TimeCycleReConnect>
 		</Serial>	
 	</SerialPorts>
