@@ -249,3 +249,4 @@ C:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\obj\Release\TerminalUIWpf.Proper
 C:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.GenerateResource.Cache
 C:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\obj\Release\TerminalUIWpf.exe
 C:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\obj\Release\TerminalUIWpf.pdb
+D:\Git\RailwayStationQueueNew\src\TerminalUIWpf\bin\Release\TerminalUIWpf.exe.config

@@ -155,15 +155,15 @@ namespace Communication.TcpIp
                 _clients.Add(client);
                 while (c.Connected && !token.IsCancellationRequested)
                 {
-                    var connectionTask = client.ProcessAsync(dataProvider, token);
+                    var exchangeTask = client.ProcessAsync(dataProvider, token);
 
                     lock (_lock)
-                    _hotTasks.Add(connectionTask);
+                    _hotTasks.Add(exchangeTask);
 
                     // обработка ошибок для клиентского потока
                     try
                     {
-                        await connectionTask;
+                        await exchangeTask;
                     }
                     catch (Exception)
                     {
@@ -172,7 +172,7 @@ namespace Communication.TcpIp
                     finally
                     {
                         lock (_lock)
-                        _hotTasks.Remove(connectionTask);
+                        _hotTasks.Remove(exchangeTask);
                     }
                 }
                 _clients.Remove(client);
@@ -218,14 +218,11 @@ namespace Communication.TcpIp
 
             public async Task ProcessAsync(IExchangeDataProviderBase dataProvider, CancellationToken token)
             {
-                await Task.Run(async () =>
+                var actionBuffer = await ReadFromStreamAsync(dataProvider.CountSetDataByte, token);
+                if (dataProvider.SetDataByte(actionBuffer))//если полученные от клиента данные валидны, то отправим ему ответ
                 {
-                    var actionBuffer = await ReadFromStreamAsync(dataProvider.CountSetDataByte, token);
-                    if (dataProvider.SetDataByte(actionBuffer))//если полученные от клиента данные валидны, то отправим ему ответ
-                    {
-                        await WriteInStreamAsync(dataProvider.GetDataByte(), token);
-                    }
-                }, token);
+                    await WriteInStreamAsync(dataProvider.GetDataByte(), token);
+                }
             }
 
             private async Task<byte[]> ReadFromStreamAsync(int nbytes, CancellationToken token)
