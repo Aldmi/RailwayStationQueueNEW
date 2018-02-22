@@ -162,3 +162,17 @@ C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\obj\Debug\ServerUi.pdb
 C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\bin\Debug\NLog.config
 C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\bin\Debug\NLog.dll
 C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\bin\Debug\NLog.xml
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\ServerUi.exe
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\Caliburn.Micro.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\Caliburn.Micro.Platform.Core.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\Caliburn.Micro.Platform.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\Castle.Core.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\Castle.Windsor.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\Communication.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\Library.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\NLog.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\Server.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\Sound.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\Xceed.Wpf.Toolkit.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\Terminal.dll
+D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Debug\NAudio.dll

@@ -43,10 +43,10 @@ namespace Terminal.Model
 
         #region Events
 
-        public event Func<string, string, bool> ConfirmationAdded;
-        private bool OnConfirmationAdded(string arg1, string arg2)
+        public event Func<string, string, string, bool> ConfirmationAdded;
+        private bool OnConfirmationAdded(string arg1, string arg2, string arg3)
         {
-            var res = ConfirmationAdded?.Invoke(arg1, arg2);
+            var res = ConfirmationAdded?.Invoke(arg1, arg2, arg3);
             return res != null && res.Value;
         }
 
@@ -111,7 +111,7 @@ namespace Terminal.Model
         }
 
 
-        public async Task QueueSelection(string nameQueue, string prefixQueue)
+        public async Task QueueSelection(string nameQueue, string prefixQueue, string descriptionQueue)
         {
             if(!IsConnectTcpIp)
                 return;
@@ -127,7 +127,7 @@ namespace Terminal.Model
                 var ticketName = prefix + provider.OutputData.NumberElement.ToString("000");
                 var countPeople = provider.OutputData.CountElement.ToString();
 
-                var isAdded = OnConfirmationAdded(ticketName, countPeople);
+                var isAdded = OnConfirmationAdded(ticketName, countPeople, descriptionQueue);
                 if (isAdded)
                 {
                     //ЗАПРОС О ДОБАВЛЕНИИ ЭЛЕМЕНТА В ОЧЕРЕДЬ

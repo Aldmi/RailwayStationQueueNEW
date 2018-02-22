@@ -77,6 +77,7 @@ namespace TerminalUIWpf.ViewModels
 
         public string TicketName { get; set; }
         public string CountPeople { get; set; }
+        public string Description { get; set; }
 
         public Act Act { get; set; }
 

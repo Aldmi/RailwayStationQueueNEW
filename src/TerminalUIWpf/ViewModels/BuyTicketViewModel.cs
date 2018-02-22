@@ -87,9 +87,10 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnBuyTicket()
         {
             StopTimer();
+            const string descriptionQueue = "Купить билет / Возврат билета / замена персональных данных в билете / переоформление билетов / оформление багажа";
             const string prefixQueue = "К";
             const string nameQueue = "Main";
-            await _model.QueueSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
             ResetTimer();
         }
 
@@ -99,9 +100,10 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnBuyInterstateTicket()
         {
             StopTimer();
+            const string descriptionQueue = "Купить билет в страны Европы, Монголию, Китай";
             const string prefixQueue = "М";
             const string nameQueue = "Main";
-            await _model.QueueSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
             ResetTimer();
         }
 
@@ -111,9 +113,10 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnGroupsTicket()
         {
             StopTimer();
+            const string descriptionQueue = "Оформление организованных групп пассажиров (по предварительным заявкам)";
             const string prefixQueue = "Г";
             const string nameQueue = "Main";
-            await _model.QueueSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
             ResetTimer();
         }
 
@@ -123,9 +126,10 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnLowMobilityTicket()
         {
             StopTimer();
+            const string descriptionQueue = "Оформление маломобильных пассажиров";
             const string prefixQueue = "И";
             const string nameQueue = "Main";
-            await _model.QueueSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
             ResetTimer();
         }
 
@@ -135,9 +139,10 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnReturnTicket()
         {
             StopTimer();
+            const string descriptionQueue = "В";
             const string prefixQueue = "В";
             const string nameQueue = "Main";
-            await _model.QueueSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
             ResetTimer();
         }
 
@@ -147,9 +152,10 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnReformTicket()
         {
             StopTimer();
+            const string descriptionQueue = "П";
             const string prefixQueue = "П";
             const string nameQueue = "Main";
-            await _model.QueueSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
             ResetTimer();
         }
 
@@ -159,9 +165,10 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnRestoreTicket()
         {
             StopTimer();
+            const string descriptionQueue = "У";
             const string prefixQueue = "У";
             const string nameQueue = "Main";
-            await _model.QueueSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
             ResetTimer();
         }
 
@@ -171,9 +178,10 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnReplacementPersonalData()
         {
             StopTimer();
+            const string descriptionQueue = "З";
             const string prefixQueue = "З";
             const string nameQueue = "Main";
-            await _model.QueueSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
             ResetTimer();
         }
 

@@ -121,9 +121,9 @@ namespace TerminalUIWpf.ViewModels
         }
 
 
-        private bool _model_ConfirmationAdded(string ticketName, string countPeople)
+        private bool _model_ConfirmationAdded(string ticketName, string countPeople, string description)
         {
-            var dialog = new DialogViewModel(_windowManager) { CountPeople = $"Впереди вас {countPeople} человек", TicketName = $"Номер вашего талона {ticketName}" };
+            var dialog = new DialogViewModel(_windowManager) { CountPeople = $"Впереди вас {countPeople} человек", TicketName = $"Номер вашего талона {ticketName}", Description = description};
             _windowManager.ShowDialog(dialog);
             return dialog.Act == Act.Ok;
         }
@@ -152,29 +152,32 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnGetHelp()
         {
+            const string descriptionQueue = "Получить справку";
             const string prefixQueue = "С";
             const string nameQueue = "Main";
-            await _model.QueueSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
 
         /// <summary>
         /// Оформить багаж
         /// </summary>
-        public async Task BtnBaggageCheckout()
-        {
-            const string prefixQueue = "Б";
-            const string nameQueue = "Main";
-            await _model.QueueSelection(nameQueue, prefixQueue);
-        }
+        //public async Task BtnBaggageCheckout()
+        //{
+        //    const string descriptionQueue = "Оформить багаж";
+        //    const string prefixQueue = "Б";
+        //    const string nameQueue = "Main";
+        //    await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+        //}
 
         /// <summary>
         /// Администратор
         /// </summary>
         public async Task BtnAdmin()
         {
+            const string descriptionQueue = "Администратор / Восстановление утерянных (испорченных) билетов";
             const string prefixQueue = "А";
             const string nameQueue = "Admin";
-            await _model.QueueSelection(nameQueue, prefixQueue);
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
 
 
