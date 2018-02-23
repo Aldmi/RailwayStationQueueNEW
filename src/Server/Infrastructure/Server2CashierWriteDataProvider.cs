@@ -40,6 +40,9 @@ namespace Server.Infrastructure
 
         #region prop
 
+        public bool IsSynchronized { get; } = false; // Без внешней синхронизации
+        public object SyncRoot { get; } = new object();
+
         public int CountGetDataByte { get; } = 9 + (NWriteRegister * 2);
         public int CountSetDataByte { get; } = 8;
 

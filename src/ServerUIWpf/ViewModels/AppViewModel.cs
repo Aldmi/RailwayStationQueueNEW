@@ -56,6 +56,8 @@ namespace ServerUi.ViewModels
         {
             _logger = NLog.LogManager.GetCurrentClassLogger();
 
+            //_logger = NLog.LogManager.GetLogger("nnn");
+
             _model = new ServerModel();
             _model.PropertyChanged += _model_PropertyChanged;
 

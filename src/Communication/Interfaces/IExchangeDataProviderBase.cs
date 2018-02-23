@@ -8,5 +8,8 @@ namespace Communication.Interfaces
 
         int CountGetDataByte { get; }    //кол-во байт для отправки.
         int CountSetDataByte { get; }    //кол-во байт для приема.
+
+        bool IsSynchronized { get; }     //Флаг внешней синхронизации, елси true, то для потокобезопасной работы с объектом нужно вызывать методы в секции lock(IExchangeDataProviderBase.SyncRoot) { }
+        object SyncRoot { get; }
     }
 }

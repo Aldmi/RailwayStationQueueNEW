@@ -120,7 +120,7 @@ namespace Server.Model
 
             //СОЗДАНИЕ СЛУШАТЕЛЯ ДЛЯ ТЕРМИНАЛОВ-------------------------------------------------------
             Listener = new ListenerTcpIp(xmlListener);
-            ProviderTerminal = new Server2TerminalExchangeDataProvider();
+            ProviderTerminal = new Server2TerminalExchangeDataProvider(isSynchronized:true);
             ProviderTerminal.PropertyChanged += (o, e) =>
             {
                 var provider = o as Server2TerminalExchangeDataProvider;

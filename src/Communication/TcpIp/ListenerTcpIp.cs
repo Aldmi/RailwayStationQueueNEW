@@ -218,11 +218,33 @@ namespace Communication.TcpIp
 
             public async Task ProcessAsync(IExchangeDataProviderBase dataProvider, CancellationToken token)
             {
+                //Ожидание получение информации из потока
                 var actionBuffer = await ReadFromStreamAsync(dataProvider.CountSetDataByte, token);
-                if (dataProvider.SetDataByte(actionBuffer))//если полученные от клиента данные валидны, то отправим ему ответ
+
+                byte[] writeBuffer=null;
+                if (dataProvider.IsSynchronized)
                 {
-                    await WriteInStreamAsync(dataProvider.GetDataByte(), token);
+                    lock (dataProvider.SyncRoot)
+                    {
+                        if (dataProvider.SetDataByte(actionBuffer))//если полученные от клиента данные валидны, то отправим ему ответ
+                        {
+                            writeBuffer = dataProvider.GetDataByte();
+                        }
+                    }
                 }
+                else
+                {
+                    if (dataProvider.SetDataByte(actionBuffer))//если полученные от клиента данные валидны, то отправим ему ответ
+                    {
+                        writeBuffer = dataProvider.GetDataByte();
+                    }
+                }
+
+                //Отправка ответа в поток
+                if (writeBuffer != null)
+                {
+                    await WriteInStreamAsync(writeBuffer, token);
+                }       
             }
 
             private async Task<byte[]> ReadFromStreamAsync(int nbytes, CancellationToken token)

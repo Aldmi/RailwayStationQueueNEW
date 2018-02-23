@@ -39,6 +39,9 @@ namespace Terminal.Infrastructure
     {
         #region prop
 
+        public bool IsSynchronized { get; } = false; // Без внешней синхронизации
+        public object SyncRoot { get; } = new object();
+
         public int CountSetDataByte => 16;
         public int CountGetDataByte => 25;
 

@@ -12,10 +12,21 @@ namespace Server.Infrastructure
     //Один объект DataProvider используется для нескольких ClientTcpIp
     public class Server2TerminalExchangeDataProvider : IExchangeDataProvider<TerminalInData, TerminalOutData>
     {
-        private readonly object _locker = new object();
+
+
+        public Server2TerminalExchangeDataProvider(bool isSynchronized)
+        {
+            IsSynchronized = isSynchronized;
+        }
+
+
 
 
         #region prop
+
+        public bool IsSynchronized { get; }
+        public object SyncRoot { get; } = new object();
+
 
         public int CountSetDataByte => 25;
         public int CountGetDataByte => 16;
@@ -25,9 +36,9 @@ namespace Server.Infrastructure
         {
             get { return _inputData; }
             set
-            {      
+            {
                 _inputData = value;
-                OnPropertyChanged();              
+                OnPropertyChanged();
             }
         }
 
@@ -63,29 +74,28 @@ namespace Server.Infrastructure
         /// </summary>
         public byte[] GetDataByte()
         {
-            lock (_locker)
-            {
-                var buff = new byte[CountGetDataByte];
 
-                var encoding = Encoding.Unicode;
-                var prefixQueueBytes = encoding.GetBytes(OutputData.PrefixQueue).Take(2).ToArray();
+            var buff = new byte[CountGetDataByte];
 
-                buff[0] = 0xAA;
-                buff[1] = 0xBB;
-                buff[2] = prefixQueueBytes[0];
-                buff[3] = prefixQueueBytes[1];
+            var encoding = Encoding.Unicode;
+            var prefixQueueBytes = encoding.GetBytes(OutputData.PrefixQueue).Take(2).ToArray();
 
-                var idElementBuff = BitConverter.GetBytes(OutputData.NumberElement);
-                idElementBuff.CopyTo(buff, 4);
+            buff[0] = 0xAA;
+            buff[1] = 0xBB;
+            buff[2] = prefixQueueBytes[0];
+            buff[3] = prefixQueueBytes[1];
 
-                var countElementBuff = BitConverter.GetBytes(OutputData.CountElement);
-                countElementBuff.CopyTo(buff, 6);
+            var idElementBuff = BitConverter.GetBytes(OutputData.NumberElement);
+            idElementBuff.CopyTo(buff, 4);
 
-                var dateAddedBuff = BitConverter.GetBytes(OutputData.AddedTime.Ticks);
-                dateAddedBuff.CopyTo(buff, 8);
+            var countElementBuff = BitConverter.GetBytes(OutputData.CountElement);
+            countElementBuff.CopyTo(buff, 6);
 
-                return buff;
-            }
+            var dateAddedBuff = BitConverter.GetBytes(OutputData.AddedTime.Ticks);
+            dateAddedBuff.CopyTo(buff, 8);
+
+            return buff;
+
         }
 
 
@@ -119,41 +129,40 @@ namespace Server.Infrastructure
         /// </summary>
         public bool SetDataByte(byte[] data)
         {
-            lock (_locker)
+
+            IsOutDataValid = false;
+
+            if (data == null || data.Count() < CountSetDataByte)
+                return IsOutDataValid;
+
+            if (data[0] == 0xAA &&
+                data[1] == 0xBB)
             {
-                IsOutDataValid = false;
-
-                if (data == null || data.Count() < CountSetDataByte)
-                    return IsOutDataValid;
-
-                if (data[0] == 0xAA &&
-                    data[1] == 0xBB)
+                string nameQueue;
+                string prefixQueue;
+                try
                 {
-                    string nameQueue;
-                    string prefixQueue;
-                    try
-                    {
-                        var encoding = Encoding.Unicode;
-                        nameQueue = encoding.GetString(data, 5, 20);
-                        nameQueue = nameQueue.TrimEnd();
-                        prefixQueue = encoding.GetString(data, 3, 2);
-                    }
-                    catch (Exception ex)
-                    {
-                        IsOutDataValid = false;
-                        return false;
-                    }
-
-                    InputData = new TerminalInData { NameQueue = nameQueue, PrefixQueue = prefixQueue, Action = (TerminalAction)data[2] };
-                    IsOutDataValid = true;
+                    var encoding = Encoding.Unicode;
+                    nameQueue = encoding.GetString(data, 5, 20);
+                    nameQueue = nameQueue.TrimEnd();
+                    prefixQueue = encoding.GetString(data, 3, 2);
                 }
-                else
+                catch (Exception ex)
                 {
                     IsOutDataValid = false;
+                    return false;
                 }
 
-                return IsOutDataValid;
+                InputData = new TerminalInData { NameQueue = nameQueue, PrefixQueue = prefixQueue, Action = (TerminalAction)data[2] };
+                IsOutDataValid = true;
             }
+            else
+            {
+                IsOutDataValid = false;
+            }
+
+            return IsOutDataValid;
+
         }
 
         #endregion
