@@ -1,90 +1,61 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using NLog;
+using NLog.Config;
 
 namespace Library.Logs
 {
-    /// <summary>
-    /// Записывет список строк порциями в файл на диск.
-    /// При превышении кол-ва порция файл пишется с 0 позиции.
-    /// Старые данные сохраняются ниже.
-    /// </summary>
-    public class Log
+    public class Log : IDisposable
     {
-        private readonly string _path;
-        private readonly int _portionString;              // порция строк для записи
-        private readonly int _countPortion;               // количесво порций строк в файле. При превышении файл перезаписывается с 0 порции.
-
-
-        private List<string> List { get; set; } = new List<string>();
-        public int Seek { get; set; }
+        private readonly Logger _logger;
 
 
 
+        #region ctor
 
-        public Log(string filename, int portionString, int countPortion)
+        public Log(string nameLog)
         {
-            _path = Path.Combine(Directory.GetCurrentDirectory() , $"Logs\\{filename}");
-            _portionString = portionString;
-            _countPortion = countPortion;
+            LogManager.Configuration = new XmlLoggingConfiguration("C:\\Git\\RailwayStationQueueNEW\\src\\Library\\NLog.config");
+            _logger = LogManager.GetLogger(nameLog);
         }
 
-        //public Log(string filename, XmlLogSettings settings) : this(filename, settings.PortionString, settings.CountPortion)
-        //{ 
-        //}
+        #endregion
 
 
 
 
-        public async Task Add(string str)
+
+        #region Methode
+
+        public void Info(string message)
         {
-            if(string.IsNullOrEmpty(str))
-                return;
-
-            List.Add(str);
-
-            if (List.Count >= _portionString)
-            {
-                await WriteBufferString();
-                List.Clear();
-            }
+            _logger.Info(message);
         }
 
-        private async Task WriteBufferString()
+        public void Debug(string message)
         {
-            try
-            {
-                await Task.Factory.StartNew(() =>
-                {
-                   
-                    if (!File.Exists(_path))
-                        File.Create(_path);
-
-                    int buffSize = _portionString * _countPortion;
-                    string[] buffString = new string[buffSize];
-
-                    var readedString = File.ReadAllLines(_path);
-                    Array.Copy(readedString, buffString, readedString.Length);
-
-                    var count= readedString.Count(str => str.Length>1);//DEBUG
-                    if (count < buffSize)
-                    {
-                        Seek = count;
-                    }
-                    Array.Copy(List.ToArray(), 0, buffString, Seek, _portionString);
-                    if ((Seek += _portionString) > (buffSize - _portionString) || readedString.Length > buffSize)
-                        Seek = 0;
-
-                    File.WriteAllLines(_path, buffString);
-                    
-                });
-            }
-            catch (Exception ex)
-            {  
-                //не обработанное исключение        
-            }
+            _logger.Debug(message);
         }
+
+        public void Error(string message)
+        {
+            _logger.Error(message);
+        }
+
+        public void Fatal(string message)
+        {
+            _logger.Fatal(message);
+        }
+
+        #endregion
+
+
+        #region Dispose
+
+        public void Dispose()
+        {
+            LogManager.DisableLogging().Dispose();
+        }
+
+        #endregion
     }
 }

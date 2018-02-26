@@ -136,7 +136,7 @@ namespace Communication.TcpIp
 
 
 
-        public async Task RequestAndRespoune(IExchangeDataProviderBase dataProvider)
+        public async Task RequestAndRespouneAsync(IExchangeDataProviderBase dataProvider)
         {
             if (!IsConnect)
                 return;

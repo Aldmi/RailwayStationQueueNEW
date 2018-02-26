@@ -29,11 +29,12 @@ namespace Server.Model
 {
     public class ServerModel : INotifyPropertyChanged, IDisposable
     {
+        private readonly Log _logQueueInput = new Log("Server.QueueInput"); // лог информация поступления данных от терминала.
+
+
         #region prop
 
         public List<QueuePriority> QueuePriorities { get; set; }= new List<QueuePriority>();
-
-        public Log LogTicket { get; set; }
 
         public ListenerTcpIp Listener { get; set; }
         public IExchangeDataProvider<TerminalInData, TerminalOutData> ProviderTerminal { get; set; }
@@ -48,6 +49,7 @@ namespace Server.Model
         public List<Task> BackGroundTasks { get; } = new List<Task>();
 
         private string _errorString;
+
         public string ErrorString
         {
             get { return _errorString; }
@@ -58,6 +60,8 @@ namespace Server.Model
                 OnPropertyChanged();
             }
         }
+
+
 
         #endregion
 
@@ -128,37 +132,45 @@ namespace Server.Model
                 {
                     if (e.PropertyName == "InputData")
                     {
-                        provider.OutputData = provider.OutputData ?? new TerminalOutData();
-
-                        //Найдем очередь к которой обращен запрос
-                        var prefixQueue = provider.InputData.PrefixQueue;
-                        var nameQueue = provider.InputData.NameQueue;
-                        var queue= QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, nameQueue, StringComparison.InvariantCultureIgnoreCase));
-
-                        if (queue == null)
-                           return;
-
-                        switch (provider.InputData.Action)
+                        try
                         {
-                            //ИНФОРМАЦИЯ ОБ ОЧЕРЕДИ
-                            case TerminalAction.Info:
-                                provider.OutputData.PrefixQueue = provider.InputData.PrefixQueue;
-                                provider.OutputData.CountElement = (ushort)queue.GetInseartPlace(prefixQueue);
-                                provider.OutputData.NumberElement = (ushort)(queue.GetCurrentTicketNumber + 1);
-                                provider.OutputData.AddedTime = DateTime.Now;
-                                break;
+                            provider.OutputData = provider.OutputData ?? new TerminalOutData();
 
-                            //ДОБАВИТЬ БИЛЕТ В ОЧЕРЕДЬ
-                            case TerminalAction.Add:
-                                var ticket = queue.CreateTicket(prefixQueue);
+                            //Найдем очередь к которой обращен запрос
+                            var prefixQueue = provider.InputData.PrefixQueue;
+                            var nameQueue = provider.InputData.NameQueue;
+                            var queue = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, nameQueue, StringComparison.InvariantCultureIgnoreCase));
 
-                                provider.OutputData.PrefixQueue = provider.InputData.PrefixQueue;
-                                provider.OutputData.CountElement = ticket.CountElement;
-                                provider.OutputData.NumberElement = (ushort)ticket.NumberElement;
-                                provider.OutputData.AddedTime = ticket.AddedTime;
+                            if (queue == null)
+                                return;
 
-                                queue.Enqueue(ticket);
-                                break;
+                            switch (provider.InputData.Action)
+                            {
+                                //ИНФОРМАЦИЯ ОБ ОЧЕРЕДИ
+                                case TerminalAction.Info:
+                                    provider.OutputData.PrefixQueue = provider.InputData.PrefixQueue;
+                                    provider.OutputData.CountElement = (ushort)queue.GetInseartPlace(prefixQueue);
+                                    provider.OutputData.NumberElement = (ushort)(queue.GetCurrentTicketNumber + 1);
+                                    provider.OutputData.AddedTime = DateTime.Now;
+                                    break;
+
+                                //ДОБАВИТЬ БИЛЕТ В ОЧЕРЕДЬ
+                                case TerminalAction.Add:
+                                    var ticket = queue.CreateTicket(prefixQueue);
+
+                                    provider.OutputData.PrefixQueue = provider.InputData.PrefixQueue;
+                                    provider.OutputData.CountElement = ticket.CountElement;
+                                    provider.OutputData.NumberElement = (ushort)ticket.NumberElement;
+                                    provider.OutputData.AddedTime = ticket.AddedTime;
+                                    queue.Enqueue(ticket);
+                                    var logMessage = $"ДОБАВИТЬ БИЛЕТ В ОЧЕРЕДЬ (команда от терминала): {ticket.ToString()}   ";
+                                    _logQueueInput.Info(logMessage);
+                                    break;
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            _logQueueInput.Error($"Server2TerminalExchangeDataProvider:   {ex.ToString()}");
                         }
                     }
                 }

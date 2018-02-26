@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using Caliburn.Micro;
 using Communication.TcpIp;
+using Library.Logs;
 using Server.Entitys;
 using Server.Model;
 using ServerUi.Model;
@@ -22,7 +23,6 @@ using Screen = Caliburn.Micro.Screen;
 using TicketItem = ServerUi.Model.TicketItem;
 using Brush = System.Windows.Media.Brush;
 using MessageBox = System.Windows.MessageBox;
-using NLog;
 
 
 namespace ServerUi.ViewModels
@@ -33,7 +33,7 @@ namespace ServerUi.ViewModels
 
         private readonly ServerModel _model;
         private readonly Task _mainTask;
-        private readonly Logger _logger;
+        private readonly Log _logger;
 
         private const int LimitRowTable8X21 = 6;
         private const int LimitRowTable8X22 = 6;
@@ -54,9 +54,7 @@ namespace ServerUi.ViewModels
 
         public AppViewModel()
         {
-            _logger = NLog.LogManager.GetCurrentClassLogger();
-
-            //_logger = NLog.LogManager.GetLogger("nnn");
+            _logger = new Log("Server.Main");
 
             _model = new ServerModel();
             _model.PropertyChanged += _model_PropertyChanged;
@@ -1051,7 +1049,7 @@ namespace ServerUi.ViewModels
                   {
                      strb.Append(c).Append("; ");
                   }
-                  _logger.Debug(strb);
+                  _logger.Debug(strb.ToString());
                 }
             }
         }
