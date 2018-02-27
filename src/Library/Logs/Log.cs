@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using NLog;
 using NLog.Config;
 
@@ -14,12 +15,17 @@ namespace Library.Logs
 
         public Log(string nameLog)
         {
-            LogManager.Configuration = new XmlLoggingConfiguration("C:\\Git\\RailwayStationQueueNEW\\src\\Library\\NLog.config");
-            _logger = LogManager.GetLogger(nameLog);
+            var pathConfigFile = Path.Combine(Directory.GetCurrentDirectory(), "NLog.config");
+            if (!File.Exists(pathConfigFile))
+            {
+                throw new FileNotFoundException($"Не найден файл конфигурации лога по пути: {pathConfigFile}");
+            }
+ 
+              LogManager.Configuration = new XmlLoggingConfiguration(pathConfigFile);
+              _logger = LogManager.GetLogger(nameLog);          
         }
 
         #endregion
-
 
 
 

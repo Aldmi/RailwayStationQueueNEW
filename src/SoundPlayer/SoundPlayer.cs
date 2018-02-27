@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NAudio.Wave;
-using NLog;
+
 
 namespace Sound
 {
@@ -62,8 +62,8 @@ namespace Sound
                 }
                 catch (Exception ex)
                 {
-                    var logger = LogManager.GetCurrentClassLogger();
-                    logger.Error($"SoundPlayer/PlayFile. {ex.Message}");
+                    //var logger = LogManager.GetCurrentClassLogger();
+                    //logger.Error($"SoundPlayer/PlayFile. {ex.Message}");
                 }
 
                 return false;
@@ -87,8 +87,8 @@ namespace Sound
             }
             catch (Exception ex)
             {
-                var logger = LogManager.GetCurrentClassLogger();
-                logger.Error($"SoundPlayer/Play {ex.Message}");
+                //var logger = LogManager.GetCurrentClassLogger();
+                //logger.Error($"SoundPlayer/Play {ex.Message}");
                 throw;
             }
         }

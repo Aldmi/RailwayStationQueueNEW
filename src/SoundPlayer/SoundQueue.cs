@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Timers;
 using Communication.Annotations;
 using NAudio.Wave;
-using NLog;
+
 
 
 namespace Sound
@@ -17,8 +17,6 @@ namespace Sound
         #region field
 
         private readonly Timer _timerInvokeSoundQueue;
-
-        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 
@@ -182,7 +180,7 @@ namespace Sound
             }
             catch (Exception ex)
             {
-                _logger.Error($"SoundQueue/Invoke  {ex.ToString()}");
+               // _logger.Error($"SoundQueue/Invoke  {ex.ToString()}");
             }
         }
 
