@@ -137,8 +137,6 @@ namespace Terminal.Model
                     var isAdded = OnConfirmationAdded(ticketName, countPeople, descriptionQueue);
                     if (isAdded)
                     {
-                        throw new Exception("dfasdfasdas");//DEBUG
-
                         //ЗАПРОС О ДОБАВЛЕНИИ ЭЛЕМЕНТА В ОЧЕРЕДЬ
                         provider = new Terminal2ServerExchangeDataProvider { InputData = new TerminalInData { NameQueue = nameQueue, PrefixQueue = prefixQueue, Action = TerminalAction.Add } };
                         await MasterTcpIp.RequestAndRespouneAsync(provider);
