@@ -19,8 +19,7 @@ namespace Server.Service
 
         private int _lastSyncLabel;
 
-        private readonly Log _loggerCashierInfo;
-
+        private  readonly Log _loggerCashierInfo = new Log("Server.CashierInfo");
         #endregion
 
 
@@ -33,8 +32,6 @@ namespace Server.Service
             _deviceCashiers = deviceCashiers;
             _adminCashier = adminCashier;
             _timeRespone = timeRespone;
-
-            _loggerCashierInfo= new Log("Server.CashierInfo");
         }
 
         #endregion
@@ -75,14 +72,17 @@ namespace Server.Service
                             await port.DataExchangeAsync(_timeRespone, syncTimeProvider, ct);
                         }
 
-                        //if (!cashierInfo.IsWork)
-                        //{
-                        //    //Если кассир быстро закрыла сессию (до того как опрос порта дошел до нее), то билет из обработки надо убрать.
-                        //    if (devCashier.Cashier.CurrentTicket != null)
-                        //        devCashier.Cashier.SuccessfulHandling();
-
-                        //    continue;
-                        //}
+                        //TODO: проверить
+                        if (!cashierInfo.IsWork)
+                        {
+                            //Если кассир быстро закрыла сессию (до того как опрос порта дошел до нее), то билет из обработки надо убрать.
+                            if (devCashier.Cashier.CurrentTicket != null)
+                            {
+                                _loggerCashierInfo.Error($"Команда от кассира: Id= {devCashier.Cashier.Id}   Handling=\"Если кассир быстро закрыла сессию(до того как опрос порта дошел до нее)\"    NameTicket= {cashierInfo.NameTicket}");//LOG;
+                                devCashier.Cashier.SuccessfulHandling();
+                            }
+                            continue;
+                        }
 
                         switch (cashierInfo.Handling)
                         {
@@ -96,6 +96,9 @@ namespace Server.Service
 
                             case CashierHandling.IsStartHandling:
                                 item = devCashier.Cashier.StartHandling();
+                                if(item == null)
+                                    break;
+
                                 var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
                                 await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                                 if (writeProvider.IsOutDataValid)                //завершение транзакции (успешная передача билета кассиру)
@@ -119,6 +122,9 @@ namespace Server.Service
                             case CashierHandling.IsSuccessfulAndStartHandling:
                                 devCashier.Cashier.SuccessfulHandling();
                                 item = devCashier.Cashier.StartHandling();
+                                if (item == null)
+                                    break;
+
                                 writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
                                 await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                                 if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
@@ -138,11 +144,14 @@ namespace Server.Service
                                     devCashier.Cashier.SuccessfulHandling();
 
                                     item = devCashier.Cashier.StartHandling();
+                                    if (item == null)
+                                        break;
+
                                     writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
                                     await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                                     if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
                                     {
-                                        devCashier.Cashier.SuccessfulStartHandling();
+                                         devCashier.Cashier.SuccessfulStartHandling();
                                     }
                                 }
                                 break;
@@ -150,6 +159,9 @@ namespace Server.Service
                             case CashierHandling.IsErrorAndStartHandling:
                                 devCashier.Cashier.ErrorHandling();
                                 item = devCashier.Cashier.StartHandling();
+                                if (item == null)
+                                    break;
+
                                 writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
                                 await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                                 if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
@@ -161,16 +173,13 @@ namespace Server.Service
                             default:
                                 item = null;
                                 break;
-                        }
-
-                        if (cashierInfo.Handling != CashierHandling.IsNotHandling)
-                            _loggerCashierInfo.Info($"Команда от кассира: Id= {devCashier.Cashier.Id}   Handling= {cashierInfo.Handling}   NameTicket= {cashierInfo.NameTicket}");
+                        }            
                     }
                 }
             }
             catch (Exception ex)
             {
-                _loggerCashierInfo.Error($"CashierExchangeService:   {ex.ToString()}");
+                _loggerCashierInfo.Error($"EXCEPTION CashierExchangeService:   {ex.ToString()}");
             }
         }
 

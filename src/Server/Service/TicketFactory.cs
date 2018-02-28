@@ -53,7 +53,7 @@ namespace Server.Service
                 _currentDay = DateTime.Now.Day;
             }
 
-            return new TicketItem() { NumberElement = _ticketNumber, CountElement = countElement, AddedTime = DateTime.Now, Prefix = ticketPrefix, Сashbox = null, CountTryHandling = 0 };
+            return new TicketItem() { NumberElement = _ticketNumber, CountElement = countElement, AddedTime = DateTime.Now, Prefix = ticketPrefix, Cashbox = null, CountTryHandling = 0 };
         }
     }
 }

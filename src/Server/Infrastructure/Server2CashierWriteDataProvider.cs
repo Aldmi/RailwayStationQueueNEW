@@ -19,8 +19,8 @@ namespace Server.Infrastructure
 
         private const ushort StartAddresWrite = 0x0002;
         private const ushort NWriteRegister = 0x0001;
-
         private readonly byte _addressDevice;
+
         #endregion
 
 

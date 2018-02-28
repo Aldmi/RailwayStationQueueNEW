@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Communication.Annotations;
 using System.Collections.Concurrent;
+using Library.Logs;
 
 
 namespace Server.Entitys
@@ -27,7 +29,8 @@ namespace Server.Entitys
         private readonly QueuePriority _queueTicket;
 
         // Внутренняя очередь кассира, хранит Перенаправленные билеты, самая приоритетная на извлечение.
-        private readonly Queue<TicketItem> _internalQueueTicket = new Queue<TicketItem>(); 
+        private readonly Queue<TicketItem> _internalQueueTicket = new Queue<TicketItem>();
+        private static readonly Log LoggerCashierInfo = new Log("Server.CashierInfo");
 
         #endregion
 
@@ -35,6 +38,7 @@ namespace Server.Entitys
 
 
         #region prop
+
         public byte Id { get; }
         public List<string> Prefixes { get; }
         public List<string> PrefixesExclude { get; }
@@ -93,8 +97,10 @@ namespace Server.Entitys
             //Отправка синхронизации билета.
             //если кассир выключил устройство, не обработав приглашенного посетителя, то после включения ус-ва и нажатия кнопки "Следующий"
             //к кассиру придет текущий необработанный билет.
-            if (CurrentTicket != null)
+            if (CurrentTicket != null)//TODO:???
             {
+                CurrentTicket.Cashbox = Id;
+                LoggerCashierInfo.Info($"Команда от кассира: \"StartHandling. (Отправка синхронизации билета)\"  Id= {Id}  NameTicket= {CurrentTicket}");//LOG
                 return CurrentTicket;
             }
 
@@ -102,7 +108,8 @@ namespace Server.Entitys
             if (_internalQueueTicket != null && _internalQueueTicket.Any())
             {
                 var newTicket = _internalQueueTicket.Peek();
-                newTicket.Сashbox = Id;
+                newTicket.Cashbox = Id;
+                LoggerCashierInfo.Info($"Команда от кассира: \"StartHandling (внутреняя очередь)\"  Id= {Id}  NameTicket= {newTicket}");//LOG
                 return newTicket;
             }
 
@@ -112,7 +119,14 @@ namespace Server.Entitys
                 var newTicket = _queueTicket.PeekByPriority(this);
                 if (newTicket != null)
                 {
-                    newTicket.Сashbox = Id;
+                    if (newTicket.Cashbox != null) //Билет из очереди не должен быть в обработке кассиром.
+                    {
+                        LoggerCashierInfo.Error($"Команда от кассира: \"StartHandling (Билет из очереди не должен быть в обработке кассиром)\"  Id= {Id}  NameTicket= {newTicket}");//LOG
+                        return null;
+                    }
+
+                    newTicket.Cashbox = Id;
+                    LoggerCashierInfo.Info($"Команда от кассира: \"StartHandling (Работаем с внешней очередью)\"  Id= {Id}  NameTicket= {newTicket}");//LOG
                     return newTicket;
                 }
             }
@@ -121,17 +135,27 @@ namespace Server.Entitys
 
 
         /// <summary>
-        /// Извлекли 1-ый элемент из очереди и сделали его текущим обрабатываемым
+        /// Извлекли 1-ый элемент из очереди и сделали его текущим обрабатываемым (CurrentTicket)
         /// </summary>   
         public void SuccessfulStartHandling()
         {
+            //Ответ на Отправка синхронизации билета.
+            if (CurrentTicket != null) 
+            {
+                CurrentTicket.Cashbox = Id;
+                CurrentTicket.CountTryHandling++;
+                LoggerCashierInfo.Info($"Команда от кассира: \"SuccessfulStartHandling (Ответ на Отправка синхронизации билета)\"  Id= {Id}  NameTicket= {CurrentTicket}");//LOG
+                return;
+            }
+
             //Если внутреняя очередь не пуста, работаем с ней
             if (_internalQueueTicket != null && _internalQueueTicket.Any())
             {
                 var newTicket = _internalQueueTicket.Dequeue();
-                newTicket.Сashbox = Id;
+                newTicket.Cashbox = Id;
                 CurrentTicket = newTicket;
                 CurrentTicket.CountTryHandling++;
+                LoggerCashierInfo.Info($"Команда от кассира: \"SuccessfulStartHandling (внутреняя очередь)\"  Id= {Id}  NameTicket= {CurrentTicket}");//LOG
                 return;
             }
 
@@ -141,9 +165,10 @@ namespace Server.Entitys
                 TicketItem newTicket = _queueTicket.DequeueByPriority(this);
                 if (newTicket != null)
                 {
-                    newTicket.Сashbox = Id;
+                    newTicket.Cashbox = Id;
                     CurrentTicket = newTicket;
                     CurrentTicket.CountTryHandling++;
+                    LoggerCashierInfo.Info($"Команда от кассира: \"SuccessfulStartHandling (Работаем с внешней очередью)\"  Id= {Id}  NameTicket= {CurrentTicket}");//LOG
                 }
             }
         }
@@ -154,6 +179,7 @@ namespace Server.Entitys
         /// </summary>
         public TicketItem SuccessfulHandling()
         {
+            LoggerCashierInfo.Info($"Команда от кассира: \"SuccessfulHandling (Успешная обработка клиента.)\"  Id= {Id}  NameTicket= {CurrentTicket}");//LOG
             CurrentTicket = null;
             return CurrentTicket;
         }
@@ -165,9 +191,12 @@ namespace Server.Entitys
         /// </summary>
         public TicketItem ErrorHandling()
         {
+            CurrentTicket.Cashbox= null;
+            CurrentTicket.AddedTime = DateTime.Now;
             if (CurrentTicket?.CountTryHandling < _maxCountTryHandin)
-              _queueTicket.Enqueue(CurrentTicket);               
+              _queueTicket.Enqueue(CurrentTicket);
 
+            LoggerCashierInfo.Info($"Команда от кассира: \"ErrorHandling (Клиент не обрабаотанн.)\"  Id= {Id}    CountTryHandling= {CurrentTicket?.CountTryHandling}  NameTicket= {CurrentTicket}");//LOG
             CurrentTicket = null;
             return CurrentTicket;
         }
@@ -188,6 +217,7 @@ namespace Server.Entitys
         /// </summary>
         public void AddRedirectedTicket(TicketItem ticket)
         {
+            LoggerCashierInfo.Info($"Команда от кассира: \"AddRedirectedTicket (Добавить перенаправленный билет.)\"  Id= {Id}  NameTicket= {ticket}");//LOG
             _internalQueueTicket.Enqueue(ticket);
         }
 

@@ -798,7 +798,7 @@ namespace ServerUi.ViewModels
                         var ticket = new TicketItem
                         {
                             CashierId = сashier.Id,
-                            CashierName = сashier.CurrentTicket.Сashbox.ToString(),
+                            CashierName = сashier.CurrentTicket.Cashbox.ToString(),
                             TicketName = $"{сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}",
                         };
 
@@ -1605,7 +1605,9 @@ namespace ServerUi.ViewModels
 
         public void Dell(int idCashier)
         {
-            _model.DeviceCashiers[idCashier - 1].Cashier.SuccessfulHandling();
+            //_model.DeviceCashiers[idCashier - 1].Cashier.SuccessfulHandling();
+
+            _model.DeviceCashiers[idCashier - 1].Cashier.ErrorHandling();
         }
 
 
@@ -1613,7 +1615,7 @@ namespace ServerUi.ViewModels
         {
             if (_model.AdminCasher != null)
             {
-                var redirectTicket= _model.DeviceCashiers[idCashier - 1].Cashier.CurrentTicket;
+                var redirectTicket = _model.DeviceCashiers[idCashier - 1].Cashier.CurrentTicket;
                 if (redirectTicket != null)
                 {
                     _model.AdminCasher.Cashier.AddRedirectedTicket(redirectTicket);

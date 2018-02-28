@@ -177,6 +177,7 @@ namespace Server.Entitys
                     return Queue.FirstOrDefault();
                 }
 
+                //var priorityItem = Queue.FirstOrDefault(q => q.Prefix == pref);
                 var priorityItem = Queue.FirstOrDefault(q => q.Prefix == pref);
                 if (priorityItem != null)
                 {
