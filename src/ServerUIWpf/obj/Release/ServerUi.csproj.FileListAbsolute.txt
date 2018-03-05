@@ -264,3 +264,4 @@ C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\obj\Release\ServerUi.c
 C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\obj\Release\ServerUi.exe
 C:\Users\User\Desktop\Эл.очередь\src\ServerUIWpf\obj\Release\ServerUi.pdb
 D:\Git\RailwayStationQueueNew\src\ServerUIWpf\bin\Release\ServerUi.exe.config
+C:\Git\RailwayStationQueueNEW\src\ServerUIWpf\bin\Release\ServerUi.exe.config

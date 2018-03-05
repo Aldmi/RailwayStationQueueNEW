@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Timers;
 using Communication.Annotations;
+using Library.Logs;
 using NAudio.Wave;
 
 
@@ -17,6 +18,8 @@ namespace Sound
         #region field
 
         private readonly Timer _timerInvokeSoundQueue;
+
+        private readonly Log _loggerSound = new Log("Sound.SoundQueue");
 
         #endregion
 
@@ -79,6 +82,7 @@ namespace Sound
             if (item == null)
                 return;
 
+            _loggerSound.Info($"AddItem: {item.Name}");
             Queue.Enqueue(item);
             OnPropertyChanged("Queue");
         }
@@ -175,12 +179,13 @@ namespace Sound
                     if(string.IsNullOrEmpty(soundFile) || string.IsNullOrWhiteSpace(soundFile))
                         return;
 
+                    _loggerSound.Info($"PlayFile: {soundFile}");
                     Player.PlayFile(soundFile);
                  }
             }
             catch (Exception ex)
             {
-               // _logger.Error($"SoundQueue/Invoke  {ex.ToString()}");
+                _loggerSound.Error($"SoundQueue/Invoke  {ex}");
             }
         }
 

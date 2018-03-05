@@ -79,7 +79,7 @@ namespace Server.Service
                             if (devCashier.Cashier.CurrentTicket != null)
                             {
                                 _loggerCashierInfo.Error($"Команда от кассира: Id= {devCashier.Cashier.Id}   Handling=\"Если кассир быстро закрыла сессию(до того как опрос порта дошел до нее)\"    NameTicket= {cashierInfo.NameTicket}");//LOG;
-                                devCashier.Cashier.SuccessfulHandling();
+                                //devCashier.Cashier.SuccessfulHandling();
                             }
                             continue;
                         }

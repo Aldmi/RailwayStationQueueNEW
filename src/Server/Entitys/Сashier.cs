@@ -121,8 +121,8 @@ namespace Server.Entitys
                 {
                     if (newTicket.Cashbox != null) //Билет из очереди не должен быть в обработке кассиром.
                     {
-                        LoggerCashierInfo.Error($"Команда от кассира: \"StartHandling (Билет из очереди не должен быть в обработке кассиром)\"  Id= {Id}  NameTicket= {newTicket}");//LOG
-                        return null;
+                        LoggerCashierInfo.Error($"Команда от кассира: \"StartHandling (!!!!!!!!!!!Билет из очереди не должен быть в обработке кассиром)!!!!!!!!!!\"  Id= {Id}  NameTicket= {newTicket}");//LOG
+                        //return null;//TODO: Прверить лог на возниконверние этого условия
                     }
 
                     newTicket.Cashbox = Id;

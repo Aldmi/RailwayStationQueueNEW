@@ -208,3 +208,4 @@ C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Release\Terminal
 C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Release\TerminalUIWpf.exe
 C:\Users\User\Desktop\Эл.очередь\src\TerminalUIWpf\obj\Release\TerminalUIWpf.pdb
 D:\Git\RailwayStationQueueNew\src\TerminalUIWpf\bin\Release\TerminalUIWpf.exe.config
+C:\Git\RailwayStationQueueNEW\src\TerminalUIWpf\bin\Release\TerminalUIWpf.exe.config
