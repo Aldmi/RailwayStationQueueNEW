@@ -1,10 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using Caliburn.Micro;
 using Communication.TcpIp;
 using Terminal.Model;
+using Terminal.Service;
 
 
 namespace TerminalUIWpf.ViewModels
@@ -152,6 +154,26 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnGetHelp()
         {
+            var printerStat = _model.PrintTicket.GetPrinterStatus();
+            switch (printerStat)
+            {
+                case PrinterStatus.Ok:
+                    break;
+
+                case PrinterStatus.QueueContainsElements:
+                    MessageBox.Show("Очередь печати ПЕРЕПОЛНЕННА");
+                    return;
+           
+                case PrinterStatus.IsInError:
+                    return;
+
+                case PrinterStatus.IsOutOfPaper:
+                    return;
+
+                case PrinterStatus.IsPaperJammed:
+                    return;
+             }
+
             const string descriptionQueue = "Получить справку";
             const string prefixQueue = "С";
             const string nameQueue = "Main";
@@ -179,6 +201,8 @@ namespace TerminalUIWpf.ViewModels
             const string nameQueue = "Admin";
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
+
+
 
 
 
