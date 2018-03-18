@@ -16,10 +16,10 @@ namespace Server.Service
         private readonly List<DeviceCashier> _deviceCashiers;
         private readonly DeviceCashier _adminCashier;
         private readonly ushort _timeRespone;
-
         private int _lastSyncLabel;
+        private readonly string _logName;
+        private readonly Log _loggerCashierInfo;
 
-        private  readonly Log _loggerCashierInfo = new Log("Server.CashierInfo");
         #endregion
 
 
@@ -27,11 +27,13 @@ namespace Server.Service
 
         #region ctor
 
-        public CashierExchangeService(List<DeviceCashier> deviceCashiers, DeviceCashier adminCashier, ushort timeRespone)
+        public CashierExchangeService(List<DeviceCashier> deviceCashiers, DeviceCashier adminCashier, ushort timeRespone, string logName)
         {
             _deviceCashiers = deviceCashiers;
             _adminCashier = adminCashier;
             _timeRespone = timeRespone;
+            _logName = logName;
+            _loggerCashierInfo = new Log(_logName);
         }
 
         #endregion
@@ -50,11 +52,14 @@ namespace Server.Service
             {
                 foreach (var devCashier in _deviceCashiers)              //Запуск опроса кассиров
                 {
-                    var readProvider = new Server2CashierReadDataProvider(devCashier.AddresDevice);
+                    _loggerCashierInfo.Info($"---------------------------КАССИР: Id= {devCashier.Cashier.Id}----------------------------------");//LOG;
+
+                    var readProvider = new Server2CashierReadDataProvider(devCashier.AddresDevice, _logName);
                     devCashier.DataExchangeSuccess = await port.DataExchangeAsync(_timeRespone, readProvider, ct);
 
                     if (!devCashier.IsConnect)
                     {
+                        _loggerCashierInfo.Info($"кассир НЕ на связи: Id= {devCashier.Cashier.Id}");//LOG;
                         devCashier.LastSyncLabel = 0;
                         continue;
                     }
@@ -68,7 +73,7 @@ namespace Server.Service
                         if (devCashier.LastSyncLabel != DateTime.Now.Hour)
                         {
                             devCashier.LastSyncLabel = DateTime.Now.Hour;
-                            var syncTimeProvider = new Server2CashierSyncTimeDataProvider();
+                            var syncTimeProvider = new Server2CashierSyncTimeDataProvider(_logName);
                             await port.DataExchangeAsync(_timeRespone, syncTimeProvider, ct);
                         }
 
@@ -78,7 +83,7 @@ namespace Server.Service
                             //Если кассир быстро закрыла сессию (до того как опрос порта дошел до нее), то билет из обработки надо убрать.
                             if (devCashier.Cashier.CurrentTicket != null)
                             {
-                                _loggerCashierInfo.Error($"Команда от кассира: Id= {devCashier.Cashier.Id}   Handling=\"Если кассир быстро закрыла сессию(до того как опрос порта дошел до нее)\"    NameTicket= {cashierInfo.NameTicket}");//LOG;
+                                _loggerCashierInfo.Info($"Команда от кассира: Id= {devCashier.Cashier.Id}   Handling=\"Если кассир быстро закрыла сессию(до того как опрос порта дошел до нее)\"    NameTicket= {cashierInfo.NameTicket}");//LOG;
                                 //devCashier.Cashier.SuccessfulHandling();
                             }
                             continue;
@@ -99,7 +104,7 @@ namespace Server.Service
                                 if(item == null)
                                     break;
 
-                                var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
+                                var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
                                 await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                                 if (writeProvider.IsOutDataValid)                //завершение транзакции (успешная передача билета кассиру)
                                 {
@@ -125,7 +130,7 @@ namespace Server.Service
                                 if (item == null)
                                     break;
 
-                                writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
+                                writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
                                 await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                                 if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
                                 {
@@ -147,7 +152,7 @@ namespace Server.Service
                                     if (item == null)
                                         break;
 
-                                    writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
+                                    writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
                                     await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                                     if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
                                     {
@@ -162,7 +167,7 @@ namespace Server.Service
                                 if (item == null)
                                     break;
 
-                                writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice) { InputData = item };
+                                writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
                                 await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
                                 if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
                                 {
@@ -179,7 +184,7 @@ namespace Server.Service
             }
             catch (Exception ex)
             {
-                _loggerCashierInfo.Error($"EXCEPTION CashierExchangeService:   {ex.ToString()}");
+                _loggerCashierInfo.Info($"EXCEPTION CashierExchangeService:   {ex.ToString()}");
             }
         }
 

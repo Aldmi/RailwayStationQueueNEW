@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Convertion\Array2StringConverter.cs" />
     <Compile Include="Convertion\Numeric2ListStringConverter.cs" />
     <Compile Include="Convertion\NumericConvertion.cs" />
     <Compile Include="Library\BlockClick.cs" />

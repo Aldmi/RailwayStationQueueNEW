@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Communication.Annotations;
+using Library.Convertion;
 using Library.Library;
+using Library.Logs;
 
 
 namespace Server.Infrastructure
@@ -16,8 +18,23 @@ namespace Server.Infrastructure
         private const ushort StartAddresWrite = 0x0003;
         private const ushort NWriteRegister = 0x0002;
 
+        private readonly string _logName;
+        private readonly Log _loggerCashierInfo;
+
         #endregion
 
+
+
+
+        #region ctor
+
+        public Server2CashierSyncTimeDataProvider(string logName)
+        {
+            _logName = logName;
+            _loggerCashierInfo = new Log(_logName);
+        }
+
+        #endregion
 
 
 
@@ -99,12 +116,17 @@ namespace Server.Infrastructure
             var crc = Crc16.ModRTU_CRC(buff, CountGetDataByte - 2);
             crc.CopyTo(buff, CountGetDataByte - 2);
 
+            _loggerCashierInfo.Info($"Запрос на Синхронизацию времени:  \"{buff.ConertByteArray2String()}\"");
+
             return buff;
         }
 
 
         public bool SetDataByte(byte[] data)
         {
+            if(data != null)//TODO: Проверить ответ
+              _loggerCashierInfo.Info($"Ответ на Синхронизацию времени: \"{data.ConertByteArray2String()}\"");
+
             return true;
         }
 

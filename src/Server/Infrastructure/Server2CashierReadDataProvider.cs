@@ -4,7 +4,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Communication.Annotations;
 using Communication.Interfaces;
+using Library.Convertion;
 using Library.Library;
+using Library.Logs;
 using Server.Entitys;
 
 namespace Server.Infrastructure
@@ -35,6 +37,10 @@ namespace Server.Infrastructure
         private const ushort NReadRegister = 0x0003;
 
         private readonly byte _addressDevice;
+
+        private readonly string _logName;
+        private readonly Log _loggerCashierInfo;
+
         #endregion
 
 
@@ -42,9 +48,11 @@ namespace Server.Infrastructure
 
         #region ctor
 
-        public Server2CashierReadDataProvider(byte addressDevice)
+        public Server2CashierReadDataProvider(byte addressDevice, string logName)
         {
             _addressDevice = addressDevice;
+            _logName = logName;
+            _loggerCashierInfo = new Log(_logName);
         }
 
         #endregion
@@ -97,6 +105,8 @@ namespace Server.Infrastructure
 
             var crc = Crc16.ModRTU_CRC(buff, CountGetDataByte - 2);
             crc.CopyTo(buff, 6);
+     
+            _loggerCashierInfo.Info($"Запрос на чтение:  \"{buff.ConertByteArray2String()}\"");
 
             return buff;
         }
@@ -129,9 +139,13 @@ namespace Server.Infrastructure
         {
             if (data == null || data.Length != CountSetDataByte)
             {
+                _loggerCashierInfo.Info("Ответ на чтение: Данные не валидны !!!!!!!!!!!!!!");
                 IsOutDataValid = false;
                 return false;
             }
+
+            _loggerCashierInfo.Info($"Ответ на чтение: \"{data.ConertByteArray2String()}\"");
+
 
             byte[] dataBuffer = null;
             if (data[0] == _addressDevice &&
@@ -185,6 +199,7 @@ namespace Server.Infrastructure
                     }
                 }
 
+                _loggerCashierInfo.Info($"Ответ на чтение (OutputData объект): \" IsWork= {OutputData.IsWork}\"    \" Handling= {OutputData.Handling}\"");
 
                 IsOutDataValid = true;
                 return true;

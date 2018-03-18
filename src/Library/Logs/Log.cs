@@ -8,6 +8,9 @@ namespace Library.Logs
     public class Log : IDisposable
     {
         private readonly Logger _logger;
+        private static bool _isEnable;
+
+
 
 
 
@@ -29,30 +32,49 @@ namespace Library.Logs
 
 
 
-
         #region Methode
+
+        public static void EnableLogging(bool enable)
+        {
+            _isEnable = enable;
+        }
+
 
         public void Info(string message)
         {
+            if(!_isEnable)
+                return;
+
             _logger.Info(message);
         }
 
         public void Debug(string message)
         {
+            if (!_isEnable)
+                return;
+
             _logger.Debug(message);
         }
 
         public void Error(string message)
         {
+            if (!_isEnable)
+                return;
+
             _logger.Error(message);
         }
 
         public void Fatal(string message)
         {
+            if (!_isEnable)
+                return;
+
             _logger.Fatal(message);
         }
 
         #endregion
+
+
 
 
         #region Dispose

@@ -113,7 +113,9 @@ namespace Server.Model
                 return;
             }
 
-       
+            //РАЗРЕШИТЬ ЛОГГИРОВАНИЕ-----------------------------------------------------------
+            Log.EnableLogging(true);
+
             //СОЗДАНИЕ ОЧЕРЕДИ-----------------------------------------------------------------------
             foreach (var xmlQueue in xmlQueues)
             {
@@ -224,15 +226,12 @@ namespace Server.Model
                var queue= QueuePriorities.FirstOrDefault(q => q.Name == xmlCash.NameQueue);
                if (queue != null)
                {
-                   var casher = new Сashier(xmlCash.Id, xmlCash.Prefixs, queue, xmlCash.MaxCountTryHanding);
+                   var logName = "Server.CashierInfo_" + xmlCash.Port;
+                   var casher = new Сashier(xmlCash.Id, xmlCash.Prefixs, queue, xmlCash.MaxCountTryHanding, logName);
                    DeviceCashiers.Add(new DeviceCashier(xmlCash.AddressDevice, casher, xmlCash.Port));
                }
             }
             AdminCasher = DeviceCashiers.FirstOrDefault(d => d.Cashier.Prefixes.Contains("А"));
-
-
-            //ВОССТАНОВЛЕНИЕ СОСТОЯНИЯ ОБЪЕКТОВ (сохранялись на момент закрытия программы)----------------------------------------------------------------------------------------
-            //LoadStates();
 
 
             //СОЗДАНИЕ ПОСЛЕД. ПОРТА ДЛЯ ОПРОСА КАССИРОВ-----------------------------------------------------------------------
@@ -241,7 +240,8 @@ namespace Server.Model
             {
                 var sp= new MasterSerialPort(xmlSerial);
                 var cashiers= cashersGroup[xmlSerial.Port];
-                var cashierExch= new CashierExchangeService(cashiers, AdminCasher, xmlSerial.TimeRespoune);
+                var logName = "Server.CashierInfo_" + xmlSerial.Port;
+                var cashierExch= new CashierExchangeService(cashiers, AdminCasher, xmlSerial.TimeRespoune, logName);
                 sp.AddFunc(cashierExch.ExchangeService);
                 sp.PropertyChanged += (o, e) =>
                  {
