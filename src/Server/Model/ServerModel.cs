@@ -179,44 +179,28 @@ namespace Server.Model
             };
 
             //DEBUG------ИНИЦИАЛИЗАЦИЯ ОЧЕРЕДИ---------------------
-            //var queueTemp = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Main", StringComparison.InvariantCultureIgnoreCase));
-            //var queueAdmin = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Admin", StringComparison.InvariantCultureIgnoreCase));
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    var ticketAdmin = queueTemp.CreateTicket("А");
-            //    //queueAdmin.Enqueue(ticketAdmin);
+            var queueTemp = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Main", StringComparison.InvariantCultureIgnoreCase));
+            var queueAdmin = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Admin", StringComparison.InvariantCultureIgnoreCase));
+            for (int i = 0; i < 5; i++)
+            {
+                var ticketAdmin = queueTemp.CreateTicket("А");
+                //queueAdmin.Enqueue(ticketAdmin);
 
+                var ticket = queueTemp.CreateTicket("К");
+                queueTemp.Enqueue(ticket);
 
-            //    var ticket = queueTemp.CreateTicket("К");
-            //    queueTemp.Enqueue(ticket);
+                ticket = queueTemp.CreateTicket("М");
+                queueTemp.Enqueue(ticket);
 
-            //    ticket = queueTemp.CreateTicket("М");
-            //    queueTemp.Enqueue(ticket);
+                ticket = queueTemp.CreateTicket("Г");
+                queueTemp.Enqueue(ticket);
 
-            //    ticket = queueTemp.CreateTicket("Г");
-            //    queueTemp.Enqueue(ticket);
+                ticket = queueTemp.CreateTicket("И");
+                queueTemp.Enqueue(ticket);
 
-            //    ticket = queueTemp.CreateTicket("И");
-            //    queueTemp.Enqueue(ticket);
-
-            //    ticket = queueTemp.CreateTicket("В");
-            //    queueTemp.Enqueue(ticket);
-
-            //    ticket = queueTemp.CreateTicket("П");
-            //    queueTemp.Enqueue(ticket);
-
-            //    ticket = queueTemp.CreateTicket("У");
-            //    queueTemp.Enqueue(ticket);
-
-            //    ticket = queueTemp.CreateTicket("З");
-            //    queueTemp.Enqueue(ticket);
-
-            //    ticket = queueTemp.CreateTicket("С");
-            //    queueTemp.Enqueue(ticket);
-
-            //    ticket = queueTemp.CreateTicket("Б");
-            //    queueTemp.Enqueue(ticket);
-            //}
+                ticket = queueTemp.CreateTicket("С");
+                queueTemp.Enqueue(ticket);
+            }
             //DEBUG----------------------------------------------
 
 
