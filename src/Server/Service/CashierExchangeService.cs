@@ -52,7 +52,7 @@ namespace Server.Service
             {
                 foreach (var devCashier in _deviceCashiers)              //Запуск опроса кассиров
                 {
-                    _loggerCashierInfo.Info($"---------------------------КАССИР: Id= {devCashier.Cashier.Id}----------------------------------");//LOG;
+                    _loggerCashierInfo.Info($"---------------------------КАССИР: Id= {devCashier.Cashier.Id}   CurrentTicket= {(devCashier.Cashier.CurrentTicket != null ? devCashier.Cashier.CurrentTicket.Prefix + devCashier.Cashier.CurrentTicket.NumberElement.ToString("000") : "НЕТ")}----------------------------------");//LOG;
 
                     var readProvider = new Server2CashierReadDataProvider(devCashier.AddresDevice, _logName);
                     devCashier.DataExchangeSuccess = await port.DataExchangeAsync(_timeRespone, readProvider, ct);

@@ -31,11 +31,3 @@ C:\Users\User\Desktop\Эл.очередь\src\Library\bin\Release\Library.dll
 C:\Users\User\Desktop\Эл.очередь\src\Library\bin\Release\Library.pdb
 C:\Users\User\Desktop\Эл.очередь\src\Library\obj\Release\Library.dll
 C:\Users\User\Desktop\Эл.очередь\src\Library\obj\Release\Library.pdb
-C:\Git\RailwayStationQueueNEW\src\Library\bin\Release\NLog.config
-C:\Git\RailwayStationQueueNEW\src\Library\bin\Release\Library.dll
-C:\Git\RailwayStationQueueNEW\src\Library\bin\Release\Library.pdb
-C:\Git\RailwayStationQueueNEW\src\Library\bin\Release\NLog.dll
-C:\Git\RailwayStationQueueNEW\src\Library\bin\Release\NLog.xml
-C:\Git\RailwayStationQueueNEW\src\Library\obj\Release\Library.csprojResolveAssemblyReference.cache
-C:\Git\RailwayStationQueueNEW\src\Library\obj\Release\Library.dll
-C:\Git\RailwayStationQueueNEW\src\Library\obj\Release\Library.pdb

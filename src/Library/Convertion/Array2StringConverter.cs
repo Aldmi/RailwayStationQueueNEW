@@ -10,7 +10,7 @@ namespace Library.Convertion
             var strB= new StringBuilder();
             foreach (var b in array)
             {
-                strB.Append(b.ToString("X") + " ");
+                strB.Append(b.ToString("X2") + " ");
             }
 
             return strB.ToString();

@@ -16,9 +16,18 @@
 		  <BaudRate>57600</BaudRate>
 		  <DataBits>8</DataBits>
 		  <StopBits>1</StopBits>
-		  <TimeRespon>2000</TimeRespon>
+		  <TimeRespon>500</TimeRespon>
 		  <TimeCycleReConnect>3000</TimeCycleReConnect>
-		</Serial>	
+		</Serial>
+
+		<Serial>
+		  <Port>1</Port>
+		  <BaudRate>57600</BaudRate>
+		  <DataBits>8</DataBits>
+		  <StopBits>1</StopBits>
+		  <TimeRespon>500</TimeRespon>
+		  <TimeCycleReConnect>3000</TimeCycleReConnect>
+		</Serial>		
 	</SerialPorts>
   </Server>
 
@@ -26,7 +35,7 @@
 	<Queues>
 		<Queue Id="1" Name="Main">
 			<Prefix Name="К" Priority="7"/>  <!-- 1. Купить билет -->
-			<Prefix Name="М" Priority="10"/> <!-- 2. Купить билет в международном сообщении -->
+			<Prefix Name="К" Priority="10"/> <!-- 2. Купить билет в международном сообщении -->
 			<Prefix Name="Г" Priority="10"/> <!-- 3. Оформление групп пассажиров-->
 			<Prefix Name="И" Priority="10"/> <!-- 4. Оформление маломобильных пассажиров -->
 			<Prefix Name="С" Priority="10"/> <!-- 9. Получить справку -->
@@ -41,9 +50,9 @@
 	
 	<Cashiers>	`
 	   <Cashier Id="1" Address="11" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
-<!-- 	   <Cashier Id="2" Address="2" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
-	   <Cashier Id="3" Address="3" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
-	   <Cashier Id="4" Address="4" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="2" Address="2" Port="4" NameQueue="Admin" Prefix="А" MaxCountTryHanding="2"/>
+	   <Cashier Id="3" Address="3" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+<!-- 	   <Cashier Id="4" Address="4" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
 	   <Cashier Id="5" Address="5" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
 	   <Cashier Id="6" Address="6" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/> -->
 	</Cashiers>

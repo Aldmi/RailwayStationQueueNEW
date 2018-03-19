@@ -82,7 +82,7 @@ namespace ServerUi.ViewModels
               queueMain.PropertyChanged += QueueMain_PropertyChanged;
            }
  
-           _model.LoadStates();
+           _model.LoadStates();//DEBUG
 
 
 
@@ -1486,15 +1486,6 @@ namespace ServerUi.ViewModels
 
         public void SaveTableSetting()
         {
-            //DEBUG---------------------------------
-            //for (int i = 0; i < 99; i++)
-            //{
-            //    Add(14);
-            //    Task.Delay(100).GetAwaiter();
-            //    Dell(14);
-            //}
-            //DEBUG---------------------------------
-
             SaveSettingUi();
         }
 

@@ -122,6 +122,9 @@ namespace Server.Infrastructure
         }
 
 
+        /// <summary>
+        /// data == null. т.е. ответа нет
+        /// </summary>
         public bool SetDataByte(byte[] data)
         {
             if(data != null)//TODO: Проверить ответ
