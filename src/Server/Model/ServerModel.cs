@@ -222,22 +222,22 @@ namespace Server.Model
             var cashersGroup = DeviceCashiers.GroupBy(d => d.Port).ToDictionary(group => group.Key, group => group.ToList());  //принадлежность кассира к порту
             foreach (var xmlSerial in xmlSerials)
             {
-                var sp= new MasterSerialPort(xmlSerial);
-                var cashiers= cashersGroup[xmlSerial.Port];
                 var logName = "Server.CashierInfo_" + xmlSerial.Port;
+                var sp= new MasterSerialPort(xmlSerial, logName);
+                var cashiers= cashersGroup[xmlSerial.Port];
                 var cashierExch= new CashierExchangeService(cashiers, AdminCasher, xmlSerial.TimeRespoune, logName);
                 sp.AddFunc(cashierExch.ExchangeService);
-                sp.PropertyChanged += (o, e) =>
-                 {
-                     var port = o as MasterSerialPort;
-                     if (port != null)
-                     {
-                         if (e.PropertyName == "StatusString")
-                         {
-                             ErrorString = port.StatusString;                     //TODO: РАЗДЕЛЯЕМЫЙ РЕСУРС возможно нужна блокировка
-                        }
-                     }
-                 };
+                //sp.PropertyChanged += (o, e) =>
+                // {
+                //     var port = o as MasterSerialPort;
+                //     if (port != null)
+                //     {
+                //         if (e.PropertyName == "StatusString")
+                //         {
+                //             ErrorString = port.StatusString;                     //TODO: РАЗДЕЛЯЕМЫЙ РЕСУРС возможно нужна блокировка
+                //        }
+                //     }
+                // };
                 MasterSerialPorts.Add(sp);
                 CashierExchangeServices.Add(cashierExch);
             }

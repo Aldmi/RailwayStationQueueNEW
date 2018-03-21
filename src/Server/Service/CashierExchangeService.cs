@@ -83,7 +83,7 @@ namespace Server.Service
                             //Если кассир быстро закрыла сессию (до того как опрос порта дошел до нее), то билет из обработки надо убрать.
                             if (devCashier.Cashier.CurrentTicket != null)
                             {
-                                _loggerCashierInfo.Info($"Команда от кассира: Id= {devCashier.Cashier.Id}   Handling=\"Если кассир быстро закрыла сессию(до того как опрос порта дошел до нее)\"    NameTicket= {cashierInfo.NameTicket}");//LOG;
+                                _loggerCashierInfo.Info($"Команда от кассира: Id= {devCashier.Cashier.Id}   Handling=\"Если кассир быстро закрыла сессию(до того как опрос порта дошел до нее). НО У НЕЕ БЫЛ ТЕКУЩИЙ ОБРАБАТЫВАЕМЫЙ БИЛЕТ\"    NameTicket= {cashierInfo.NameTicket}");//LOG;
                                 //devCashier.Cashier.SuccessfulHandling();
                             }
                             continue;
