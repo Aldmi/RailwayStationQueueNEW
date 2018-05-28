@@ -793,34 +793,41 @@ namespace ServerUi.ViewModels
             {
                 if (e.PropertyName == "CurrentTicket")
                 {
-                    if (сashier.CurrentTicket != null)     //добавить элемент к списку
+                    try
                     {
-                        var ticket = new TicketItem
+                        if (сashier.CurrentTicket != null)     //добавить элемент к списку
                         {
-                            CashierId = сashier.Id,
-                            CashierName = сashier.CurrentTicket.Cashbox.ToString(),
-                            TicketName = $"{сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}",
-                        };
+                            var ticket = new TicketItem
+                            {
+                                CashierId = сashier.Id,
+                                CashierName = сashier.CurrentTicket.Cashbox.ToString(),
+                                TicketName = $"{сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}",
+                            };
 
-                        var ticketPrefix = ticket.TicketName.Substring(0, 1);
-                        var ticketNumber = ticket.TicketName.Substring(1, 3);
-                        var formatStr= $"Талон {ticketPrefix} {ticketNumber} Касса {ticket.CashierName}";
-                        _model.SoundQueue.AddItem(new SoundTemplate(formatStr));
+                            var ticketPrefix = ticket.TicketName.Substring(0, 1);
+                            var ticketNumber = ticket.TicketName.Substring(1, 3);
+                            var formatStr = $"Талон {ticketPrefix} {ticketNumber} Касса {ticket.CashierName}";
+                            _model.SoundQueue.AddItem(new SoundTemplate(formatStr));
 
-                        FillTableCashier(сashier.Id, ticket);
-                        FillTable4X4(ticket, Table4X41, Table4X42, Table4X43, Table4X44);
-                        FillTable8X2(ticket, Table8X21, Table8X22);
-                        FillTable8X2(ticket, Table8X23, Table8X24);
+                            FillTableCashier(сashier.Id, ticket);
+                            FillTable4X4(ticket, Table4X41, Table4X42, Table4X43, Table4X44);
+                            FillTable8X2(ticket, Table8X21, Table8X22);
+                            FillTable8X2(ticket, Table8X23, Table8X24);
 
-                        //LOG
-                        _logger.Info(сashier.CurrentTicket.ToString());
+                            //LOG
+                            _logger.Info(сashier.CurrentTicket.ToString());
+                        }
+                        else                                 //удалить элемент из списка
+                        {
+                            FillTableCashier(сashier.Id, null);
+                            ClearTable4X4(сashier.Id, Table4X41, Table4X42, Table4X43, Table4X44);
+                            ClearTable8X2(сashier.Id, Table8X21, Table8X22);
+                            ClearTable8X2(сashier.Id, Table8X23, Table8X24);
+                        }
                     }
-                    else                                 //удалить элемент из списка
+                    catch (Exception ex)
                     {
-                        FillTableCashier(сashier.Id, null);
-                        ClearTable4X4(сashier.Id, Table4X41, Table4X42, Table4X43, Table4X44);
-                        ClearTable8X2(сashier.Id, Table8X21, Table8X22);
-                        ClearTable8X2(сashier.Id, Table8X23, Table8X24);
+                        _logger.Error($"ServerModel/Cashier_PropertyChanged= {ex.Message}");
                     }
                 }
             }

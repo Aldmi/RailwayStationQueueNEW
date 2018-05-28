@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library.Logs;
 using NAudio.Wave;
 
 
@@ -10,12 +11,12 @@ namespace Sound
 {
     public class SoundPlayer : ISoundPlayer
     {
+        #region field
 
-       #region field
+        private object _locker = new object();
+        private readonly Log _loggerSoundPlayer = new Log("Sound.SoundQueue");
 
-        private object _locker= new object();
-
-       #endregion
+        #endregion
 
 
 
@@ -59,11 +60,12 @@ namespace Sound
 
                         return true;
                     }
+
+                    _loggerSoundPlayer.Info($"PlayFile In player: {file} FILE NOT FOUND ????????????????????");
                 }
                 catch (Exception ex)
                 {
-                    //var logger = LogManager.GetCurrentClassLogger();
-                    //logger.Error($"SoundPlayer/PlayFile. {ex.Message}");
+                    _loggerSoundPlayer.Info($"PlayFile In player: ECXEPTION {ex.Message} !!!!!!!!!!!!!!!!!!!!");
                 }
 
                 return false;
@@ -75,7 +77,13 @@ namespace Sound
         public void Play()
         {
             if (AudioFileReader == null)
+            {
+                lock (_locker)
+                {
+                    _loggerSoundPlayer.Info($"PlayFile In Play methode: AudioFileReader == null !!!!!!!!!!!!!!!!!!!!");
+                }
                 return;
+            }
 
             try
             {
@@ -87,8 +95,10 @@ namespace Sound
             }
             catch (Exception ex)
             {
-                //var logger = LogManager.GetCurrentClassLogger();
-                //logger.Error($"SoundPlayer/Play {ex.Message}");
+                lock (_locker)
+                {
+                    _loggerSoundPlayer.Info($"PlayFile In Play methode: ECXEPTION {ex.Message} !!!!!!!!!!!!!!!!!!!!");
+                }
                 throw;
             }
         }
@@ -153,7 +163,7 @@ namespace Sound
 
         public long GetCurrentPosition()
         {
-            return  AudioFileReader?.Position ?? 0;
+            return AudioFileReader?.Position ?? 0;
         }
 
 
