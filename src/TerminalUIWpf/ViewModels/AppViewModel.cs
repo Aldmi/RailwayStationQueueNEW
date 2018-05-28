@@ -154,25 +154,12 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnGetHelp()
         {
-            var printerStat = _model.PrintTicket.GetPrinterStatus();
-            switch (printerStat)
+            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
+            if (!сheckPrinterStatusVm.CheckPrinterStatus())
             {
-                case PrinterStatus.Ok:
-                    break;
-
-                case PrinterStatus.QueueContainsElements:
-                    MessageBox.Show("Очередь печати ПЕРЕПОЛНЕННА");
-                    return;
-           
-                case PrinterStatus.IsInError:
-                    return;
-
-                case PrinterStatus.IsOutOfPaper:
-                    return;
-
-                case PrinterStatus.IsPaperJammed:
-                    return;
-             }
+                _windowManager.ShowDialog(сheckPrinterStatusVm);
+                return;
+            }
 
             const string descriptionQueue = "Получить справку";
             const string prefixQueue = "С";
@@ -180,16 +167,6 @@ namespace TerminalUIWpf.ViewModels
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
 
-        /// <summary>
-        /// Оформить багаж
-        /// </summary>
-        //public async Task BtnBaggageCheckout()
-        //{
-        //    const string descriptionQueue = "Оформить багаж";
-        //    const string prefixQueue = "Б";
-        //    const string nameQueue = "Main";
-        //    await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
-        //}
 
         /// <summary>
         /// Администратор
@@ -203,6 +180,30 @@ namespace TerminalUIWpf.ViewModels
         }
 
 
+        //private bool CheckPrinterStatus()
+        //{
+        //    var printerStat = _model.PrintTicketService.GetPrinterStatus();
+        //    switch (printerStat)
+        //    {
+        //        case PrinterStatus.Ok:
+        //            return true;
+
+        //        case PrinterStatus.QueueContainsElements:
+        //            var message = "Очередь печати ПЕРЕПОЛНЕННА";
+        //            MessageBox.Show("Очередь печати ПЕРЕПОЛНЕННА");
+        //            return false;
+
+        //        case PrinterStatus.IsInError:
+        //            return false;
+
+        //        case PrinterStatus.IsOutOfPaper:
+        //            return false;
+
+        //        case PrinterStatus.IsPaperJammed:
+        //            return false;
+        //    }
+        //    return false;
+        //}
 
 
 

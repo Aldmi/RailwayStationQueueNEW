@@ -63,7 +63,7 @@ namespace Terminal.Service
             _printServer = new PrintServer();
             _printQueue = _printServer.GetPrintQueues().FirstOrDefault(printer => printer.FullName == printerName);
             if(_printQueue == null)
-                throw new Exception($"ПРИНТЕРА С ИМЕНЕМ {printerName} НЕ НАЙДЕННО В СИСТЕМЕ");
+                throw new Exception($"ОЧЕРЕДЬ ПЕЧАТИ ДЛЯ ПРИНТЕРА С ИМЕНЕМ {printerName} НЕ НАЙДЕННО В СИСТЕМЕ");
         }
 
         public PrintTicket(XmlPrinterSettings settings) : this(settings.PrinterName)

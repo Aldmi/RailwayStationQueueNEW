@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\BuyTicketViewModel.cs" />
+    <Compile Include="ViewModels\CheckPrinterStatusViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
     <Compile Include="ViewModels\PrintMessageViewModel.cs" />
     <Compile Include="Views\AppView.xaml.cs">
@@ -94,6 +95,9 @@
     </Compile>
     <Compile Include="Views\BuyTicketView.xaml.cs">
       <DependentUpon>BuyTicketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CheckPrinterStatusView.xaml.cs">
+      <DependentUpon>CheckPrinterStatusView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DialogView.xaml.cs">
       <DependentUpon>DialogView.xaml</DependentUpon>
@@ -141,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BuyTicketView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CheckPrinterStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

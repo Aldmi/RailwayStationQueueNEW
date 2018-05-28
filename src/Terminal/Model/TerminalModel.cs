@@ -24,7 +24,7 @@ namespace Terminal.Model
         #region prop
 
         public MasterTcpIp MasterTcpIp { get; set; }
-        public PrintTicket PrintTicket { get; set; }
+        public PrintTicket PrintTicketService { get; set; }
 
         public bool IsConnectTcpIp => (MasterTcpIp != null && MasterTcpIp.IsConnect);
 
@@ -98,7 +98,7 @@ namespace Terminal.Model
             try
             {
                 MasterTcpIp = new MasterTcpIp(xmlTerminal);
-                PrintTicket = new PrintTicket(xmlPrinter); 
+                PrintTicketService = new PrintTicket(xmlPrinter); 
             }
             catch (Exception ex)
             {
@@ -147,7 +147,7 @@ namespace Terminal.Model
                             ticketName = prefix + provider.OutputData.NumberElement.ToString("000");
                             countPeople = provider.OutputData.CountElement.ToString();
 
-                            PrintTicket.Print(ticketName, countPeople, provider.OutputData.AddedTime);
+                            PrintTicketService.Print(ticketName, countPeople, provider.OutputData.AddedTime);
 
                             _logger.Info($"PrintTicket: {provider.OutputData.AddedTime}     {ticketName}    nameQueue= {nameQueue}   descriptionQueue= {descriptionQueue}");
                         }
@@ -174,7 +174,7 @@ namespace Terminal.Model
         public void Dispose()
         {
             //MasterTcpIp?.Dispose();
-            PrintTicket?.Dispose();
+            PrintTicketService?.Dispose();
         }
 
         #endregion
