@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Media;
 using Caliburn.Micro;
 using Communication.TcpIp;
+using Library.Logs;
 using Terminal.Model;
 using Terminal.Service;
 
@@ -20,6 +21,8 @@ namespace TerminalUIWpf.ViewModels
         private readonly TerminalModel _model;
         private readonly Task _mainTask;
 
+        private readonly Log _logger = new Log("Terminal.CommandAddItem");//DEBUG
+
         #endregion
 
 
@@ -29,6 +32,8 @@ namespace TerminalUIWpf.ViewModels
 
         public AppViewModel(IWindowManager windowManager)
         {
+            _logger.Error("deswdfsds");//DEBUG
+
             _windowManager = windowManager;
 
             _model = new TerminalModel();
@@ -178,34 +183,6 @@ namespace TerminalUIWpf.ViewModels
             const string nameQueue = "Admin";
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
-
-
-        //private bool CheckPrinterStatus()
-        //{
-        //    var printerStat = _model.PrintTicketService.GetPrinterStatus();
-        //    switch (printerStat)
-        //    {
-        //        case PrinterStatus.Ok:
-        //            return true;
-
-        //        case PrinterStatus.QueueContainsElements:
-        //            var message = "Очередь печати ПЕРЕПОЛНЕННА";
-        //            MessageBox.Show("Очередь печати ПЕРЕПОЛНЕННА");
-        //            return false;
-
-        //        case PrinterStatus.IsInError:
-        //            return false;
-
-        //        case PrinterStatus.IsOutOfPaper:
-        //            return false;
-
-        //        case PrinterStatus.IsPaperJammed:
-        //            return false;
-        //    }
-        //    return false;
-        //}
-
-
 
 
         protected override void OnDeactivate(bool close)

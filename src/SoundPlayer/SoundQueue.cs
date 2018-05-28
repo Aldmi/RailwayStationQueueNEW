@@ -83,7 +83,6 @@ namespace Sound
             if (item == null)
                 return;
 
-
             var agregateStr = item.FileNameQueue.Aggregate((i, j) => i + " " + j);//DEBUG
             _loggerSound.Error($"AddItem: {item.Name}     agregateStr= {agregateStr}     Thread= {Thread.CurrentThread.ManagedThreadId}");
             Queue.Enqueue(item);

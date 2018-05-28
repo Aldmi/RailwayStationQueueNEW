@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System.Windows;
 using Caliburn.Micro;
+using Library.Logs;
 using Terminal.Service;
 
 namespace TerminalUIWpf.ViewModels
@@ -7,9 +9,9 @@ namespace TerminalUIWpf.ViewModels
     public class CheckPrinterStatusViewModel : Screen
     {
         private readonly PrintTicket _printTicketService;
+        private readonly Log _logger = new Log("Terminal.CheckPrintStatus");
 
-
-
+  
         #region ctor
 
         public CheckPrinterStatusViewModel(PrintTicket printTicketService)
@@ -18,6 +20,7 @@ namespace TerminalUIWpf.ViewModels
         }
 
         #endregion
+
 
 
 
@@ -43,19 +46,22 @@ namespace TerminalUIWpf.ViewModels
 
                 case PrinterStatus.QueueContainsElements:
                     ErrorMessage = "Очередь печати ПЕРЕПОЛНЕННА";
-                    //MessageBox.Show("Очередь печати ПЕРЕПОЛНЕННА");
+                    _logger.Error($"ErrorPrinterStatus: {ErrorMessage} ");
                     return false;
 
                 case PrinterStatus.IsInError:
                     ErrorMessage = "ОШИБКА доступа к принтеру";
+                    _logger.Error($"ErrorPrinterStatus: {ErrorMessage} ");
                     return false;
 
                 case PrinterStatus.IsOutOfPaper:
                     ErrorMessage = "Бумага для печати талонов ЗАКОНЧИЛАСЬ";
+                    _logger.Error($"ErrorPrinterStatus: {ErrorMessage} ");
                     return false;
 
                 case PrinterStatus.IsPaperJammed:
                     ErrorMessage = "Бумага для печати талонов ЗАМЯТА";
+                    _logger.Error($"ErrorPrinterStatus: {ErrorMessage} ");
                     return false;
             }
             return false;
