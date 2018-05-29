@@ -150,7 +150,7 @@ namespace TerminalUIWpf.ViewModels
             if(!_model.IsConnectTcpIp)
                 return;
 
-            var dialog = new BuyTicketViewModel(_model);
+            var dialog = new BuyTicketViewModel(_model, _windowManager);
             _windowManager.ShowDialog(dialog);
         }
 
@@ -178,6 +178,13 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnAdmin()
         {
+            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
+            if (!сheckPrinterStatusVm.CheckPrinterStatus())
+            {
+                _windowManager.ShowDialog(сheckPrinterStatusVm);
+                return;
+            }
+
             const string descriptionQueue = "Администратор / Восстановление утерянных (испорченных) билетов";
             const string prefixQueue = "А";
             const string nameQueue = "Admin";

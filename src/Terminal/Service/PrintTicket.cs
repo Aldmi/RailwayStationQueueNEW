@@ -4,6 +4,7 @@ using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Printing;
+using System.Windows.Forms;
 using Terminal.Settings;
 
 namespace Terminal.Service
@@ -14,7 +15,8 @@ namespace Terminal.Service
         QueueContainsElements,             // Очередь содержит элементы
         IsInError,                         // Ошибка принтера
         IsOutOfPaper,                      // Отсутсвует бумага
-        IsPaperJammed                      // Замята бумага
+        IsPaperJammed,                     // Замята бумага
+        HasPaperProblem                    // Проблема с бумагой
     }
 
 
@@ -121,24 +123,46 @@ namespace Terminal.Service
 
         #region Methode
 
+        //private PrinterStatus _lastStatus;
         public PrinterStatus GetPrinterStatus()
         {
-            var queue= _printQueue?.GetPrintJobInfoCollection();
-            var count= queue?.Count();
+            PrinterStatus status= PrinterStatus.Ok;
+            var queue= _printQueue.GetPrintJobInfoCollection();
+            var count= queue.Count();
+            //MessageBox.Show($"Count={count}   NumberOfJobs={_printQueue.NumberOfJobs}   QueueStatus= { _printQueue.QueueStatus}");//DEBUG
             if (count > 0)
-                return PrinterStatus.QueueContainsElements;
-
+            {
+                status = PrinterStatus.QueueContainsElements;
+            }
+            else
             if (_printQueue.IsInError)
-                return PrinterStatus.IsInError;
-
+                status = PrinterStatus.IsInError;
+            else
             if (_printQueue.IsOutOfPaper)
-                return PrinterStatus.IsOutOfPaper;
-
+                status = PrinterStatus.IsOutOfPaper;
+            else
             if (_printQueue.IsPaperJammed)
-                return PrinterStatus.IsOutOfPaper;
+                status = PrinterStatus.IsOutOfPaper;
+            else
+            if (_printQueue.HasPaperProblem)
+                status = PrinterStatus.HasPaperProblem;
 
-            return PrinterStatus.Ok;
+            //Сменили статус с ОШИБКИ на ОК
+            //if ((_lastStatus != PrinterStatus.Ok) && (status == PrinterStatus.Ok))
+            //{
+            //    MessageBox.Show($"Purge!!!!!!!!   NumberOfJobs={_printQueue.NumberOfJobs}");//DEBUG    
+            //    _printQueue.Purge();
+            //    _printQueue.Refresh();
+            //}
+
+            //MessageBox.Show($"_lastStatus={_lastStatus}  status={status} ");//DEBUG
+            //_lastStatus = status;
+          
+            return status;
         }
+
+
+
 
 
         public void Print(string ticketName, string countPeople, DateTime dateAdded)

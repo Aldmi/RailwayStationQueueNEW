@@ -38,7 +38,7 @@ namespace TerminalUIWpf.ViewModels
         public bool CheckPrinterStatus()
         {
             var printerStat = _printTicketService.GetPrinterStatus();
-            printerStat = PrinterStatus.IsOutOfPaper;  //DEBUG
+            //MessageBox.Show(printerStat.ToString());//DEBUG
             switch (printerStat)
             {
                 case PrinterStatus.Ok:
@@ -61,6 +61,11 @@ namespace TerminalUIWpf.ViewModels
 
                 case PrinterStatus.IsPaperJammed:
                     ErrorMessage = "Бумага для печати талонов ЗАМЯТА";
+                    _logger.Error($"ErrorPrinterStatus: {ErrorMessage} ");
+                    return false;
+
+                case PrinterStatus.HasPaperProblem:
+                    ErrorMessage = "Проблемы с бумагой для печати";
                     _logger.Error($"ErrorPrinterStatus: {ErrorMessage} ");
                     return false;
             }

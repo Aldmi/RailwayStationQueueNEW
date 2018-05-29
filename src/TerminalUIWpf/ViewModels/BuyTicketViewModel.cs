@@ -12,6 +12,7 @@ namespace TerminalUIWpf.ViewModels
         #region field
 
         private readonly TerminalModel _model;
+        private readonly IWindowManager _windowManager;
 
         private const double TimerPeriod = 15000;// Таймер закрытия окна. Автосброс, если нажата любая кнопка.
         private readonly Timer _timer;
@@ -23,9 +24,10 @@ namespace TerminalUIWpf.ViewModels
 
         #region ctor
 
-        public BuyTicketViewModel(TerminalModel model)
+        public BuyTicketViewModel(TerminalModel model, IWindowManager windowManager)
         {
             _model = model;
+            _windowManager = windowManager;
             _timer = new Timer(TimerPeriod);
             _timer.Elapsed += _timer_AutoCloseWindow;
         }
@@ -87,6 +89,12 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnBuyTicket()
         {
             StopTimer();
+            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
+            if (!сheckPrinterStatusVm.CheckPrinterStatus())
+            {
+                _windowManager.ShowDialog(сheckPrinterStatusVm);
+                return;
+            }  
             const string descriptionQueue = "Купить билет / Возврат билета / замена персональных данных в билете / переоформление билетов / оформление багажа";
             const string prefixQueue = "К";
             const string nameQueue = "Main";
@@ -100,6 +108,12 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnBuyInterstateTicket()
         {
             StopTimer();
+            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
+            if (!сheckPrinterStatusVm.CheckPrinterStatus())
+            {
+                _windowManager.ShowDialog(сheckPrinterStatusVm);
+                return;
+            }
             const string descriptionQueue = "Купить билет в страны Европы, Монголию, Китай";
             const string prefixQueue = "М";
             const string nameQueue = "Main";
@@ -113,6 +127,12 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnGroupsTicket()
         {
             StopTimer();
+            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
+            if (!сheckPrinterStatusVm.CheckPrinterStatus())
+            {
+                _windowManager.ShowDialog(сheckPrinterStatusVm);
+                return;
+            }
             const string descriptionQueue = "Оформление организованных групп пассажиров (по предварительным заявкам)";
             const string prefixQueue = "Г";
             const string nameQueue = "Main";
@@ -126,6 +146,12 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnLowMobilityTicket()
         {
             StopTimer();
+            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
+            if (!сheckPrinterStatusVm.CheckPrinterStatus())
+            {
+                _windowManager.ShowDialog(сheckPrinterStatusVm);
+                return;
+            }
             const string descriptionQueue = "Оформление маломобильных пассажиров";
             const string prefixQueue = "И";
             const string nameQueue = "Main";
@@ -139,6 +165,12 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnReturnTicket()
         {
             StopTimer();
+            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
+            if (!сheckPrinterStatusVm.CheckPrinterStatus())
+            {
+                _windowManager.ShowDialog(сheckPrinterStatusVm);
+                return;
+            }
             const string descriptionQueue = "В";
             const string prefixQueue = "В";
             const string nameQueue = "Main";
@@ -152,6 +184,12 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnReformTicket()
         {
             StopTimer();
+            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
+            if (!сheckPrinterStatusVm.CheckPrinterStatus())
+            {
+                _windowManager.ShowDialog(сheckPrinterStatusVm);
+                return;
+            }
             const string descriptionQueue = "П";
             const string prefixQueue = "П";
             const string nameQueue = "Main";
@@ -165,6 +203,12 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnRestoreTicket()
         {
             StopTimer();
+            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
+            if (!сheckPrinterStatusVm.CheckPrinterStatus())
+            {
+                _windowManager.ShowDialog(сheckPrinterStatusVm);
+                return;
+            }
             const string descriptionQueue = "У";
             const string prefixQueue = "У";
             const string nameQueue = "Main";
@@ -178,6 +222,12 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnReplacementPersonalData()
         {
             StopTimer();
+            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
+            if (!сheckPrinterStatusVm.CheckPrinterStatus())
+            {
+                _windowManager.ShowDialog(сheckPrinterStatusVm);
+                return;
+            }
             const string descriptionQueue = "З";
             const string prefixQueue = "З";
             const string nameQueue = "Main";
