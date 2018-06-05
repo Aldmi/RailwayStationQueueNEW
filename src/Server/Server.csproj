@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\ActionFromCashier.cs" />
+    <Compile Include="Actions\ActionQueue.cs" />
     <Compile Include="Entitys\DeviceCashier.cs" />
     <Compile Include="Entitys\Prefix.cs" />
     <Compile Include="Entitys\QueuePriority.cs" />

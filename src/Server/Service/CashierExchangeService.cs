@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Communication.SerialPort;
 using Library.Logs;
+using Server.Actions;
 using Server.Entitys;
 using Server.Infrastructure;
 
@@ -92,6 +93,15 @@ namespace Server.Service
                         switch (cashierInfo.Handling)
                         {
                             case CashierHandling.IsSuccessfulHandling:
+
+                                //TODO: ActionQueue общее для всех CashierExchangeService
+                                Func<Task> t = async () =>
+                                {
+                                    devCashier.Cashier.SuccessfulHandling();  //TODO: все методы переделать на возврат Task
+                                    await Task.Delay(1000, ct);
+                                };
+                                var act = new ActionFromCashier(CashierHandling.IsSuccessfulHandling, t);
+
                                 devCashier.Cashier.SuccessfulHandling();
                                 break;
 
