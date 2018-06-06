@@ -24,6 +24,7 @@ using System.Collections.Concurrent;
 using System.Text;
 using Server.SerializableModel;
 using System.Runtime.Serialization.Formatters.Binary;
+using Server.Actions;
 
 namespace Server.Model
 {
@@ -45,6 +46,7 @@ namespace Server.Model
         public List<DeviceCashier> DeviceCashiers { get; } = new List<DeviceCashier>();
         public DeviceCashier AdminCasher { get; private set; } //Ссылка на администратора кассира (сам кассир находится в DeviceCashiers)
         public List<CashierExchangeService> CashierExchangeServices { get; } = new List<CashierExchangeService>();
+        public ActionQueue ActionCashierQueue { get; set; } = new ActionQueue();
 
         public List<Task> BackGroundTasks { get; } = new List<Task>();
 
@@ -225,19 +227,8 @@ namespace Server.Model
                 var logName = "Server.CashierInfo_" + xmlSerial.Port;
                 var sp= new MasterSerialPort(xmlSerial, logName);
                 var cashiers= cashersGroup[xmlSerial.Port];
-                var cashierExch= new CashierExchangeService(cashiers, AdminCasher, xmlSerial.TimeRespoune, logName);
+                var cashierExch= new CashierExchangeService(ActionCashierQueue, cashiers, AdminCasher, xmlSerial.TimeRespoune, logName);
                 sp.AddFunc(cashierExch.ExchangeService);
-                //sp.PropertyChanged += (o, e) =>
-                // {
-                //     var port = o as MasterSerialPort;
-                //     if (port != null)
-                //     {
-                //         if (e.PropertyName == "StatusString")
-                //         {
-                //             ErrorString = port.StatusString;                     //TODO: РАЗДЕЛЯЕМЫЙ РЕСУРС возможно нужна блокировка
-                //        }
-                //     }
-                // };
                 MasterSerialPorts.Add(sp);
                 CashierExchangeServices.Add(cashierExch);
             }
@@ -252,6 +243,10 @@ namespace Server.Model
                 var taskListener = Listener.RunServer(ProviderTerminal);
                 BackGroundTasks.Add(taskListener);
             }
+
+            //ЗАПУСК ОЧЕРЕДИ ДЕЙСТВИЙ ОТ КАССИРОВ------------------------------------------------------
+            var taskActionCashierQueue = ActionCashierQueue.Start();
+            BackGroundTasks.Add(taskActionCashierQueue);
 
             //ЗАПУСК ОПРОСА КАССИРОВ-------------------------------------------------------------------
             if (MasterSerialPorts.Any())
@@ -271,7 +266,7 @@ namespace Server.Model
             }
 
 
-            //КОНТРОЛЬ ФОНОВЫХ ЗАДАЧ----------------------------------------------------------------------
+            //КОНТРОЛЬ ВЫПОЛНЕНИЯ ФОНОВЫХ ЗАДАЧ----------------------------------------------------------------------
             var taskFirst = await Task.WhenAny(BackGroundTasks);
             if (taskFirst.Exception != null)                           //критическая ошибка фоновой задачи
                 ErrorString = taskFirst.Exception.ToString();

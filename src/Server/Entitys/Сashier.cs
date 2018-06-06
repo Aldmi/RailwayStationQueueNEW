@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Communication.Annotations;
 using System.Collections.Concurrent;
+using System.Threading;
+using System.Threading.Tasks;
 using Library.Logs;
 
 
@@ -184,6 +186,18 @@ namespace Server.Entitys
         {
             _loggerCashierInfo.Info($"Команда от кассира: \"SuccessfulHandling (Успешная обработка клиента.)\"  Id= {Id}  NameTicket= {(CurrentTicket != null ? CurrentTicket.Prefix + CurrentTicket.NumberElement.ToString("000") : string.Empty)}");//LOG
             CurrentTicket = null;
+            return CurrentTicket;
+        }
+
+
+        /// <summary>
+        /// Успешная обработка клиента.
+        /// </summary>
+        public async Task<TicketItem> SuccessfulHandlingAsync(CancellationToken ct)
+        {
+            _loggerCashierInfo.Info($"Команда от кассира: \"SuccessfulHandling (Успешная обработка клиента.)\"  Id= {Id}  NameTicket= {(CurrentTicket != null ? CurrentTicket.Prefix + CurrentTicket.NumberElement.ToString("000") : string.Empty)}");//LOG
+            CurrentTicket = null;
+
             return CurrentTicket;
         }
 

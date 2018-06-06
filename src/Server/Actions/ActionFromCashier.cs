@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Threading;
 using System.Threading.Tasks;
 using Server.Infrastructure;
 
@@ -11,7 +12,7 @@ namespace Server.Actions
         #region prop
 
         public CashierHandling CashierHandling { get; } //????
-        private Func<Task> CashierAct { get; }
+        private Func<CancellationToken, Task> CashierAct { get; }
 
         #endregion
 
@@ -20,7 +21,7 @@ namespace Server.Actions
 
         #region ctor
 
-        public ActionFromCashier(CashierHandling cashierHandling, Func<Task> cashierAct)
+        public ActionFromCashier(CashierHandling cashierHandling, Func<CancellationToken, Task> cashierAct)
         {
             CashierHandling = cashierHandling;
             CashierAct = cashierAct;
@@ -47,11 +48,11 @@ namespace Server.Actions
         /// Обертка над задачей CashierAct
         /// Выполянть на очереди.
         /// </summary>
-        public async Task Invoke()
+        public async Task Invoke(CancellationToken token)
         {
             try
             {
-                await CashierAct();
+                await CashierAct(token);
                 _tcs.TrySetResult(null);
             }
             catch (Exception ex)
@@ -60,32 +61,6 @@ namespace Server.Actions
                // throw;
             }        
         }
-
-
-        //private TaskCompletionSource<bool> _tcs;
-        //private Task<bool> PlayWithControl()
-        //{
-        //    _tcs = new TaskCompletionSource<bool>();
-        //    Task.Run(async () =>
-        //    {
-        //        if (_currentCallId != null)
-        //        {
-        //            try
-        //            {
-        //                _praesideoOi.startCreatedCall(_currentCallId.Value);
-        //                await Task.Delay(_timeResponse);
-        //                _tcs.TrySetResult(false);
-        //            }
-        //            catch (Exception)
-        //            {
-        //                _tcs.TrySetResult(false);
-        //            }
-        //        }
-        //    });
-
-        //    return _tcs.Task;
-        //}
-
 
     }
 }

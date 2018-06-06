@@ -14,6 +14,7 @@ namespace Server.Service
     {
         #region field
 
+        private readonly ActionQueue _actionCashierQueue;
         private readonly List<DeviceCashier> _deviceCashiers;
         private readonly DeviceCashier _adminCashier;
         private readonly ushort _timeRespone;
@@ -28,8 +29,9 @@ namespace Server.Service
 
         #region ctor
 
-        public CashierExchangeService(List<DeviceCashier> deviceCashiers, DeviceCashier adminCashier, ushort timeRespone, string logName)
+        public CashierExchangeService(ActionQueue actionCashierQueue, List<DeviceCashier> deviceCashiers, DeviceCashier adminCashier, ushort timeRespone, string logName)
         {
+            _actionCashierQueue = actionCashierQueue;
             _deviceCashiers = deviceCashiers;
             _adminCashier = adminCashier;
             _timeRespone = timeRespone;
@@ -93,14 +95,17 @@ namespace Server.Service
                         switch (cashierInfo.Handling)
                         {
                             case CashierHandling.IsSuccessfulHandling:
-
-                                //TODO: ActionQueue общее для всех CashierExchangeService
-                                Func<Task> t = async () =>
+                                //DEBUG----------------------------------------------------------------
+                                Func<CancellationToken, Task> cashierAct = async (ctQueue) =>
                                 {
-                                    devCashier.Cashier.SuccessfulHandling();  //TODO: все методы переделать на возврат Task
-                                    await Task.Delay(1000, ct);
+                                   // await devCashier.Cashier.SuccessfulHandlingAsync(ctQueue);  //TODO: все методы переделать на возврат Task
+                                    devCashier.Cashier.SuccessfulHandling();
+                                    await Task.CompletedTask;
                                 };
-                                var act = new ActionFromCashier(CashierHandling.IsSuccessfulHandling, t);
+                                var act = new ActionFromCashier(CashierHandling.IsSuccessfulHandling, cashierAct);
+                                _actionCashierQueue.Enqueue(act);
+                                var exception= await act.MarkerEndAction();
+                                //-------------------------------------------------------------------------
 
                                 devCashier.Cashier.SuccessfulHandling();
                                 break;
