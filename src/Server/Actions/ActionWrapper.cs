@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 
 namespace Server.Actions
 {
-
-    public class ActionFromCashier
+    /// <summary>
+    /// ОБЕРТКА НАД ДЕЙСТВИЕМ
+    /// </summary>
+    public class ActionWrapper
     {
         #region prop
 
-        //public CashierHandling CashierHandling { get; } //????
-        private Func<CancellationToken, Task> CashierAct { get; }
+        private Func<CancellationToken, Task> Act { get; }
 
         #endregion
 
@@ -19,10 +20,9 @@ namespace Server.Actions
 
         #region ctor
 
-        public ActionFromCashier(Func<CancellationToken, Task> cashierAct)
+        public ActionWrapper(Func<CancellationToken, Task> act)
         {
-           // CashierHandling = cashierHandling;
-            CashierAct = cashierAct;
+            Act = act;
         }
 
         #endregion
@@ -32,7 +32,7 @@ namespace Server.Actions
         /// <summary>
         /// Маркер завершения задачи
         /// Успешное завершение возвращается null
-        /// Еслт ошибка возвращается Exception
+        /// Если ошибка -  возвращается Exception
         /// </summary>
         private TaskCompletionSource<Exception> _tcs;
         public Task<Exception> MarkerEndAction()
@@ -50,7 +50,7 @@ namespace Server.Actions
         {
             try
             {
-                await CashierAct(token);
+                await Act(token);
                 _tcs.TrySetResult(null);
             }
             catch (Exception ex)
