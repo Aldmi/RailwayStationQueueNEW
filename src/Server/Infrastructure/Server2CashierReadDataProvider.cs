@@ -7,7 +7,6 @@ using Communication.Interfaces;
 using Library.Convertion;
 using Library.Library;
 using Library.Logs;
-using Server.Entitys;
 
 namespace Server.Infrastructure
 {

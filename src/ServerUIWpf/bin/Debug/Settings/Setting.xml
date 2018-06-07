@@ -49,9 +49,9 @@
 
 	
 	<Cashiers>	`
-	   <Cashier Id="1" Address="11" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
-	   <Cashier Id="2" Address="2" Port="4" NameQueue="Admin" Prefix="А" MaxCountTryHanding="2"/>
-	   <Cashier Id="3" Address="3" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="1" Address="9" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
+	   <Cashier Id="2" Address="2" Port="1" NameQueue="Admin" Prefix="А" MaxCountTryHanding="2"/>
+	<!--    <Cashier Id="3" Address="3" Port="1" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/> -->
 <!-- 	   <Cashier Id="4" Address="4" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
 	   <Cashier Id="5" Address="5" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
 	   <Cashier Id="6" Address="6" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/> -->

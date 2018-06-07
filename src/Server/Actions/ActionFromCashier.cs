@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
-using Server.Infrastructure;
 
 namespace Server.Actions
 {
@@ -11,7 +9,7 @@ namespace Server.Actions
     {
         #region prop
 
-        public CashierHandling CashierHandling { get; } //????
+        //public CashierHandling CashierHandling { get; } //????
         private Func<CancellationToken, Task> CashierAct { get; }
 
         #endregion
@@ -21,9 +19,9 @@ namespace Server.Actions
 
         #region ctor
 
-        public ActionFromCashier(CashierHandling cashierHandling, Func<CancellationToken, Task> cashierAct)
+        public ActionFromCashier(Func<CancellationToken, Task> cashierAct)
         {
-            CashierHandling = cashierHandling;
+           // CashierHandling = cashierHandling;
             CashierAct = cashierAct;
         }
 

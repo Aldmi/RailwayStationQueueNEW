@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.IO.Ports;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Timers;
 using Communication.Annotations;
 using Communication.Interfaces;
 using Communication.SerialPort;
@@ -20,8 +18,6 @@ using Server.Service;
 using Server.Settings;
 using Sound;
 using Terminal.Infrastructure;
-using System.Collections.Concurrent;
-using System.Text;
 using Server.SerializableModel;
 using System.Runtime.Serialization.Formatters.Binary;
 using Server.Actions;
@@ -46,7 +42,7 @@ namespace Server.Model
         public List<DeviceCashier> DeviceCashiers { get; } = new List<DeviceCashier>();
         public DeviceCashier AdminCasher { get; private set; } //Ссылка на администратора кассира (сам кассир находится в DeviceCashiers)
         public List<CashierExchangeService> CashierExchangeServices { get; } = new List<CashierExchangeService>();
-        public ActionQueue ActionCashierQueue { get; set; } = new ActionQueue();
+        public ActionQueue ActionCashierQueue { get; set; } = new ActionQueue { ConstCyclePeriod = 0};
 
         public List<Task> BackGroundTasks { get; } = new List<Task>();
 
@@ -264,7 +260,6 @@ namespace Server.Model
                     BackGroundTasks.Add(taskSerialPort);
                 }
             }
-
 
             //КОНТРОЛЬ ВЫПОЛНЕНИЯ ФОНОВЫХ ЗАДАЧ----------------------------------------------------------------------
             var taskFirst = await Task.WhenAny(BackGroundTasks);

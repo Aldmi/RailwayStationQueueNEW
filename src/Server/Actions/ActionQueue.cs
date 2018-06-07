@@ -24,7 +24,7 @@ namespace Server.Actions
             _cts = new CancellationTokenSource();
             await Task.Run(async () =>
             {
-                await CycleInvoke();
+               await CycleInvoke();
             },_cts.Token);
         }
 
@@ -61,6 +61,5 @@ namespace Server.Actions
         }
 
         #endregion
-
     }
 }

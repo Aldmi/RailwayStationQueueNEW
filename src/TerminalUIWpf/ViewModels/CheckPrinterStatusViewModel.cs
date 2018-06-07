@@ -1,6 +1,4 @@
-﻿using System.Threading;
-using System.Windows;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using Library.Logs;
 using Terminal.Service;
 

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.IO;
 using System.Linq;
 using System.Printing;
-using System.Windows.Forms;
 using Terminal.Settings;
 
 namespace Terminal.Service

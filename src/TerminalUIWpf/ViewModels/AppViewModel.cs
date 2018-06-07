@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -7,7 +6,6 @@ using Caliburn.Micro;
 using Communication.TcpIp;
 using Library.Logs;
 using Terminal.Model;
-using Terminal.Service;
 
 
 namespace TerminalUIWpf.ViewModels
