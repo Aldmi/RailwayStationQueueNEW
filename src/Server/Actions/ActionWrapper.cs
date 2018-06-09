@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 namespace Server.Actions
 {
     /// <summary>
-    /// ОБЕРТКА НАД ДЕЙСТВИЕМ
+    /// ОБЕРТКА НАД ДЕЙСТВИЕМ.
+    /// Ответ о выполнении действия можно дожидаться с помощью await MarkerEndAction()
     /// </summary>
     public class ActionWrapper
     {

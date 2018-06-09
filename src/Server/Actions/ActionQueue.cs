@@ -4,12 +4,17 @@ using System.Threading.Tasks;
 
 namespace Server.Actions
 {
+
+    /// <summary>
+    /// ОЧЕРЕДЬ ДЕЙСТВИЙ
+    /// 
+    /// </summary>
     public class ActionQueue
     {
         #region prop
 
         private CancellationTokenSource _cts;
-        private ConcurrentQueue<ActionFromCashier> Queue { get; } = new ConcurrentQueue<ActionFromCashier>();
+        private ConcurrentQueue<ActionWrapper> Queue { get; } = new ConcurrentQueue<ActionWrapper>();
         public int ConstCyclePeriod { get; set; }
 
         #endregion
@@ -38,7 +43,7 @@ namespace Server.Actions
         /// <summary>
         /// Добавление элемента в очередь
         /// </summary>
-        public void Enqueue(ActionFromCashier act)
+        public void Enqueue(ActionWrapper act)
         {
             Queue.Enqueue(act);
         }
@@ -51,7 +56,7 @@ namespace Server.Actions
         {
             while (!_cts.IsCancellationRequested)
             {
-                ActionFromCashier act;
+                ActionWrapper act;
                 if (Queue.TryDequeue(out act))
                 {
                     await act.Invoke(_cts.Token);
