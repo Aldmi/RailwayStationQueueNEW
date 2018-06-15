@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Communication.SerialPort;
@@ -104,9 +105,9 @@ namespace Server.Service
                                     devCashier.Cashier.SuccessfulHandling();
                                     await Task.CompletedTask;
                                 };
-                                var act = new ActionFromCashier(cashierAct);           //создаем действие
-                                _actionCashierQueue.Enqueue(act);                      //помещаем в очередь действий
-                                await act.MarkerEndAction();                           //дожидаемся завершения действия на очереди
+                                var act = new ActionWrapper(cashierAct);           //создаем действие
+                                _actionCashierQueue.Enqueue(act);                  //помещаем в очередь действий
+                                await act.MarkerEndAction();                       //дожидаемся завершения действия на очереди
                                 break;
 
 
@@ -118,7 +119,7 @@ namespace Server.Service
                                     devCashier.Cashier.ErrorHandling();
                                     await Task.CompletedTask;
                                 };
-                                act = new ActionFromCashier(cashierAct);
+                                act = new ActionWrapper(cashierAct);
                                 _actionCashierQueue.Enqueue(act);
                                 await act.MarkerEndAction();
                                 break;
@@ -133,12 +134,13 @@ namespace Server.Service
 
                                     var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
                                     await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                    if (writeProvider.IsOutDataValid)                //завершение транзакции (успешная передача билета кассиру)
+                                    if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
                                     {
-                                        devCashier.Cashier.SuccessfulStartHandling();
+                                        _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
                                     }
+                                    devCashier.Cashier.SuccessfulStartHandling();
                                 };
-                                act = new ActionFromCashier(cashierAct);
+                                act = new ActionWrapper(cashierAct);
                                 _actionCashierQueue.Enqueue(act);
                                 await act.MarkerEndAction();
                                 break;
@@ -159,7 +161,7 @@ namespace Server.Service
                                         devCashier.Cashier.SuccessfulHandling();
                                         await Task.CompletedTask;
                                     };
-                                    act = new ActionFromCashier(cashierAct);
+                                    act = new ActionWrapper(cashierAct);
                                     _actionCashierQueue.Enqueue(act);
                                     await act.MarkerEndAction();
                                 }
@@ -176,12 +178,13 @@ namespace Server.Service
 
                                     var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
                                     await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                    if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
+                                    if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
                                     {
-                                        devCashier.Cashier.SuccessfulStartHandling();
+                                        _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
                                     }
+                                    devCashier.Cashier.SuccessfulStartHandling();
                                 };
-                                act = new ActionFromCashier(cashierAct);
+                                act = new ActionWrapper(cashierAct);
                                 _actionCashierQueue.Enqueue(act);
                                 await act.MarkerEndAction();
                                 break;
@@ -204,13 +207,14 @@ namespace Server.Service
                                            return;
 
                                        var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
-                                        await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                        if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
-                                        {
-                                            devCashier.Cashier.SuccessfulStartHandling();
-                                        }
+                                       await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
+                                       if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
+                                       {
+                                           _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
+                                       }
+                                       devCashier.Cashier.SuccessfulStartHandling();
                                     };
-                                    act = new ActionFromCashier(cashierAct);
+                                    act = new ActionWrapper(cashierAct);
                                     _actionCashierQueue.Enqueue(act);
                                     await act.MarkerEndAction();
                                 }
@@ -227,12 +231,13 @@ namespace Server.Service
 
                                     var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
                                     await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                    if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
+                                    if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
                                     {
-                                        devCashier.Cashier.SuccessfulStartHandling();
+                                        _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
                                     }
+                                    devCashier.Cashier.SuccessfulStartHandling();
                                 };
-                                act = new ActionFromCashier(cashierAct);
+                                act = new ActionWrapper(cashierAct);
                                 _actionCashierQueue.Enqueue(act);
                                 await act.MarkerEndAction();
                                 break;
@@ -254,7 +259,7 @@ namespace Server.Service
                         //            devCashier.Cashier.SuccessfulHandling();
                         //            await Task.CompletedTask;
                         //        };
-                        //        var act = new ActionFromCashier(CashierHandling.IsSuccessfulHandling, cashierAct);
+                        //        var act = new ActionWrapper(CashierHandling.IsSuccessfulHandling, cashierAct);
                         //        _actionCashierQueue.Enqueue(act);
                         //        var exception= await act.MarkerEndAction();
                         //        //-------------------------------------------------------------------------
