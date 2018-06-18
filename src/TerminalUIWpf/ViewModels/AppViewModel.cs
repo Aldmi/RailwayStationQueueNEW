@@ -120,7 +120,7 @@ namespace TerminalUIWpf.ViewModels
             {
                 if (e.PropertyName == "ErrorString")
                 {
-                    MessageBox.Show(terminal.ErrorString); //TODO: как вызвать MessageBox
+                    MessageBox.Show(terminal.ErrorString); //TODO: как вызвать MessageBox из ViewModel
                 }
             }
         }
