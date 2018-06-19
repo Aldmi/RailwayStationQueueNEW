@@ -79,3 +79,15 @@ D:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\NLog.xml
 D:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.csprojResolveAssemblyReference.cache
 D:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.dll
 D:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.pdb
+C:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\NLog.config
+C:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\Communication.dll
+C:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\Communication.pdb
+C:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\Library.dll
+C:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\NModbus4.dll
+C:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\NLog.dll
+C:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\Library.pdb
+C:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\NModbus4.xml
+C:\Git\RailwayStationQueueNEW\src\Communication\bin\Release\NLog.xml
+C:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.csprojResolveAssemblyReference.cache
+C:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.dll
+C:\Git\RailwayStationQueueNEW\src\Communication\obj\Release\Communication.pdb

@@ -1,5 +1,8 @@
 ﻿using System;
-using Library.Logs;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using NAudio.Wave;
 
 
@@ -7,10 +10,10 @@ namespace Sound
 {
     public class SoundPlayer : ISoundPlayer
     {
+
         #region field
 
         private object _locker = new object();
-        private readonly Log _loggerSoundPlayer = new Log("Sound.SoundQueue");
 
         #endregion
 
@@ -56,12 +59,11 @@ namespace Sound
 
                         return true;
                     }
-
-                    _loggerSoundPlayer.Info($"PlayFile In player: {file} FILE NOT FOUND ????????????????????");
                 }
                 catch (Exception ex)
                 {
-                    _loggerSoundPlayer.Info($"PlayFile In player: ECXEPTION {ex.Message} !!!!!!!!!!!!!!!!!!!!");
+                    //var logger = LogManager.GetCurrentClassLogger();
+                    //logger.Error($"SoundPlayer/PlayFile. {ex.Message}");
                 }
 
                 return false;
@@ -73,13 +75,7 @@ namespace Sound
         public void Play()
         {
             if (AudioFileReader == null)
-            {
-                lock (_locker)
-                {
-                    _loggerSoundPlayer.Info($"PlayFile In Play methode: AudioFileReader == null !!!!!!!!!!!!!!!!!!!!");
-                }
                 return;
-            }
 
             try
             {
@@ -91,10 +87,8 @@ namespace Sound
             }
             catch (Exception ex)
             {
-                lock (_locker)
-                {
-                    _loggerSoundPlayer.Info($"PlayFile In Play methode: ECXEPTION {ex.Message} !!!!!!!!!!!!!!!!!!!!");
-                }
+                //var logger = LogManager.GetCurrentClassLogger();
+                //logger.Error($"SoundPlayer/Play {ex.Message}");
                 throw;
             }
         }
