@@ -32,8 +32,6 @@ namespace TerminalUIWpf.ViewModels
 
         public AppViewModel(IWindowManager windowManager)
         {
-            _logger.Error("deswdfsds");//DEBUG
-
             _windowManager = windowManager;
 
             _model = new TerminalModel();

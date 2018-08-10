@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using Communication.Annotations;
 using System.Collections.Concurrent;
+using System.Threading;
+using System.Threading.Tasks;
 using Library.Logs;
 
 
@@ -57,11 +59,13 @@ namespace Server.Entitys
             }
         }
 
+        public bool CanHandling => (CurrentTicket != null);
+
         #endregion
 
 
 
-        
+
         #region ctor
 
         public Сashier(byte id, List<string> prefixes, QueuePriority queueTicket, byte maxCountTryHanding, string logName)
@@ -91,6 +95,20 @@ namespace Server.Entitys
 
 
         #region Methode
+
+        /// <summary>
+        /// Успешная обработка клиента.
+        /// </summary>
+        public async Task<TicketItem> SuccessfulHandlingAsync(CancellationToken ct)
+        {
+            _loggerCashierInfo.Info($"Команда от кассира: \"SuccessfulHandling (Успешная обработка клиента.)\"  Id= {Id}  NameTicket= {(CurrentTicket != null ? CurrentTicket.Prefix + CurrentTicket.NumberElement.ToString("000") : string.Empty)}");//LOG
+            CurrentTicket = null;
+
+            return CurrentTicket;
+        }
+
+
+
 
         /// <summary>
         /// Показали 1-ый элемент в очереди (без извлечения из очереди)

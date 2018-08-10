@@ -92,12 +92,18 @@ namespace Server.Service
                         switch (cashierInfo.Handling)
                         {
                             case CashierHandling.IsSuccessfulHandling:
+                                if (!devCashier.Cashier.CanHandling)
+                                    break;
                                 devCashier.Cashier.SuccessfulHandling();
                                 break;
 
+
                             case CashierHandling.IsErrorHandling:
+                                if (!devCashier.Cashier.CanHandling)
+                                    break;
                                 devCashier.Cashier.ErrorHandling();
                                 break;
+
 
                             case CashierHandling.IsStartHandling:
                                 item = devCashier.Cashier.StartHandling();
@@ -106,15 +112,19 @@ namespace Server.Service
 
                                 var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
                                 await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                if (writeProvider.IsOutDataValid)                //завершение транзакции (успешная передача билета кассиру)
+                                if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
                                 {
-                                    devCashier.Cashier.SuccessfulStartHandling();
+                                    _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
                                 }
+                                devCashier.Cashier.SuccessfulStartHandling();
                                 break;
+
 
                             case CashierHandling.IsRedirectHandling:
                                 if (_adminCashier != null)
                                 {
+                                    if (!devCashier.Cashier.CanHandling)
+                                        break;
                                     var redirectTicket = devCashier.Cashier.CurrentTicket;
                                     if (redirectTicket != null)
                                     {
@@ -124,6 +134,7 @@ namespace Server.Service
                                 }
                                 break;
 
+
                             case CashierHandling.IsSuccessfulAndStartHandling:
                                 devCashier.Cashier.SuccessfulHandling();
                                 item = devCashier.Cashier.StartHandling();
@@ -132,11 +143,13 @@ namespace Server.Service
 
                                 writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
                                 await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
+                                if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
                                 {
-                                    devCashier.Cashier.SuccessfulStartHandling();
+                                    _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
                                 }
+                                devCashier.Cashier.SuccessfulStartHandling();
                                 break;
+
 
                             case CashierHandling.IsRedirectAndStartHandling:
                                 if (_adminCashier != null)
@@ -154,12 +167,14 @@ namespace Server.Service
 
                                     writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
                                     await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                    if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
+                                    if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
                                     {
-                                         devCashier.Cashier.SuccessfulStartHandling();
+                                        _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
                                     }
+                                    devCashier.Cashier.SuccessfulStartHandling();
                                 }
                                 break;
+
 
                             case CashierHandling.IsErrorAndStartHandling:
                                 devCashier.Cashier.ErrorHandling();
@@ -169,10 +184,11 @@ namespace Server.Service
 
                                 writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
                                 await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                if (writeProvider.IsOutDataValid)                //завершение транзакции ( успешная передача билета кассиру)
+                                if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
                                 {
-                                    devCashier.Cashier.SuccessfulStartHandling();
+                                    _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
                                 }
+                                devCashier.Cashier.SuccessfulStartHandling();
                                 break;
 
                             default:
