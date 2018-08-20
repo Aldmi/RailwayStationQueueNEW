@@ -813,16 +813,18 @@ namespace ServerUi.ViewModels
                             FillTable4X4(ticket, Table4X41, Table4X42, Table4X43, Table4X44);
                             FillTable8X2(ticket, Table8X21, Table8X22);
                             FillTable8X2(ticket, Table8X23, Table8X24);
-
                             //LOG
-                            _logger.Info(сashier.CurrentTicket.ToString());
+                            сashier.CurrentTicket.StartProcessingTime = DateTime.Now;
                         }
                         else                                 //удалить элемент из списка
                         {
+                            сashier.PreviousTicket.EndProcessingTime = DateTime.Now;
                             FillTableCashier(сashier.Id, null);
                             ClearTable4X4(сashier.Id, Table4X41, Table4X42, Table4X43, Table4X44);
                             ClearTable8X2(сashier.Id, Table8X21, Table8X22);
                             ClearTable8X2(сashier.Id, Table8X23, Table8X24);
+                            //LOG
+                            _logger.Info(сashier.PreviousTicket.ToString());
                         }
                     }
                     catch (Exception ex)

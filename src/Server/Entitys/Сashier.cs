@@ -59,6 +59,8 @@ namespace Server.Entitys
             }
         }
 
+        public TicketItem PreviousTicket { get; set; }
+
         public bool CanHandling => (CurrentTicket != null);
 
         #endregion
@@ -102,8 +104,8 @@ namespace Server.Entitys
         public async Task<TicketItem> SuccessfulHandlingAsync(CancellationToken ct)
         {
             _loggerCashierInfo.Info($"Команда от кассира: \"SuccessfulHandling (Успешная обработка клиента.)\"  Id= {Id}  NameTicket= {(CurrentTicket != null ? CurrentTicket.Prefix + CurrentTicket.NumberElement.ToString("000") : string.Empty)}");//LOG
+            PreviousTicket = CurrentTicket;
             CurrentTicket = null;
-
             return CurrentTicket;
         }
 
@@ -201,6 +203,7 @@ namespace Server.Entitys
         public TicketItem SuccessfulHandling()
         {
             _loggerCashierInfo.Info($"Команда от кассира: \"SuccessfulHandling (Успешная обработка клиента.)\"  Id= {Id}  NameTicket= {(CurrentTicket != null ? CurrentTicket.Prefix + CurrentTicket.NumberElement.ToString("000") : string.Empty)}");//LOG
+            PreviousTicket = CurrentTicket;
             CurrentTicket = null;
             return CurrentTicket;
         }
@@ -221,6 +224,7 @@ namespace Server.Entitys
               _queueTicket.Enqueue(CurrentTicket);
 
             _loggerCashierInfo.Info($"Команда от кассира: \"ErrorHandling (Клиент не обрабаотанн.)\"  Id= {Id}    CountTryHandling= {CurrentTicket?.CountTryHandling}  NameTicket= {(CurrentTicket != null ? CurrentTicket.Prefix + CurrentTicket.NumberElement.ToString("000") : string.Empty)}");//LOG
+            PreviousTicket = CurrentTicket;
             CurrentTicket = null;
             return CurrentTicket;
         }
@@ -231,6 +235,7 @@ namespace Server.Entitys
             if (CurrentTicket != null)
             {
                 _queueTicket.Enqueue(CurrentTicket);
+                PreviousTicket = CurrentTicket;
                 CurrentTicket = null;
             }
         }
