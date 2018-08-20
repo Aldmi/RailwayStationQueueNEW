@@ -21,7 +21,7 @@ namespace Server.Entitys
         public override string ToString()
         {
             var ticketName = Prefix + NumberElement.ToString("000");
-            return $" Дата добавления в очередь: {AddedTime};  Дата поступления в обработку: {StartProcessingTime};  Дата окончания обработки: {EndProcessingTime};  Номер билета: {ticketName};  Номер кассира: {Cashbox?.ToString() ?? "неизвестный кассир" } ";
+            return $";  Дата добавления в очередь: {AddedTime};  Дата поступления в обработку: {StartProcessingTime};  Дата окончания обработки: {EndProcessingTime};  Номер билета: {ticketName};  Номер кассира: {Cashbox?.ToString() ?? "неизвестный кассир" } ";
         }
     }
 }

@@ -824,7 +824,16 @@ namespace ServerUi.ViewModels
                             ClearTable8X2(сashier.Id, Table8X21, Table8X22);
                             ClearTable8X2(сashier.Id, Table8X23, Table8X24);
                             //LOG
-                            _logger.Info(сashier.PreviousTicket.ToString());
+                            var ticket = сashier.PreviousTicket;
+                            var logDict= new Dictionary<string, object>
+                            {
+                                {"CashierNumber", ticket.Cashbox?.ToString() ?? "неизвестный кассир" },
+                                {"TicketNumber", ticket.Prefix + ticket.NumberElement.ToString("000")},
+                                {"DateAdded2Queue", ticket.AddedTime},
+                                {"StartDateProcessing", ticket.StartProcessingTime},
+                                {"EndDateProcessing", ticket.EndProcessingTime}
+                            };
+                            _logger.LogEventContext(logDict);
                         }
                     }
                     catch (Exception ex)
@@ -834,7 +843,7 @@ namespace ServerUi.ViewModels
                 }
             }
         }
-
+       
 
         /// <summary>
         /// Обработка события IsConnect
