@@ -116,7 +116,7 @@ namespace Server.Service
                                 {
                                     _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
                                 }
-                                devCashier.Cashier.SuccessfulStartHandling();
+                                devCashier.Cashier.SuccessfulStartHandling();//TODO: ПЕРЕДЕЛАТЬ!!! если транзакция неудачана нельзя вынимать билет из очереди
                                 break;
 
 
@@ -147,7 +147,7 @@ namespace Server.Service
                                 {
                                     _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
                                 }
-                                devCashier.Cashier.SuccessfulStartHandling();
+                                devCashier.Cashier.SuccessfulStartHandling(); //TODO: ПЕРЕДЕЛАТЬ!!! если транзакция неудачана нельзя вынимать билет из очереди
                                 break;
 
 
