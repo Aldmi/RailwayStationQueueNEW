@@ -147,17 +147,6 @@ namespace Terminal.Service
             if (_printQueue.HasPaperProblem)
                 status = PrinterStatus.HasPaperProblem;
 
-            //Сменили статус с ОШИБКИ на ОК
-            //if ((_lastStatus != PrinterStatus.Ok) && (status == PrinterStatus.Ok))
-            //{
-            //    MessageBox.Show($"Purge!!!!!!!!   NumberOfJobs={_printQueue.NumberOfJobs}");//DEBUG    
-            //    _printQueue.Purge();
-            //    _printQueue.Refresh();
-            //}
-
-            //MessageBox.Show($"_lastStatus={_lastStatus}  status={status} ");//DEBUG
-            //_lastStatus = status;
-          
             return status;
         }
 

@@ -8,7 +8,7 @@
   </Server>
   
   <Printer>
-	   <Name>CUSTOM TG2480-H</Name>
-	   <!-- <Name>Foxit Reader PDF Printer</Name> --> 
+	   <!-- <Name>CUSTOM TG2480-H</Name> -->
+	   <Name>Foxit Reader PDF Printer</Name> 
   </Printer>
 </Root>
