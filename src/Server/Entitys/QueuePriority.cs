@@ -24,13 +24,13 @@ namespace Server.Entitys
         private ConcurrentQueue<TicketItem> Queue { get; set; } = new ConcurrentQueue<TicketItem>();
         public int Count => Queue.Count;
         public bool IsEmpty => Queue.IsEmpty;
-        public IEnumerable<TicketItem> GetQueueItems => Queue;
 
+        public IEnumerable<TicketItem> GetQueueItems => Queue;
         public IEnumerable<TicketItem> SetQueueItems
         {
             set
             {
-                if (value != null && value.Any())
+                if (value != null)
                 {
                     Queue = new ConcurrentQueue<TicketItem>(value);
                     OnPropertyChanged("QueuePriority");
@@ -46,6 +46,33 @@ namespace Server.Entitys
         {
             set { TicketFactory.SetCurrentTicketNumber = value; }
         }
+
+        
+        //TODO: оладить удаление элемента из очекреди
+        /// <summary>
+        /// Удалить указанный лемент из очереди
+        /// </summary>
+        public bool RemoveTicketItem(TicketItem ticketItem)
+        {
+            var listItems = Queue.ToList();
+            var removeItem= listItems.FirstOrDefault(t => t == ticketItem); //TODO: в TicketItem добавить сравнение билетов
+            var res= listItems.Remove(removeItem);
+            if (res)
+            {
+                SetQueueItems = listItems;
+            }                
+            return res;
+        }
+
+        /// <summary>
+        /// Удалить все элементы из очереди
+        /// </summary>
+        public bool RemoveAll()
+        {
+            SetQueueItems = new List<TicketItem>();
+            return true;
+        }
+
 
         #endregion
 

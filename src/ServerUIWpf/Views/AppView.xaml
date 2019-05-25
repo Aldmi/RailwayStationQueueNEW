@@ -498,56 +498,75 @@
                     BorderThickness="2"
                     Header="ОЧЕРЕДЬ БИЛЕТОВ">
 
-                    <ListView
+                    <StackPanel Orientation="Horizontal">
+                        <ListView
                         Name="QueuePriority"
                         MinHeight="300"
                         MaxHeight="300"
                         ItemContainerStyle="{StaticResource ListViewSoundItemStyle}">
 
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Дата">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=AddedTime, StringFormat=F, ConverterCulture='ru-RU'}" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Дата">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=AddedTime, StringFormat=F, ConverterCulture='ru-RU'}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                <GridViewColumn Header="Приоритет">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=Priority}" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                    <GridViewColumn Header="Приоритет">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Priority}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                <GridViewColumn Header="Префикс">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=Prefix}" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                    <GridViewColumn Header="Префикс">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=Prefix}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                <GridViewColumn Header="Билет">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=NumberElement, StringFormat=\{0:000\}}" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                    <GridViewColumn Header="Билет">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=NumberElement, StringFormat=\{0:000\}}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
 
-                                <GridViewColumn Header="Кол-во обработок">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Path=CountTryHandling}" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                                    <GridViewColumn Header="Кол-во обработок">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Path=CountTryHandling}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <StackPanel>
+                            <Button
+                            x:Name="DellAllItems"
+                            Padding="10"
+                            Background="Red"
+                            Margin="5"
+                            Content="УДАЛИТЬ ВСЕ" />
+                        <Button
+                            x:Name="DellOneItem"
+                            Background="Red"
+                            Padding="10"
+                            Margin="5"
+                            Content="УДАЛИТЬ БИЛЕТ" />
+                        </StackPanel>
+
+                    </StackPanel>
+          
+                  
                 </GroupBox>
 
                 <GroupBox

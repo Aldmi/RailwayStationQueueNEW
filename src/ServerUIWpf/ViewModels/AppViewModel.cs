@@ -1519,6 +1519,30 @@ namespace ServerUi.ViewModels
 
 
 
+        #region удаление элементов из очереди билетов
+
+        public void DellAllItems()
+        {
+            var queueMain = _model.QueuePriorities.FirstOrDefault(q => q.Name == "Main");
+            if (queueMain != null)
+            {
+                queueMain.RemoveAll();
+                //queueMain.RemoveTicketItem(null);
+
+                // queueMain.SetQueueItems = new List<Server.Entitys.TicketItem>();
+            }          
+        }
+
+
+        public void DellOneItem()
+        {
+
+        }
+
+       #endregion
+
+
+
         private void SaveSettingUi()
         {
             try
