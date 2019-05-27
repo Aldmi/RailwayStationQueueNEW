@@ -72,7 +72,6 @@ namespace Server.Entitys
             return true;
         }
 
-
         #endregion
 
 

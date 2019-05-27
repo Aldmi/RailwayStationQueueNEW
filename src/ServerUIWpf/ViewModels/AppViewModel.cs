@@ -144,6 +144,7 @@ namespace ServerUi.ViewModels
                 {
                     QueuePriority.Clear();
                     QueuePriority.AddRange(queuePriority.GetQueueItems);
+                    NotifyOfPropertyChange(() => IsEnableDellAllItemsCommand);
                 }
             }
         }
@@ -789,22 +790,19 @@ namespace ServerUi.ViewModels
         public BindableCollection<Server.Entitys.TicketItem> QueuePriority { get; set; } = new BindableCollection<Server.Entitys.TicketItem>(); //Основная очередь
 
 
-        // public Server.Entitys.TicketItem QueuePrioritySelectedItem { get; set; }
-
-
 
         private Server.Entitys.TicketItem _queuePrioritySelectedItem;
         public Server.Entitys.TicketItem QueuePrioritySelectedItem
         {
-            get { return _queuePrioritySelectedItem; }
+            get => _queuePrioritySelectedItem;
             set
             {
                 _queuePrioritySelectedItem = value;
-                NotifyOfPropertyChange(() => QueuePrioritySelectedItem);
-                CanDellOneItem();
+                NotifyOfPropertyChange(() => IsEnableDellOneItemCommand);
             }
         }
 
+ 
 
         #endregion
 
@@ -1549,12 +1547,8 @@ namespace ServerUi.ViewModels
 
         #region удаление элементов из очереди билетов
 
-        public bool CanDellAllItems()
-        {
-            var queueMain = GetQueueMain;
-            return !queueMain.IsEmpty;
-        }
 
+        public bool IsEnableDellAllItemsCommand => QueuePriority.Any();
         public void DellAllItems()
         {
             var res = MessageBox.Show("ВНИМАНИЕ !!!", "УДАЛИТЬ ВСЕ БИЛЕТЫ?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -1568,20 +1562,12 @@ namespace ServerUi.ViewModels
             }
         }
 
-
-        public bool CanDellOneItem()
-        {
-            //return QueuePrioritySelectedItem != null;
-            return true;
-        }
-
-
+        public bool IsEnableDellOneItemCommand => (QueuePrioritySelectedItem != null);
         public void DellOneItem()
         {
             var res = MessageBox.Show("ВНИМАНИЕ !!!", "УДАЛИТЬ ВЫБРАННЫЙ БИЛЕТ?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (res == MessageBoxResult.No)
                 return;
-
 
             var queueMain = GetQueueMain;
             if (queueMain != null)

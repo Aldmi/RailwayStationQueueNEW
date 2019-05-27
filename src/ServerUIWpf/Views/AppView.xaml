@@ -501,15 +501,16 @@
                 <GroupBox
                     Grid.Row="0"
                     Grid.Column="0"
+                    Grid.RowSpan="2"
                     Margin="10"
                     BorderThickness="2"
                     Header="ОЧЕРЕДЬ БИЛЕТОВ">
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                         <ListView
                             Name="QueuePriority"                    
                             MinHeight="300"
-                            MaxHeight="300"
+                            MaxHeight="850"
                             ItemContainerStyle="{StaticResource ListViewTicketItemStyle}"
                             SelectedItem="{Binding Path= QueuePrioritySelectedItem, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
                             <ListView.View>
@@ -560,20 +561,22 @@
                             <Button
                             x:Name="DellAllItems"
                             Padding="10"
-                            Background="Red"
                             Margin="5"
+                            FontSize="20"
+                            Background="Red"
+                            IsEnabled="{Binding Path=IsEnableDellAllItemsCommand, UpdateSourceTrigger=PropertyChanged}"                       
                             Content="УДАЛИТЬ ВСЕ" />
-                        <Button
+                            <Button
                             x:Name="DellOneItem"
                             Background="Red"
+                            FontSize="20"
                             Padding="10"
                             Margin="5"
+                            IsEnabled="{Binding Path=IsEnableDellOneItemCommand, UpdateSourceTrigger=PropertyChanged}"
                             Content="УДАЛИТЬ БИЛЕТ" />
                         </StackPanel>
-
                     </StackPanel>
-          
-                  
+                       
                 </GroupBox>
 
                 <GroupBox
