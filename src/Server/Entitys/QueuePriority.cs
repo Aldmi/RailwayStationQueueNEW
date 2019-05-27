@@ -44,18 +44,17 @@ namespace Server.Entitys
 
         public uint SetCurrentTicketNumber
         {
-            set { TicketFactory.SetCurrentTicketNumber = value; }
+            set => TicketFactory.SetCurrentTicketNumber = value;
         }
 
         
-        //TODO: оладить удаление элемента из очекреди
         /// <summary>
         /// Удалить указанный лемент из очереди
         /// </summary>
         public bool RemoveTicketItem(TicketItem ticketItem)
         {
             var listItems = Queue.ToList();
-            var removeItem= listItems.FirstOrDefault(t => t == ticketItem); //TODO: в TicketItem добавить сравнение билетов
+            var removeItem= listItems.FirstOrDefault(t => t == ticketItem);
             var res= listItems.Remove(removeItem);
             if (res)
             {

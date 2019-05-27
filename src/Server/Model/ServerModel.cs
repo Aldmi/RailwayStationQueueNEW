@@ -179,12 +179,13 @@ namespace Server.Model
             };
 
             //DEBUG------ИНИЦИАЛИЗАЦИЯ ОЧЕРЕДИ---------------------
+            //Обязательно коментировать  _model.LoadStates(); иначе состояние очереди затрется
             var queueTemp = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Main", StringComparison.InvariantCultureIgnoreCase));
             var queueAdmin = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Admin", StringComparison.InvariantCultureIgnoreCase));
             for (int i = 0; i < 200; i++)
             {
-                //var ticketAdmin = queueTemp.CreateTicket("А");
-                //queueAdmin.Enqueue(ticketAdmin);
+                var ticketAdmin = queueTemp.CreateTicket("А");
+                queueAdmin.Enqueue(ticketAdmin);
 
                 var ticket = queueTemp.CreateTicket("К");
                 queueTemp.Enqueue(ticket);

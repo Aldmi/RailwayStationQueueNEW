@@ -186,6 +186,13 @@
             <Setter Property="Focusable" Value="False" />
         </Style>
 
+        <Style x:Key="ListViewTicketItemStyle" TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Background" Value="DarkGray" />
+            <Setter Property="FontSize" Value="15" />
+
+        </Style>
+
     </Window.Resources>
 
 
@@ -500,11 +507,11 @@
 
                     <StackPanel Orientation="Horizontal">
                         <ListView
-                        Name="QueuePriority"
-                        MinHeight="300"
-                        MaxHeight="300"
-                        ItemContainerStyle="{StaticResource ListViewSoundItemStyle}">
-
+                            Name="QueuePriority"                    
+                            MinHeight="300"
+                            MaxHeight="300"
+                            ItemContainerStyle="{StaticResource ListViewTicketItemStyle}"
+                            SelectedItem="{Binding Path= QueuePrioritySelectedItem, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Дата">
