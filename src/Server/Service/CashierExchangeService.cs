@@ -106,17 +106,34 @@ namespace Server.Service
 
 
                             case CashierHandling.IsStartHandling:
-                                item = devCashier.Cashier.StartHandling();
-                                if(item == null)
-                                    break;
+                                await WriteTicketTransaction(devCashier, cashierInfo.Handling, port, ct);
+                                break;
 
-                                var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
-                                await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
+
+                            case CashierHandling.IsSuccessfulAndStartHandling:
+                                devCashier.Cashier.SuccessfulHandling();
+                                await WriteTicketTransaction(devCashier, cashierInfo.Handling, port, ct);
+                                break;
+
+
+                            case CashierHandling.IsRedirectAndStartHandling:
+                                if (_adminCashier != null)
                                 {
-                                    _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
+                                    var redirectTicket = devCashier.Cashier.CurrentTicket;
+                                    if (redirectTicket != null)
+                                    {
+                                        _adminCashier.Cashier.AddRedirectedTicket(redirectTicket);
+                                    }
+
+                                    devCashier.Cashier.SuccessfulHandling();
+                                    await WriteTicketTransaction(devCashier, cashierInfo.Handling, port, ct);
                                 }
-                                devCashier.Cashier.SuccessfulStartHandling();//TODO: ПЕРЕДЕЛАТЬ!!! если транзакция неудачана нельзя вынимать билет из очереди
+                                break;
+
+
+                            case CashierHandling.IsErrorAndStartHandling:
+                                devCashier.Cashier.ErrorHandling();
+                                await WriteTicketTransaction(devCashier, cashierInfo.Handling, port, ct);
                                 break;
 
 
@@ -134,63 +151,6 @@ namespace Server.Service
                                 }
                                 break;
 
-
-                            case CashierHandling.IsSuccessfulAndStartHandling:
-                                devCashier.Cashier.SuccessfulHandling();
-                                item = devCashier.Cashier.StartHandling();
-                                if (item == null)
-                                    break;
-
-                                writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
-                                await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
-                                {
-                                    _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
-                                }
-                                devCashier.Cashier.SuccessfulStartHandling(); //TODO: ПЕРЕДЕЛАТЬ!!! если транзакция неудачана нельзя вынимать билет из очереди
-                                break;
-
-
-                            case CashierHandling.IsRedirectAndStartHandling:
-                                if (_adminCashier != null)
-                                {
-                                    var redirectTicket = devCashier.Cashier.CurrentTicket;
-                                    if (redirectTicket != null)
-                                    {
-                                        _adminCashier.Cashier.AddRedirectedTicket(redirectTicket);
-                                    }
-                                    devCashier.Cashier.SuccessfulHandling();
-
-                                    item = devCashier.Cashier.StartHandling();
-                                    if (item == null)
-                                        break;
-
-                                    writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
-                                    await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                    if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
-                                    {
-                                        _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
-                                    }
-                                    devCashier.Cashier.SuccessfulStartHandling();
-                                }
-                                break;
-
-
-                            case CashierHandling.IsErrorAndStartHandling:
-                                devCashier.Cashier.ErrorHandling();
-                                item = devCashier.Cashier.StartHandling();
-                                if (item == null)
-                                    break;
-
-                                writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
-                                await port.DataExchangeAsync(_timeRespone, writeProvider, ct);
-                                if (!writeProvider.IsOutDataValid)                //завершение транзакции ( НЕ успешная передача билета кассиру)
-                                {
-                                    _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={cashierInfo.Handling}");//LOG;
-                                }
-                                devCashier.Cashier.SuccessfulStartHandling();
-                                break;
-
                             default:
                                 item = null;
                                 break;
@@ -203,6 +163,32 @@ namespace Server.Service
                 _loggerCashierInfo.Info($"EXCEPTION CashierExchangeService:   {ex.ToString()}");
             }
         }
+
+
+        /// <summary>
+        /// Транзакция на передачу билета кассиру.
+        /// </summary>
+        private async Task<bool> WriteTicketTransaction(DeviceCashier devCashier, CashierHandling handling, MasterSerialPort port, CancellationToken ct)
+        {
+            var item = devCashier.Cashier.StartHandling();         
+            if (item == null)                         //БЛОКИРОВКА ТРАНЗАКЦИИ (билет уже используетсяв транзакции)
+                return false;
+
+            var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
+            await port.DataExchangeAsync(_timeRespone, writeProvider, ct);        
+            if (writeProvider.IsOutDataValid)        //ТРАНЗАКЦИЯ ЗАВЕРШЕНА УСПЕШНО  (извлечем билет из очереди и присвоим кассиру)         
+            {
+                devCashier.Cashier.StartHandlingSuccessful();
+            }
+            else                                     //ТРАНЗАКЦИЯ ЗАВЕРШЕНА С ОШИБКОЙ (снимем блокировку)
+            {
+                _loggerCashierInfo.Info($"НЕ УДАЧНАЯ ТРАНЗАКЦИЯ ПЕРЕДАЧИ БИЛЕТА КАССИРУ: Id= {devCashier.Cashier.Id}   НА КОМАНДУ={handling}");
+                devCashier.Cashier.StartHandlingFaild();
+                return false;
+            }          
+            return true;
+        }
+
 
         #endregion
     }

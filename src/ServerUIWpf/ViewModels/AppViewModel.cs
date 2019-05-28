@@ -83,9 +83,7 @@ namespace ServerUi.ViewModels
                 queueMain.PropertyChanged += QueueMain_PropertyChanged;
             }
 
-            //_model.LoadStates();
-
-
+            _model.LoadStates();
 
             //ЗАГРУЗКА НАСТРОЕК ТАБЛО
             HeaderBackgroundColor = new SolidColorBrush(Colors.DarkRed);
@@ -826,7 +824,7 @@ namespace ServerUi.ViewModels
                             var ticket = new TicketItem
                             {
                                 CashierId = сashier.Id,
-                                CashierName = сashier.CurrentTicket.Cashbox.ToString(),
+                                CashierName = сashier.CurrentTicket.CashboxId.ToString(),
                                 TicketName = $"{сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}",
                             };
 
@@ -853,7 +851,7 @@ namespace ServerUi.ViewModels
                             var ticket = сashier.PreviousTicket;
                             var logDict = new Dictionary<string, object>
                             {
-                                {"CashierNumber", ticket.Cashbox?.ToString() ?? "неизвестный кассир" },
+                                {"CashierNumber", ticket.CashboxId?.ToString() ?? "неизвестный кассир" },
                                 {"TicketNumber", ticket.Prefix + ticket.NumberElement.ToString("000")},
                                 {"DateAdded2Queue", ticket.AddedTime},
                                 {"StartDateProcessing", ticket.StartProcessingTime},
@@ -1674,7 +1672,7 @@ namespace ServerUi.ViewModels
         public void Add(int idCashier)
         {
             _model.DeviceCashiers[idCashier - 1].Cashier.StartHandling();
-            _model.DeviceCashiers[idCashier - 1].Cashier.SuccessfulStartHandling();
+            _model.DeviceCashiers[idCashier - 1].Cashier.StartHandlingSuccessful();
         }
 
 

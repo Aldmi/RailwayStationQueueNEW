@@ -509,7 +509,7 @@
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                         <ListView
                             Name="QueuePriority"                    
-                            MinHeight="300"
+                            MinHeight="850"
                             MaxHeight="850"
                             ItemContainerStyle="{StaticResource ListViewTicketItemStyle}"
                             SelectedItem="{Binding Path= QueuePrioritySelectedItem, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
