@@ -248,7 +248,7 @@ namespace Communication.SerialPort
                 _port.Read(buffer, 0, nBytesRead);
                 return buffer;
             }
-            //Debug.WriteLine($"Время на ожидание ответа вышло {_port.BytesToRead} >= {nBytesRead}");
+            Debug.WriteLine($"Время на ожидание ответа вышло {_port.BytesToRead} >= {nBytesRead}");
             throw new TimeoutException("Время на ожидание ответа вышло");
         }
 

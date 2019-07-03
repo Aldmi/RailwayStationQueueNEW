@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.IO;
 using System.Linq;
 using System.Printing;
+using System.Windows.Forms;
 using Terminal.Settings;
 
 namespace Terminal.Service
@@ -91,18 +93,22 @@ namespace Terminal.Service
                                $"      если до отправления поезда\r\n" +
                                $"      осталось не менее 30 минут\r\n" +
                                $"                 (кроме льготных\r\n" +
-                               $"          категорий пассажиров).\r\n";
+                               $"          категорий пассажиров).\r\n" +
+                               $"   При возникновении вопросов по\r\n" +
+                               $"качеству обслуживания, Вы можете\r\n" +
+                               $"           обратится по телефону\r\n" +
+                               $"                 8-913-901-61-67\r\n";
 
 
             Font printFont = new Font("Times New Roman", 4, FontStyle.Regular, GraphicsUnit.Millimeter);
             e.Graphics.DrawString(printText, printFont, Brushes.Black, 0, 2);
 
-            e.Graphics.DrawLine(new Pen(Color.Black), 5, 205, 245, 205);
+            e.Graphics.DrawLine(new Pen(Color.Black), 5, 275, 245, 275);
 
             //ПЕЧАТЬ ТЕКСТА
             printText = $"{_ticketName}\r\n";
-            printFont = new Font("Times New Roman", 20, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 20, 215);//9,150
+            printFont = new Font("Times New Roman", 19, FontStyle.Regular, GraphicsUnit.Millimeter);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 20, 270);//9,150
 
             //printText = $"перед вами {_countPeople} чел.\r\n";
             //printFont = new Font("Times New Roman", 7, FontStyle.Regular, GraphicsUnit.Millimeter);
@@ -145,17 +151,6 @@ namespace Terminal.Service
             if (_printQueue.HasPaperProblem)
                 status = PrinterStatus.HasPaperProblem;
 
-            //Сменили статус с ОШИБКИ на ОК
-            //if ((_lastStatus != PrinterStatus.Ok) && (status == PrinterStatus.Ok))
-            //{
-            //    MessageBox.Show($"Purge!!!!!!!!   NumberOfJobs={_printQueue.NumberOfJobs}");//DEBUG    
-            //    _printQueue.Purge();
-            //    _printQueue.Refresh();
-            //}
-
-            //MessageBox.Show($"_lastStatus={_lastStatus}  status={status} ");//DEBUG
-            //_lastStatus = status;
-          
             return status;
         }
 

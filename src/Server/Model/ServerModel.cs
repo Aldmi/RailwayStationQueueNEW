@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Timers;
 using Communication.Annotations;
 using Communication.Interfaces;
 using Communication.SerialPort;
@@ -18,9 +20,10 @@ using Server.Service;
 using Server.Settings;
 using Sound;
 using Terminal.Infrastructure;
+using System.Collections.Concurrent;
+using System.Text;
 using Server.SerializableModel;
 using System.Runtime.Serialization.Formatters.Binary;
-using Server.Actions;
 
 namespace Server.Model
 {
@@ -42,7 +45,6 @@ namespace Server.Model
         public List<DeviceCashier> DeviceCashiers { get; } = new List<DeviceCashier>();
         public DeviceCashier AdminCasher { get; private set; } //Ссылка на администратора кассира (сам кассир находится в DeviceCashiers)
         public List<CashierExchangeService> CashierExchangeServices { get; } = new List<CashierExchangeService>();
-        public ActionQueue ActionCashierQueue { get; set; } = new ActionQueue { ConstCyclePeriod = 0};
 
         public List<Task> BackGroundTasks { get; } = new List<Task>();
 
@@ -177,12 +179,13 @@ namespace Server.Model
             };
 
             //DEBUG------ИНИЦИАЛИЗАЦИЯ ОЧЕРЕДИ---------------------
+            //Обязательно коментировать  _model.LoadStates(); иначе состояние очереди затрется
             //var queueTemp = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Main", StringComparison.InvariantCultureIgnoreCase));
             //var queueAdmin = QueuePriorities.FirstOrDefault(q => string.Equals(q.Name, "Admin", StringComparison.InvariantCultureIgnoreCase));
             //for (int i = 0; i < 200; i++)
             //{
-            //    //var ticketAdmin = queueTemp.CreateTicket("А");
-            //    //queueAdmin.Enqueue(ticketAdmin);
+            //    var ticketAdmin = queueTemp.CreateTicket("А");
+            //    queueAdmin.Enqueue(ticketAdmin);
 
             //    var ticket = queueTemp.CreateTicket("К");
             //    queueTemp.Enqueue(ticket);
@@ -223,8 +226,19 @@ namespace Server.Model
                 var logName = "Server.CashierInfo_" + xmlSerial.Port;
                 var sp= new MasterSerialPort(xmlSerial, logName);
                 var cashiers= cashersGroup[xmlSerial.Port];
-                var cashierExch= new CashierExchangeService(ActionCashierQueue, cashiers, AdminCasher, xmlSerial.TimeRespoune, logName);
+                var cashierExch= new CashierExchangeService(cashiers, AdminCasher, xmlSerial.TimeRespoune, logName);
                 sp.AddFunc(cashierExch.ExchangeService);
+                //sp.PropertyChanged += (o, e) =>
+                // {
+                //     var port = o as MasterSerialPort;
+                //     if (port != null)
+                //     {
+                //         if (e.PropertyName == "StatusString")
+                //         {
+                //             ErrorString = port.StatusString;                     //TODO: РАЗДЕЛЯЕМЫЙ РЕСУРС возможно нужна блокировка
+                //        }
+                //     }
+                // };
                 MasterSerialPorts.Add(sp);
                 CashierExchangeServices.Add(cashierExch);
             }
@@ -239,10 +253,6 @@ namespace Server.Model
                 var taskListener = Listener.RunServer(ProviderTerminal);
                 BackGroundTasks.Add(taskListener);
             }
-
-            //ЗАПУСК ОЧЕРЕДИ ДЕЙСТВИЙ ОТ КАССИРОВ------------------------------------------------------
-            var taskActionCashierQueue = ActionCashierQueue.Start();
-            BackGroundTasks.Add(taskActionCashierQueue);
 
             //ЗАПУСК ОПРОСА КАССИРОВ-------------------------------------------------------------------
             if (MasterSerialPorts.Any())
@@ -261,7 +271,8 @@ namespace Server.Model
                 }
             }
 
-            //КОНТРОЛЬ ВЫПОЛНЕНИЯ ФОНОВЫХ ЗАДАЧ----------------------------------------------------------------------
+
+            //КОНТРОЛЬ ФОНОВЫХ ЗАДАЧ----------------------------------------------------------------------
             var taskFirst = await Task.WhenAny(BackGroundTasks);
             if (taskFirst.Exception != null)                           //критическая ошибка фоновой задачи
                 ErrorString = taskFirst.Exception.ToString();

@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Media;
 using Caliburn.Micro;
+using Brush = System.Windows.Media.Brush;
+using Color = System.Windows.Media.Color;
 using FontFamily = System.Windows.Media.FontFamily;
 
 

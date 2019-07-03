@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
 using Caliburn.Micro;
@@ -60,8 +63,8 @@ namespace ServerUi.ViewModels
             _model.LoadSetting();
             foreach (var devCashier in _model.DeviceCashiers)
             {
-                devCashier.Cashier.PropertyChanged+= Cashier_PropertyChanged;
-                devCashier.PropertyChanged+= DevCashierOnPropertyChanged;
+                devCashier.Cashier.PropertyChanged += Cashier_PropertyChanged;
+                devCashier.PropertyChanged += DevCashierOnPropertyChanged;
             }
 
             if (_model.Listener != null)
@@ -74,15 +77,13 @@ namespace ServerUi.ViewModels
             _model.SoundQueue.StartQueue();
 
 
-           var queueMain= _model.QueuePriorities.FirstOrDefault(q => q.Name == "Main");
-           if (queueMain != null)
-           {
-              queueMain.PropertyChanged += QueueMain_PropertyChanged;
-           }
- 
-           _model.LoadStates();//DEBUG
+            var queueMain = _model.QueuePriorities.FirstOrDefault(q => q.Name == "Main");
+            if (queueMain != null)
+            {
+                queueMain.PropertyChanged += QueueMain_PropertyChanged;
+            }
 
-
+            _model.LoadStates();
 
             //ЗАГРУЗКА НАСТРОЕК ТАБЛО
             HeaderBackgroundColor = new SolidColorBrush(Colors.DarkRed);
@@ -91,19 +92,30 @@ namespace ServerUi.ViewModels
             ColorListBackground = new SolidColorBrush(Colors.CadetBlue);
             ListFontColor = new SolidColorBrush(Colors.Black);
 
-            CurrentFontCash = new FontSetting { FontHeader = null, FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10), PaddingHeader = 0, PaddingRow = 0};
-            CurrentFont8X2 = new FontSetting  { FontHeader = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
-                                               FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
-                                               PaddingHeader = 0,
-                                               PaddingRow = 0 };
+            CurrentFontCash = new FontSetting { FontHeader = null, FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10), PaddingHeader = 0, PaddingRow = 0 };
+            CurrentFont8X2 = new FontSetting
+            {
+                FontHeader = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
+                FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
+                PaddingHeader = 0,
+                PaddingRow = 0
+            };
 
-            CurrentFont4X4 = new FontSetting { FontHeader = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
-                                               FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
-                                               PaddingHeader = 0,
-                                               PaddingRow = 0 };
+            CurrentFont4X4 = new FontSetting
+            {
+                FontHeader = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
+                FontRow = new Font(System.Drawing.FontFamily.GenericMonospace, 10),
+                PaddingHeader = 0,
+                PaddingRow = 0
+            };
 
-            var settingUi= LoadSettingUi();
+            var settingUi = LoadSettingUi();
             ApplySetting(settingUi);
+
+
+            //DEBUG-------------
+            //TimerAutoTest.Elapsed += TimerAutoTest_Elapsed;   
+            //TimerAutoTest.Start();
         }
 
 
@@ -130,6 +142,7 @@ namespace ServerUi.ViewModels
                 {
                     QueuePriority.Clear();
                     QueuePriority.AddRange(queuePriority.GetQueueItems);
+                    NotifyOfPropertyChange(() => IsEnableDellAllItemsCommand);
                 }
             }
         }
@@ -140,6 +153,9 @@ namespace ServerUi.ViewModels
 
 
         #region prop
+
+        private QueuePriority GetQueueMain => _model.QueuePriorities.FirstOrDefault(q => q.Name == "Main");
+
 
 
         #region БИЛЕТЫ ПО КАССИРАМ
@@ -771,6 +787,21 @@ namespace ServerUi.ViewModels
 
         public BindableCollection<Server.Entitys.TicketItem> QueuePriority { get; set; } = new BindableCollection<Server.Entitys.TicketItem>(); //Основная очередь
 
+
+
+        private Server.Entitys.TicketItem _queuePrioritySelectedItem;
+        public Server.Entitys.TicketItem QueuePrioritySelectedItem
+        {
+            get => _queuePrioritySelectedItem;
+            set
+            {
+                _queuePrioritySelectedItem = value;
+                NotifyOfPropertyChange(() => IsEnableDellOneItemCommand);
+            }
+        }
+
+ 
+
         #endregion
 
 
@@ -793,7 +824,7 @@ namespace ServerUi.ViewModels
                             var ticket = new TicketItem
                             {
                                 CashierId = сashier.Id,
-                                CashierName = сashier.CurrentTicket.Cashbox.ToString(),
+                                CashierName = сashier.CurrentTicket.CashboxId.ToString(),
                                 TicketName = $"{сashier.CurrentTicket.Prefix}{сashier.CurrentTicket.NumberElement:000}",
                             };
 
@@ -806,16 +837,27 @@ namespace ServerUi.ViewModels
                             FillTable4X4(ticket, Table4X41, Table4X42, Table4X43, Table4X44);
                             FillTable8X2(ticket, Table8X21, Table8X22);
                             FillTable8X2(ticket, Table8X23, Table8X24);
-
                             //LOG
-                            _logger.Info(сashier.CurrentTicket.ToString());
+                            сashier.CurrentTicket.StartProcessingTime = DateTime.Now;
                         }
                         else                                 //удалить элемент из списка
                         {
+                            сashier.PreviousTicket.EndProcessingTime = DateTime.Now;
                             FillTableCashier(сashier.Id, null);
                             ClearTable4X4(сashier.Id, Table4X41, Table4X42, Table4X43, Table4X44);
                             ClearTable8X2(сashier.Id, Table8X21, Table8X22);
                             ClearTable8X2(сashier.Id, Table8X23, Table8X24);
+                            //LOG
+                            var ticket = сashier.PreviousTicket;
+                            var logDict = new Dictionary<string, object>
+                            {
+                                {"CashierNumber", ticket.CashboxId?.ToString() ?? "неизвестный кассир" },
+                                {"TicketNumber", ticket.Prefix + ticket.NumberElement.ToString("000")},
+                                {"DateAdded2Queue", ticket.AddedTime},
+                                {"StartDateProcessing", ticket.StartProcessingTime},
+                                {"EndDateProcessing", ticket.EndProcessingTime}
+                            };
+                            _logger.LogEventContext(logDict);
                         }
                     }
                     catch (Exception ex)
@@ -841,7 +883,7 @@ namespace ServerUi.ViewModels
                     switch (deviceCashier.Cashier.Id)
                     {
                         case 1:
-                            ColorBackgroundCashierTicket1 = deviceCashier.IsConnect ? Brushes.Green : Brushes.SlateGray;               
+                            ColorBackgroundCashierTicket1 = deviceCashier.IsConnect ? Brushes.Green : Brushes.SlateGray;
                             break;
 
                         case 2:
@@ -1039,17 +1081,17 @@ namespace ServerUi.ViewModels
                 else
                 if (e.PropertyName == "GetClients")
                 {
-                  var ipTcpClients=  listener.GetClients.Select(c=>c.Ip).ToList();
-                  TerminalsIp.Clear();
-                  TerminalsIp.AddRange(ipTcpClients);
+                    var ipTcpClients = listener.GetClients.Select(c => c.Ip).ToList();
+                    TerminalsIp.Clear();
+                    TerminalsIp.AddRange(ipTcpClients);
 
-                  //LOG
-                  var strb = new StringBuilder("Терминалы на свзяи: ");
-                  foreach (var c in ipTcpClients)
-                  {
-                     strb.Append(c).Append("; ");
-                  }
-                  _logger.Debug(strb.ToString());
+                    //LOG
+                    var strb = new StringBuilder("Терминалы на свзяи: ");
+                    foreach (var c in ipTcpClients)
+                    {
+                        strb.Append(c).Append("; ");
+                    }
+                    _logger.Debug(strb.ToString());
                 }
             }
         }
@@ -1193,14 +1235,14 @@ namespace ServerUi.ViewModels
                 list1.Remove(removeTicket);
                 isDelete = true;
             }
-           
+
             removeTicket = list2.FirstOrDefault(elem => elem.CashierId == removeTicketId);
             if (removeTicket != null)
             {
                 list2.Remove(removeTicket);
                 isDelete = true;
             }
-           
+
             removeTicket = list3.FirstOrDefault(elem => elem.CashierId == removeTicketId);
             if (removeTicket != null)
             {
@@ -1210,7 +1252,7 @@ namespace ServerUi.ViewModels
 
             removeTicket = list4.FirstOrDefault(elem => elem.CashierId == removeTicketId);
             if (removeTicket != null)
-            {            
+            {
                 list4.Remove(removeTicket);
                 isDelete = true;
             }
@@ -1237,7 +1279,7 @@ namespace ServerUi.ViewModels
         /// </summary>
         private void FillTable8X2(TicketItem item, IList<TicketItem> list1, IList<TicketItem> list2)
         {
-            if (list1.Count < LimitRowTable8X21) 
+            if (list1.Count < LimitRowTable8X21)
             {
                 list1.Add(item);
             }
@@ -1273,7 +1315,7 @@ namespace ServerUi.ViewModels
 
             //Перезаполнить список, если элемент был удален
             if (isDelete)
-            {            
+            {
                 var sumList = list1.Union(list2).ToList();
                 list1.Clear();
                 list2.Clear();
@@ -1325,7 +1367,7 @@ namespace ServerUi.ViewModels
 
         //Цвет фона заголовка
         private Brush _headerBackgroundColor;
-        public Brush HeaderBackgroundColor 
+        public Brush HeaderBackgroundColor
         {
             get { return _headerBackgroundColor; }
             set
@@ -1464,7 +1506,7 @@ namespace ServerUi.ViewModels
                         break;
 
                     case "8X2 шрифт заголовка":
-                        CurrentFont8X2.FontHeader= currentFont;
+                        CurrentFont8X2.FontHeader = currentFont;
                         break;
 
                     case "8X2 шрифт строк":
@@ -1497,6 +1539,46 @@ namespace ServerUi.ViewModels
         }
 
         #endregion
+
+
+
+
+        #region удаление элементов из очереди билетов
+
+
+        public bool IsEnableDellAllItemsCommand => QueuePriority.Any();
+        public void DellAllItems()
+        {
+            var res = MessageBox.Show("ВНИМАНИЕ !!!", "УДАЛИТЬ ВСЕ БИЛЕТЫ?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (res == MessageBoxResult.No)
+                return;
+
+            var queueMain = GetQueueMain;
+            if (queueMain != null)
+            {
+                queueMain.RemoveAll();
+            }
+        }
+
+        public bool IsEnableDellOneItemCommand => (QueuePrioritySelectedItem != null);
+        public void DellOneItem()
+        {
+            var res = MessageBox.Show("ВНИМАНИЕ !!!", "УДАЛИТЬ ВЫБРАННЫЙ БИЛЕТ?", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (res == MessageBoxResult.No)
+                return;
+
+            var queueMain = GetQueueMain;
+            if (queueMain != null)
+            {
+                var removeItem = QueuePrioritySelectedItem;
+                queueMain.RemoveTicketItem(removeItem);
+            }
+        }
+
+
+
+        #endregion
+
 
 
 
@@ -1589,8 +1671,8 @@ namespace ServerUi.ViewModels
 
         public void Add(int idCashier)
         {
-            _model.DeviceCashiers[idCashier-1].Cashier.StartHandling();
-            _model.DeviceCashiers[idCashier-1].Cashier.SuccessfulStartHandling();
+            _model.DeviceCashiers[idCashier - 1].Cashier.StartHandling();
+            _model.DeviceCashiers[idCashier - 1].Cashier.StartHandlingSuccessful();
         }
 
 

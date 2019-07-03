@@ -1,8 +1,10 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.AccessControl;
 using Communication.Annotations;
 using Server.Service;
 
@@ -22,13 +24,13 @@ namespace Server.Entitys
         private ConcurrentQueue<TicketItem> Queue { get; set; } = new ConcurrentQueue<TicketItem>();
         public int Count => Queue.Count;
         public bool IsEmpty => Queue.IsEmpty;
-        public IEnumerable<TicketItem> GetQueueItems => Queue;
 
+        public IEnumerable<TicketItem> GetQueueItems => Queue;
         public IEnumerable<TicketItem> SetQueueItems
         {
             set
             {
-                if (value != null && value.Any())
+                if (value != null)
                 {
                     Queue = new ConcurrentQueue<TicketItem>(value);
                     OnPropertyChanged("QueuePriority");
@@ -42,7 +44,32 @@ namespace Server.Entitys
 
         public uint SetCurrentTicketNumber
         {
-            set { TicketFactory.SetCurrentTicketNumber = value; }
+            set => TicketFactory.SetCurrentTicketNumber = value;
+        }
+
+        
+        /// <summary>
+        /// Удалить указанный лемент из очереди
+        /// </summary>
+        public bool RemoveTicketItem(TicketItem ticketItem)
+        {
+            var listItems = Queue.ToList();
+            var removeItem= listItems.FirstOrDefault(t => t == ticketItem);
+            var res= listItems.Remove(removeItem);
+            if (res)
+            {
+                SetQueueItems = listItems;
+            }                
+            return res;
+        }
+
+        /// <summary>
+        /// Удалить все элементы из очереди
+        /// </summary>
+        public bool RemoveAll()
+        {
+            SetQueueItems = new List<TicketItem>();
+            return true;
         }
 
         #endregion

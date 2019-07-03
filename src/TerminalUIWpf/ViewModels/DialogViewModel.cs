@@ -1,4 +1,6 @@
-﻿using System.Timers;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using System.Timers;
 using Caliburn.Micro;
 using Timer = System.Timers.Timer;
 

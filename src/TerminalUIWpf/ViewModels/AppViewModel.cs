@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -6,6 +7,7 @@ using Caliburn.Micro;
 using Communication.TcpIp;
 using Library.Logs;
 using Terminal.Model;
+using Terminal.Service;
 
 
 namespace TerminalUIWpf.ViewModels
@@ -30,6 +32,8 @@ namespace TerminalUIWpf.ViewModels
 
         public AppViewModel(IWindowManager windowManager)
         {
+            _logger.Error("deswdfsds");//DEBUG
+
             _windowManager = windowManager;
 
             _model = new TerminalModel();
@@ -118,7 +122,7 @@ namespace TerminalUIWpf.ViewModels
             {
                 if (e.PropertyName == "ErrorString")
                 {
-                    MessageBox.Show(terminal.ErrorString); //TODO: как вызвать MessageBox из ViewModel
+                    MessageBox.Show(terminal.ErrorString); //TODO: как вызвать MessageBox
                 }
             }
         }

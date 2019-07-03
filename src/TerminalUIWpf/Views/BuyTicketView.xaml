@@ -13,12 +13,12 @@
 
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="46" />
+            <Setter Property="FontSize" Value="41" />
             <Setter Property="Background" Value="SlateGray" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="1,10,1,10" />
-            <Setter Property="Padding" Value="10" />
+            <Setter Property="Margin" Value="1,9,1,9" />
+            <Setter Property="Padding" Value="9" />
             <Setter Property="VerticalAlignment" Value="Stretch" />
             <Setter Property="Width" Value="1200" />
             <!--<Setter Property="Height" Value="78" />-->
@@ -41,7 +41,7 @@
 
         <Grid
             Grid.Row="0"
-            Margin="0,0,0,25"
+            Margin="0,0,0,15"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Background="Crimson">
@@ -121,14 +121,21 @@
             Name="BtnLowMobilityTicket"
             Grid.Row="4"
             Padding="1"
+            HorizontalContentAlignment="Left"
             Style="{StaticResource ButtonStyle}">
-            <StackPanel Orientation="Horizontal">
+
+            <StackPanel Orientation="Horizontal"    >
                 <Image
-                    Width="65"
-                    Height="65"
-                    Margin="2,0,70,0"
+                    Width="95"
+                    Height="95"
+                    Margin="40,0,50,0"        
                     Source="/Pictures/invalid.jpg" />
-                <TextBlock Padding="10">Оформление маломобильных пассажиров</TextBlock>
+
+              <StackPanel>
+                  <TextBlock Text="Оформление участников и инвалидов" TextAlignment="Center" TextWrapping="WrapWithOverflow" />
+                  <TextBlock Text="Великой Отечественной войны" TextAlignment="Center" TextWrapping="WrapWithOverflow" />
+                  <TextBlock Text="Маломобильных пассажиров" TextAlignment="Center" TextWrapping="WrapWithOverflow" />
+                </StackPanel>
             </StackPanel>
         </Button>
 
@@ -136,7 +143,7 @@
         <Button
             Name="BtnClouseWindow"
             Grid.Row="5"
-            Height="100"
+            Height="90"
             Content="НАЗАД"
             Foreground="DarkKhaki"
             Style="{StaticResource ButtonStyle}" />

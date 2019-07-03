@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using NLog;
 using NLog.Config;
@@ -70,6 +71,22 @@ namespace Library.Logs
                 return;
 
             _logger.Fatal(message);
+        }
+
+
+        /// <summary>
+        /// Добавляет логирования кастомного свойства в отдельную колонку (csv)
+        /// Например: <column name="Дата добавления в очередь" layout="${event-context:item=DateAdded2Queue}" />
+        /// </summary>
+        /// <param name="dict"></param>
+        public void LogEventContext(Dictionary<string, object> dict)
+        {
+            var myEvent = new LogEventInfo(LogLevel.Info, _logger.Name, string.Empty);
+            foreach (var kvp in dict)
+            {
+                myEvent.Properties.Add(kvp.Key, kvp.Value);
+            }
+            _logger.Log(myEvent);
         }
 
         #endregion
