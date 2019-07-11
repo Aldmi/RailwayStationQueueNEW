@@ -91,7 +91,7 @@ namespace Terminal.Service
                                $" Интернет, или приобрести билеты\r\n" +
                                $"  с оплатой по банковской карте,\r\n" +
                                $"      если до отправления поезда\r\n" +
-                               $"      осталось не менее 30 минут\r\n" +
+                               $"      осталось не менее 15 минут\r\n" +
                                $"                 (кроме льготных\r\n" +
                                $"          категорий пассажиров).\r\n" +
                                $"   При возникновении вопросов по\r\n" +
@@ -114,10 +114,10 @@ namespace Terminal.Service
             //printFont = new Font("Times New Roman", 7, FontStyle.Regular, GraphicsUnit.Millimeter);
             //e.Graphics.DrawString(printText, printFont, Brushes.Black, 12, 310); //9,260
 
-            printText = "\r\n \r\n ";
-            printText += $"{_dateAdded.ToString("T")}            {_dateAdded.ToString("d")}";
-            printFont = new Font("Times New Roman", 5, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 5, 300);
+            //printText = "\r\n \r\n ";
+            //printText += $"{_dateAdded.ToString("T")}            {_dateAdded.ToString("d")}";
+            //printFont = new Font("Times New Roman", 5, FontStyle.Regular, GraphicsUnit.Millimeter);
+            //e.Graphics.DrawString(printText, printFont, Brushes.Black, 5, 300);
         }
 
         #endregion

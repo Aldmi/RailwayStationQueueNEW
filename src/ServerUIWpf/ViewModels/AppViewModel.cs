@@ -843,6 +843,7 @@ namespace ServerUi.ViewModels
                         else                                 //удалить элемент из списка
                         {
                             сashier.PreviousTicket.EndProcessingTime = DateTime.Now;
+                            сashier.PreviousTicket.CalculateTime();
                             FillTableCashier(сashier.Id, null);
                             ClearTable4X4(сashier.Id, Table4X41, Table4X42, Table4X43, Table4X44);
                             ClearTable8X2(сashier.Id, Table8X21, Table8X22);
@@ -855,7 +856,9 @@ namespace ServerUi.ViewModels
                                 {"TicketNumber", ticket.Prefix + ticket.NumberElement.ToString("000")},
                                 {"DateAdded2Queue", ticket.AddedTime},
                                 {"StartDateProcessing", ticket.StartProcessingTime},
-                                {"EndDateProcessing", ticket.EndProcessingTime}
+                                {"EndDateProcessing", ticket.EndProcessingTime},
+                                {"ProcessingTime", ticket.ProcessingTime.ToString(@"hh\:mm\:ss")},
+                                {"ServiceTime", ticket.ServiceTime.ToString(@"hh\:mm\:ss")}
                             };
                             _logger.LogEventContext(logDict);
                         }

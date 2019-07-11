@@ -44,7 +44,6 @@ F:\Git\RailwayStationQueue\src\src\Library\bin\Release\Library.dll
 F:\Git\RailwayStationQueue\src\src\Library\bin\Release\Library.pdb
 F:\Git\RailwayStationQueue\src\src\Library\bin\Release\NLog.dll
 F:\Git\RailwayStationQueue\src\src\Library\bin\Release\NLog.xml
-F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.csprojAssemblyReference.cache
 F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.csproj.CoreCompileInputs.cache
 F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.csproj.CopyComplete
 F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.dll
