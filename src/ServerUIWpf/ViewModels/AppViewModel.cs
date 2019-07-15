@@ -154,6 +154,9 @@ namespace ServerUi.ViewModels
 
         #region prop
 
+        public string ProgrammVersion => "Ver 1.1 [15.07.2019]";
+
+
         private QueuePriority GetQueueMain => _model.QueuePriorities.FirstOrDefault(q => q.Name == "Main");
 
 
@@ -855,6 +858,7 @@ namespace ServerUi.ViewModels
                                 {"CashierNumber", ticket.CashboxId?.ToString() ?? "неизвестный кассир" },
                                 {"TicketNumber", ticket.Prefix + ticket.NumberElement.ToString("000")},
                                 {"DateAdded2Queue", ticket.AddedTime},
+                                {"HourAdded2Queue", ticket.AddedTime.Hour},
                                 {"StartDateProcessing", ticket.StartProcessingTime},
                                 {"EndDateProcessing", ticket.EndProcessingTime},
                                 {"ProcessingTime", ticket.ProcessingTime.ToString(@"hh\:mm\:ss")},
