@@ -121,7 +121,6 @@ namespace Terminal.Model
             if(!IsConnectTcpIp)
                 return;
 
-
             try
             {
                 //ЗАПРОС О СОСТОЯНИИ ОЧЕРЕДИ
@@ -147,7 +146,7 @@ namespace Terminal.Model
                             ticketName = prefix + provider.OutputData.NumberElement.ToString("000");
                             countPeople = provider.OutputData.CountElement.ToString();
 
-                            PrintTicketService.Print(ticketName, countPeople, provider.OutputData.AddedTime);
+                            PrintTicketService.Print(ticketName, countPeople, provider.OutputData.AddedTime, descriptionQueue);
 
                             _logger.Info($"PrintTicket: {provider.OutputData.AddedTime}     {ticketName}    nameQueue= {nameQueue}   descriptionQueue= {descriptionQueue}");
                         }

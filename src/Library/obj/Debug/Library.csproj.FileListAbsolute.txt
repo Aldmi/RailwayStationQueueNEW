@@ -20,13 +20,3 @@ C:\Users\User\Desktop\Эл.очередь\src\Library\bin\Debug\Library.dll
 C:\Users\User\Desktop\Эл.очередь\src\Library\bin\Debug\Library.pdb
 C:\Users\User\Desktop\Эл.очередь\src\Library\obj\Debug\Library.dll
 C:\Users\User\Desktop\Эл.очередь\src\Library\obj\Debug\Library.pdb
-F:\Git\RailwayStationQueue\src\src\Library\bin\Debug\NLog.config
-F:\Git\RailwayStationQueue\src\src\Library\bin\Debug\Library.dll
-F:\Git\RailwayStationQueue\src\src\Library\bin\Debug\Library.pdb
-F:\Git\RailwayStationQueue\src\src\Library\bin\Debug\NLog.dll
-F:\Git\RailwayStationQueue\src\src\Library\bin\Debug\NLog.xml
-F:\Git\RailwayStationQueue\src\src\Library\obj\Debug\Library.csproj.CoreCompileInputs.cache
-F:\Git\RailwayStationQueue\src\src\Library\obj\Debug\Library.csproj.CopyComplete
-F:\Git\RailwayStationQueue\src\src\Library\obj\Debug\Library.dll
-F:\Git\RailwayStationQueue\src\src\Library\obj\Debug\Library.pdb
-F:\Git\RailwayStationQueue\src\src\Library\obj\Debug\Library.csprojAssemblyReference.cache

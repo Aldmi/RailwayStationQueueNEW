@@ -25,17 +25,3 @@ C:\Users\User\Desktop\Эл.очередь\src\Terminal\bin\Debug\Library.pdb
 C:\Users\User\Desktop\Эл.очередь\src\Terminal\obj\Debug\Terminal.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\Эл.очередь\src\Terminal\obj\Debug\Terminal.dll
 C:\Users\User\Desktop\Эл.очередь\src\Terminal\obj\Debug\Terminal.pdb
-F:\Git\RailwayStationQueue\src\src\Terminal\bin\Debug\NLog.config
-F:\Git\RailwayStationQueue\src\src\Terminal\bin\Debug\Terminal.dll
-F:\Git\RailwayStationQueue\src\src\Terminal\bin\Debug\Terminal.pdb
-F:\Git\RailwayStationQueue\src\src\Terminal\bin\Debug\Communication.dll
-F:\Git\RailwayStationQueue\src\src\Terminal\bin\Debug\Library.dll
-F:\Git\RailwayStationQueue\src\src\Terminal\bin\Debug\NLog.dll
-F:\Git\RailwayStationQueue\src\src\Terminal\bin\Debug\Communication.pdb
-F:\Git\RailwayStationQueue\src\src\Terminal\bin\Debug\Library.pdb
-F:\Git\RailwayStationQueue\src\src\Terminal\bin\Debug\NLog.xml
-F:\Git\RailwayStationQueue\src\src\Terminal\obj\Debug\Terminal.csprojAssemblyReference.cache
-F:\Git\RailwayStationQueue\src\src\Terminal\obj\Debug\Terminal.csproj.CoreCompileInputs.cache
-F:\Git\RailwayStationQueue\src\src\Terminal\obj\Debug\Terminal.csproj.CopyComplete
-F:\Git\RailwayStationQueue\src\src\Terminal\obj\Debug\Terminal.dll
-F:\Git\RailwayStationQueue\src\src\Terminal\obj\Debug\Terminal.pdb

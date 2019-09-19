@@ -29,6 +29,7 @@ namespace Terminal.Service
         private string _ticketName;
         private string _countPeople;
         private DateTime _dateAdded;
+        private string _descriptionQueue;
 
         private readonly PrintServer _printServer;
         private readonly PrintQueue _printQueue;
@@ -43,8 +44,8 @@ namespace Terminal.Service
         {
             var printersNames = PrinterSettings.InstalledPrinters;
 
-           if(printersNames == null || printersNames.Count == 0)
-               throw new Exception("ПРИНТЕРЫ НЕ НАЙДЕННЫ В СИСТЕМЕ");
+            if (printersNames == null || printersNames.Count == 0)
+                throw new Exception("ПРИНТЕРЫ НЕ НАЙДЕННЫ В СИСТЕМЕ");
 
             bool isFind = false;
             for (int i = 0; i < printersNames.Count; i++)
@@ -55,16 +56,16 @@ namespace Terminal.Service
                     break;
                 }
             }
-            if(!isFind)
+            if (!isFind)
                 throw new Exception($"ПРИНТЕРА С ИМЕНЕМ {printerName} НЕ НАЙДЕННО В СИСТЕМЕ");
 
-            PrinterSettings ps = new PrinterSettings {PrinterName = printerName};
-            _printDocument = new PrintDocument {PrinterSettings = ps};
+            PrinterSettings ps = new PrinterSettings { PrinterName = printerName };
+            _printDocument = new PrintDocument { PrinterSettings = ps };
             _printDocument.PrintPage += Pd_PrintPage;
 
             _printServer = new PrintServer();
             _printQueue = _printServer.GetPrintQueues().FirstOrDefault(printer => printer.FullName == printerName);
-            if(_printQueue == null)
+            if (_printQueue == null)
                 throw new Exception($"ОЧЕРЕДЬ ПЕЧАТИ ДЛЯ ПРИНТЕРА С ИМЕНЕМ {printerName} НЕ НАЙДЕННО В СИСТЕМЕ");
         }
 
@@ -79,36 +80,53 @@ namespace Terminal.Service
 
 
         #region Event
-
+        //$"качеству обслуживания, Вы можете\r\n" - самая широкая строка
         private void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
-            //ПЕЧАТЬ ТЕКСТА
-            string printText = $"            Уважаемые пассажиры!\r\n" +
-                               $"            С помощью терминалов\r\n" +
-                               $"      самообслуживания Вы можете\r\n" +
-                               $"самостоятельно распечать билеты,\r\n" +
-                               $"         ранее оформленные через\r\n" +
-                               $" Интернет, или приобрести билеты\r\n" +
-                               $"  с оплатой по банковской карте,\r\n" +
-                               $"      если до отправления поезда\r\n" +
-                               $"      осталось не менее 15 минут\r\n" +
-                               $"                 (кроме льготных\r\n" +
-                               $"          категорий пассажиров).\r\n" +
-                               $"   При возникновении вопросов по\r\n" +
-                               $"качеству обслуживания, Вы можете\r\n" +
-                               $"           обратиться по телефону\r\n" +
-                               $"                 8-913-901-61-67\r\n";
+            //ПЕЧАТЬ Название офиса
+            var printText = "Новосибирск-главный";
+            var printFont = new Font("Times New Roman", 4, FontStyle.Regular, GraphicsUnit.Millimeter);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 20, 2);
 
-
-            Font printFont = new Font("Times New Roman", 4, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 0, 2);
-
-            e.Graphics.DrawLine(new Pen(Color.Black), 5, 275, 245, 275);
-
-            //ПЕЧАТЬ ТЕКСТА
+            //ПЕЧАТЬ Номера билета
             printText = $"{_ticketName}\r\n";
             printFont = new Font("Times New Roman", 19, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 20, 270);//9,150
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 20, 15);//9,150
+
+            //ПЕЧАТЬ Название операции
+            printText = $"_____________________";
+            printFont = new Font("Times New Roman", 4, FontStyle.Regular, GraphicsUnit.Millimeter);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 20, 90);
+
+            //ПЕЧАТЬ Памятки1
+            printText = $"При возникновении вопросов по качеству\r\n" +
+                        $"обслуживания или конфликтных ситуаций\r\n" +
+                        $"вы можете обратится в кассу №1\r\n" +
+                        $"\"Администратор\" или по телефону:\r\n";
+            printFont = new Font("Times New Roman", 2, FontStyle.Regular, GraphicsUnit.Millimeter);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 35, 110);
+
+            //ПЕЧАТЬ Телефона
+            printText = "+7 (913) 901-61-67";
+            printFont = new Font("Times New Roman", 3, FontStyle.Regular, GraphicsUnit.Millimeter);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 45, 148);
+
+            //ПЕЧАТЬ QR кода
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Pictures", "QR_Rzd.jpg");
+            if (File.Exists(filePath))
+                e.Graphics.DrawImage(Image.FromFile(filePath), 5, 160);
+
+
+            ////ПЕЧАТЬ памятки
+            //printText = $"            Уважаемые пассажиры!\r\n" +
+            //            $"            С помощью терминалов\r\n" +
+            //            $"      самообслуживания Вы можете\r\n" +
+            //            $"самостоятельно распечать билеты,\r\n";
+            //printFont = new Font("Times New Roman", 19, FontStyle.Regular, GraphicsUnit.Millimeter);
+            //e.Graphics.DrawString(printText, printFont, Brushes.Black, 0, 2);
+
+
+
 
             //printText = $"перед вами {_countPeople} чел.\r\n";
             //printFont = new Font("Times New Roman", 7, FontStyle.Regular, GraphicsUnit.Millimeter);
@@ -130,9 +148,9 @@ namespace Terminal.Service
         //private PrinterStatus _lastStatus;
         public PrinterStatus GetPrinterStatus()
         {
-            PrinterStatus status= PrinterStatus.Ok;
-            var queue= _printQueue.GetPrintJobInfoCollection();
-            var count= queue.Count();
+            PrinterStatus status = PrinterStatus.Ok;
+            var queue = _printQueue.GetPrintJobInfoCollection();
+            var count = queue.Count();
             //MessageBox.Show($"Count={count}   NumberOfJobs={_printQueue.NumberOfJobs}   QueueStatus= { _printQueue.QueueStatus}");//DEBUG
             if (count > 0)
             {
@@ -158,11 +176,12 @@ namespace Terminal.Service
 
 
 
-        public void Print(string ticketName, string countPeople, DateTime dateAdded)
+        public void Print(string ticketName, string countPeople, DateTime dateAdded, string descriptionQueue)
         {
             _ticketName = ticketName;
             _countPeople = countPeople;
             _dateAdded = dateAdded;
+            _descriptionQueue = descriptionQueue;
 
             _printDocument.Print();
         }

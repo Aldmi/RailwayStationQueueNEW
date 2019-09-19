@@ -250,7 +250,7 @@ namespace TerminalUIWpf.ViewModels
                 return;
 
             const string descriptionQueue = "Оформление билетов на отправляющиеся поезда менее 30 минут до отправления";
-            const string prefixQueue = "О";
+            const string prefixQueue = "У";
             const string nameQueue = "Main";
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
@@ -297,6 +297,9 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnAdmin()
         {
+            if (!_model.IsConnectTcpIp)
+                return;
+
             if (!CheckPrinterStatus())
                 return;
 
