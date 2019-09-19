@@ -13,12 +13,12 @@
 
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="68" />
+            <Setter Property="FontSize" Value="28" />
             <Setter Property="Background" Value="{Binding Path=ColorBtn, Mode=OneWay}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="1,12,1,12" />
-            <Setter Property="Padding" Value="14" />
+            <Setter Property="Margin" Value="1,7,1,7" />
+            <Setter Property="Padding" Value="8" />
             <Setter Property="IsEnabled" Value="{Binding Path=BtnEnable, Mode=OneWay}" />
             <Setter Property="VerticalAlignment" Value="Stretch" />
             <Setter Property="MaxWidth" Value="1200" />
@@ -45,6 +45,13 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+
+        <Style x:Key="TextBlockInButtonStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+        </Style>
+
     </Window.Resources>
 
 
@@ -57,21 +64,32 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid
             Grid.Row="0"
-            Margin="0,0,0,25"
+            Margin="0,0,0,15"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Background="Crimson">
 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
             <TextBlock
+                Grid.Column="0"
                 MaxWidth="1000"
-                Padding="5,35,5,35"
-                HorizontalAlignment="Stretch"
+                Padding="5,30,5,30"
+                Margin="100,0,0,0"
+                HorizontalAlignment="Left"
                 VerticalAlignment="Stretch"
-                FontSize="60"
+                FontSize="42"
                 Foreground="White"
                 IsEnabled="{Binding Path=IsConnect, Mode=OneWay}"
                 Style="{StaticResource TextBlockMainStyle}"
@@ -80,65 +98,146 @@
                 TextWrapping="Wrap" />
 
             <TextBlock
+                Grid.Column="0"
                 MaxWidth="1000"
-                Padding="5,35,5,35"
+                Padding="5,30,5,30"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                FontSize="60"
+                FontSize="42"
                 Foreground="White"
                 IsEnabled="{Binding Path=IsConnect, Mode=OneWay}"
                 Style="{StaticResource TextBlockErrorStyle}"
                 Text="ОТСУТСТВУЕТ СВЯЗЬ."
                 TextAlignment="Center"
                 TextWrapping="WrapWithOverflow" />
+
+            <TextBlock
+                Grid.Column="1"
+                Text="{Binding Path=DateTimeNowStr, Mode=OneWay}"
+                FontSize="30"
+                TextAlignment="Center"
+                Foreground="White"
+                Padding="5,30,5,30"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"/>
+
+            <Image
+                Grid.Column="2"
+                Width="150"
+                Height="120"
+                Margin="40,0,50,0"        
+                Source="/Pictures/Rzd_logo.jpg" />
         </Grid>
 
 
         <Button
             Name="BtnBuyTicket"
             Grid.Row="1"
-            Content="Билеты / Багаж / Животные"
-            Style="{StaticResource ButtonStyle}" />
-
-        <Button
-            Name="BtnGetHelp"
-            Grid.Row="2"
-            Content="Получить справку"
-            Style="{StaticResource ButtonStyle}" />
-
-        <Button
-            Name="BtnAdmin"
-            Grid.Row="3"
             Style="{StaticResource ButtonStyle}">
-
             <StackPanel>
                 <TextBlock
-                    Text="Администратор /"
-                    TextAlignment="Center"
-                    TextWrapping="WrapWithOverflow" />
+                    Text="Оформление, возврат, переоформление, прерывание"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
                 <TextBlock
-                    Text="Восстановление утерянных (испорченных) билетов"
-                    TextAlignment="Center"
-                    TextWrapping="WrapWithOverflow" />
+                    Text="поездки, опоздание на поезд дальнего следования -"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
+                <TextBlock
+                    Text="внутреннее и межгосударственное сообщения"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
             </StackPanel>
         </Button>
 
+        <Button
+            Name="BtnBuyInterstateTicket"
+            Grid.Row="2"
+            Style="{StaticResource ButtonStyle}">
+            <StackPanel>
+                <TextBlock
+                    Text="Оформление, возврат, переоформление, прерывание"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
+                <TextBlock
+                    Text="поездки, опоздание на поезд дальнего следования -"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
+                <TextBlock
+                    Text="международное сообщение (дальнее зарубежье)"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
+            </StackPanel>
+        </Button>
 
+        <Button
+            Name="BaggageAndPets"
+            Grid.Row="3"
+            Style="{StaticResource ButtonStyle}"
+            Content="Оформление багажа и живности"/>
 
-        <TextBlock
+        <Button
+            Name="BtnGroupsTicket"
+            Grid.Row="4"
+            Style="{StaticResource ButtonStyle}"
+            Content="Оформление групповых перевозок"/>
+
+        <Button
+            Name="BtnBuyAcceleratedTicket"
             Grid.Row="5"
-            MaxWidth="1200"
-            Margin="5,25,5,5"
-            Padding="5,5,5,5"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Background="Cornsilk"
-            FontSize="34"
-            Foreground="Black"
-            IsEnabled="{Binding Path=IsConnect, Mode=OneWay}"
-            Text="Уважаемые пассажиры! С помощью терминалов самообслуживания Вы можете самостоятельно распечатать билеты, ранее оформленные через Интернет, или приобрести билеты с оплатой по банковской карте, если до отправления поезда осталось не менее 30 минут (кроме льготных категорий пассажиров)."
-            TextAlignment="Center"
-            TextWrapping="Wrap" />
+            Style="{StaticResource ButtonStyle}">
+            <StackPanel>
+                <TextBlock
+                    Text="Оформление билетов на отправляющиеся поезда менее"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
+                <TextBlock
+                    Text="30 минут до отправления"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
+            </StackPanel>
+        </Button>
+
+        <Button
+            Name="BtnLowMobilityTicket"
+            Grid.Row="6"
+            Padding="1"
+            HorizontalContentAlignment="Left"
+            Style="{StaticResource ButtonStyle}">
+            <StackPanel Orientation="Horizontal">
+                <Image
+                    Width="60"
+                    Height="60"
+                    Margin="40,0,105,0"        
+                    Source="/Pictures/invalid.jpg" />
+                <StackPanel>
+                    <TextBlock
+                        Text="Обслуживание маломобильных пассажиров и льготной"
+                        Style="{StaticResource TextBlockInButtonStyle}"/>
+                    <TextBlock
+                        Text="категории граждан"
+                        Style="{StaticResource TextBlockInButtonStyle}"/>
+                </StackPanel>
+            </StackPanel>
+        </Button>
+
+        <Button
+            Name="BtnGetHelp"
+            Grid.Row="7"
+            Style="{StaticResource ButtonStyle}"
+            Content="Получить справку"/>
+
+        <Button
+            Name="BtnAdmin"
+            Grid.Row="8"
+            Style="{StaticResource ButtonStyle}">
+            <StackPanel>
+                <TextBlock
+                    Text="Администратор:"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
+                <TextBlock
+                    Text="идентификация 14-значного номера электронного билета,"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
+                <TextBlock
+                    Text="восстановление утраченных и испорченных билетов,"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
+                <TextBlock
+                    Text="вопросы по работе билетных касс"
+                    Style="{StaticResource TextBlockInButtonStyle}"/>
+            </StackPanel>
+        </Button>
 
     </Grid>
 </Window>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Media;
 using Caliburn.Micro;
@@ -22,6 +23,8 @@ namespace TerminalUIWpf.ViewModels
         private readonly Task _mainTask;
 
         private readonly Log _logger = new Log("Terminal.CommandAddItem");//DEBUG
+
+        private readonly Timer _timerDateTime;
 
         #endregion
 
@@ -46,6 +49,15 @@ namespace TerminalUIWpf.ViewModels
                 _model.MasterTcpIp.PropertyChanged += _model_MasterTcpIp_PropertyChanged;
                 _mainTask = _model.Start();
             }
+
+            //обновелние времени раз в 10сек
+            DateTimeNowStr = DateTime.Now.ToString("f");
+            _timerDateTime = new Timer(10000) {AutoReset = true};
+            _timerDateTime.Start();
+            _timerDateTime.Elapsed += (sender, args) =>
+            {
+                DateTimeNowStr = DateTime.Now.ToString("f"); 
+            };
         }
 
         #endregion
@@ -58,7 +70,7 @@ namespace TerminalUIWpf.ViewModels
         private SolidColorBrush _colorBtn = Brushes.SlateGray;
         public SolidColorBrush ColorBtn
         {
-            get { return _colorBtn; }
+            get => _colorBtn;
             set
             {
                 _colorBtn = value;
@@ -70,7 +82,7 @@ namespace TerminalUIWpf.ViewModels
         private bool _btnEnable = true;
         public bool BtnEnable
         {
-            get { return _btnEnable; }
+            get => _btnEnable;
             set
             {
                 _btnEnable = value;
@@ -82,11 +94,23 @@ namespace TerminalUIWpf.ViewModels
         private bool _isConnect = true;
         public bool IsConnect
         {
-            get { return _isConnect; }
+            get => _isConnect;
             set
             {
                 _isConnect = value;
                 NotifyOfPropertyChange(() => IsConnect);
+            }
+        }
+
+
+        private string _dateTimeNowStr = "";
+        public string DateTimeNowStr
+        {
+            get => _dateTimeNowStr;
+            set
+            {
+                _dateTimeNowStr = value;
+                NotifyOfPropertyChange(() => DateTimeNowStr);
             }
         }
 
@@ -145,26 +169,121 @@ namespace TerminalUIWpf.ViewModels
         /// <summary>
         /// Открыть окно покупки билетов
         /// </summary>
-        public void BtnBuyTicket()
+        public async Task BtnBuyTicket()
         {
             if(!_model.IsConnectTcpIp)
                 return;
 
-            var dialog = new BuyTicketViewModel(_model, _windowManager);
-            _windowManager.ShowDialog(dialog);
+            if (!CheckPrinterStatus())
+                return;
+
+            const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - внутреннее и межгосударственное сообщения";
+            const string prefixQueue = "К";
+            const string nameQueue = "Main";
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
+
+
+        /// <summary>
+        /// Купить билет в международном сообщении
+        /// </summary>
+        public async Task BtnBuyInterstateTicket()
+        {
+            if (!_model.IsConnectTcpIp)
+                return;
+
+            if (!CheckPrinterStatus())
+                return;
+
+            const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - международное сообщение (дальнее зарубежье)";
+            const string prefixQueue = "М";
+            const string nameQueue = "Main";
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+        }
+
+
+        /// <summary>
+        /// Оформление багажа и животных
+        /// </summary>
+        public async Task BaggageAndPets()
+        {
+            if (!_model.IsConnectTcpIp)
+                return;
+
+            if (!CheckPrinterStatus())
+                return;
+
+            const string descriptionQueue = "Оформление багажа и живности";
+            const string prefixQueue = "Б";
+            const string nameQueue = "Main";
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+        }
+
+
+        /// <summary>
+        /// Оформление групп пассажиров
+        /// </summary>
+        public async Task BtnGroupsTicket()
+        {
+            if (!_model.IsConnectTcpIp)
+                return;
+
+            if (!CheckPrinterStatus())
+                return;
+
+            const string descriptionQueue = "Оформление групповых перевозок";
+            const string prefixQueue = "Г";
+            const string nameQueue = "Main";
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+        }
+
+
+        /// <summary>
+        /// Оформление билетов на отправляющиеся поезда менее 30 минут до отправления
+        /// </summary>
+        public async Task BtnBuyAcceleratedTicket()
+        {
+            if (!_model.IsConnectTcpIp)
+                return;
+
+            if (!CheckPrinterStatus())
+                return;
+
+            const string descriptionQueue = "Оформление билетов на отправляющиеся поезда менее 30 минут до отправления";
+            const string prefixQueue = "О";
+            const string nameQueue = "Main";
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+        }
+
+
+        /// <summary>
+        /// Оформление маломобильных пассажиров
+        /// </summary>
+        public async Task BtnLowMobilityTicket()
+        {
+            if (!_model.IsConnectTcpIp)
+                return;
+
+            if (!CheckPrinterStatus())
+                return;
+
+            const string descriptionQueue = "Обслуживание маломобильных пассажиров и льготной категории граждан";
+            const string prefixQueue = "И";
+            const string nameQueue = "Main";
+            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+        }
+
 
         /// <summary>
         /// Получить справку
         /// </summary>
         public async Task BtnGetHelp()
         {
-            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
-            if (!сheckPrinterStatusVm.CheckPrinterStatus())
-            {
-                _windowManager.ShowDialog(сheckPrinterStatusVm);
+            if (!_model.IsConnectTcpIp)
                 return;
-            }
+
+            if (!CheckPrinterStatus())
+                return;
 
             const string descriptionQueue = "Получить справку";
             const string prefixQueue = "С";
@@ -178,17 +297,26 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnAdmin()
         {
-            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
-            if (!сheckPrinterStatusVm.CheckPrinterStatus())
-            {
-                _windowManager.ShowDialog(сheckPrinterStatusVm);
+            if (!CheckPrinterStatus())
                 return;
-            }
 
-            const string descriptionQueue = "Администратор / Восстановление утерянных (испорченных) билетов";
+            const string descriptionQueue = "Администратор: идентификация 14-значного номера электронного билета, восстановление утраченных и испорченных билетов, вопросы по работе билетных касс";
             const string prefixQueue = "А";
             const string nameQueue = "Admin";
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+        }
+
+
+
+
+        private bool CheckPrinterStatus()
+        {
+            var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
+            if (сheckPrinterStatusVm.CheckPrinterStatus())
+                return true;
+
+            _windowManager.ShowDialog(сheckPrinterStatusVm);
+            return false;
         }
 
 

@@ -154,7 +154,7 @@ namespace ServerUi.ViewModels
 
         #region prop
 
-        public string ProgrammVersion => "Ver 1.1 [15.07.2019]";
+        public string ProgrammVersion => "Ver 1.1 [15.07.2019]  [e619f82]";
 
 
         private QueuePriority GetQueueMain => _model.QueuePriorities.FirstOrDefault(q => q.Name == "Main");

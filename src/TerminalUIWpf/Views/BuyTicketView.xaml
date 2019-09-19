@@ -124,7 +124,7 @@
             HorizontalContentAlignment="Left"
             Style="{StaticResource ButtonStyle}">
 
-            <StackPanel Orientation="Horizontal"    >
+            <StackPanel Orientation="Horizontal">
                 <Image
                     Width="95"
                     Height="95"
