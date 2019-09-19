@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HelperString.cs" />
     <Compile Include="Infrastructure\Terminal2ServerExchangeDataProvider.cs" />
     <Compile Include="Model\TerminalModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

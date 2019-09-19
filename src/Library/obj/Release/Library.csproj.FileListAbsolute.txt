@@ -39,12 +39,3 @@ C:\Git\RailwayStationQueueNEW\src\Library\bin\Release\NLog.xml
 C:\Git\RailwayStationQueueNEW\src\Library\obj\Release\Library.csprojResolveAssemblyReference.cache
 C:\Git\RailwayStationQueueNEW\src\Library\obj\Release\Library.dll
 C:\Git\RailwayStationQueueNEW\src\Library\obj\Release\Library.pdb
-F:\Git\RailwayStationQueue\src\src\Library\bin\Release\NLog.config
-F:\Git\RailwayStationQueue\src\src\Library\bin\Release\Library.dll
-F:\Git\RailwayStationQueue\src\src\Library\bin\Release\Library.pdb
-F:\Git\RailwayStationQueue\src\src\Library\bin\Release\NLog.dll
-F:\Git\RailwayStationQueue\src\src\Library\bin\Release\NLog.xml
-F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.csproj.CoreCompileInputs.cache
-F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.csproj.CopyComplete
-F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.dll
-F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.pdb

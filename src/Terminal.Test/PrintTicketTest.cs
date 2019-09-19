@@ -18,7 +18,10 @@ namespace Terminal.Test
             var ticketName = "Б019";
             var countPeople = "0";
             var dateAdded = DateTime.Parse("19.09.2019 15:39:52");
-            var descriptionQueue = "Оформление багажа и живности";
+            //var descriptionQueue = "Оформление багажа и живности";
+            var descriptionQueue = "Администратор: идентификация 14-значного номера электронного билета, восстановление утраченных и испорченных билетов, вопросы по работе билетных касс";
+            //var descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - внутреннее и межгосударственное сообщения"; ;
+          
 
             //Act
             printTicket.Print(ticketName, countPeople, dateAdded, descriptionQueue);
