@@ -57,3 +57,17 @@ C:\Users\User\Desktop\Эл.очередь\src\Communication\bin\Debug\NModbus4.x
 C:\Users\User\Desktop\Эл.очередь\src\Communication\obj\Debug\Communication.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\Эл.очередь\src\Communication\obj\Debug\Communication.dll
 C:\Users\User\Desktop\Эл.очередь\src\Communication\obj\Debug\Communication.pdb
+F:\Git\RailwayStationQueue\src\src\Communication\bin\Debug\NLog.config
+F:\Git\RailwayStationQueue\src\src\Communication\bin\Debug\Communication.dll
+F:\Git\RailwayStationQueue\src\src\Communication\bin\Debug\Communication.pdb
+F:\Git\RailwayStationQueue\src\src\Communication\bin\Debug\Library.dll
+F:\Git\RailwayStationQueue\src\src\Communication\bin\Debug\NModbus4.dll
+F:\Git\RailwayStationQueue\src\src\Communication\bin\Debug\NLog.dll
+F:\Git\RailwayStationQueue\src\src\Communication\bin\Debug\Library.pdb
+F:\Git\RailwayStationQueue\src\src\Communication\bin\Debug\NModbus4.xml
+F:\Git\RailwayStationQueue\src\src\Communication\bin\Debug\NLog.xml
+F:\Git\RailwayStationQueue\src\src\Communication\obj\Debug\Communication.csprojAssemblyReference.cache
+F:\Git\RailwayStationQueue\src\src\Communication\obj\Debug\Communication.csproj.CoreCompileInputs.cache
+F:\Git\RailwayStationQueue\src\src\Communication\obj\Debug\Communication.csproj.CopyComplete
+F:\Git\RailwayStationQueue\src\src\Communication\obj\Debug\Communication.dll
+F:\Git\RailwayStationQueue\src\src\Communication\obj\Debug\Communication.pdb

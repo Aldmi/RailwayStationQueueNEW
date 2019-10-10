@@ -86,38 +86,38 @@ namespace Terminal.Service
         private void Pd_PrintPage(object sender, PrintPageEventArgs e)
         {
             //ПЕЧАТЬ Название офиса
-            var printText = "Новосибирск-главный";
+            var printText = "Новосибирск-Главный";
             var printFont = new Font("Times New Roman", 4, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 30, 2);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 33, 2);
 
             //ПЕЧАТЬ Номера билета
             printText = $"{_ticketName}\r\n";
-            printFont = new Font("Times New Roman", 19, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 20, 20);
+            printFont = new Font("Times New Roman", 18, FontStyle.Regular, GraphicsUnit.Millimeter);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 23, 10);
 
             //ПЕЧАТЬ Название операции
-            var listStrings= _descriptionQueue.SubstringWithWholeWords(38).ToList();
+            var listStrings= _descriptionQueue.SubstringWithWholeWords(42).ToList();
             printText = listStrings.Aggregate((s, s1) => s+ "\r\n" +s1);
-            printFont = new Font("Times New Roman", 3, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 10, 100);
+            printFont = new Font("Times New Roman", 3, FontStyle.Bold, GraphicsUnit.Millimeter);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 8, 81);
 
             //ПЕЧАТЬ Памятки1
             printText = $"При возникновении вопросов по качеству\r\n" +
                         $"обслуживания или конфликтных ситуаций\r\n" +
-                        $"       вы можете обратится в кассу №1\r\n" +
+                        $"      вы можете обратится в кассу №10\r\n" +
                         $"   \"Администратор\" или по телефону:\r\n";
-            printFont = new Font("Times New Roman", 2, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 45, 170);
+            printFont = new Font("Times New Roman", (float)2.6, FontStyle.Regular, GraphicsUnit.Millimeter);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 20, 140);
 
             //ПЕЧАТЬ Телефона
             printText = "+7 (913) 901-61-67";
-            printFont = new Font("Times New Roman", 4, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 50, 208);
+            printFont = new Font("Times New Roman", (float)3.5, FontStyle.Regular, GraphicsUnit.Millimeter);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 45, 186);
 
             //ПЕЧАТЬ QR кода
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Pictures", "QR_Rzd.jpg");
             if (File.Exists(filePath))
-                e.Graphics.DrawImage(Image.FromFile(filePath), 7, 230);
+                e.Graphics.DrawImage(Image.FromFile(filePath), 7, 205);
 
             //ПЕЧАТЬ памятки 2
             printText = $" Купить билет самостоятельно,\r\n" +
@@ -127,8 +127,10 @@ namespace Terminal.Service
                         $"  pass.rzd.ru или в мобильном\r\n" +
                         $"приложении \"РЖД Пассажирам\"\r\n" +
                         $" для платформ Android и iOS\"\r\n";
-            printFont = new Font("Times New Roman", 2, FontStyle.Regular, GraphicsUnit.Millimeter);
-            e.Graphics.DrawString(printText, printFont, Brushes.Black, 112, 252);
+
+            printFont = new Font("Times New Roman", (float)2.4, FontStyle.Regular, GraphicsUnit.Millimeter);
+            //e.Graphics.DrawString(printText, printFont, Brushes.Black, 112, 252);
+            e.Graphics.DrawString(printText, printFont, Brushes.Black, 130, 232);
 
 
             //printText = $"перед вами {_countPeople} чел.\r\n";
