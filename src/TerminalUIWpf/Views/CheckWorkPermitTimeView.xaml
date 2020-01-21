@@ -30,11 +30,11 @@
             FontSize="40" />
 
         <TextBlock
+            x:Name="Text"
             Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            FontSize="40"
-            Text="Обратитесь пожалуйста к Администратору" />
+            FontSize="40"/>
 
         <Button
             x:Name="BtnExit"

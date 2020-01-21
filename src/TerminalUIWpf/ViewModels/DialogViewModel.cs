@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Timers;
 using Caliburn.Micro;
+using TerminalUIWpf.BaseViewModels;
 using Timer = System.Timers.Timer;
 
 namespace TerminalUIWpf.ViewModels
@@ -11,83 +12,29 @@ namespace TerminalUIWpf.ViewModels
         Ok, Cancel, Undefined
     }
 
-    public class DialogViewModel : Screen
+    public class DialogViewModel : AutoClouseByTimerBaseVewModel
     {
         #region field
-
         private readonly IWindowManager _windowManager;
-        private const double TimerPeriod = 8000; // Таймер закрытия окна
-        private readonly Timer _timer;
-
         #endregion
-
-
-
-
-        #region ctor
-
-        public DialogViewModel(IWindowManager windowManager)
-        {
-            _windowManager = windowManager;
-            _timer = new Timer(TimerPeriod);
-            _timer.Elapsed += _timer_AutoCloseWindow;
-        }
-
-        #endregion
-
-
-
-
-
-        #region EventHandler
-
-        protected override void OnInitialize()
-        {
-            StartTimer();
-            base.OnInitialize();
-        }
-
-        protected override void OnDeactivate(bool close)
-        {
-            _timer.Stop();
-            _timer.Close();
-        }
-
-        private void StartTimer()
-        {
-            _timer.Enabled = true;
-            _timer.Start();
-        }
-
-
-
-        private void _timer_AutoCloseWindow(object sender, ElapsedEventArgs e)
-        {
-            Act = Act.Cancel;
-            TryClose();
-        }
-
-        #endregion
-
-
-
 
 
         #region prop
-
         public string TicketName { get; set; }
         public string CountPeople { get; set; }
         public string Description { get; set; }
-
-        public Act Act { get; set; }
-
         #endregion
 
 
+        #region ctor
+        public DialogViewModel(IWindowManager windowManager) : base(8000)
+        {
+            _windowManager = windowManager;
+        }
+        #endregion
 
 
         #region Methode
-
         public void BtnOk()
         {
             var dialog = new PrintMessageViewModel();
@@ -102,7 +49,6 @@ namespace TerminalUIWpf.ViewModels
             Act = Act.Cancel;
             TryClose();
         }
-
         #endregion
     }
 }

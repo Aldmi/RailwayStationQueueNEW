@@ -331,7 +331,7 @@ namespace TerminalUIWpf.ViewModels
             if (now < startTime && now > stopTime)
                 return true;
 
-            var checkWorkPermitTimeVm= new CheckWorkPermitTimeViewModel();
+            var checkWorkPermitTimeVm= new CheckWorkPermitTimeViewModel($"Начало {startTime:hh\\:mm}   Конец {stopTime:hh\\:mm}");
             _windowManager.ShowDialog(checkWorkPermitTimeVm);
             return false;
         }
