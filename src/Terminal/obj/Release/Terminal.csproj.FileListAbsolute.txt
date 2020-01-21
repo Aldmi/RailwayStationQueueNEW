@@ -64,3 +64,16 @@ C:\Git\RailwayStationQueueNEW\src\Terminal\bin\Release\NLog.xml
 C:\Git\RailwayStationQueueNEW\src\Terminal\obj\Release\Terminal.csprojResolveAssemblyReference.cache
 C:\Git\RailwayStationQueueNEW\src\Terminal\obj\Release\Terminal.dll
 C:\Git\RailwayStationQueueNEW\src\Terminal\obj\Release\Terminal.pdb
+F:\Git\RailwayStationQueue\src\src\Terminal\bin\Release\NLog.config
+F:\Git\RailwayStationQueue\src\src\Terminal\bin\Release\Terminal.dll
+F:\Git\RailwayStationQueue\src\src\Terminal\bin\Release\Terminal.pdb
+F:\Git\RailwayStationQueue\src\src\Terminal\bin\Release\Communication.dll
+F:\Git\RailwayStationQueue\src\src\Terminal\bin\Release\Library.dll
+F:\Git\RailwayStationQueue\src\src\Terminal\bin\Release\NLog.dll
+F:\Git\RailwayStationQueue\src\src\Terminal\bin\Release\Communication.pdb
+F:\Git\RailwayStationQueue\src\src\Terminal\bin\Release\Library.pdb
+F:\Git\RailwayStationQueue\src\src\Terminal\bin\Release\NLog.xml
+F:\Git\RailwayStationQueue\src\src\Terminal\obj\Release\Terminal.csprojAssemblyReference.cache
+F:\Git\RailwayStationQueue\src\src\Terminal\obj\Release\Terminal.csproj.CopyComplete
+F:\Git\RailwayStationQueue\src\src\Terminal\obj\Release\Terminal.dll
+F:\Git\RailwayStationQueue\src\src\Terminal\obj\Release\Terminal.pdb

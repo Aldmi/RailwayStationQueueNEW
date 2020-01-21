@@ -85,9 +85,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BaseViewModels\AutoClouseByTimerBaseVewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\BuyTicketViewModel.cs" />
     <Compile Include="ViewModels\CheckPrinterStatusViewModel.cs" />
+    <Compile Include="ViewModels\CheckWorkPermitTimeViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
     <Compile Include="ViewModels\PrintMessageViewModel.cs" />
     <Compile Include="Views\AppView.xaml.cs">
@@ -95,6 +97,9 @@
     </Compile>
     <Compile Include="Views\BuyTicketView.xaml.cs">
       <DependentUpon>BuyTicketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CheckWorkPermitTimeView.xaml.cs">
+      <DependentUpon>CheckWorkPermitTimeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CheckPrinterStatusView.xaml.cs">
       <DependentUpon>CheckPrinterStatusView.xaml</DependentUpon>
@@ -148,6 +153,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\CheckWorkPermitTimeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\CheckPrinterStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -181,6 +190,7 @@
   <ItemGroup>
     <Resource Include="Pictures\QR_Rzd.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

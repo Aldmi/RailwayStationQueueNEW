@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Data;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -35,8 +36,6 @@ namespace TerminalUIWpf.ViewModels
 
         public AppViewModel(IWindowManager windowManager)
         {
-            _logger.Error("deswdfsds");//DEBUG
-
             _windowManager = windowManager;
 
             _model = new TerminalModel();
@@ -231,6 +230,9 @@ namespace TerminalUIWpf.ViewModels
             if (!CheckPrinterStatus())
                 return;
 
+            if (!CheckWorkPermitTime(new TimeSpan(18, 0, 0), new TimeSpan(06, 0, 0)))
+                return;
+
             const string descriptionQueue = "Оформление групповых перевозок";
             const string prefixQueue = "Г";
             const string nameQueue = "Main";
@@ -319,6 +321,18 @@ namespace TerminalUIWpf.ViewModels
                 return true;
 
             _windowManager.ShowDialog(сheckPrinterStatusVm);
+            return false;
+        }
+
+
+        private bool CheckWorkPermitTime(TimeSpan startTime, TimeSpan stopTime)
+        {
+            var now = DateTime.Now.TimeOfDay;
+            if (now < startTime && now > stopTime)
+                return true;
+
+            var checkWorkPermitTimeVm= new CheckWorkPermitTimeViewModel();
+            _windowManager.ShowDialog(checkWorkPermitTimeVm);
             return false;
         }
 
