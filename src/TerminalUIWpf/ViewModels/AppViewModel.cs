@@ -194,6 +194,9 @@ namespace TerminalUIWpf.ViewModels
             if (!CheckPrinterStatus())
                 return;
 
+            if (!CheckWorkPermitTime(new TimeSpan(13, 0, 0), new TimeSpan(14, 0, 0)))
+                return;
+
             const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - международное сообщение (дальнее зарубежье)";
             const string prefixQueue = "М";
             const string nameQueue = "Main";
@@ -230,7 +233,7 @@ namespace TerminalUIWpf.ViewModels
             if (!CheckPrinterStatus())
                 return;
 
-            if (!CheckWorkPermitTime(new TimeSpan(18, 0, 0), new TimeSpan(06, 0, 0)))
+            if (!CheckWorkPermitTime(new TimeSpan(12, 15, 0), new TimeSpan(13, 15, 0)))
                 return;
 
             const string descriptionQueue = "Оформление групповых перевозок";
@@ -328,10 +331,10 @@ namespace TerminalUIWpf.ViewModels
         private bool CheckWorkPermitTime(TimeSpan startTime, TimeSpan stopTime)
         {
             var now = DateTime.Now.TimeOfDay;
-            if (now < startTime && now > stopTime)
+            if (now <= startTime || now >= stopTime) //вне диапазона
                 return true;
 
-            var checkWorkPermitTimeVm= new CheckWorkPermitTimeViewModel($"Начало {startTime:hh\\:mm}   Конец {stopTime:hh\\:mm}");
+            var checkWorkPermitTimeVm= new CheckWorkPermitTimeViewModel(_model, $"Касса не работает с: {startTime:hh\\:mm}   до: {stopTime:hh\\:mm}");
             _windowManager.ShowDialog(checkWorkPermitTimeVm);
             return false;
         }

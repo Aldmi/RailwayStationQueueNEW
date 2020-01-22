@@ -275,10 +275,12 @@ F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\bin\Release\NLog.xml
 F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\TerminalUI.csprojAssemblyReference.cache
 F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\Views\AppView.baml
 F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\Views\BuyTicketView.baml
+F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\Views\CheckWorkPermitTimeView.baml
 F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\Views\CheckPrinterStatusView.baml
 F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\Views\DialogView.baml
 F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\Views\AppView.g.cs
 F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\Views\BuyTicketView.g.cs
+F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\Views\CheckWorkPermitTimeView.g.cs
 F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\Views\CheckPrinterStatusView.g.cs
 F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\Views\DialogView.g.cs
 F:\Git\RailwayStationQueue\src\src\TerminalUIWpf\obj\Release\Views\PrintMessageView.g.cs

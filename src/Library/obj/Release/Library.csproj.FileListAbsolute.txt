@@ -47,4 +47,3 @@ F:\Git\RailwayStationQueue\src\src\Library\bin\Release\NLog.xml
 F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.csproj.CopyComplete
 F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.dll
 F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.pdb
-F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.csprojAssemblyReference.cache

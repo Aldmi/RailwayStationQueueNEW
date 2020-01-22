@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="900"
-    Height="200"
+    Height="650"
     AllowDrop="False"
     Background="Cornsilk"
     Focusable="False"
@@ -14,36 +14,60 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
+
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="650" />
+            <Setter Property="Height" Value="130" />
+            <Setter Property="Margin" Value="5,15,5,15" />
+            <Setter Property="FontSize" Value="40" />
+        </Style>
+    </Window.Resources>
+
+
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
 
         <TextBlock
-            x:Name="ErrorMessage"
+            x:Name="Text"
             Grid.Row="0"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            FontSize="40" />
+            Foreground="Crimson"
+            FontSize="50"/>
 
         <TextBlock
-            x:Name="Text"
             Grid.Row="1"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            FontSize="40"/>
+            FontSize="35"
+            Margin="0,20,0,0"
+            Text="Вы можете обратиться:" />
+
+        <Button
+            x:Name="BtnBuyTicket"
+            Grid.Row="2"
+            Style="{StaticResource ButtonStyle}"
+            Content="Кассы"/>
+
+        <Button
+            x:Name="BtnAdmin"
+            Grid.Row="3"
+            Style="{StaticResource ButtonStyle}"
+            Content="Администратор"/>
 
         <Button
             x:Name="BtnExit"
-            Grid.Row="2"
-            Width="300"
-            Height="50"
-            Margin="5,15,5,5"
-            Content="Закрыть окно"
-            FontSize="25" />
-
+            Grid.Row="4"
+            Style="{StaticResource ButtonStyle}"
+            Height="100"
+            Content="Закрыть окно"/>
     </Grid>
 </Window>
