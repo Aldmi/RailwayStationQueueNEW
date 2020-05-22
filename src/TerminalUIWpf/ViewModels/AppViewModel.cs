@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Media;
 using Caliburn.Micro;
 using Communication.TcpIp;
+using CSharpFunctionalExtensions;
 using Library.Logs;
 using Terminal.Model;
 using Terminal.Service;
@@ -23,7 +24,7 @@ namespace TerminalUIWpf.ViewModels
         private readonly TerminalModel _model;
         private readonly Task _mainTask;
 
-        private readonly Log _logger = new Log("Terminal.CommandAddItem");//DEBUG
+       // private readonly Log _logger = new Log("Terminal.CommandAddItem");//DEBUG
 
         private readonly Timer _timerDateTime;
 
@@ -178,7 +179,13 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - внутреннее и межгосударственное сообщения";
             const string prefixQueue = "К";
-            const string nameQueue = "Main";
+            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            if (isFailure)
+            {
+                ViewErrorMessage4Staff(error);
+                return;
+            }
+
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
 
@@ -199,7 +206,12 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - международное сообщение (дальнее зарубежье)";
             const string prefixQueue = "М";
-            const string nameQueue = "Main";
+            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            if (isFailure)
+            {
+                ViewErrorMessage4Staff(error);
+                return;
+            }
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
 
@@ -217,7 +229,12 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Оформление багажа и живности";
             const string prefixQueue = "Б";
-            const string nameQueue = "Main";
+            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            if (isFailure)
+            {
+                ViewErrorMessage4Staff(error);
+                return;
+            }
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
 
@@ -238,7 +255,12 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Оформление групповых перевозок";
             const string prefixQueue = "Г";
-            const string nameQueue = "Main";
+            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            if (isFailure)
+            {
+                ViewErrorMessage4Staff(error);
+                return;
+            }
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
 
@@ -256,7 +278,12 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Оформление билетов на отправляющиеся поезда менее 30 минут до отправления";
             const string prefixQueue = "У";
-            const string nameQueue = "Main";
+            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            if (isFailure)
+            {
+                ViewErrorMessage4Staff(error);
+                return;
+            }
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
 
@@ -274,7 +301,12 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Обслуживание маломобильных пассажиров и льготной категории граждан";
             const string prefixQueue = "И";
-            const string nameQueue = "Main";
+            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            if (isFailure)
+            {
+                ViewErrorMessage4Staff(error);
+                return;
+            }
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
 
@@ -292,7 +324,12 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Получить справку";
             const string prefixQueue = "С";
-            const string nameQueue = "Main";
+            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            if (isFailure)
+            {
+                ViewErrorMessage4Staff(error);
+                return;
+            }
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
 
@@ -310,7 +347,12 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Администратор: идентификация 14-значного номера электронного билета, восстановление утраченных и испорченных билетов, вопросы по работе билетных касс";
             const string prefixQueue = "А";
-            const string nameQueue = "Admin";
+            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            if (isFailure)
+            {
+                ViewErrorMessage4Staff(error);
+                return;
+            }
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
         }
 
@@ -340,8 +382,17 @@ namespace TerminalUIWpf.ViewModels
         }
 
 
+        private void ViewErrorMessage4Staff(string error)
+        {
+            MessageBox.Show(error, "ОШИБКА НАСТРОЙКИ ТЕРМИНАЛА", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+        }
+
+
         protected override void OnDeactivate(bool close)
         {
+            _timerDateTime.Stop();
+            _timerDateTime.Close();
+            _timerDateTime.Dispose();
             _model.Dispose();
             base.OnDeactivate(close);
         }

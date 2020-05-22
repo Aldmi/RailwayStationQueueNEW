@@ -5,15 +5,6 @@ D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Communication\obj\Rele
 D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Communication\obj\Release\Communication.csprojResolveAssemblyReference.cache
 D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Communication\bin\Release\NModbus4.dll
 D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Communication\bin\Release\NModbus4.xml
-D:\Git\RailwayStationQueue\src\Communication\bin\Release\Communication.dll
-D:\Git\RailwayStationQueue\src\Communication\bin\Release\Communication.pdb
-D:\Git\RailwayStationQueue\src\Communication\bin\Release\Library.dll
-D:\Git\RailwayStationQueue\src\Communication\bin\Release\NModbus4.dll
-D:\Git\RailwayStationQueue\src\Communication\bin\Release\Library.pdb
-D:\Git\RailwayStationQueue\src\Communication\bin\Release\NModbus4.xml
-D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.csprojResolveAssemblyReference.cache
-D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.dll
-D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.pdb
 E:\Dropbox\C#\Project C#\src\Communication\bin\Release\Communication.dll
 E:\Dropbox\C#\Project C#\src\Communication\bin\Release\Communication.pdb
 E:\Dropbox\C#\Project C#\src\Communication\bin\Release\Library.dll
@@ -92,3 +83,17 @@ F:\Git\RailwayStationQueue\src\src\Communication\obj\Release\Communication.cspro
 F:\Git\RailwayStationQueue\src\src\Communication\obj\Release\Communication.csproj.CopyComplete
 F:\Git\RailwayStationQueue\src\src\Communication\obj\Release\Communication.dll
 F:\Git\RailwayStationQueue\src\src\Communication\obj\Release\Communication.pdb
+D:\Git\RailwayStationQueue\src\Communication\bin\Release\NLog.config
+D:\Git\RailwayStationQueue\src\Communication\bin\Release\Communication.dll
+D:\Git\RailwayStationQueue\src\Communication\bin\Release\Communication.pdb
+D:\Git\RailwayStationQueue\src\Communication\bin\Release\Library.dll
+D:\Git\RailwayStationQueue\src\Communication\bin\Release\NModbus4.dll
+D:\Git\RailwayStationQueue\src\Communication\bin\Release\NLog.dll
+D:\Git\RailwayStationQueue\src\Communication\bin\Release\Library.pdb
+D:\Git\RailwayStationQueue\src\Communication\bin\Release\NModbus4.xml
+D:\Git\RailwayStationQueue\src\Communication\bin\Release\NLog.xml
+D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.csprojAssemblyReference.cache
+D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.csproj.CoreCompileInputs.cache
+D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.csproj.CopyComplete
+D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.dll
+D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.pdb

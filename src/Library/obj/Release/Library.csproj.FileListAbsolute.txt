@@ -3,11 +3,6 @@ D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Library\bin\Release\Li
 D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Library\obj\Release\Library.csprojResolveAssemblyReference.cache
 D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Library\obj\Release\Library.dll
 D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Library\obj\Release\Library.pdb
-D:\Git\RailwayStationQueue\src\Library\bin\Release\Library.dll
-D:\Git\RailwayStationQueue\src\Library\bin\Release\Library.pdb
-D:\Git\RailwayStationQueue\src\Library\obj\Release\Library.dll
-D:\Git\RailwayStationQueue\src\Library\obj\Release\Library.pdb
-D:\Git\RailwayStationQueue\src\Library\obj\Release\Library.csprojResolveAssemblyReference.cache
 D:\Git\RailwayStationQueue_Terminal_1btn\src\Library\bin\Release\Library.dll
 D:\Git\RailwayStationQueue_Terminal_1btn\src\Library\bin\Release\Library.pdb
 D:\Git\RailwayStationQueue_Terminal_1btn\src\Library\obj\Release\Library.csprojResolveAssemblyReference.cache
@@ -47,3 +42,13 @@ F:\Git\RailwayStationQueue\src\src\Library\bin\Release\NLog.xml
 F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.csproj.CopyComplete
 F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.dll
 F:\Git\RailwayStationQueue\src\src\Library\obj\Release\Library.pdb
+D:\Git\RailwayStationQueue\src\Library\bin\Release\NLog.config
+D:\Git\RailwayStationQueue\src\Library\bin\Release\Library.dll
+D:\Git\RailwayStationQueue\src\Library\bin\Release\Library.pdb
+D:\Git\RailwayStationQueue\src\Library\bin\Release\NLog.dll
+D:\Git\RailwayStationQueue\src\Library\bin\Release\NLog.xml
+D:\Git\RailwayStationQueue\src\Library\obj\Release\Library.csprojAssemblyReference.cache
+D:\Git\RailwayStationQueue\src\Library\obj\Release\Library.csproj.CoreCompileInputs.cache
+D:\Git\RailwayStationQueue\src\Library\obj\Release\Library.csproj.CopyComplete
+D:\Git\RailwayStationQueue\src\Library\obj\Release\Library.dll
+D:\Git\RailwayStationQueue\src\Library\obj\Release\Library.pdb

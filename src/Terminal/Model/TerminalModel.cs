@@ -23,8 +23,9 @@ namespace Terminal.Model
 
         #region prop
 
-        public MasterTcpIp MasterTcpIp { get; set; }
-        public PrintTicket PrintTicketService { get; set; }
+        public MasterTcpIp MasterTcpIp { get; private set; }
+        public PrintTicket PrintTicketService { get; private set; }
+        public PrefixesMapping2QueueModel PrefixesMapping2QueueModel { get; private set; }
 
         public bool IsConnectTcpIp => (MasterTcpIp != null && MasterTcpIp.IsConnect);
 
@@ -32,7 +33,7 @@ namespace Terminal.Model
         private string _errorString;
         public string ErrorString
         {
-            get { return _errorString; }
+            get => _errorString;
             set
             {
                 if (value == _errorString) return;
@@ -74,6 +75,7 @@ namespace Terminal.Model
         {
             XmlMasterSettings xmlTerminal;
             XmlPrinterSettings xmlPrinter;
+            XmlPrefixesMapping2QueueSetting xmlPrefix;
             try
             {
                 var xmlFile = XmlWorker.LoadXmlFile("Settings", "Setting.xml");
@@ -82,6 +84,7 @@ namespace Terminal.Model
 
                 xmlTerminal = XmlMasterSettings.LoadXmlSetting(xmlFile);
                 xmlPrinter = XmlPrinterSettings.LoadXmlSetting(xmlFile);
+                xmlPrefix = XmlPrefixesMapping2QueueSetting.LoadXmlSetting(xmlFile);
             }
             catch (FileNotFoundException ex)
             {
@@ -99,6 +102,7 @@ namespace Terminal.Model
             {
                 MasterTcpIp = new MasterTcpIp(xmlTerminal);
                 PrintTicketService = new PrintTicket(xmlPrinter); 
+                PrefixesMapping2QueueModel= new PrefixesMapping2QueueModel(xmlPrefix.PrefixMapping);
             }
             catch (Exception ex)
             {

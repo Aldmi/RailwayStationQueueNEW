@@ -13,17 +13,6 @@ D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\obj\Release\Ser
 D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\obj\Release\Server.pdb
 D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\bin\Release\NModbus4.dll
 D:\Dropbox\C#\Project C#\Scada Belovo\RailwayStationQueue\Server\bin\Release\NModbus4.xml
-D:\Git\RailwayStationQueue\src\Server\bin\Release\Server.dll
-D:\Git\RailwayStationQueue\src\Server\bin\Release\Server.pdb
-D:\Git\RailwayStationQueue\src\Server\bin\Release\Communication.dll
-D:\Git\RailwayStationQueue\src\Server\bin\Release\Library.dll
-D:\Git\RailwayStationQueue\src\Server\bin\Release\Terminal.dll
-D:\Git\RailwayStationQueue\src\Server\bin\Release\Communication.pdb
-D:\Git\RailwayStationQueue\src\Server\bin\Release\Library.pdb
-D:\Git\RailwayStationQueue\src\Server\bin\Release\Terminal.pdb
-D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.csprojResolveAssemblyReference.cache
-D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.dll
-D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.pdb
 E:\Dropbox\C#\Project C#\src\Server\bin\Release\Server.dll
 E:\Dropbox\C#\Project C#\src\Server\bin\Release\Server.pdb
 E:\Dropbox\C#\Project C#\src\Server\bin\Release\Communication.dll
@@ -131,3 +120,26 @@ F:\Git\RailwayStationQueue\src\src\Server\obj\Release\Server.csprojAssemblyRefer
 F:\Git\RailwayStationQueue\src\src\Server\obj\Release\Server.csproj.CopyComplete
 F:\Git\RailwayStationQueue\src\src\Server\obj\Release\Server.dll
 F:\Git\RailwayStationQueue\src\src\Server\obj\Release\Server.pdb
+D:\Git\RailwayStationQueue\src\Server\bin\Release\NLog.config
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Server.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Server.pdb
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Communication.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Library.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Sound.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Terminal.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\NLog.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\NAudio.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\CSharpFunctionalExtensions.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Communication.pdb
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Library.pdb
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Sound.pdb
+D:\Git\RailwayStationQueue\src\Server\bin\Release\Terminal.pdb
+D:\Git\RailwayStationQueue\src\Server\bin\Release\NLog.xml
+D:\Git\RailwayStationQueue\src\Server\bin\Release\NAudio.xml
+D:\Git\RailwayStationQueue\src\Server\bin\Release\CSharpFunctionalExtensions.pdb
+D:\Git\RailwayStationQueue\src\Server\bin\Release\CSharpFunctionalExtensions.xml
+D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.csprojAssemblyReference.cache
+D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.csproj.CoreCompileInputs.cache
+D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.csproj.CopyComplete
+D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.dll
+D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.pdb

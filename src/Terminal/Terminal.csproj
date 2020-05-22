@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CSharpFunctionalExtensions, Version=2.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CSharpFunctionalExtensions.2.8.0\lib\net461\CSharpFunctionalExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -46,9 +49,11 @@
   <ItemGroup>
     <Compile Include="HelperString.cs" />
     <Compile Include="Infrastructure\Terminal2ServerExchangeDataProvider.cs" />
+    <Compile Include="Model\PrefixesMapping2QueueModel.cs" />
     <Compile Include="Model\TerminalModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\PrintTicket.cs" />
+    <Compile Include="Settings\XmlPrefixesMapping2QueueSetting.cs" />
     <Compile Include="Settings\XmlPrinterSettings.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +65,9 @@
       <Project>{87b6f9ef-6a0d-4daf-9df0-718036b1c8e4}</Project>
       <Name>Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

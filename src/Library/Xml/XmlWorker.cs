@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace Library.Xml
 {
-    static public class XmlWorker
+    public static class XmlWorker
     {
         public static XElement LoadXmlFile(string folderName, string fileName)
         {

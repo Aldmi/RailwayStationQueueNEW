@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Root>
   <Server>
-	   <IpAdress>192.168.100.33</IpAdress>
+	   <IpAdress>192.168.1.35</IpAdress>
 	   <IpPort>50000</IpPort>
 	   <TimeRespoune>1000</TimeRespoune>
 	   <NumberTryingTakeData>1</NumberTryingTakeData>
   </Server>
+  
+  <Prefixs>
+	   <Prefix Name="К" QueueName="Main"/> <!-- 1. Купить билет -->
+	   <Prefix Name="М" QueueName="Main"/> <!-- 2. Купить билет в международном сообщении -->
+	   <Prefix Name="Б" QueueName="Main"/> <!-- 3. Багаж -->
+	   <Prefix Name="Г" QueueName="Main"/> <!-- 4. Оформление групп пассажиров-->
+	   <Prefix Name="У" QueueName="Main"/> <!-- 5. Оформление билетов на отправляющиеся поезда менее 30 минут до отправления-->
+	   <Prefix Name="И" QueueName="Main"/> <!-- 6. Обслуживание маломобильных пассажиров и льготной категории граждан -->
+	   <Prefix Name="С" QueueName="Main"/> <!-- 7. Получить справку -->	
+	   <Prefix Name="А" QueueName="Main"/> <!-- 12. Администратор -->
+  </Prefixs>
   
   <Printer>
 	   <!-- <Name>CUSTOM TG2480-H</Name> -->
