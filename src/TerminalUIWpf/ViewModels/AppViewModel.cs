@@ -179,14 +179,14 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - внутреннее и межгосударственное сообщения";
             const string prefixQueue = "К";
-            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
                 ViewErrorMessage4Staff(error);
                 return;
             }
 
-            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
 
 
@@ -195,24 +195,25 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnBuyInterstateTicket()
         {
+            const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - международное сообщение (дальнее зарубежье)";
+            const string prefixQueue = "М";
+
             if (!_model.IsConnectTcpIp)
                 return;
 
             if (!CheckPrinterStatus())
                 return;
 
-            if (!CheckWorkPermitTime(new TimeSpan(13, 0, 0), new TimeSpan(14, 0, 0)))
+            if (!CheckWorkPermitTime(prefixQueue))
                 return;
 
-            const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - международное сообщение (дальнее зарубежье)";
-            const string prefixQueue = "М";
-            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
                 ViewErrorMessage4Staff(error);
                 return;
             }
-            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
 
 
@@ -229,13 +230,13 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Оформление багажа и живности";
             const string prefixQueue = "Б";
-            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
                 ViewErrorMessage4Staff(error);
                 return;
             }
-            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
 
 
@@ -244,24 +245,25 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnGroupsTicket()
         {
+            const string descriptionQueue = "Оформление групповых перевозок";
+            const string prefixQueue = "Г";
+
             if (!_model.IsConnectTcpIp)
                 return;
 
             if (!CheckPrinterStatus())
                 return;
 
-            if (!CheckWorkPermitTime(new TimeSpan(12, 15, 0), new TimeSpan(13, 15, 0)))
+            if (!CheckWorkPermitTime(prefixQueue))
                 return;
 
-            const string descriptionQueue = "Оформление групповых перевозок";
-            const string prefixQueue = "Г";
-            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
                 ViewErrorMessage4Staff(error);
                 return;
             }
-            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
 
 
@@ -278,13 +280,13 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Оформление билетов на отправляющиеся поезда менее 30 минут до отправления";
             const string prefixQueue = "У";
-            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
                 ViewErrorMessage4Staff(error);
                 return;
             }
-            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
 
 
@@ -301,13 +303,13 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Обслуживание маломобильных пассажиров и льготной категории граждан";
             const string prefixQueue = "И";
-            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
                 ViewErrorMessage4Staff(error);
                 return;
             }
-            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
 
 
@@ -324,13 +326,13 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Получить справку";
             const string prefixQueue = "С";
-            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
                 ViewErrorMessage4Staff(error);
                 return;
             }
-            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
 
 
@@ -347,13 +349,13 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Администратор: идентификация 14-значного номера электронного билета, восстановление утраченных и испорченных билетов, вопросы по работе билетных касс";
             const string prefixQueue = "А";
-            var (_, isFailure, nameQueue, error) = _model.PrefixesMapping2QueueModel.GetQueueName(prefixQueue);
+            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
                 ViewErrorMessage4Staff(error);
                 return;
             }
-            await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
 
 
@@ -370,13 +372,15 @@ namespace TerminalUIWpf.ViewModels
         }
 
 
-        private bool CheckWorkPermitTime(TimeSpan startTime, TimeSpan stopTime)
+        private bool CheckWorkPermitTime(string prefixQueue)
         {
-            var now = DateTime.Now.TimeOfDay;
-            if (now <= startTime || now >= stopTime) //вне диапазона
+            var (workTime, isPermited) = _model.CheckWorkPermitTime(prefixQueue);
+            if (!isPermited)
+            {
                 return true;
+            }
 
-            var checkWorkPermitTimeVm= new CheckWorkPermitTimeViewModel(_model, $"Касса не работает с: {startTime:hh\\:mm}   до: {stopTime:hh\\:mm}");
+            var checkWorkPermitTimeVm= new CheckWorkPermitTimeViewModel(_model, workTime.ToString());
             _windowManager.ShowDialog(checkWorkPermitTimeVm);
             return false;
         }

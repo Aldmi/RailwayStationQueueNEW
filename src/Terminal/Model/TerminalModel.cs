@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Communication.Annotations;
 using Communication.Settings;
 using Communication.TcpIp;
+using CSharpFunctionalExtensions;
 using Library.Logs;
 using Library.Xml;
 using Terminal.Infrastructure;
@@ -25,7 +26,7 @@ namespace Terminal.Model
 
         public MasterTcpIp MasterTcpIp { get; private set; }
         public PrintTicket PrintTicketService { get; private set; }
-        public PrefixesMapping2QueueModel PrefixesMapping2QueueModel { get; private set; }
+        public PrefixesConfig PrefixesConfig { get; private set; }
 
         public bool IsConnectTcpIp => (MasterTcpIp != null && MasterTcpIp.IsConnect);
 
@@ -75,7 +76,7 @@ namespace Terminal.Model
         {
             XmlMasterSettings xmlTerminal;
             XmlPrinterSettings xmlPrinter;
-            XmlPrefixesMapping2QueueSetting xmlPrefix;
+            XmlPrefixesConfigSetting xmlPrefixesConfig;
             try
             {
                 var xmlFile = XmlWorker.LoadXmlFile("Settings", "Setting.xml");
@@ -84,7 +85,7 @@ namespace Terminal.Model
 
                 xmlTerminal = XmlMasterSettings.LoadXmlSetting(xmlFile);
                 xmlPrinter = XmlPrinterSettings.LoadXmlSetting(xmlFile);
-                xmlPrefix = XmlPrefixesMapping2QueueSetting.LoadXmlSetting(xmlFile);
+                xmlPrefixesConfig = XmlPrefixesConfigSetting.LoadXmlSetting(xmlFile);
             }
             catch (FileNotFoundException ex)
             {
@@ -102,7 +103,7 @@ namespace Terminal.Model
             {
                 MasterTcpIp = new MasterTcpIp(xmlTerminal);
                 PrintTicketService = new PrintTicket(xmlPrinter); 
-                PrefixesMapping2QueueModel= new PrefixesMapping2QueueModel(xmlPrefix.PrefixMapping);
+                PrefixesConfig= new PrefixesConfig(xmlPrefixesConfig.PrefixDict);
             }
             catch (Exception ex)
             {
@@ -167,6 +168,17 @@ namespace Terminal.Model
             }
         }
 
+
+        /// <summary>
+        /// Проверка рабочего диапазона работы кассы
+        /// </summary>
+        /// <returns>false - запрет ограничения  true - ограничение</returns>
+        public (WorkTime workTime, bool isPermited) CheckWorkPermitTime(string prefixQueue)
+        {
+            var (_, isFailure, value) = PrefixesConfig.GetConf(prefixQueue);
+            return isFailure ? (null, false) : value.CheckPermitTime();
+        }
+
         #endregion
 
 
@@ -181,5 +193,7 @@ namespace Terminal.Model
         }
 
         #endregion
+
+
     }
 }

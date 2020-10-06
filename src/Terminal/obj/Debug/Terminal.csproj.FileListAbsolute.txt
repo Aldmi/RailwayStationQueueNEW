@@ -33,3 +33,5 @@ D:\Git\RailwayStationQueue\src\Terminal\obj\Debug\Terminal.csproj.CopyComplete
 D:\Git\RailwayStationQueue\src\Terminal\bin\Debug\CSharpFunctionalExtensions.dll
 D:\Git\RailwayStationQueue\src\Terminal\bin\Debug\CSharpFunctionalExtensions.pdb
 D:\Git\RailwayStationQueue\src\Terminal\bin\Debug\CSharpFunctionalExtensions.xml
+D:\Git\RailwayStationQueue\src\Terminal\bin\Debug\System.ValueTuple.dll
+D:\Git\RailwayStationQueue\src\Terminal\bin\Debug\System.ValueTuple.xml

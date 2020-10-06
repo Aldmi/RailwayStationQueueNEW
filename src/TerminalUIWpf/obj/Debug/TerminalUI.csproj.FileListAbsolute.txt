@@ -89,3 +89,5 @@ D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUI.csproj.CopyCom
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\CSharpFunctionalExtensions.dll
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\CSharpFunctionalExtensions.pdb
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\CSharpFunctionalExtensions.xml
+D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\System.ValueTuple.dll
+D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Debug\System.ValueTuple.xml

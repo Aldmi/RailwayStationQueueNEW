@@ -1685,9 +1685,9 @@ namespace ServerUi.ViewModels
 
         public void Dell(int idCashier)
         {
-            //_model.DeviceCashiers[idCashier - 1].Cashier.SuccessfulHandling();
+            _model.DeviceCashiers[idCashier - 1].Cashier.SuccessfulHandling();
 
-            _model.DeviceCashiers[idCashier - 1].Cashier.ErrorHandling();
+           // _model.DeviceCashiers[idCashier - 1].Cashier.ErrorHandling();
         }
 
 

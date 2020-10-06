@@ -190,3 +190,5 @@ D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Debug\ServerUi.csproj.CopyComplet
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Debug\CSharpFunctionalExtensions.dll
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Debug\CSharpFunctionalExtensions.pdb
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Debug\CSharpFunctionalExtensions.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Debug\System.ValueTuple.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Debug\System.ValueTuple.xml

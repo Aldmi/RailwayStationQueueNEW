@@ -1230,6 +1230,7 @@
                 1Д
             </Button>
             <Button
+                IsEnabled="False"
                 Width="25"
                 Height="25"
                 Margin="1"

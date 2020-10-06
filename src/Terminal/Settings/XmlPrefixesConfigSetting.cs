@@ -2,27 +2,28 @@
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
+using Terminal.Model;
 
 namespace Terminal.Settings
 {
-    public class XmlPrefixesMapping2QueueSetting
+    public class XmlPrefixesConfigSetting
     {
         #region prop
-        public Dictionary<string, string> PrefixMapping { get; set; }
+        public readonly Dictionary<string, PrefixeConf> PrefixDict;
         #endregion
 
 
         #region ctor
-        private XmlPrefixesMapping2QueueSetting(Dictionary<string, string> prefixMapping)
+        private XmlPrefixesConfigSetting(Dictionary<string, PrefixeConf> prefixDict)
         {
-            PrefixMapping = prefixMapping;
+            PrefixDict = prefixDict;
         }
         #endregion
 
 
         #region Methode
 
-        public static XmlPrefixesMapping2QueueSetting LoadXmlSetting(XElement xml)
+        public static XmlPrefixesConfigSetting LoadXmlSetting(XElement xml)
         {
             var prefixes = xml?.Element("Prefixs")?.Elements("Prefix");
             if (prefixes == null)
@@ -30,23 +31,25 @@ namespace Terminal.Settings
                 throw new XmlException("Список Prefixs заданн не верно");
             }
 
-            var prefixMapping= new Dictionary<string, string>();
+            var prefixMapping= new Dictionary<string, PrefixeConf>();
             foreach (var prefix in prefixes)
             {
                 var name = (string)prefix.Attribute("Name");
                 var queueName = (string)prefix.Attribute("QueueName");
+                var workTime = (string)prefix.Attribute("WorkTime");
                 if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(queueName))
                 {
                     throw new XmlException("Список Prefixs не может содержать пустых тэгов Name или QueueName");
                 }
-                prefixMapping.Add(name, queueName);
+                var prefConf= new PrefixeConf(name, queueName, WorkTime.Parse(workTime));
+                prefixMapping.Add(name, prefConf);
             }
 
             if (prefixMapping == null || !prefixMapping.Any())
             {
                 throw new XmlException("Список Prefixs не содержит ни одного элемента");
             }
-            return new XmlPrefixesMapping2QueueSetting(prefixMapping);
+            return new XmlPrefixesConfigSetting(prefixMapping);
         }
 
         #endregion
