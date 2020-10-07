@@ -8,7 +8,7 @@
   </Server>
   
   <Prefixs>
-	   <Prefix Name="К" QueueName="Main" WorkTime="10:30-15:40"/> <!-- 1. Купить билет -->
+	   <Prefix Name="К" QueueName="Main" WorkTime="10:30-11:40"/> <!-- 1. Купить билет -->
 	   <Prefix Name="М" QueueName="Main"/> <!-- 2. Купить билет в международном сообщении -->
 	   <Prefix Name="Б" QueueName="Main"/> <!-- 3. Багаж -->
 	   <Prefix Name="Г" QueueName="Main"/> <!-- 4. Оформление групп пассажиров-->

@@ -35,6 +35,7 @@ namespace TerminalUIWpf.ViewModels
             const string prefixQueue = "К";
             const string nameQueue = "Main";
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+            BtnExit();
         }
 
 
@@ -50,6 +51,7 @@ namespace TerminalUIWpf.ViewModels
             const string prefixQueue = "А";
             const string nameQueue = "Admin";
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
+            BtnExit();
         }
 
 

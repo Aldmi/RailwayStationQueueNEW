@@ -171,14 +171,18 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnBuyTicket()
         {
-            if(!_model.IsConnectTcpIp)
+            const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - внутреннее и межгосударственное сообщения";
+            const string prefixQueue = "К";
+
+            if (!_model.IsConnectTcpIp)
                 return;
 
             if (!CheckPrinterStatus())
                 return;
 
-            const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - внутреннее и межгосударственное сообщения";
-            const string prefixQueue = "К";
+            if (!CheckWorkPermitTime(prefixQueue))
+                return;
+
             var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
@@ -222,14 +226,18 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BaggageAndPets()
         {
+            const string descriptionQueue = "Оформление багажа и живности";
+            const string prefixQueue = "Б";
+
             if (!_model.IsConnectTcpIp)
                 return;
 
             if (!CheckPrinterStatus())
                 return;
 
-            const string descriptionQueue = "Оформление багажа и живности";
-            const string prefixQueue = "Б";
+            if (!CheckWorkPermitTime(prefixQueue))
+                return;
+
             var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
@@ -272,14 +280,18 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnBuyAcceleratedTicket()
         {
+            const string descriptionQueue = "Оформление билетов на отправляющиеся поезда менее 30 минут до отправления";
+            const string prefixQueue = "У";
+
             if (!_model.IsConnectTcpIp)
                 return;
 
             if (!CheckPrinterStatus())
                 return;
 
-            const string descriptionQueue = "Оформление билетов на отправляющиеся поезда менее 30 минут до отправления";
-            const string prefixQueue = "У";
+            if (!CheckWorkPermitTime(prefixQueue))
+                return;
+
             var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
@@ -295,14 +307,18 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnLowMobilityTicket()
         {
+            const string descriptionQueue = "Обслуживание маломобильных пассажиров и льготной категории граждан";
+            const string prefixQueue = "И";
+
             if (!_model.IsConnectTcpIp)
                 return;
 
             if (!CheckPrinterStatus())
                 return;
 
-            const string descriptionQueue = "Обслуживание маломобильных пассажиров и льготной категории граждан";
-            const string prefixQueue = "И";
+            if (!CheckWorkPermitTime(prefixQueue))
+                return;
+
             var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
@@ -318,14 +334,18 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnGetHelp()
         {
+            const string descriptionQueue = "Получить справку";
+            const string prefixQueue = "С";
+
             if (!_model.IsConnectTcpIp)
                 return;
 
             if (!CheckPrinterStatus())
                 return;
 
-            const string descriptionQueue = "Получить справку";
-            const string prefixQueue = "С";
+            if (!CheckWorkPermitTime(prefixQueue))
+                return;
+
             var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {
@@ -341,14 +361,18 @@ namespace TerminalUIWpf.ViewModels
         /// </summary>
         public async Task BtnAdmin()
         {
+            const string descriptionQueue = "Администратор: идентификация 14-значного номера электронного билета, восстановление утраченных и испорченных билетов, вопросы по работе билетных касс";
+            const string prefixQueue = "А";
+
             if (!_model.IsConnectTcpIp)
                 return;
 
             if (!CheckPrinterStatus())
                 return;
 
-            const string descriptionQueue = "Администратор: идентификация 14-значного номера электронного билета, восстановление утраченных и испорченных билетов, вопросы по работе билетных касс";
-            const string prefixQueue = "А";
+            if (!CheckWorkPermitTime(prefixQueue))
+                return;
+
             var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
             {

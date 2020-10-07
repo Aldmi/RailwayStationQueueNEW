@@ -43,9 +43,9 @@ namespace Terminal.Model
             if(WorkTime == null)
                 return (null, false);
 
-            return WorkTime.CheckPermitTime() ? (WorkTime, true): (WorkTime, false);
+            var isPermited = WorkTime.CheckPermitTime();
+            return isPermited ? (WorkTime, true): (WorkTime, false);
         }
-
     }
 
     public class WorkTime
@@ -64,9 +64,20 @@ namespace Terminal.Model
             if (string.IsNullOrEmpty(str))
                 return null;
 
-            //TODO: парсить строку времени
+            var splited = str.RemovingExtraSpaces().Split('-');
+            if (splited.Length != 2)
+                throw new FormatException($"строка для задания WorkTime '{str}' должна иметь формат  'StartTime-StopTime'");
 
-            return new WorkTime(TimeSpan.MaxValue, TimeSpan.MaxValue);
+            try
+            {
+                var startTime = TimeSpan.Parse(splited[0]);
+                var stopTime = TimeSpan.Parse(splited[1]);
+                return new WorkTime(startTime, stopTime);
+            }
+            catch (Exception ex)
+            {
+                throw new FormatException($"строка для задания WorkTime '{str}' не может быть распарсенна через TimeSpan.Parse  {ex.Message}");
+            }
         }
 
         /// <summary>
