@@ -28,7 +28,7 @@ namespace Terminal.Settings
             var prefixes = xml?.Element("Prefixs")?.Elements("Prefix");
             if (prefixes == null)
             {
-                throw new XmlException("Список Prefixs заданн не верно");
+                throw new XmlException("Список Prefixs задан не верно");
             }
 
             var prefixMapping= new Dictionary<string, PrefixeConf>();
@@ -36,12 +36,23 @@ namespace Terminal.Settings
             {
                 var name = (string)prefix.Attribute("Name");
                 var queueName = (string)prefix.Attribute("QueueName");
-                var workTime = (string)prefix.Attribute("WorkTime");
                 if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(queueName))
                 {
                     throw new XmlException("Список Prefixs не может содержать пустых тэгов Name или QueueName");
                 }
-                var prefConf= new PrefixeConf(name, queueName, WorkTime.Parse(workTime));
+
+                var permitTimeRange = prefix.Element("PermitTimes")?.Elements("PermitTime");
+                List<PermitTime> ptrObj = null;
+                if (permitTimeRange != null)
+                {
+                    ptrObj = (from pt in permitTimeRange
+                            let start = (string)pt.Attribute("Start")
+                            let stop = (string)pt.Attribute("Stop")
+                            let message = (string)pt.Attribute("Message")
+                            select PermitTime.Parse(start, stop, message))
+                        .ToList();
+                }
+                var prefConf = new PrefixeConf(name, queueName, ptrObj);
                 prefixMapping.Add(name, prefConf);
             }
 

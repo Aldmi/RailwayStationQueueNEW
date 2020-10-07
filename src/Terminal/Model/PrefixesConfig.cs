@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CSharpFunctionalExtensions;
 
 namespace Terminal.Model
@@ -25,75 +26,87 @@ namespace Terminal.Model
     {
         public string Prefix { get;  }
         public string QueueName { get; }
-        public WorkTime WorkTime { get; }
+        public List<PermitTime> PermitTimes { get; }
 
-        public PrefixeConf(string prefix, string queueName, WorkTime workTime)
+        public PrefixeConf(string prefix, string queueName, List<PermitTime> permitTimes)
         {
             Prefix = prefix;
             QueueName = queueName;
-            WorkTime = workTime;
+            PermitTimes = permitTimes;
         }
 
         /// <summary>
         /// Проверка диапазона запрещенного времени.
-        /// Если WorkTime не указан, то разрешенн любой диапазон
+        /// Если попали хотя бы в 1 ЗАПРЕЩЕННЫЙ диапазон вернуть PermitTime.
+        /// Если в диапазон не попали вернуть null.
         /// </summary>
-        public (WorkTime workTime , bool isPermited) CheckPermitTime()
+        public PermitTime CheckPermitRange()
         {
-            if(WorkTime == null)
-                return (null, false);
-
-            var isPermited = WorkTime.CheckPermitTime();
-            return isPermited ? (WorkTime, true): (WorkTime, false);
+            //Если попали хотя бы в 1 ЗАПРЕЩЕННЫЙ диапазон
+            var wtPermited = PermitTimes?.FirstOrDefault(wt => wt.CheckPermit());
+            return wtPermited;
         }
     }
 
-    public class WorkTime
+
+    /// <summary>
+    /// Задает запрещенный диапазон.
+    /// </summary>
+    public class PermitTime
     {
         public TimeSpan StartTime { get; }
         public TimeSpan StopTime { get; }
+        public string PermitMessage { get; }
 
-        public WorkTime(TimeSpan startTime, TimeSpan stopTime)
+
+        public PermitTime(TimeSpan startTime, TimeSpan stopTime, string permitMessage)
         {
+            if(startTime > stopTime)
+                throw new ArgumentException($"{startTime:hh\\:mm} не может быть меньше {stopTime:hh\\:mm}");
+
+            if (string.IsNullOrEmpty(permitMessage))
+                throw new ArgumentException("permitMessage не может быть пустым или NULL");
+            
             StartTime = startTime;
             StopTime = stopTime;
+            PermitMessage = permitMessage;
         }
 
-        public static WorkTime Parse(string str)
+
+        public static PermitTime Parse(string startStr, string stopStr, string permitMessage)
         {
-            if (string.IsNullOrEmpty(str))
-                return null;
-
-            var splited = str.RemovingExtraSpaces().Split('-');
-            if (splited.Length != 2)
-                throw new FormatException($"строка для задания WorkTime '{str}' должна иметь формат  'StartTime-StopTime'");
-
+            TimeSpan startTime;
+            TimeSpan stopTime;
             try
             {
-                var startTime = TimeSpan.Parse(splited[0]);
-                var stopTime = TimeSpan.Parse(splited[1]);
-                return new WorkTime(startTime, stopTime);
+                startTime = TimeSpan.Parse(startStr.RemovingExtraSpaces());
+                stopTime = TimeSpan.Parse(stopStr.RemovingExtraSpaces());
             }
             catch (Exception ex)
             {
-                throw new FormatException($"строка для задания WorkTime '{str}' не может быть распарсенна через TimeSpan.Parse  {ex.Message}");
+                throw new FormatException($"PermitTimes '{startStr}' или {stopStr} не может быть распарсенна через TimeSpan.Parse  {ex.Message}");
             }
+            return new PermitTime(startTime, stopTime, permitMessage);
         }
 
-        /// <summary>
-        /// true - запрет
-        /// false - разрешенно
-        /// </summary>
-        public bool CheckPermitTime()
+
+        public bool CheckPermit()
         {
             var now = DateTime.Now.TimeOfDay;
-            return now <= StartTime || now >= StopTime;
+            return now >= StartTime && now <= StopTime;
         }
-
 
         public override string ToString()
         {
-            return $"Касса не работает с: {StartTime:hh\\:mm}   до: {StopTime:hh\\:mm}";
+            try
+            {
+                var str = string.Format(PermitMessage, StartTime, StopTime);
+                return str;
+            }
+            catch (Exception e)
+            {
+                throw new FormatException("PermitMessage содержит не верный формат подстановки ", e);
+            }
         }
     }
 }

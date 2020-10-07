@@ -92,6 +92,11 @@ namespace Terminal.Model
                 ErrorString = ex.ToString();
                 return;
             }
+            catch (FormatException ex)
+            {
+                ErrorString = "ОШИБКА в формате тега в XML  файле:  "+ ex;
+                return;
+            }
             catch (Exception ex)
             {
                 ErrorString = "ОШИБКА в узлах дерева XML файла настроек:  " + ex;
@@ -173,10 +178,14 @@ namespace Terminal.Model
         /// Проверка рабочего диапазона работы кассы
         /// </summary>
         /// <returns>false - запрет ограничения  true - ограничение</returns>
-        public (WorkTime workTime, bool isPermited) CheckWorkPermitTime(string prefixQueue)
+        public (PermitTime workTime, bool isPermited) CheckWorkPermitTime(string prefixQueue)
         {
             var (_, isFailure, value) = PrefixesConfig.GetConf(prefixQueue);
-            return isFailure ? (null, false) : value.CheckPermitTime();
+            if (isFailure)
+                throw new Exception($"В настройки не внесенн конфиг для префикса '{prefixQueue}'");
+
+            var permitedTime= value.CheckPermitRange();
+            return permitedTime == null ? (null, false) : (permitedTime, true);
         }
 
         #endregion
