@@ -182,7 +182,7 @@ namespace Terminal.Model
         {
             var (_, isFailure, value) = PrefixesConfig.GetConf(prefixQueue);
             if (isFailure)
-                throw new Exception($"В настройки не внесенн конфиг для префикса '{prefixQueue}'");
+                throw new Exception($"В настройки не внесен конфиг для префикса '{prefixQueue}'");
 
             var permitedTime= value.CheckPermitRange();
             return permitedTime == null ? (null, false) : (permitedTime, true);

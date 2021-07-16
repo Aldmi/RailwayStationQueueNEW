@@ -20,10 +20,11 @@
 	    <!-- 2. Купить билет в международном сообщении -->
 	   <Prefix Name="М" QueueName="Main"> <!-- 2. Купить билет в международном сообщении -->
 	     <PermitTimes>
-	       <PermitTime Start="19:30" Stop= "23:59" Message="Ночь, обратитесь в кассу 10" />
-		   <PermitTime Start="00:00" Stop= "07:59" Message="Ночь, обратитесь в кассу 10" />
-		   <PermitTime Start="12:00" Stop= "13:00" Message="ОБЕД, обратитесь в кассу 10" />
-		   <PermitTime Start="13:00" Stop= "17:00" Message="ДЛЯ теста!!!, {0:hh\:mm}-{1:hh\:mm} Не работаем" />
+	       <!-- <PermitTime Start="19:30" Stop= "23:59" Message="Ночь, обратитесь в кассу 10" /> -->
+		   <!-- <PermitTime Start="00:00" Stop= "07:59" Message="Ночь, обратитесь в кассу 10" /> -->
+		   <!-- <PermitTime Start="12:00" Stop= "13:00" Message="ОБЕД, обратитесь в кассу 10" /> -->
+		   <!-- <PermitTime Start="13:00" Stop= "17:00" Message="ДЛЯ теста!!!, {0:hh\:mm}-{1:hh\:mm} Не работаем" /> -->
+	       <PermitTime Start="00:00" Stop= "23:59" Message="Международная касса не производит обслуживание. Возьмите другой талон." />
 		 </PermitTimes>
 	   </Prefix>	
 	   
@@ -33,7 +34,11 @@
 		 </PermitTimes>
 	   </Prefix>
 	   
-	   <Prefix Name="Г" QueueName="Main"/> <!-- 4. Оформление групп пассажиров-->
+		<Prefix Name="Г" QueueName="Main"> <!-- 4. Оформление групп пассажиров-->
+	     <PermitTimes>
+	       <PermitTime Start="00:00" Stop= "23:59" Message="Групповая касса не производит обслуживание. Возьмите другой талон." />
+		 </PermitTimes>
+	   </Prefix>
 	   <Prefix Name="У" QueueName="Main"/> <!-- 5. Оформление билетов на отправляющиеся поезда менее 30 минут до отправления-->
 	   <Prefix Name="И" QueueName="Main"/> <!-- 6. Обслуживание маломобильных пассажиров и льготной категории граждан -->
 	   <Prefix Name="С" QueueName="Main"/> <!-- 7. Получить справку -->	

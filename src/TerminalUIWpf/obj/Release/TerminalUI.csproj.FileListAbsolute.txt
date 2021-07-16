@@ -273,6 +273,7 @@ D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\Castle.Windsor.dll
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\Communication.dll
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\CSharpFunctionalExtensions.dll
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\Library.dll
+D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\System.ValueTuple.dll
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\System.Windows.Interactivity.dll
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\Terminal.dll
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\NLog.dll
@@ -286,8 +287,8 @@ D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\Castle.Core.xml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\Castle.Windsor.xml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\CSharpFunctionalExtensions.pdb
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\CSharpFunctionalExtensions.xml
+D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\System.ValueTuple.xml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\NLog.xml
-D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUI.csprojAssemblyReference.cache
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\AppView.baml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\BuyTicketView.baml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\CheckWorkPermitTimeView.baml
@@ -312,3 +313,4 @@ D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.CoreC
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.CopyComplete
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUIWpf.exe
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUIWpf.pdb
+D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.AssemblyReference.cache

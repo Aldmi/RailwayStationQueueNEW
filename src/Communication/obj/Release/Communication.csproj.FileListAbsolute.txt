@@ -92,8 +92,8 @@ D:\Git\RailwayStationQueue\src\Communication\bin\Release\NLog.dll
 D:\Git\RailwayStationQueue\src\Communication\bin\Release\Library.pdb
 D:\Git\RailwayStationQueue\src\Communication\bin\Release\NModbus4.xml
 D:\Git\RailwayStationQueue\src\Communication\bin\Release\NLog.xml
-D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.csprojAssemblyReference.cache
 D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.csproj.CoreCompileInputs.cache
 D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.csproj.CopyComplete
 D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.dll
 D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.pdb
+D:\Git\RailwayStationQueue\src\Communication\obj\Release\Communication.csproj.AssemblyReference.cache

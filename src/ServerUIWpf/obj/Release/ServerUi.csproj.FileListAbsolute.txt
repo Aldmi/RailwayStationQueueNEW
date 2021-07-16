@@ -369,6 +369,7 @@ D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\NLog.dll
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Terminal.dll
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\NAudio.dll
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\CSharpFunctionalExtensions.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\System.ValueTuple.dll
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Communication.pdb
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Library.pdb
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Server.pdb
@@ -383,6 +384,7 @@ D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\Terminal.pdb
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\NAudio.xml
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\CSharpFunctionalExtensions.pdb
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\CSharpFunctionalExtensions.xml
+D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\System.ValueTuple.xml
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\de\Xceed.Wpf.AvalonDock.resources.dll
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\es\Xceed.Wpf.AvalonDock.resources.dll
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\fr\Xceed.Wpf.AvalonDock.resources.dll
@@ -393,7 +395,6 @@ D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\ro\Xceed.Wpf.AvalonDock.r
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\ru\Xceed.Wpf.AvalonDock.resources.dll
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\sv\Xceed.Wpf.AvalonDock.resources.dll
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.csprojAssemblyReference.cache
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\Views\AppView.g.cs
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\App.g.cs
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\GeneratedInternalTypeHelper.g.cs
@@ -408,3 +409,4 @@ D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.csproj.CoreCompi
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.csproj.CopyComplete
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.exe
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.pdb
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.csproj.AssemblyReference.cache

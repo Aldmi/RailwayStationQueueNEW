@@ -136,7 +136,7 @@
             Style="{StaticResource ButtonStyle}">
             <StackPanel>
                 <TextBlock
-                    Text="Оформление, возврат, переоформление, прерывание"
+                    Text="Купить билет, возврат, переоформление, прерывание"
                     Style="{StaticResource TextBlockInButtonStyle}"/>
                 <TextBlock
                     Text="поездки, опоздание на поезд дальнего следования -"
@@ -153,7 +153,7 @@
             Style="{StaticResource ButtonStyle}">
             <StackPanel>
                 <TextBlock
-                    Text="Оформление, возврат, переоформление, прерывание"
+                    Text="Купить билет, возврат, переоформление, прерывание"
                     Style="{StaticResource TextBlockInButtonStyle}"/>
                 <TextBlock
                     Text="поездки, опоздание на поезд дальнего следования -"
@@ -182,7 +182,7 @@
             Style="{StaticResource ButtonStyle}">
             <StackPanel>
                 <TextBlock
-                    Text="Оформление билетов на отправляющиеся поезда менее"
+                    Text="Купить билет на отправляющиеся поезда менее"
                     Style="{StaticResource TextBlockInButtonStyle}"/>
                 <TextBlock
                     Text="30 минут до отправления"

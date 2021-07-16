@@ -130,6 +130,7 @@ D:\Git\RailwayStationQueue\src\Server\bin\Release\Terminal.dll
 D:\Git\RailwayStationQueue\src\Server\bin\Release\NLog.dll
 D:\Git\RailwayStationQueue\src\Server\bin\Release\NAudio.dll
 D:\Git\RailwayStationQueue\src\Server\bin\Release\CSharpFunctionalExtensions.dll
+D:\Git\RailwayStationQueue\src\Server\bin\Release\System.ValueTuple.dll
 D:\Git\RailwayStationQueue\src\Server\bin\Release\Communication.pdb
 D:\Git\RailwayStationQueue\src\Server\bin\Release\Library.pdb
 D:\Git\RailwayStationQueue\src\Server\bin\Release\Sound.pdb
@@ -138,8 +139,9 @@ D:\Git\RailwayStationQueue\src\Server\bin\Release\NLog.xml
 D:\Git\RailwayStationQueue\src\Server\bin\Release\NAudio.xml
 D:\Git\RailwayStationQueue\src\Server\bin\Release\CSharpFunctionalExtensions.pdb
 D:\Git\RailwayStationQueue\src\Server\bin\Release\CSharpFunctionalExtensions.xml
-D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.csprojAssemblyReference.cache
+D:\Git\RailwayStationQueue\src\Server\bin\Release\System.ValueTuple.xml
 D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.csproj.CoreCompileInputs.cache
 D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.csproj.CopyComplete
 D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.dll
 D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.pdb
+D:\Git\RailwayStationQueue\src\Server\obj\Release\Server.csproj.AssemblyReference.cache
