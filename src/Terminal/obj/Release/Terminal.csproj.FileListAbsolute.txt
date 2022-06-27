@@ -82,8 +82,8 @@ D:\Git\RailwayStationQueue\src\Terminal\bin\Release\CSharpFunctionalExtensions.p
 D:\Git\RailwayStationQueue\src\Terminal\bin\Release\CSharpFunctionalExtensions.xml
 D:\Git\RailwayStationQueue\src\Terminal\bin\Release\System.ValueTuple.xml
 D:\Git\RailwayStationQueue\src\Terminal\bin\Release\NLog.xml
+D:\Git\RailwayStationQueue\src\Terminal\obj\Release\Terminal.csproj.AssemblyReference.cache
 D:\Git\RailwayStationQueue\src\Terminal\obj\Release\Terminal.csproj.CoreCompileInputs.cache
 D:\Git\RailwayStationQueue\src\Terminal\obj\Release\Terminal.csproj.CopyComplete
 D:\Git\RailwayStationQueue\src\Terminal\obj\Release\Terminal.dll
 D:\Git\RailwayStationQueue\src\Terminal\obj\Release\Terminal.pdb
-D:\Git\RailwayStationQueue\src\Terminal\obj\Release\Terminal.csproj.AssemblyReference.cache

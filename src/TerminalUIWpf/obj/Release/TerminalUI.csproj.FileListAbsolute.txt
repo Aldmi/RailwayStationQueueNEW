@@ -289,6 +289,8 @@ D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\CSharpFunctionalExtensi
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\CSharpFunctionalExtensions.xml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\System.ValueTuple.xml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\NLog.xml
+D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.AssemblyReference.cache
+D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.SuggestedBindingRedirects.cache
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\AppView.baml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\BuyTicketView.baml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\CheckWorkPermitTimeView.baml
@@ -313,4 +315,3 @@ D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.CoreC
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.CopyComplete
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUIWpf.exe
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUIWpf.pdb
-D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.AssemblyReference.cache

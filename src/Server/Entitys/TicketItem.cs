@@ -9,10 +9,11 @@ namespace Server.Entitys
         public uint NumberElement { get; set; }     // номер в очереди на момент добавления
         public ushort CountElement { get; set; }    // кол-во клиентов в очереди на момент добавления
         public DateTime AddedTime{ get; set; }      // дата добавления в очередь
-        public DateTime StartProcessingTime { get; set; }  // дата поступления в обработку
+        public DateTime StartProcessingTime { get; set; }  // дата добавления в обработку
         public DateTime EndProcessingTime { get; set; }    // дата окончания обработки
         public TimeSpan ProcessingTime { get; set; }      // Время обработки (EndProcessingTime - StartProcessingTime)
         public TimeSpan ServiceTime { get; set; }        // Время обслуживания (EndProcessingTime - AddedTime)
+        public TimeSpan WaitingTime { get; set; }        // Время ожидания (StartProcessingTime - AddedTime)
 
         public int? CashboxId { get; set; }           // номер кассира
         public byte CountTryHandling { get; set; }  // количество попыток обработки этого билета кассиром
@@ -27,6 +28,7 @@ namespace Server.Entitys
         {
             ProcessingTime = EndProcessingTime - StartProcessingTime;
             ServiceTime = EndProcessingTime - AddedTime;
+            WaitingTime = StartProcessingTime - AddedTime;
         }
 
 

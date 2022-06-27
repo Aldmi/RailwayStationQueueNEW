@@ -395,6 +395,8 @@ D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\ro\Xceed.Wpf.AvalonDock.r
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\ru\Xceed.Wpf.AvalonDock.resources.dll
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\sv\Xceed.Wpf.AvalonDock.resources.dll
 D:\Git\RailwayStationQueue\src\ServerUIWpf\bin\Release\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.csproj.AssemblyReference.cache
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.csproj.SuggestedBindingRedirects.cache
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\Views\AppView.g.cs
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\App.g.cs
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\GeneratedInternalTypeHelper.g.cs
@@ -409,4 +411,3 @@ D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.csproj.CoreCompi
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.csproj.CopyComplete
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.exe
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.pdb
-D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Release\ServerUi.csproj.AssemblyReference.cache

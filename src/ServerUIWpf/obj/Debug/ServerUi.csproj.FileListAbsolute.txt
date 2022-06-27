@@ -192,3 +192,4 @@ D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Debug\ServerUi.csproj.CopyComplet
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Debug\ServerUi.exe
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Debug\ServerUi.pdb
 D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Debug\ServerUi.csproj.AssemblyReference.cache
+D:\Git\RailwayStationQueue\src\ServerUIWpf\obj\Debug\ServerUi.csproj.SuggestedBindingRedirects.cache

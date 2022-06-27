@@ -91,3 +91,4 @@ D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUI.csproj.CopyCom
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.exe
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUIWpf.pdb
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUI.csproj.AssemblyReference.cache
+D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Debug\TerminalUI.csproj.SuggestedBindingRedirects.cache
