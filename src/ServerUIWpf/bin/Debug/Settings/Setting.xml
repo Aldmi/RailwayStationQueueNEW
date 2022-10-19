@@ -43,11 +43,22 @@
 
 	
 	<Cashiers>	`
-	   <!-- <Cashier Id="1" Address="13" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/> -->
-<!-- 	   <Cashier Id="2" Address="2" Port="4" NameQueue="Admin" Prefix="А" MaxCountTryHanding="2"/> -->
-	   <Cashier Id="3" Address="3" Port="1" NameQueue="Main" Prefix="А,К" MaxCountTryHanding="2"/>
-<!-- 	   <Cashier Id="4" Address="4" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
-	   <Cashier Id="5" Address="5" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/>
-	   <Cashier Id="6" Address="6" Port="4" NameQueue="Main" Prefix="All" MaxCountTryHanding="2"/> -->
+	   <Cashier Id="1" Address="7" Port="1" NameQueue="Main" Prefix="All,С,М,Г,А" MaxCountTryHanding="2"/>
+	   <!-- <Cashier Id="2" Address="10" Port="1" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="3" Address="8" Port="1" NameQueue="Main" Prefix="All,С,М,Г,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="4" Address="4" Port="1" NameQueue="Main" Prefix="All,М,Г,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="5" Address="16" Port="1" NameQueue="Main" Prefix="All,М,Г,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="6" Address="6" Port="1" NameQueue="Main" Prefix="All,М,Г,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="7" Address="17" Port="1" NameQueue="Main" Prefix="All,М,Г,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="8" Address="2" Port="1" NameQueue="Main" Prefix="All,У,М,Г,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="9" Address="1" Port="1" NameQueue="Main" Prefix="All,М,Г,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="10" Address="11" Port="1" NameQueue="Main" Prefix="All,М,Г,У,И" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="11" Address="18" Port="1" NameQueue="Main" Prefix="All,М,Г,У,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="12" Address="12" Port="1" NameQueue="Main" Prefix="Г,All,М,У,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="13" Address="15" Port="1" NameQueue="Main" Prefix="All,М,Г,У,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="14" Address="9" Port="1" NameQueue="Main" Prefix="All,М,Г,У,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="15" Address="5" Port="1" NameQueue="Main" Prefix="All,М,Г,У,А" MaxCountTryHanding="2"/>   -->
+	   <!-- <Cashier Id="16" Address="14" Port="1" NameQueue="Main" Prefix="К,All,М,У,А" MaxCountTryHanding="2"/> -->
+	   <!-- <Cashier Id="17" Address="3" Port="1" NameQueue="Main" Prefix="М,All,Г,У,А" MaxCountTryHanding="2"/> -->
 	</Cashiers>
 </Root>

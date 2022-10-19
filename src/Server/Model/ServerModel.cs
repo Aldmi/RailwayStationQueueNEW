@@ -211,7 +211,8 @@ namespace Server.Model
                var queue= QueuePriorities.FirstOrDefault(q => q.Name == xmlCash.NameQueue);
                if (queue != null)
                {
-                   var logName = "Server.CashierInfo_" + xmlCash.Port;
+                    //var logName = "Server.CashierInfo_" + xmlCash.Port;
+                   var logName = "Server.Cashier_Id_" + xmlCash.Id;
                    var casher = new Сashier(xmlCash.Id, xmlCash.Prefixs, queue, xmlCash.MaxCountTryHanding, logName);
                    DeviceCashiers.Add(new DeviceCashier(xmlCash.AddressDevice, casher, xmlCash.Port));
                }
@@ -223,7 +224,7 @@ namespace Server.Model
             var cashersGroup = DeviceCashiers.GroupBy(d => d.Port).ToDictionary(group => group.Key, group => group.ToList());  //принадлежность кассира к порту
             foreach (var xmlSerial in xmlSerials)
             {
-                var logName = "Server.CashierInfo_" + xmlSerial.Port;
+                var logName = "Server.CashierExchange_COM" + xmlSerial.Port;
                 var sp= new MasterSerialPort(xmlSerial, logName);
                 var cashiers= cashersGroup[xmlSerial.Port];
                 var cashierExch= new CashierExchangeService(cashiers, AdminCasher, xmlSerial.TimeRespoune, logName);

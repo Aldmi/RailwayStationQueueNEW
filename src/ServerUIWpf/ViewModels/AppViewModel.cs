@@ -154,7 +154,7 @@ namespace ServerUi.ViewModels
 
         #region prop
 
-        public string ProgrammVersion => "Ver 1.2 [18.10.2022]   [Change QR code in terminal]";
+        public string ProgrammVersion => "Ver 1.2 [18.10.2022]   [Change QR code in terminal.\nChange NLog config]";
 
 
         private QueuePriority GetQueueMain => _model.QueuePriorities.FirstOrDefault(q => q.Name == "Main");

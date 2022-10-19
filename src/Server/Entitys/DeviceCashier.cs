@@ -30,7 +30,7 @@ namespace Server.Entitys
         }
 
 
-        public bool RaiseNotConnect2IsConnect { get; private set; } // State. Небыл на свзяи -> на связи
+        public bool RaiseNotConnect2IsConnect { get; private set; } // State. Не был на свзяи -> на связи
         public bool RaiseIsConnect2NotConnect { get; private set; }// State. был на свзяи -> не на связи
 
 

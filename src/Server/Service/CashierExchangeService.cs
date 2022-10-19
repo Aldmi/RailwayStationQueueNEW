@@ -171,7 +171,7 @@ namespace Server.Service
         private async Task<bool> WriteTicketTransaction(DeviceCashier devCashier, CashierHandling handling, MasterSerialPort port, CancellationToken ct)
         {
             var item = devCashier.Cashier.StartHandling();         
-            if (item == null)                         //БЛОКИРОВКА ТРАНЗАКЦИИ (билет уже используетсяв транзакции)
+            if (item == null)                         //БЛОКИРОВКА ТРАНЗАКЦИИ (билет уже используется в транзакции)
                 return false;
 
             var writeProvider = new Server2CashierWriteDataProvider(devCashier.AddresDevice, _logName) { InputData = item };
