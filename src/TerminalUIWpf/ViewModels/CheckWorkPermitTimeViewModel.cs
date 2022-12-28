@@ -49,7 +49,7 @@ namespace TerminalUIWpf.ViewModels
 
             const string descriptionQueue = "Администратор";
             const string prefixQueue = "А";
-            const string nameQueue = "Admin";
+            const string nameQueue = "Main";
             await _model.QueueSelection(nameQueue, prefixQueue, descriptionQueue);
             BtnExit();
         }

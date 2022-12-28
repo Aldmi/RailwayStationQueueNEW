@@ -13,12 +13,12 @@
 
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="28" />
+            <Setter Property="FontSize" Value="45" />
             <Setter Property="Background" Value="{Binding Path=ColorBtn, Mode=OneWay}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="1,7,1,7" />
-            <Setter Property="Padding" Value="8" />
+            <Setter Property="Margin" Value="2,10,2,10" />
+            <Setter Property="Padding" Value="24" />
             <Setter Property="IsEnabled" Value="{Binding Path=BtnEnable, Mode=OneWay}" />
             <Setter Property="VerticalAlignment" Value="Stretch" />
             <Setter Property="MaxWidth" Value="1200" />
@@ -89,7 +89,7 @@
                 Margin="100,0,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Stretch"
-                FontSize="42"
+                FontSize="44"
                 Foreground="White"
                 IsEnabled="{Binding Path=IsConnect, Mode=OneWay}"
                 Style="{StaticResource TextBlockMainStyle}"
@@ -136,108 +136,76 @@
             Style="{StaticResource ButtonStyle}">
             <StackPanel>
                 <TextBlock
-                    Text="Купить билет, возврат, переоформление, прерывание"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
+                    Text="КУПИТЬ БИЛЕТ"
+                    TextAlignment="Center"
+                    FontSize="65"
+                    TextWrapping="WrapWithOverflow" />
                 <TextBlock
-                    Text="поездки, опоздание на поезд дальнего следования -"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
-                <TextBlock
-                    Text="внутреннее и межгосударственное сообщения"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
+                    Text="оформить возврат"
+                    TextAlignment="Center"
+                    TextWrapping="WrapWithOverflow" />
             </StackPanel>
         </Button>
-
+        
         <Button
-            Name="BtnBuyInterstateTicket"
+            Name="BtnPrivilegesTicket"
             Grid.Row="2"
-            Style="{StaticResource ButtonStyle}">
-            <StackPanel>
-                <TextBlock
-                    Text="Купить билет, возврат, переоформление, прерывание"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
-                <TextBlock
-                    Text="поездки, опоздание на поезд дальнего следования -"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
-                <TextBlock
-                    Text="международное сообщение (дальнее зарубежье)"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
-            </StackPanel>
-        </Button>
-
-        <Button
-            Name="BaggageAndPets"
-            Grid.Row="3"
             Style="{StaticResource ButtonStyle}"
-            Content="Оформление багажа и живности"/>
-
-        <Button
-            Name="BtnGroupsTicket"
-            Grid.Row="4"
-            Style="{StaticResource ButtonStyle}"
-            Content="Оформление групповых перевозок"/>
-
-        <Button
-            Name="BtnBuyAcceleratedTicket"
-            Grid.Row="5"
-            Style="{StaticResource ButtonStyle}">
-            <StackPanel>
-                <TextBlock
-                    Text="Купить билет на отправляющиеся поезда менее"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
-                <TextBlock
-                    Text="30 минут до отправления"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
-            </StackPanel>
-        </Button>
-
-        <Button
-            Name="BtnLowMobilityTicket"
-            Grid.Row="6"
-            Padding="1"
-            HorizontalContentAlignment="Left"
-            Style="{StaticResource ButtonStyle}">
+            HorizontalContentAlignment="Left">
             <StackPanel Orientation="Horizontal">
                 <Image
-                    Width="60"
-                    Height="60"
-                    Margin="40,0,105,0"        
+                    Width="135"
+                    Height="135"
+                    Margin="10,0,70,0"        
                     Source="/Pictures/invalid.jpg" />
                 <StackPanel>
                     <TextBlock
-                        Text="Обслуживание маломобильных пассажиров и льготной"
-                        Style="{StaticResource TextBlockInButtonStyle}"/>
+                        Text="Обслуживание маломобильных"
+                        TextAlignment="Center"
+                        TextWrapping="WrapWithOverflow" />
+                    <TextBlock
+                        Text="пассажиров и льготной"
+                        TextAlignment="Center"
+                        TextWrapping="WrapWithOverflow" />
                     <TextBlock
                         Text="категории граждан"
-                        Style="{StaticResource TextBlockInButtonStyle}"/>
+                        TextAlignment="Center"
+                        TextWrapping="WrapWithOverflow" />
                 </StackPanel>
             </StackPanel>
         </Button>
 
         <Button
-            Name="BtnGetHelp"
-            Grid.Row="7"
-            Style="{StaticResource ButtonStyle}"
-            Content="Получить справку"/>
-
-        <Button
-            Name="BtnAdmin"
-            Grid.Row="8"
+            Name="BtnMilitaryPeopleTicket"
+            Grid.Row="3"
             Style="{StaticResource ButtonStyle}">
             <StackPanel>
                 <TextBlock
-                    Text="Администратор:"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
+                    Text="Оформление по воинским"
+                    TextAlignment="Center"
+                    TextWrapping="WrapWithOverflow" />
                 <TextBlock
-                    Text="идентификация 14-значного номера электронного билета,"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
-                <TextBlock
-                    Text="восстановление утраченных и испорченных билетов,"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
-                <TextBlock
-                    Text="вопросы по работе билетных касс"
-                    Style="{StaticResource TextBlockInButtonStyle}"/>
+                    Text="перевозочным документам"
+                    TextAlignment="Center"
+                    TextWrapping="WrapWithOverflow" />
             </StackPanel>
         </Button>
 
+        <Button
+            Name="BtnBaggageTicket"
+            Grid.Row="4"
+            Style="{StaticResource ButtonStyle}">
+            <StackPanel>
+                <TextBlock
+                    Text="Оформление багажа и животных /"
+                    TextAlignment="Center"
+                    TextWrapping="WrapWithOverflow" />
+                <TextBlock
+                    Text="выдача платных справок"
+                    TextAlignment="Center"
+                    TextWrapping="WrapWithOverflow" />
+            </StackPanel>
+        </Button>
+        
     </Grid>
 </Window>

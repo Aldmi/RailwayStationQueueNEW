@@ -93,16 +93,12 @@
     </Compile>
     <Compile Include="BaseViewModels\AutoClouseByTimerBaseVewModel.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
-    <Compile Include="ViewModels\BuyTicketViewModel.cs" />
     <Compile Include="ViewModels\CheckPrinterStatusViewModel.cs" />
     <Compile Include="ViewModels\CheckWorkPermitTimeViewModel.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
     <Compile Include="ViewModels\PrintMessageViewModel.cs" />
     <Compile Include="Views\AppView.xaml.cs">
       <DependentUpon>AppView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BuyTicketView.xaml.cs">
-      <DependentUpon>BuyTicketView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CheckWorkPermitTimeView.xaml.cs">
       <DependentUpon>CheckWorkPermitTimeView.xaml</DependentUpon>
@@ -152,10 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AppView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\BuyTicketView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

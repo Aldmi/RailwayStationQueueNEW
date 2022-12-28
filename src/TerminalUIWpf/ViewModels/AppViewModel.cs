@@ -165,14 +165,11 @@ namespace TerminalUIWpf.ViewModels
 
 
         #region Methode
-
-        /// <summary>
-        /// Открыть окно покупки билетов
-        /// </summary>
+        
         public async Task BtnBuyTicket()
         {
-            const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - внутреннее и межгосударственное сообщения";
-            const string prefixQueue = "К";
+            const string descriptionQueue = "Купить билет оформить возврат";
+            const string prefixQueue = "А";
 
             if (!_model.IsConnectTcpIp)
                 return;
@@ -193,13 +190,10 @@ namespace TerminalUIWpf.ViewModels
             await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
 
-
-        /// <summary>
-        /// Купить билет в международном сообщении
-        /// </summary>
-        public async Task BtnBuyInterstateTicket()
+        
+        public async Task BtnPrivilegesTicket()
         {
-            const string descriptionQueue = "Оформление, возврат, переоформление, прерывание поездки, опоздание на поезд дальнего следования - международное сообщение (дальнее зарубежье)";
+            const string descriptionQueue = "Обслуживание маломобильных пассажиров и льготной категории граждан";
             const string prefixQueue = "М";
 
             if (!_model.IsConnectTcpIp)
@@ -220,14 +214,11 @@ namespace TerminalUIWpf.ViewModels
             await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
 
-
-        /// <summary>
-        /// Оформление багажа и животных
-        /// </summary>
-        public async Task BaggageAndPets()
+        
+        public async Task BtnMilitaryPeopleTicket()
         {
-            const string descriptionQueue = "Оформление багажа и живности";
-            const string prefixQueue = "Б";
+            const string descriptionQueue = "Оформление по воинским перевозочным документам";
+            const string prefixQueue = "В";
 
             if (!_model.IsConnectTcpIp)
                 return;
@@ -247,14 +238,11 @@ namespace TerminalUIWpf.ViewModels
             await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
 
-
-        /// <summary>
-        /// Оформление групп пассажиров
-        /// </summary>
-        public async Task BtnGroupsTicket()
+        
+        public async Task BtnBaggageTicket()
         {
-            const string descriptionQueue = "Оформление групповых перевозок";
-            const string prefixQueue = "Г";
+            const string descriptionQueue = "Оформление багажа и животных / выдача платных справок";
+            const string prefixQueue = "Ж";
 
             if (!_model.IsConnectTcpIp)
                 return;
@@ -273,118 +261,7 @@ namespace TerminalUIWpf.ViewModels
             }
             await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
-
-
-        /// <summary>
-        /// Оформление билетов на отправляющиеся поезда менее 30 минут до отправления
-        /// </summary>
-        public async Task BtnBuyAcceleratedTicket()
-        {
-            const string descriptionQueue = "Оформление билетов на отправляющиеся поезда менее 30 минут до отправления";
-            const string prefixQueue = "У";
-
-            if (!_model.IsConnectTcpIp)
-                return;
-
-            if (!CheckPrinterStatus())
-                return;
-
-            if (!CheckWorkPermitTime(prefixQueue))
-                return;
-
-            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
-            if (isFailure)
-            {
-                ViewErrorMessage4Staff(error);
-                return;
-            }
-            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
-        }
-
-
-        /// <summary>
-        /// Оформление маломобильных пассажиров
-        /// </summary>
-        public async Task BtnLowMobilityTicket()
-        {
-            const string descriptionQueue = "Обслуживание маломобильных пассажиров и льготной категории граждан";
-            const string prefixQueue = "И";
-
-            if (!_model.IsConnectTcpIp)
-                return;
-
-            if (!CheckPrinterStatus())
-                return;
-
-            if (!CheckWorkPermitTime(prefixQueue))
-                return;
-
-            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
-            if (isFailure)
-            {
-                ViewErrorMessage4Staff(error);
-                return;
-            }
-            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
-        }
-
-
-        /// <summary>
-        /// Получить справку
-        /// </summary>
-        public async Task BtnGetHelp()
-        {
-            const string descriptionQueue = "Получить справку";
-            const string prefixQueue = "С";
-
-            if (!_model.IsConnectTcpIp)
-                return;
-
-            if (!CheckPrinterStatus())
-                return;
-
-            if (!CheckWorkPermitTime(prefixQueue))
-                return;
-
-            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
-            if (isFailure)
-            {
-                ViewErrorMessage4Staff(error);
-                return;
-            }
-            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
-        }
-
-
-        /// <summary>
-        /// Администратор
-        /// </summary>
-        public async Task BtnAdmin()
-        {
-            const string descriptionQueue = "Администратор: идентификация 14-значного номера электронного билета, восстановление утраченных и испорченных билетов, вопросы по работе билетных касс";
-            const string prefixQueue = "А";
-
-            if (!_model.IsConnectTcpIp)
-                return;
-
-            if (!CheckPrinterStatus())
-                return;
-
-            if (!CheckWorkPermitTime(prefixQueue))
-                return;
-
-            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
-            if (isFailure)
-            {
-                ViewErrorMessage4Staff(error);
-                return;
-            }
-            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
-        }
-
-
-
-
+        
         private bool CheckPrinterStatus()
         {
             var сheckPrinterStatusVm = new CheckPrinterStatusViewModel(_model.PrintTicketService);
