@@ -242,7 +242,7 @@ namespace TerminalUIWpf.ViewModels
         public async Task BtnBaggageTicket()
         {
             const string descriptionQueue = "Оформление багажа и животных / выдача платных справок";
-            const string prefixQueue = "Ж";
+            const string prefixQueue = "Б";
 
             if (!_model.IsConnectTcpIp)
                 return;

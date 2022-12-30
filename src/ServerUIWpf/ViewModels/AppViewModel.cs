@@ -1663,8 +1663,7 @@ namespace ServerUi.ViewModels
             }
             _model.Listener.PropertyChanged -= Listener_PropertyChanged;
             _model.SoundQueue.PropertyChanged -= SoundQueue_PropertyChanged;
-
-
+            
             _model.Dispose();
             base.OnDeactivate(close);
         }

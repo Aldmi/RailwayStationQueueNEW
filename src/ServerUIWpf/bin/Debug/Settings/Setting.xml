@@ -28,7 +28,7 @@
 			<Prefix Name="А" Priority="10"/>  <!-- 1. Купить билет оформить возврат -->
 			<Prefix Name="М" Priority="10"/> <!-- 2.Обслуживание маломобильных пассажиров и льготной категории граждан -->
 			<Prefix Name="В" Priority="10"/>  <!-- 3. Оформление по воинским перевозочным документам -->
-			<Prefix Name="Ж" Priority="10"/> <!-- 4. Оформление багажа и животных/выдача платных справок-->
+			<Prefix Name="Б" Priority="10"/> <!-- 4. Оформление багажа и животных/выдача платных справок-->
 		</Queue>
 		
 		<Queue Id="2" Name="Admin">
@@ -39,7 +39,7 @@
 
 	
 	<Cashiers>	`
-	   <Cashier Id="1" Address="7" Port="1" NameQueue="Main" Prefix="М,В,А,Ж" MaxCountTryHanding="2"/>
+	   <Cashier Id="1" Address="7" Port="1" NameQueue="Main" Prefix="М,В,А,Б" MaxCountTryHanding="2"/>
 	   <!-- <Cashier Id="2" Address="10" Port="1" NameQueue="Main" Prefix="С" MaxCountTryHanding="2"/> -->
 	   <!-- <Cashier Id="3" Address="8" Port="1" NameQueue="Main" Prefix="All,С,М,Г,А" MaxCountTryHanding="2"/> -->
 	   <!-- <Cashier Id="4" Address="4" Port="1" NameQueue="Main" Prefix="All,М,Г,А" MaxCountTryHanding="2"/> -->

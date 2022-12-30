@@ -292,12 +292,10 @@ D:\Git\RailwayStationQueue\src\TerminalUIWpf\bin\Release\NLog.xml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.AssemblyReference.cache
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\TerminalUI.csproj.SuggestedBindingRedirects.cache
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\AppView.baml
-D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\BuyTicketView.baml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\CheckWorkPermitTimeView.baml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\CheckPrinterStatusView.baml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\DialogView.baml
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\AppView.g.cs
-D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\BuyTicketView.g.cs
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\CheckWorkPermitTimeView.g.cs
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\CheckPrinterStatusView.g.cs
 D:\Git\RailwayStationQueue\src\TerminalUIWpf\obj\Release\Views\DialogView.g.cs

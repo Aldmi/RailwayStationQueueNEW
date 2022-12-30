@@ -32,10 +32,10 @@
 	   </Prefix>
 	   
 	     <!-- 4. Оформление багажа и животных/выдача платных справок-->
-		<Prefix Name="Ж" QueueName="Main">
-	     <PermitTimes>
-	       <PermitTime Start="00:00" Stop= "23:59" Message="Возьмите другой талон." />
-		 </PermitTimes>
+		<Prefix Name="Б" QueueName="Main">
+	     <!-- <PermitTimes> -->
+	       <!-- <PermitTime Start="20:00" Stop= "23:59" Message="Возьмите другой талон." /> -->
+		 <!-- </PermitTimes> -->
 	   </Prefix>
   </Prefixs>
   
