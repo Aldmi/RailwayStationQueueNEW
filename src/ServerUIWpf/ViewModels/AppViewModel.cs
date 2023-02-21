@@ -154,7 +154,7 @@ namespace ServerUi.ViewModels
 
         #region prop
 
-        public string ProgrammVersion => "Ver 1.2 [18.10.2022]   [Change QR code in terminal.\nChange NLog config]";
+        public string ProgrammVersion => "Ver 1.3 [Change \"Ж\"-> \"Б\" in terminal \n6a2d8c6d3758a296594176526cef5c157fcbb509 30.12.2022 11:53:05]";
 
 
         private QueuePriority GetQueueMain => _model.QueuePriorities.FirstOrDefault(q => q.Name == "Main");
@@ -862,7 +862,8 @@ namespace ServerUi.ViewModels
                                 {"StartDateProcessing", ticket.StartProcessingTime},
                                 {"EndDateProcessing", ticket.EndProcessingTime},
                                 {"ProcessingTime", ticket.ProcessingTime.ToString(@"hh\:mm\:ss")},
-                                {"ServiceTime", ticket.ServiceTime.ToString(@"hh\:mm\:ss")}
+                                {"ServiceTime", ticket.ServiceTime.ToString(@"hh\:mm\:ss")},
+                                {"WaitingTime", ticket.WaitingTime.ToString(@"hh\:mm\:ss")}
                             };
                             _logger.LogEventContext(logDict);
                         }

@@ -22,7 +22,7 @@ namespace Server.Entitys
 
 
         /// <summary>
-        /// Вычислить TimeProcessing и ServiceTime
+        /// Вычислить TimeProcessing, ServiceTime, WaitingTime
         /// </summary>
         public void CalculateTime()
         {
@@ -31,11 +31,8 @@ namespace Server.Entitys
             WaitingTime = StartProcessingTime - AddedTime;
         }
 
-
-        public override string ToString()
-        {
-            var ticketName = Prefix + NumberElement.ToString("000");
-            return $";  Дата добавления в очередь: {AddedTime};  Дата поступления в обработку: {StartProcessingTime};  Дата окончания обработки: {EndProcessingTime};  Номер билета: {ticketName};  Номер кассира: {CashboxId?.ToString() ?? "неизвестный кассир" } ";
-        }
+     
+        public string GetTicketName=> Prefix + NumberElement.ToString("000");
+        public override string ToString() => $";  Дата добавления в очередь: {AddedTime};  Дата поступления в обработку: {StartProcessingTime};  Дата окончания обработки: {EndProcessingTime};  Номер билета: {GetTicketName};  Номер кассира: {CashboxId?.ToString() ?? "неизвестный кассир" } ";
     }
 }

@@ -211,7 +211,6 @@ namespace Server.Model
                var queue= QueuePriorities.FirstOrDefault(q => q.Name == xmlCash.NameQueue);
                if (queue != null)
                {
-                    //var logName = "Server.CashierInfo_" + xmlCash.Port;
                    var logName = "Server.Cashier_Id_" + xmlCash.Id;
                    var casher = new Сashier(xmlCash.Id, xmlCash.Prefixs, queue, xmlCash.MaxCountTryHanding, logName);
                    DeviceCashiers.Add(new DeviceCashier(xmlCash.AddressDevice, casher, xmlCash.Port));
