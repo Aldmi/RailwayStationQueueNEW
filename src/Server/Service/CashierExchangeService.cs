@@ -78,7 +78,8 @@ namespace Server.Service
                         }
 
                         //TODO: проверить
-                        if (!cashierInfo.IsWork)
+                        //Перерыв кассира (закрыла сессию)
+                        if (!cashierInfo.IsWork) 
                         {
                             //Если кассир быстро закрыла сессию (до того как опрос порта дошел до нее), то билет из обработки надо убрать.
                             if (devCashier.Cashier.CurrentTicket != null)

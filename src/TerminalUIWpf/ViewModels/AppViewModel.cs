@@ -237,7 +237,6 @@ namespace TerminalUIWpf.ViewModels
             }
             await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
-
         
         public async Task BtnBaggageTicket()
         {
@@ -261,6 +260,31 @@ namespace TerminalUIWpf.ViewModels
             }
             await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
         }
+        
+        
+        public async Task BtnMemberSvoTicket()
+        {
+            const string descriptionQueue = "Участник СВО";
+            const string prefixQueue = "С";
+
+            if (!_model.IsConnectTcpIp)
+                return;
+
+            if (!CheckPrinterStatus())
+                return;
+
+            if (!CheckWorkPermitTime(prefixQueue))
+                return;
+
+            var (_, isFailure, prefixeConf, error) = _model.PrefixesConfig.GetConf(prefixQueue);
+            if (isFailure)
+            {
+                ViewErrorMessage4Staff(error);
+                return;
+            }
+            await _model.QueueSelection(prefixeConf.QueueName, prefixQueue, descriptionQueue);
+        }
+        
         
         private bool CheckPrinterStatus()
         {

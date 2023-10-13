@@ -13,12 +13,12 @@
 
     <Window.Resources>
         <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="FontSize" Value="45" />
+            <Setter Property="FontSize" Value="38" />
             <Setter Property="Background" Value="{Binding Path=ColorBtn, Mode=OneWay}" />
             <Setter Property="FontWeight" Value="Bold" />
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="2,10,2,10" />
-            <Setter Property="Padding" Value="24" />
+            <Setter Property="Margin" Value="2,9,2,9" />
+            <Setter Property="Padding" Value="20" />
             <Setter Property="IsEnabled" Value="{Binding Path=BtnEnable, Mode=OneWay}" />
             <Setter Property="VerticalAlignment" Value="Stretch" />
             <Setter Property="MaxWidth" Value="1200" />
@@ -202,6 +202,18 @@
                     TextWrapping="WrapWithOverflow" />
                 <TextBlock
                     Text="выдача платных справок"
+                    TextAlignment="Center"
+                    TextWrapping="WrapWithOverflow" />
+            </StackPanel>
+        </Button>
+        
+        <Button
+            Name="BtnMemberSvoTicket"
+            Grid.Row="5"
+            Style="{StaticResource ButtonStyle}">
+            <StackPanel>
+                <TextBlock
+                    Text="Участник СВО"
                     TextAlignment="Center"
                     TextWrapping="WrapWithOverflow" />
             </StackPanel>

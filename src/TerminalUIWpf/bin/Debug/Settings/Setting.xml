@@ -37,6 +37,13 @@
 	       <!-- <PermitTime Start="20:00" Stop= "23:59" Message="Возьмите другой талон." /> -->
 		 <!-- </PermitTimes> -->
 	   </Prefix>
+	      
+	     <!-- 5. Участник СВО-->
+		<Prefix Name="С" QueueName="Main">
+	     <!-- <PermitTimes> -->
+	       <!-- <PermitTime Start="20:00" Stop= "23:59" Message="Возьмите другой талон." /> -->
+		 <!-- </PermitTimes> -->
+	   </Prefix>
   </Prefixs>
   
   <Printer>

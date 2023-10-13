@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Server.Entitys;
@@ -127,46 +129,55 @@ namespace Server.Test
 
 
 
+        /// <summary>
+        /// 2 SerialPort - поэтому только 2 касира могут параллельно обратится к очереди.
+        /// </summary>
         [Fact]
-        public async Task StartHandling_StartHandlingSuccessful_SuccessfulHandling_Parallel_Cahier_Work_Ok()
+        public async Task StartHandling_StartHandlingSuccessful_SuccessfulHandling_Parallel_TWO_Cahier_Work_Ok()
         {
             //Arrage
             InitQueue(new[] {"B", "C", "D", "B", "A", "B", "A", "A"});
             var casher1 = new Сashier(1, new List<string> {"D", "B", "C"}, _queue, 2, "test");
             var casher2 = new Сashier(2, new List<string> {"A", "C"}, _queue, 2, "test");
-
-            List<string> expectedTicketNamesCashier1 = new List<string>();
+            
+            async Task TicketHandler(Сashier ch, ICollection<string> expectedTicketNamesList, TimeSpan startHandlingTransactionTime, TimeSpan workTime)
+            {
+                var ticket1 = ch.StartHandling();
+                expectedTicketNamesList.Add(ticket1?.GetTicketName);
+                 
+                await Task.Delay(startHandlingTransactionTime); //Время на транзакцию билета до планшета
+                ch.StartHandlingSuccessful();
+                 
+                await Task.Delay(workTime);                    //Время на обработку билета
+                ch.SuccessfulHandling();
+            }
+            
+            //Act 
+            var expectedTicketNamesCashier1 = new List<string>();
             var task1 = Task.Run(async () =>
             {
-                 var ticket1 = casher1.StartHandling();
-                 expectedTicketNamesCashier1.Add(ticket1.GetTicketName);
-                 
-                 await Task.Delay(10); //Время на транзакцию билета до планшета
-                 casher1.StartHandlingSuccessful();
-                 
-                 await Task.Delay(2000);
-                 casher1.SuccessfulHandling();
+                var countCashierInvoke = 6;
+                foreach (var _ in Enumerable.Range(1,countCashierInvoke))
+                {
+                    await TicketHandler(casher1, expectedTicketNamesCashier1, TimeSpan.FromMilliseconds(10), TimeSpan.FromSeconds(0.2));
+                }
             });
             
-            List<string> expectedTicketNamesCashier2 = new List<string>();
+            var expectedTicketNamesCashier2 = new List<string>();
             var task2 = Task.Run(async () =>
             {
-                var ticket1 = casher2.StartHandling();
-                expectedTicketNamesCashier2.Add(ticket1.GetTicketName);
-                 
-                await Task.Delay(10); //Время на транзакцию билета до планшета
-                casher2.StartHandlingSuccessful();
-                 
-                await Task.Delay(2000);
-                casher2.SuccessfulHandling();
+                var countCashierInvoke = 6;
+                foreach (var _ in Enumerable.Range(1,countCashierInvoke))
+                {
+                    await TicketHandler(casher2, expectedTicketNamesCashier2, TimeSpan.FromMilliseconds(10), TimeSpan.FromSeconds(0.2));
+                }
             });
 
             await Task.WhenAll(task1, task2);
 
-            //Act 
-            // var ticket1 = casher.StartHandling();
-            // casher.StartHandlingSuccessful();
-            // casher.SuccessfulHandling();
+            //Assert
+            expectedTicketNamesCashier1.Should().BeEquivalentTo(new[] {"D003", "B001", "B004", "B006", null, null});
+            expectedTicketNamesCashier2.Should().BeEquivalentTo(new[] {"A005", "A007", "A008", "C002", null, null});
         }
 
     }

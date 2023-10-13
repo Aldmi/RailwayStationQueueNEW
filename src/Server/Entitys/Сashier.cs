@@ -243,7 +243,7 @@ namespace Server.Entitys
             if (CurrentTicket?.CountTryHandling < _maxCountTryHandin)
                 _queueTicket.Enqueue(CurrentTicket);
 
-            _loggerCashierInfo.Info($"Команда от кассира: \"ErrorHandling (Клиент не обрабаотанн.)\"  Id= {Id}    CountTryHandling= {CurrentTicket?.CountTryHandling}  NameTicket= {(CurrentTicket != null ? CurrentTicket.Prefix + CurrentTicket.NumberElement.ToString("000") : string.Empty)}");//LOG
+            _loggerCashierInfo.Info($"Команда от кассира: \"ErrorHandling (Клиент не обрабаотан.)\"  Id= {Id}    CountTryHandling= {CurrentTicket?.CountTryHandling}  NameTicket= {(CurrentTicket != null ? CurrentTicket.Prefix + CurrentTicket.NumberElement.ToString("000") : string.Empty)}");//LOG
             PreviousTicket = CurrentTicket;
             CurrentTicket = null;
             return CurrentTicket;
