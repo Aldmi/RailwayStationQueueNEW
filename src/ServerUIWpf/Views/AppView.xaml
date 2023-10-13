@@ -99,7 +99,7 @@
                             Margin="-3,0"
                             Background="Transparent"
                             BorderBrush="Black"
-                            BorderThickness="0,0,0,1">
+                            BorderThickness="0,0,0,0">
                             <TextBlock
                                 Width="{TemplateBinding Width}"
                                 Padding="{TemplateBinding Padding}"

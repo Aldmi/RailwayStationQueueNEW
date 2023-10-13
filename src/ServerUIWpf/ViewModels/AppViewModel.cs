@@ -154,7 +154,7 @@ namespace ServerUi.ViewModels
 
         #region prop
 
-        public string ProgrammVersion => "Ver 1.3 [Change \"Ж\"-> \"Б\" in terminal \n6a2d8c6d3758a296594176526cef5c157fcbb509 30.12.2022 11:53:05]";
+        public string ProgrammVersion => "Ver 1.31\n[Добавил участник СВО на terminal.\n Убрал кнопки отладки на сервере\n6a2d8c6d3758a296594176526cef5c157fcbb509 30.12.2022 11:53:05]";
 
 
         private QueuePriority GetQueueMain => _model.QueuePriorities.FirstOrDefault(q => q.Name == "Main");
